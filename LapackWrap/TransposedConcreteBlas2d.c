@@ -18,14 +18,14 @@ TransposedConcreteBlas2d<T>::TransposedConcreteBlas2d(ConcreteBlas2d<T>& a) :
 }
 
 
-
+/* CAD
 template<class T>
 TransposedConcreteBlas2d<T>::operator ConcreteBlas2d<T>() const { 
     ConcreteBlas2d<T> result(shape(1), shape(0));
-    concreteCopy(result, ConcreteArray2dConstRef<SubscriptorT, T>(*this));
+    concreteCopy(result, ConcreteArray2dConstRef< SubscriptorType, T>(*this));
     return result;
 }
-
+*/
 
 
 template<class T>
@@ -45,9 +45,29 @@ ConcreteBlas2d<T> operator*(const TransposedConcreteBlas2d<T>& t,
     return result;
 }
 
+template<class T>
+void
+mult(const TransposedConcreteBlas2d<T>& a, const TransposedConcreteBlas2d<T>& b, 
+     ConcreteBlas2d<T>& c ) {
+
+  // same as above: c = a^t * b^t
+
+  if ( c.shape(0) != a.shape(0) ) throw  ArrayErr::Shape();
+  if ( c.shape(1) != b.shape(1) ) throw  ArrayErr::Shape();
+  if ( a.shape(1) != b.shape(0) ) throw  ArrayErr::Shape();
+
+  Blas3Subroutines::xgemm( Blas3Subroutines::trans, 
+			   Blas3Subroutines::trans, 
+			   a.shape(0), b.shape(1), a.shape(1),
+			   T(1), a.firstDatum(), a.shape(1),
+			   b.firstDatum(), b.shape(1),
+			   T(0), c.firstDatum(), c.shape(0) );
+}
 
 template<class T>
-ConcreteBlas2d<T> operator*(const ConcreteBlas2d<T>& u, const TransposedConcreteBlas2d<T>& t) {
+ConcreteBlas2d<T> operator*(const ConcreteBlas2d<T>& u, 
+			    const TransposedConcreteBlas2d<T>& t) {
+
   ConcreteBlas2d<T> result(u.shape(0), t.shape(1));
   Blas3Subroutines::xgemm( 
       Blas3Subroutines::no_trans, Blas3Subroutines::trans, 
@@ -57,6 +77,25 @@ ConcreteBlas2d<T> operator*(const ConcreteBlas2d<T>& u, const TransposedConcrete
       T(0), result.firstDatum(), result.shape(0)
    );
   return result;
+}
+
+template<class T>
+void
+mult(const ConcreteBlas2d<T>& a, const TransposedConcreteBlas2d<T>& b, 
+     ConcreteBlas2d<T>& c ) {
+
+  // same as above: c = a * b^t
+
+  if ( c.shape(0) != a.shape(0) ) throw  ArrayErr::Shape();
+  if ( c.shape(1) != b.shape(1) ) throw  ArrayErr::Shape();
+  if ( a.shape(1) != b.shape(0) ) throw  ArrayErr::Shape();
+
+  Blas3Subroutines::xgemm( Blas3Subroutines::no_trans, 
+			   Blas3Subroutines::trans, 
+			   a.shape(0), b.shape(1), a.shape(1),
+			   T(1), a.firstDatum(), a.shape(0),
+			   b.firstDatum(), b.shape(1),
+			   T(0), c.firstDatum(), c.shape(0) );
 }
 
 template<class T>
