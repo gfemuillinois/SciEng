@@ -1,0 +1,58 @@
+(1) created CVS repository:
+
+cvs -d /home3/cvsroot init
+
+Therefore $CVSROOT = :local:/home3/cvsroot
+
+$CVSROOT +- CVSROOT
+         |
+	 +- software +- SciEng
+         |           |
+	 |	     +- gfem
+	 |
+	 |
+	 +- document
+
+
+(2)
+Created directory tree software/SciEng in the repository
+with the original files from the library:
+
+cd2
+cd Galileu
+cd  SciEng_orig  
+
+cvs import -m "scieng lib source" software/SciEng  venTag stTag
+
+(3) 
+added module SciEng to mudules file: (see pag 31 of manual for instr.)
+
+cvs co CVSROOT/modules
+cd CVSROOT
+edit modules file:   SciEng     software/SciEng
+cvs ci -m "added module SciEng" modules
+cd ..
+cvs release -d CVSROOT
+
+(4)
+Tagged original files:
+
+cvs tag -c SciEngOrig
+
+(5) Imcorporating our changes to the repository:
+
+cd tmp
+cvs co SciEng
+
+cd
+cd Galileu_arm/SciEng_arm (this is RH7.2 working playpen)
+
+at each directory do:
+cp -R coppesponding CVS dir from tmp/SciEng
+ci changes, add files, etc.
+
+(5) tagged this porting
+
+cvs tag -c RH7.2_port
+
+
