@@ -1,0 +1,18 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+ distance
+ distance2
+ interactive
+ interactive2
+ intersect
+ linefit
+ linefit2
+ ptrselect
+ quadratic
+ sqr
+ tCheckedSimpleArray
