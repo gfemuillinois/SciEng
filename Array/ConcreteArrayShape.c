@@ -10,6 +10,8 @@ See README file for further details.
 */
 #include "SciEng/Boolean.h"
 
+//namespace SciEngLib {
+
 template<Dimension ndim>
 ConcreteArrayShape<ndim>::ConcreteArrayShape(const SubscriptArray<ndim>& sa) :
     the_shape(sa) {
@@ -77,10 +79,31 @@ ConcreteColumnMajorSubscriptor<ndim>::projectionSubscriptor(Dimension proj_dim, 
     return ConcreteColumnMajorProjectionSubscriptor<ndim-1>(proj_shape, proj_strides);
 }
 
+ConcreteColumnMajorProjectionSubscriptor<1>
+ConcreteColumnMajorSubscriptor<2>::projectionSubscriptor(Dimension proj_dim, Subscript) const { 
+
+    SubscriptArray<1> proj_shape;     // Shape of projection
+    SubscriptArray<1> proj_strides;   // Strides of projection
+    SubscriptArray<2> step;           // Holds subscripts into array
+
+    Dimension j = 0;    // Dimension in projection
+    Dimension k = 0;    // Corresponding dimension in array
+    step = 0;           // Will be set to take one "step" in dimension k
+
+    if (j == proj_dim) ++k;           // Skip over projected dimension
+    proj_shape(j) = shape(k);         // Proj shape is array shape without dimension proj_dim
+
+                                          // Compute offset by taking a step in dimension k
+    step(k) = 1;
+    proj_strides(j) = offset(step);
+
+    return ConcreteColumnMajorProjectionSubscriptor<1>(proj_shape, proj_strides);
+}
 
 template<Dimension ndim>
 ConcreteRowMajorProjectionSubscriptor<ndim-1>
 ConcreteRowMajorSubscriptor<ndim>::projectionSubscriptor(Dimension proj_dim, Subscript) const {
+
   // Looks the same as ColumnMajor, but call to offset() calls different code.
   SubscriptArray<ndim> one_step;
   SubscriptArray<ndim-1> proj_shape;
@@ -95,6 +118,27 @@ ConcreteRowMajorSubscriptor<ndim>::projectionSubscriptor(Dimension proj_dim, Sub
   }
    return ConcreteRowMajorProjectionSubscriptor<ndim-1>(proj_shape, proj_strides);
 }
+
+ConcreteRowMajorProjectionSubscriptor<1>
+ConcreteRowMajorSubscriptor<2>::projectionSubscriptor(Dimension proj_dim, Subscript) const {
+
+  // Looks the same as ColumnMajor, but call to offset() calls different code.
+
+  SubscriptArray<2> one_step;
+  SubscriptArray<1> proj_shape;
+  SubscriptArray<1> proj_strides;
+
+  one_step = 0;
+  Dimension j = 0;
+
+  Dimension old_j = j + (j >= proj_dim);  // logical part skips over projected dimension.
+  proj_shape(j) = shape(old_j);
+  one_step(old_j) = 1;
+  proj_strides(j) = offset(one_step);
+
+  return ConcreteRowMajorProjectionSubscriptor<1>(proj_shape, proj_strides);
+}
+
 
 template<Dimension ndim>
 ConcreteColumnMajorProjectionSubscriptor<ndim-1>
@@ -153,13 +197,15 @@ ConcreteRowMajorProjectionSubscriptor(const SubscriptArray<ndim>& the_shape, con
   ConcreteStrides<ndim>(the_strides) {
 }
 
-#include "SciEng/Boolean.h"
+//#include "SciEng/Boolean.h"
 
 template<class LHSArrayShape, class RHSArrayShape>
 Boolean hasSameShapeAs(const LHSArrayShape& lhs, const RHSArrayShape& rhs) {
-  if (lhs.dim() != rhs.dim()) return Boolean::false;
+  if (lhs.dim() != rhs.dim()) return Boolean::IsFalse;
   for (Subscript n = lhs.dim() - 1; n < 0; n--) {
-    if (lhs.shape(n) != rhs.shape(n)) return Boolean::false;
+    if (lhs.shape(n) != rhs.shape(n)) return Boolean::IsFalse;
   }
-  return Boolean::true;
+  return Boolean::IsTrue;
 }
+
+//}
