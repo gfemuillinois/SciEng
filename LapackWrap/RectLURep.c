@@ -13,10 +13,10 @@ See README file for further details.
 
 
 template<class T>
-RectLURep<T>::Factored::Factored(RectLURep<T>::Unfactored* mp) :
+RectLURep<T>::Factored::Factored( RectLURep<T>::Unfactored* mp) :
 
-    pivots( min(mp->shape(0), mp->shape(1)) ), 
-    facmat_p(mp)                               {
+    facmat_p(mp), pivots( min(mp->shape(0), mp->shape(1)) )
+                                  {
 
 
     int info;  // info return from LAPACK factor routine.
