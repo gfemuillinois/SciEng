@@ -9,26 +9,13 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include <math.h>
+#include <iostream>
+
 #include "SciEng/utils.h"
 #include "Array/ConcreteFormedArray1d.h"
 #include "Array/ConcreteFormedArray2d.h"
 
-
-template<class Array>
-Array::EltT FrobeniusNorm(const Array& a) {
-    Array::EltT sumsq = 0;
-    Array::EltT scale = 1;
-    for (Array::BrowserType i(a); i.more(); i.advance()) {
-        Array::EltT absx = abs(i.current());
-        if (absx > scale) {
-            sumsq = sqr(scale / absx) * sumsq + 1;
-            scale = absx;
-        }
-        else sumsq += sqr(absx / scale);
-    }
-    return scale * sqrt(sumsq);
-}
-
+#include "IteratorFrobenius.h"
 
 int main() {
   ConcreteFormedArray1d<double> a1(3);
