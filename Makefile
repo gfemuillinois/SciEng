@@ -137,6 +137,8 @@ clean:
 #	cd examples/ch19; $(MAKE) clean
 	cd LapackWrap;    $(MAKE) clean
 	cd Vector;        $(MAKE) clean
+	cd SciEng; 	  $(MAKE) clean
+	cd Array; 	  $(MAKE) clean
 
 real_clean:
 	rm -f SciEng/ArrayErr.o \
@@ -180,6 +182,8 @@ real_clean:
 #	cd examples/ch19; $(MAKE) real_clean
 	cd LapackWrap;    $(MAKE) real_clean
 	cd Vector;        $(MAKE) real_clean
+	cd SciEng; 	  $(MAKE) real_clean
+	cd Array; 	  $(MAKE) real_clean
 
 clean_SciEng:
 	rm -f SciEng/ArrayErr.o \
