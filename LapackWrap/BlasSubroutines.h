@@ -28,10 +28,16 @@ extern "C" {          // Raw BLAS prototypes.
              const float& BETA, float* CP, const int& LDC);
   double FTNAME(ddot)(const int& n, const double* xp, const int& incx, const double* yp, const int& incy);
   float  FTNAME(sdot)(const int& n, const float* xp, const int& incx, const float* yp, const int& incy);
-  float  FTNAME(sscal)(const int& n, const float& alpha, const float* xp, const int& incx);
-  double FTNAME(dscal)(const int& n, const double& alpha, const double* xp, const int& incx);
+  void   FTNAME(sscal)(const int& n, const float& alpha, const float* xp, const int& incx);
+  void   FTNAME(dscal)(const int& n, const double& alpha, const double* xp, const int& incx);
   float  FTNAME(snrm2)(const int& n, const float* xp, const int& incx);
   double FTNAME(dnrm2)(const int& n, const double* xp, const int& incx);
+
+  // y <- alpha * x + y
+  void   FTNAME(saxpy)(const int& n, const float& alpha, const float* xp, const int& incx,
+		       const float* yp, const int& incy);
+  void   FTNAME(daxpy)(const int& n, const double& alpha, const double* xp, const int& incx,
+		       const double* yp, const int& incy);
 };
 
 
@@ -39,10 +45,14 @@ class Blas1Subroutines {
 public:
     static double xdot(int n, const double* xp, int incx, const double* yp, int incy);
     static float xdot(int n, const float* xp, int incx, const float* yp, int incy);
-    static double xscal(int n, const double alpha, const double* xp, int incx);
-    static float xscal(int n, const float alpha, const float* xp, int incx);
+    static void  xscal(int n, const double alpha, const double* xp, int incx);
+    static void  xscal(int n, const float alpha, const float* xp, int incx);
     static double xnrm2(int n, const double* xp, int incx);
     static float xnrm2(int n, const float* xp, int incx);
+
+  static void xaxpy(int n, const float alpha, const float* xp, int incx, const float* yp, int incy);
+  static void xaxpy(int n, const double alpha, const double* xp, int incx, const double* yp, int incy);
+
     // ...
 };
 
@@ -100,11 +110,11 @@ inline float Blas1Subroutines::xdot(int n, const float* xp, int incx, const floa
      return FTNAME(sdot)(n,xp,incx,yp,incy);
 }
 
-inline double Blas1Subroutines::xscal(int n, const double alpha, const double* xp, int incx){
-     return FTNAME(dscal)(n,alpha,xp,incx);
+inline void Blas1Subroutines::xscal(int n, const double alpha, const double* xp, int incx){
+     FTNAME(dscal)(n,alpha,xp,incx);
 }
-inline float Blas1Subroutines::xscal(int n, const float alpha, const float* xp, int incx){
-     return FTNAME(sscal)(n,alpha,xp,incx);
+inline void Blas1Subroutines::xscal(int n, const float alpha, const float* xp, int incx){
+     FTNAME(sscal)(n,alpha,xp,incx);
 }
 inline double Blas1Subroutines::xnrm2(int n, const double* xp, int incx){
      return FTNAME(dnrm2)(n,xp,incx);
@@ -113,7 +123,16 @@ inline float Blas1Subroutines::xnrm2(int n, const float* xp, int incx){
      return FTNAME(snrm2)(n,xp,incx);
 }
 
-                                                                              
+inline void Blas1Subroutines::xaxpy(int n, const float alpha, const float* xp, int incx, 
+				    const float* yp, int incy) {
+  FTNAME(saxpy)(n, alpha, xp, incx, yp, incy);
+}
+inline void Blas1Subroutines::xaxpy(int n, const double alpha, const double* xp, int incx, 
+				    const double* yp, int incy) {
+  FTNAME(daxpy)(n, alpha, xp, incx, yp, incy);
+}                                                                             
+
+
 inline void Blas2Subroutines::xgemv(Blas2Subroutines::Trans t,
      int m, int n, double alpha, const double* a_p, int lda,
      const double* x_p, int inc_x, double beta,
