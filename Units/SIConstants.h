@@ -18,10 +18,16 @@ template<class T>
 class SIConstants :
     public DerivedUnits<T> {
 public:
-    static const Mass   kilogram;
-    static const Length meter;
-    static const Force newton;
-    static const Time second;
+  typedef FundamentalUnits<T>::Mass     Mass;
+  typedef FundamentalUnits<T>::Length   Length;
+  typedef DerivedUnits<T>::Force        Force;
+  typedef FundamentalUnits<T>::Time     Time;  
+  typedef DerivedUnits<T>::Acceleration Acceleration;
+
+    static const Mass         kilogram;
+    static const Length       meter;
+    static const Force        newton;
+    static const Time         second;
     static const Acceleration meter_per_sec2;
     static const Acceleration g;
     // ...

@@ -17,6 +17,11 @@ template<class T>
 class BritishConstants :
     public SIConstants<T> {
 public:
+  typedef SIConstants<T>::Mass     Mass;
+  typedef SIConstants<T>::Length   Length;
+  typedef SIConstants<T>::Force    Force;
+  typedef SIConstants<T>::Acceleration Acceleration;
+
     static const Mass slug;
     static const Length foot;
     static const Length inch;
