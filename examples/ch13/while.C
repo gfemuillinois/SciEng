@@ -31,7 +31,8 @@ double FrobeniusNorm(double* array, int n) {
 #include <iostream.h>
 int
 main() {
-  double m[2][3] = {1, 2, 3, 4, 5, 6};
+  double m[2][3] = { {1, 2, 3}, 
+		     {4, 5, 6} };
   cout << FrobeniusNorm(&m[0][0], 6) << endl;
   return 0;
 }
