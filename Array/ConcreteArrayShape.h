@@ -11,6 +11,11 @@ See README file for further details.
 #ifndef ConcreteArrayShapeH
 #define ConcreteArrayShapeH
 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+#include <assert.h>
+#include <iostream>
+#endif
+
 #include "Array/SubscriptArray.h"
 
 //namespace SciEngLib {
@@ -31,10 +36,25 @@ protected:
     SubscriptArray<ndim> the_shape;
 };
 
-                         
+template<>
+class ConcreteArrayShape<1> {
+public:
+  explicit  ConcreteArrayShape(const SubscriptArray<1>&);
+  explicit  ConcreteArrayShape(const Subscript);
+  ConcreteArrayShape() {} // Create uninitialized; call setShape to set.
+
+  Dimension            dim()              const { return 1;         }
+  Subscript            shape(Dimension d) const { return the_shape; }
+  Subscript            numElts()          const { return the_shape; }
+  void                 setShape(const Subscript a) { the_shape = a; }
+
+protected:
+  Subscript the_shape;
+}; 
+
+                        
 template<Dimension ndim>
 class ConcreteColumnMajorProjectionSubscriptor;
-
 
 template<Dimension ndim>
 class ConcreteColumnMajorSubscriptor :      
@@ -54,12 +74,21 @@ class ConcreteColumnMajorSubscriptor<1> :
     public ConcreteArrayShape<1> {
 public:
 
-    ConcreteColumnMajorSubscriptor(const SubscriptArray<1>& s) : ConcreteArrayShape<1>(s) {}
-    ConcreteColumnMajorSubscriptor()                                                      {}
-
+    ConcreteColumnMajorSubscriptor(const SubscriptArray<1>& s) : 
+      ConcreteArrayShape<1>(s) {}
+    ConcreteColumnMajorSubscriptor() {}
 
   //    Subscript offset(const SubscriptArray<1>& s) const { return s(0); }
-    Subscript offset(const Subscript s) const { return s; }
+    Subscript offset(const Subscript s) const { 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+      if ( s<0 || s >= shape(0) ) {
+	cerr << "ConcreteColumnMajorSubscriptor<1>::offset: Invalid arg: " << s
+	     << "\nshape(0) = " << shape(0) << endl;
+	assert(0);
+      }
+#endif
+    return s; }
+
 };
 
 template<>
@@ -67,16 +96,35 @@ class ConcreteColumnMajorSubscriptor<2> :
   public ConcreteArrayShape<2> {
 public:
 
-  ConcreteColumnMajorSubscriptor(const SubscriptArray<2>& s) : ConcreteArrayShape<2>(s) {}
-  ConcreteColumnMajorSubscriptor()                                                      {}
+  ConcreteColumnMajorSubscriptor(const SubscriptArray<2>& s) : 
+    ConcreteArrayShape<2>(s) {}
+  ConcreteColumnMajorSubscriptor() {}
 
   typedef ConcreteColumnMajorProjectionSubscriptor<1> ProjectionT;
   ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
   Subscript offset(const SubscriptArray<2>& s) const { // TBremoved
-  return shape(0) * s(1) + s(0); }
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s(0)<0 || s(0)>= shape(0) || s(1)<0 || s(1)>= shape(1) ) {
+      cerr << "ConcreteColumnMajorSubscriptor<2>::offset: Invalid args: " 
+	   << s(0) << "  " << s(1) << "\nshape(0) = " << shape(0) 
+	   << " shape(1) = " << shape(1) << endl;
+      assert(0);
+    }
+#endif    
+    return shape(0) * s(1) + s(0); }
+
   Subscript offset(const Subscript s0, const Subscript s1) const { 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s0<0 || s0>= shape(0) || s1<0 || s1 >= shape(1) ) {
+      cerr << "ConcreteColumnMajorSubscriptor<2>::offset: Invalid args: " 
+	   << s0 << "  " << s1 << "\nshape(0) = " << shape(0) 
+	   << " shape(1) = " << shape(1) << endl;
+      assert(0);
+    }
+#endif
     return shape(0) * s1 + s0; }
+
 };
 
 
@@ -100,11 +148,21 @@ template<>
 class ConcreteRowMajorSubscriptor<1> :
  public ConcreteArrayShape<1> {
 public:
-  ConcreteRowMajorSubscriptor(const SubscriptArray<1>& s) : ConcreteArrayShape<1>(s) {}
+  ConcreteRowMajorSubscriptor(const SubscriptArray<1>& s) : 
+    ConcreteArrayShape<1>(s) {}
   ConcreteRowMajorSubscriptor() {}
 
   //  Subscript offset(const SubscriptArray<1>& s) const { return s(0);  }
-  Subscript offset(const Subscript s) const { return s;  }
+  Subscript offset(const Subscript s) const {
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s<0 || s >= shape(0) ) {
+      cerr << "ConcreteRowMajorSubscriptor<1>::offset: Invalid arg: " << s
+	   << "\nshape(0) = " << shape(0) << endl;
+      assert(0);
+    }
+#endif
+    return s;  }
+
 };
 
 template<>
@@ -119,9 +177,27 @@ public:
   ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
   Subscript offset(const SubscriptArray<2>& s) const { // TBremoved
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s(0)<0 || s(0) >= shape(0) || s(1)<0 || s(1) >= shape(1) ) {
+      cerr << "ConcreteRowMajorSubscriptor<2>::offset: Invalid args: " 
+	   << s(0) << "  " << s(1) << "\nshape(0) = " << shape(0) 
+	   << " shape(1) = " << shape(1) << endl;
+      assert(0);
+    }
+#endif    
     return shape(1) * s(0) + s(1); }
-  Subscript offset(const Subscript s0, const Subscript s1) const { 
+
+  Subscript offset(const Subscript s0, const Subscript s1) const {
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s0<0 || s0>= shape(0) || s1<0 || s1 >= shape(1) ) {
+      cerr << "ConcreteRowMajorSubscriptor<2>::offset: Invalid args: " 
+	   << s0 << "  " << s1 << "\nshape(0) = " << shape(0) 
+	   << " shape(1) = " << shape(1) << endl;
+      assert(0);
+    }
+#endif
     return shape(1) * s0 + s1; }
+
 };
 
 template<Dimension ndim>
@@ -255,22 +331,53 @@ public:
 
 template<Dimension ndim>
 inline
-Subscript ConcreteColumnMajorSubscriptor<ndim>::offset(const SubscriptArray<ndim>& s) const {
-    Dimension n = ndim;
-    Subscript off = 0;
-    while (n-- > 0) off = off * shape(n) + s(n);
-    return off;
+Subscript ConcreteColumnMajorSubscriptor<ndim>::
+offset(const SubscriptArray<ndim>& s) const {
+  Dimension n = ndim;
+  Subscript off = 0;
+
+  while (n-- > 0) { 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s(n)<0 || s(n)>= shape(n) ) {
+      cerr << "ConcreteColumnMajorSubscriptor<ndim>::offset: Invalid arg:\n"
+	   << "n = " << n
+	   << " s(n) = " << s(n) << "  shape(n) = " << shape(n) << endl;
+      assert(0);
+    }
+#endif
+    off = off * shape(n) + s(n); 
+  }
+  return off;
 }
 
 
 template<Dimension ndim>
 inline
-Subscript ConcreteRowMajorSubscriptor<ndim>::offset(const SubscriptArray<ndim>& s) const {
-    Subscript off = s(0);
-    for (Dimension i = 1; i < ndim; i++) {
-                         off = off * shape(i) + s(i);
+Subscript ConcreteRowMajorSubscriptor<ndim>::
+offset(const SubscriptArray<ndim>& s) const {
+
+  Subscript off = s(0);
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+  if ( s(0)<0 || s(0)>= shape(0) ) {
+    cerr << "ConcreteRowMajorSubscriptor<ndim>::offset: Invalid arg:"
+	 << "\ns(0) = " << s(0) << "  shape(0) = " << shape(0) << endl;
+    assert(0);
+  }
+#endif
+
+  for (Dimension i = 1; i < ndim; i++) {
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    if ( s(i)<0 || s(i)>= shape(i) ) {
+      cerr << "ConcreteRowMajorSubscriptor<ndim>::offset: Invalid arg:\n"
+	   << "i = " << i
+	   << " s(i) = " << s(i) << "  shape(i) = " << shape(i) << endl;
+      assert(0);
     }
-    return off;
+#endif
+
+    off = off * shape(i) + s(i);
+  }
+  return off;
 }
 
 template<Dimension ndim>
