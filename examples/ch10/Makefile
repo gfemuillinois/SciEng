@@ -1,8 +1,17 @@
+#
+#
+HOSTTYPE = $(shell uname)
 include ../../SciEng.mkdefs-$(HOSTTYPE)
 
-FILES_WITH_MAIN	= tAcme130_Acs.C tAcme130_GIData.C tAcme140.C tAcme230.C tCheckedFloatArray.C
+.PHONY: all clean real_clean run_all check
 
-ALL_FILES = Acme130_Acs.C Acme130_Fwd.C Acme130_GIData.C Acme130_VS_GI.C Acme130_VS_GI_GC.C Acme230.C GPIBInstrumentData.C GPIBInstrumentData_GI.C VoltOn59_VS_GI.C VoltyMetrics_VM_GI.C tAcme130_Acs.C tAcme130_GIData.C tAcme140.C tAcme230.C tCheckedFloatArray.C tNoV.C
+FILES_WITH_MAIN	= tAcme130_Acs.C tAcme130_GIData.C tAcme140.C tAcme230.C \
+                  tCheckedFloatArray.C
+
+ALL_FILES = Acme130_Acs.C Acme130_Fwd.C Acme130_GIData.C Acme130_VS_GI.C \
+            Acme130_VS_GI_GC.C Acme230.C GPIBInstrumentData.C GPIBInstrumentData_GI.C \
+            VoltOn59_VS_GI.C VoltyMetrics_VM_GI.C tAcme130_Acs.C tAcme130_GIData.C \
+            tAcme140.C tAcme230.C tCheckedFloatArray.C tNoV.C
 
 all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
 
@@ -35,3 +44,20 @@ clean:
 	rm -f $(ALL_FILES:.C=.o)
 
 real_clean: clean
+	rm -f $(FILES_WITH_MAIN:.C=)
+
+check:
+	@echo HOSTTYPE: $(HOSTTYPE)
+	@echo CXX,CC,LD: $(CXX) : $(CC) : $(LD)
+	@echo OPT: $(OPT)
+	@echo OPTM: $(OPTM)
+	@echo ALL_FILES: $(ALL_FILES)
+
+# The sequence of runs will stop if any executable 
+# returns non-zero value.
+run_all:
+	@echo Running tAcme130_Acs: ;  tAcme130_Acs
+	@echo Running tAcme130_GIData: ;  tAcme130_GIData
+	@echo Running tAcme140: ;  tAcme140
+	@echo Running tAcme230: ;  tAcme230 < input_for_tAcme230
+	@echo Running tCheckedFloatArray: ;  tCheckedFloatArray
