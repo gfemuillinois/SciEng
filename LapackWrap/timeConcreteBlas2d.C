@@ -14,7 +14,7 @@ Timer  the_timer(10);	// 10 clocks
 
 int main() {
 
-#define TEST_ALL  1
+#define TEST_ALL  0
 
 #define TEST1 0  // Test/timing for operator ++ -- - (negate)
 
@@ -35,7 +35,7 @@ int main() {
 #define TEST8 0  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
                  // Test/timing for XplusY/add XminusY/sub
 
-#define TEST9 0  // Test/Timing for operators * (const Array& lhs, const Array& rhs)
+#define TEST9 1  // Test/Timing for operators * (const Array& lhs, const Array& rhs)
                  // Test/timing for mult, Trans * Trans, mult(trans, trans)
                  // Test/timing for array * Trans, mult( array, trans)
 
@@ -970,6 +970,18 @@ Test/Timing for operators + - (const Array& lhs, const Array& rhs)
     // ----------------------------
     // TransposedConcreteBlas2d * TransposedConcreteBlas2d
 
+    // Sanity checks:
+    ConcreteBlas2d<double> cra_at(2*mat_dim, mat_dim), 
+      cra_bt(mat_dim, 2*mat_dim);
+
+    cra_c = TransposedConcreteBlas2d<double>( cra_at ) 
+          * TransposedConcreteBlas2d<double>( cra_bt );
+
+    mult( TransposedConcreteBlas2d<double>( cra_at ), 
+    	  TransposedConcreteBlas2d<double>( cra_bt ), 
+    	  cra_c ); // C = A^t * B^t
+
+
     the_timer.set(3);
     the_timer.start(3);
 
@@ -1024,6 +1036,16 @@ Test/Timing for operators + - (const Array& lhs, const Array& rhs)
     // ----------------------------
     // ConcreteBlas2d * TransposedConcreteBlas2d
 
+    // Sanity checks:
+    ConcreteBlas2d<double> cra_bt1(2*mat_dim, mat_dim), cra_ct1(mat_dim, 2*mat_dim);
+
+    cra_ct1 =  cra_a * TransposedConcreteBlas2d<double>( cra_bt1 );
+
+    mult( cra_a, 
+    	  TransposedConcreteBlas2d<double>( cra_bt1 ), 
+    	  cra_ct1 ); // C = A * B^t
+
+
     the_timer.set(5);
     the_timer.start(5);
 
@@ -1075,8 +1097,32 @@ Test/Timing for operators + - (const Array& lhs, const Array& rhs)
     }
 
     // ----------------------------    
-  }
 
+
+    // ----------------------------
+    // TransposedConcreteBlas2d * ConcreteBlas2d
+
+    // Sanity checks:
+    ConcreteBlas2d<double> cra_At(mat_dim, 2*mat_dim), cra_C(2*mat_dim, mat_dim);
+
+    cra_C = TransposedConcreteBlas2d<double>( cra_At ) * cra_b;
+    
+    mult( TransposedConcreteBlas2d<double>( cra_At ), cra_b,
+    	  cra_C ); // C = A^t * B
+
+
+    // ----------------------------
+    // TransposedConcreteBlas2d * ConcreteBlas1d
+
+    // Sanity checks:
+    ConcreteBlas1d<double> b(mat_dim), c(2*mat_dim);
+
+    c = TransposedConcreteBlas2d<double>( cra_At ) * b;
+    
+    mult( TransposedConcreteBlas2d<double>( cra_At ), b,
+    	  c ); // c = A^t * b
+
+  }
 
   /*
 
