@@ -14,8 +14,6 @@ See README file for further details.
 #ifdef SCIENG_CHECK_SUBSCRIPTS
 #include <assert.h>
 #include <iostream>
-using std::cerr;
-using std::endl;
 #endif
 
 #include "Array/SubscriptArray.h"
@@ -84,8 +82,8 @@ public:
     Subscript offset(const Subscript s) const { 
 #ifdef SCIENG_CHECK_SUBSCRIPTS
       if ( s<0 || s >= shape(0) ) {
-	cerr << "ConcreteColumnMajorSubscriptor<1>::offset: Invalid arg: " << s
-	     << "\nshape(0) = " << shape(0) << endl;
+	std::cerr << "ConcreteColumnMajorSubscriptor<1>::offset: Invalid arg: " << s
+	     << "\nshape(0) = " << shape(0) << std::endl;
 	assert(0);
       }
 #endif
@@ -108,9 +106,9 @@ public:
   Subscript offset(const SubscriptArray<2>& s) const { // TBremoved
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s(0)<0 || s(0)>= shape(0) || s(1)<0 || s(1)>= shape(1) ) {
-      cerr << "ConcreteColumnMajorSubscriptor<2>::offset: Invalid args: " 
+      std::cerr << "ConcreteColumnMajorSubscriptor<2>::offset: Invalid args: " 
 	   << s(0) << "  " << s(1) << "\nshape(0) = " << shape(0) 
-	   << " shape(1) = " << shape(1) << endl;
+	   << " shape(1) = " << shape(1) << std::endl;
       assert(0);
     }
 #endif    
@@ -119,9 +117,9 @@ public:
   Subscript offset(const Subscript s0, const Subscript s1) const { 
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s0<0 || s0>= shape(0) || s1<0 || s1 >= shape(1) ) {
-      cerr << "ConcreteColumnMajorSubscriptor<2>::offset: Invalid args: " 
+      std::cerr << "ConcreteColumnMajorSubscriptor<2>::offset: Invalid args: " 
 	   << s0 << "  " << s1 << "\nshape(0) = " << shape(0) 
-	   << " shape(1) = " << shape(1) << endl;
+	   << " shape(1) = " << shape(1) << std::endl;
       assert(0);
     }
 #endif
@@ -158,8 +156,8 @@ public:
   Subscript offset(const Subscript s) const {
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s<0 || s >= shape(0) ) {
-      cerr << "ConcreteRowMajorSubscriptor<1>::offset: Invalid arg: " << s
-	   << "\nshape(0) = " << shape(0) << endl;
+      std::cerr << "ConcreteRowMajorSubscriptor<1>::offset: Invalid arg: " << s
+	   << "\nshape(0) = " << shape(0) << std::endl;
       assert(0);
     }
 #endif
@@ -181,9 +179,9 @@ public:
   Subscript offset(const SubscriptArray<2>& s) const { // TBremoved
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s(0)<0 || s(0) >= shape(0) || s(1)<0 || s(1) >= shape(1) ) {
-      cerr << "ConcreteRowMajorSubscriptor<2>::offset: Invalid args: " 
+      std::cerr << "ConcreteRowMajorSubscriptor<2>::offset: Invalid args: " 
 	   << s(0) << "  " << s(1) << "\nshape(0) = " << shape(0) 
-	   << " shape(1) = " << shape(1) << endl;
+	   << " shape(1) = " << shape(1) << std::endl;
       assert(0);
     }
 #endif    
@@ -192,9 +190,9 @@ public:
   Subscript offset(const Subscript s0, const Subscript s1) const {
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s0<0 || s0>= shape(0) || s1<0 || s1 >= shape(1) ) {
-      cerr << "ConcreteRowMajorSubscriptor<2>::offset: Invalid args: " 
+      std::cerr << "ConcreteRowMajorSubscriptor<2>::offset: Invalid args: " 
 	   << s0 << "  " << s1 << "\nshape(0) = " << shape(0) 
-	   << " shape(1) = " << shape(1) << endl;
+	   << " shape(1) = " << shape(1) << std::endl;
       assert(0);
     }
 #endif
@@ -341,9 +339,9 @@ offset(const SubscriptArray<ndim>& s) const {
   while (n-- > 0) { 
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s(n)<0 || s(n)>= shape(n) ) {
-      cerr << "ConcreteColumnMajorSubscriptor<ndim>::offset: Invalid arg:\n"
+      std::cerr << "ConcreteColumnMajorSubscriptor<ndim>::offset: Invalid arg:\n"
 	   << "n = " << n
-	   << " s(n) = " << s(n) << "  shape(n) = " << shape(n) << endl;
+	   << " s(n) = " << s(n) << "  shape(n) = " << shape(n) << std::endl;
       assert(0);
     }
 #endif
@@ -361,8 +359,8 @@ offset(const SubscriptArray<ndim>& s) const {
   Subscript off = s(0);
 #ifdef SCIENG_CHECK_SUBSCRIPTS
   if ( s(0)<0 || s(0)>= shape(0) ) {
-    cerr << "ConcreteRowMajorSubscriptor<ndim>::offset: Invalid arg:"
-	 << "\ns(0) = " << s(0) << "  shape(0) = " << shape(0) << endl;
+    std::cerr << "ConcreteRowMajorSubscriptor<ndim>::offset: Invalid arg:"
+	 << "\ns(0) = " << s(0) << "  shape(0) = " << shape(0) << std::endl;
     assert(0);
   }
 #endif
@@ -370,9 +368,9 @@ offset(const SubscriptArray<ndim>& s) const {
   for (Dimension i = 1; i < ndim; i++) {
 #ifdef SCIENG_CHECK_SUBSCRIPTS
     if ( s(i)<0 || s(i)>= shape(i) ) {
-      cerr << "ConcreteRowMajorSubscriptor<ndim>::offset: Invalid arg:\n"
+      std::cerr << "ConcreteRowMajorSubscriptor<ndim>::offset: Invalid arg:\n"
 	   << "i = " << i
-	   << " s(i) = " << s(i) << "  shape(i) = " << shape(i) << endl;
+	   << " s(i) = " << s(i) << "  shape(i) = " << shape(i) << std::endl;
       assert(0);
     }
 #endif
