@@ -11,6 +11,8 @@ See README file for further details.
 #ifndef NumericalLimitsH
 #define NumericalLimitsH
 
+// namespace SciEngLib{
+
 template<class T>
 class NumericalLimits {
 public:
@@ -30,10 +32,11 @@ public:
 
 };
 
-
+//}
 
 #include <float.h>
 
+//namespace SciEngLib{
 
 const float  NumericalLimits<float>::minimum            = FLT_MIN;
 const float  NumericalLimits<float>::maximum            = FLT_MAX;
@@ -76,5 +79,7 @@ const int NumericalLimits<long double>::min_exponent = LDBL_MIN_EXP;
 const int NumericalLimits<long double>::min_10_exponent = LDBL_MIN_10_EXP;
 const int NumericalLimits<long double>::max_exponent = LDBL_MAX_EXP;
 const int NumericalLimits<long double>::max_10_exponent = LDBL_MAX_10_EXP;
+
+//}
 
 #endif

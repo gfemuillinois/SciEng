@@ -13,6 +13,7 @@ See README file for further details.
 
 #include "SciEng/EquivalentCategory.h"
 
+//namespace SciEngLib{
 
 class Ordering {
 public:
@@ -57,5 +58,7 @@ template<class T>
 inline Boolean operator> (const Ordered<T>& lhs, const Ordered<T>& rhs) {
   return ((const T&) lhs).compare((const T&) rhs) ==  Ordering::greater_than;
 }
+
+//}
 
 #endif

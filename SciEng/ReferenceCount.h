@@ -13,6 +13,7 @@ See README file for further details.
 
 #include "SciEng/Boolean.h"
 
+//namespace SciEngLib{
 
 class ReferenceCount {             
 public:
@@ -56,5 +57,6 @@ inline ReferenceCount& ReferenceCount::operator=(const ReferenceCount& rhs) {
     return *this;
 }
 
+//}
 
 #endif
