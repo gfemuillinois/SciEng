@@ -40,6 +40,10 @@ istream& operator>>(istream& is, ConcreteVector3d& v) {
 
 
 ConcreteVector3d& ConcreteVector3d::operator*=(const ConcreteVector3d& b){ 
+
+  // this = this x b
+  // i.e., * is cross-product operation.
+
     double x_component = y()*b.z() - z()*b.y();
     double y_component = z()*b.x() - x()*b.z();
     double z_component = x()*b.y() - y()*b.x();
