@@ -21,7 +21,7 @@ DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
 ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
 
 OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:.cc=.o) 
-	    
+
 # Targets:
 
 all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
@@ -41,12 +41,19 @@ tArrayErr: tArrayErr.o  $(SCIENGLIB)
 
 #	$(LINK) tArrayErr.o ArrayErr.o ../../SciEng/SciEngErr.o ../../SciEng/String.o
 
+String.C:
+	ln -s ../../SciEng/String.C .
+
+SciEngErr.C:
+	ln -s ../../SciEng/SciEngErr.C .
+
 clean:
 	rm -f $(OBJ_FILES) 
 
 real_clean: clean
 	rm -f $(FILES_WITH_MAIN:.C=)
 	rm -rf Deps
+	rm -f String.C SciEngErr.C
 
 #-include Deps/empty.d
 Deps/empty.d:
