@@ -25,7 +25,8 @@ public:
     ComplexFloat() {}
 
     // Convert to complex numbers from <complex.h>
-    operator complex() const { return complex(real_part, imag_part); }
+    operator complex<double>() const {
+      return complex<double>(real_part, imag_part); }
 
 
     float  real()  const { return real_part;}
