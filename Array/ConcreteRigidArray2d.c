@@ -54,6 +54,17 @@ ConcreteRigidArray2d<T, n0, n1>::operator=(const ConcreteRigidArray2d<T, n0, n1>
   return *this;
 }
 
+template<class T, Subscript n0, Subscript n1>
+ConcreteRigidArray2d<T, n0, n1>::ConcreteRigidArray2d<T, n0, n1>
+(const ConcreteRigidArray2d<T, n0, n1>& rhs) {
+
+  T* p = firstDatum();
+  T* const endp = p + numElts();
+  const T* p_rhs = rhs.firstDatum();
+  //  const T* const endp_rhs = p_rhs + rhs.numElts();
+
+  while (p < endp) *p++ = *p_rhs++;
+}
 
 template<class T, Subscript n0, Subscript n1>
 std::ostream& 

@@ -31,6 +31,9 @@ public:
   ConcreteRigidArray2d(Subscript s0, Subscript s1) { 
     if (s0 != n0 || s1 != n1) throw ArrayErr::CreationSize();}
 
+  // Deep copy is done here
+ ConcreteRigidArray2d(const ConcreteRigidArray2d<T, n0, n1>& rhs);
+
 #ifdef SCIENG_CHECK_SUBSCRIPTS
   void check_subscripts(const Subscript s0, const Subscript s1) const {
     if ( s0<0 || s0 >= shape(0) || s1<0 || s1 >= shape(1) ) {
