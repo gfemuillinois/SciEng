@@ -37,6 +37,8 @@ public:
   
   void reshape(const Subscript s) { 
     reshapeOnHeap( s ); }
+
+  void clear() { reshape(0); }
 };
 
 //}
