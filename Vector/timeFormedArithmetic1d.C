@@ -44,8 +44,12 @@ int main() {
 
 #define TEST11 1 // Test/Timing for Metric space category
 
+#define TEST12 1 // Miscelaneous tests
+
   // --------------------------------------------------------
 
+#if TEST12 || TEST_ALL
+  {
   ConcreteFormedArray1d<double> fa10(10), fa20(20);
 
   fa10 = 10.0;
@@ -64,6 +68,8 @@ int main() {
   fa10.swap( far30 );
 
   cout << "\nfa10: " << fa10 << "\nfar30: " << far30 << endl;
+  }
+#endif
 
   // --------------------------------------------------------
 
