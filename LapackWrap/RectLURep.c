@@ -15,7 +15,7 @@ See README file for further details.
 template<class T>
 RectLURep<T>::Factored::Factored( RectLURep<T>::Unfactored* mp) :
 
-    facmat_p(mp), pivots( min(mp->shape(0), mp->shape(1)) )
+    facmat_p(mp), pivots( sce::min(mp->shape(0), mp->shape(1)) )
                                   {
 
 
