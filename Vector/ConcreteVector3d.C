@@ -8,30 +8,30 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 #include "Vector/ConcreteVector3d.h"
 
 
-ostream& operator<<(ostream& os, const ConcreteVector3d& v) {
+std::ostream& operator<<(std::ostream& os, const ConcreteVector3d& v) {
     return os << '[' << v.x() << ',' << v.y() << ',' << v.z() << ']';
 }
 
 
 
-istream& operator>>(istream& is, ConcreteVector3d& v) {
+std::istream& operator>>(std::istream& is, ConcreteVector3d& v) {
     double x, y, z;
     char c = 0;
     is >> c;
     if (c == '[') {
         is >> x >> c;
-        if (c != ',') is.clear(ios::badbit);
+        if (c != ',') is.clear(std::ios::badbit);
         is >> y >> c;
-        if (c != ',') is.clear(ios::badbit);
+        if (c != ',') is.clear(std::ios::badbit);
         is >> z >> c;
-        if (c != ']') is.clear(ios::badbit);
+        if (c != ']') is.clear(std::ios::badbit);
     }
-    else is.clear(ios::badbit);
+    else is.clear(std::ios::badbit);
 
     if (is) { v.x() = x; v.y() = y; v.z() = z; }
     return is;

@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 template<class T, int m, int l, int t, int q, int k, int i, int a>
 ostream& operator<<(ostream& os, const Physical<T, m, l, t, q, k, i, a>& p) {

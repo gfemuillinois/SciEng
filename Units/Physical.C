@@ -10,7 +10,7 @@ See README file for further details.
 */
 #include "Units/Physical.h"
 
-ostream& powerPrinter(ostream& os, int units[7]) {
+std::ostream& powerPrinter(std::ostream& os, int units[7]) {
    static char* letters = "MLTQKIA";
    Boolean saw_positive = Boolean::IsFalse;
    Boolean saw_negative = Boolean::IsFalse;
