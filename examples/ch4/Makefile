@@ -1,25 +1,37 @@
 include ../../SciEng.mkdefs
 
-FILES_WITH_MAIN	= distance.C distance2.C interactive.C interactive2.C intersect.C linefit.C linefit2.C ptrselect.C quadratic.C sqr.C tCheckedSimpleArray.C
+FILES_WITH_MAIN	= linefit2.C  sqr.C  interactive.C  interactive2.C \
+	          tCheckedSimpleArray.C quadratic.C \
+		  distance.C distance2.C intersect.C
 
-ALL_FILES = FixedArray.C Line.C Nested.C Point.C Point0.C SimpleFloatArray.C cLine.C distance.C distance2.C interactive.C interactive2.C intersect.C linefit.C linefit2.C ptrselect.C quadratic.C sqr.C tCheckedSimpleArray.C tPoint.C
+TEMPLATE_INSTANCES = SimpleArray_tinst.cc  sqr_tinst.cc  CheckedSimpleArray_tinst.cc
 
-all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
+SOURCE_FILES = FixedArray.C Point.C Line.C sqr_1.C
+
+ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
+
+all:    $(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
+
+intersect:	intersect.o Point.o Line.o
+		$(LINK) intersect.o Point.o Line.o
 
 distance:	distance.o Point.o Line.o
 		$(LINK) distance.o Point.o Line.o
 
 distance2:	distance2.o Point.o Line.o
-		$(LINK) distance.o Point.o Line.o
+		$(LINK) distance2.o Point.o Line.o
 
-intersect:	intersect.o Point.o Line.o
-		$(LINK) intersect.o Point.o Line.o
+linefit2:       linefit2.o SimpleArray_tinst.o
+		$(LINK)  linefit2.o SimpleArray_tinst.o
 
-linefit:	linefit.o SimpleFloatArray.o
-		$(LINK) linefit.o SimpleFloatArray.o
+sqr:		sqr.o sqr_tinst.o sqr_1.o
+		$(LINK) sqr.o  sqr_tinst.o sqr_1.o $(COMPLEXLIB)
 
-ptrselect:	ptrselect.o Point.o Line.o
-		$(LINK) ptrselect.o Point.o Line.o
+tCheckedSimpleArray: tCheckedSimpleArray.o CheckedSimpleArray_tinst.o
+		$(LINK) tCheckedSimpleArray.o CheckedSimpleArray_tinst.o
 
-sqr:		sqr.o
-		$(LINK) sqr.o $(COMPLEXLIB)
+
+clean:
+	rm -f $(FILES_WITH_MAIN:.C=.o) \
+	      $(TEMPLATE_INSTANCES:.cc=.o) \
+	      $(SOURCE_FILES:.C=.o)
