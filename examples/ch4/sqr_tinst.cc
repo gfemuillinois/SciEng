@@ -10,7 +10,7 @@
 #include <complex.h>
 #include "SciEng/utils.h"        /* the template fn sqr is declared here */
 
-//using SciEngLib::sqr;
+using sce::sqr;
 
 template float sqr(float x);
 

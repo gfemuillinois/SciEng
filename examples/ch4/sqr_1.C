@@ -19,7 +19,7 @@ void create_more_templates(void)
   double_complex c(3, 4);
   double_complex c1(6, 8);
 
-  //  using SciEngLib::sqr;
+  using sce::sqr;
 
   cout << "sqr(i) " << sqr(i) << endl; // Generate sqr(int)
   cout << "sqr(f) " << sqr(f) << endl; // Generate sqr(float)
