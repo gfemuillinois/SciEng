@@ -1,0 +1,108 @@
+
+	This file describes how we handle template instatiations using g++.
+We describe the procedures used on the porting of the SciEng library to Linux. 
+For other libraries some steps may be skiped/added. We use as an example the
+class SimpleArray (see dir SciEng/examples/ch4).
+
+We use the method 3 described in the node "Template instatiation" in the info
+pages of g++. Here are the steps:
+
+1. Make sure the header file of the class (e.g. SimpleArray.h) has the 
+preprocessor directives 
+
+#ifndef SIMPLEARRAYHPP
+#define SIMPLEARRAYHPP
+
+class declaration ...
+
+#endif  /* SIMPLEARRAYHPP */
+
+
+2. SciEng library originaly placed the template method definitions in a 
+file with extension .c . We changed this to .tdef (we had problems with 
+make when using .c) E.g. SimpleArray.tdef (NOTE the .tdef extension used)
+
+NOTE: We reversed this change. I.e., we rename all .tdef files back to .c
+This is need to put the files under CVS (instead of having two files .tdef, .c)
+
+Make sure this file with the template method definitions  includes the header
+file 
+
+#include "SimpleArray.h"
+
+NOTE this is really not necessary since .tdef files are never compiled
+by itself and are instead included in other files that already include
+the appropriate headers. It IS however necessary IF the .cc files do not 
+include the headers (see below) ....
+
+3. Now create a file *with extension .cc* and create as many template 
+instances as needed by all programs that uses this template class:
+
+
+// Dummy file to create the template instances for SimpleArray<T>
+// This is how we handle template instatiation with g++
+// Link the object generated from the compilation of this file with
+// any program that uses the instances SimpleArray<float> or  SimpleArray<double>
+
+
+#ifdef NO_IMPLICIT_TEMPLATE    /* NOTE this cpp directive! */
+
+// NOTE we are no longer including SimpleArray.tdef in this file
+// because it is already included in SimpleArray.h.
+// this happens because we are using:
+// CXXTEMPLATEINSTANCE = -DXLC_QNOTEMPINC  -DNO_IMPLICIT_TEMPLATE
+
+//#include "SimpleArray.tdef"
+
+
+template class SimpleArray<float>;
+
+template class SimpleArray<double>;
+
+#endif
+
+The same should be done for instantiation of template functions:
+
+#ifdef NO_IMPLICIT_TEMPLATE
+
+#include <complex.h>
+#include "SciEng/utils.h"        /* the template fn sqr is declared here */
+
+
+template float sqr(float x);
+
+template double sqr(double x);
+
+template int sqr(int x);
+
+template complex<double> sqr(complex<double> x);
+#endif
+
+
+
+4. NOTES about the make file: (see files SciEng.mkdefs and 
+examples/ch4/Makefile)
+
+in SciEng.mkdefs we use:
+
+CXXTEMPLATE = -fno-implicit-templates
+#CXXTEMPLATEINSTANCE =                  -DNO_IMPLICIT_TEMPLATE
+CXXTEMPLATEINSTANCE = -DXLC_QNOTEMPINC  -DNO_IMPLICIT_TEMPLATE
+CXXTEMPLATELINK = 
+
+LINK = $(CXX) $(CXXTEMPLATELINK) -I ../.. $(CXXFLAGS) $(SCIENGLIB) -o $@ 
+
+.C.o:
+	$(CXX) $(CXXTEMPLATE) -I ../.. $(CXXFLAGS) $< -c -o $@ 
+.cc.o:
+	$(CXX) $(CXXTEMPLATEINSTANCE) -I ../.. $(CXXFLAGS) $< -c -o $@
+
+
+in examples/ch4/Makefile:
+
+linefit2:       linefit2.o SimpleArray_tinst.o
+		$(LINK)  linefit2.o SimpleArray_tinst.o
+
+in linefit2.C the tamplate instance SimpleArray<float> is used.
+
+
