@@ -1,0 +1,12 @@
+include ../SciEng.mkdefs
+
+FILES_WITH_MAIN	= 
+
+TEMPLATE_INSTANCES = 
+
+SOURCE_FILES = ArrayShape.C
+
+ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
+
+all:    $(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
+
