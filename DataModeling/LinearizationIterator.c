@@ -28,7 +28,7 @@ LinearizationIterator(IteratedEquations<T>& eqn, const Array1d<T>& init_values, 
 
 template<class T>
 Boolean LinearizationIterator<T>::more() const { 
-    if (the_iters == 0) return Boolean::true;  // no info yet.
+    if (the_iters == 0) return Boolean::IsTrue;  // no info yet.
     return  
         the_iters < the_max_iters && 
         !the_eqns.converged() &&
