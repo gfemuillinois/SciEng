@@ -58,21 +58,23 @@ templ_instatiation_g++:
 	ln -s examples/ch4/templ_instatiation_g++ .
 
 SciEngMatx.a:	\
-	SciEngMatx.a(SciEng/ArrayErr.o) \
-	SciEngMatx.a(SciEng/Boolean.o) \
-	SciEngMatx.a(SciEng/Fallible.o) \
-	SciEngMatx.a(SciEng/NewHandler.o) \
-	SciEngMatx.a(SciEng/SciEngEnvironment.o) \
-	SciEngMatx.a(SciEng/SciEngErr.o) \
-	SciEngMatx.a(SciEng/String.o) \
-	SciEngMatx.a(SciEng/Terminate.o) \
-	SciEngMatx.a(Array/ArrayShape.o) \
-	SciEngMatx.a(Array/ConcreteFortranSymmetricPackedArray2d.o) \
 	SciEngMatx.a(LapackWrap/BlasSubroutines.o) \
-	SciEngMatx.a(LapackWrap/LapackErr.o) \
-	SciEngMatx.a(Algebra/ComplexFloat.o) \
-	SciEngMatx.a(Vector/ConcreteVector3d.o) \
+	SciEngMatx.a(SciEng/ArrayErr.o) \
+	SciEngMatx.a(SciEng/String.o) \
+	SciEngMatx.a(SciEng/SciEngErr.o) \
 	SciEngMatx.a(Vector/MisMatchedSizeErr.o)
+
+#	SciEngMatx.a(SciEng/Boolean.o) \
+#	SciEngMatx.a(SciEng/Fallible.o) \
+#	SciEngMatx.a(SciEng/NewHandler.o) \
+#	SciEngMatx.a(SciEng/SciEngEnvironment.o) \
+#	SciEngMatx.a(SciEng/Terminate.o) \
+#	SciEngMatx.a(Array/ArrayShape.o) \
+#	SciEngMatx.a(Array/ConcreteFortranSymmetricPackedArray2d.o) \
+#	SciEngMatx.a(LapackWrap/LapackErr.o) \
+#	SciEngMatx.a(Algebra/ComplexFloat.o) \
+#	SciEngMatx.a(Vector/ConcreteVector3d.o) \
+
 
 SciEng.a:	\
 	SciEng.a(SciEng/ArrayErr.o) \
