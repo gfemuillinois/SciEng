@@ -34,8 +34,8 @@ timeConcreteBlas2d :  timeConcreteBlas2d.o timer.o timeConcreteBlas2d_tinst.o $(
 	@echo Linking $@
 	$(LINK)	 timeConcreteBlas2d.o timer.o timeConcreteBlas2d_tinst.o $(SCIENGMATXLIB) $(LIBSYS)
 
-clarch.h:
-	ln -s ../../util++_ut/util/clarch.h .
+#clarch.h:
+#	ln -s ../../util++_ut/util/clarch.h .
 
 clean:
 	rm -f $(OBJ_FILES) 
@@ -50,7 +50,8 @@ real_clean: clean
 # doxygen .... TBD
 
 #-include Deps/empty.d
-Deps/empty.d: clarch.h
+#Deps/empty.d: clarch.h
+Deps/empty.d:
 	test -d Deps || mkdir Deps
 	touch $@
 
