@@ -110,7 +110,7 @@ VoltyMetrics::VoltyMetrics(GPIBController_Stub& controller, int what_address) :
 float checkCalibration(Acme130& supply, VoltyMetrics& meter, float tst_voltage) {
     // Relative error at specified test voltage.
     supply.set(tst_voltage);
-    return abs(tst_voltage - meter.read()) /  tst_voltage;
+    return fabs(tst_voltage - meter.read()) /  tst_voltage;
 }
 
 
