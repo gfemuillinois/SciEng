@@ -19,6 +19,8 @@ template<class T>
 class ConcreteFormedArray3d :
   public ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T > {
 public:
+  typedef ConcreteRowMajorSubscriptor<3> SubscriptorType;
+
   ConcreteFormedArray3d();
   ConcreteFormedArray3d(Subscript s0, Subscript s1, Subscript s2);
   ConcreteFormedArray3d(const ConcreteFormedArray3d<T>& p);
@@ -28,7 +30,7 @@ public:
   ~ConcreteFormedArray3d();
 
   ConcreteFormedArray3d<T>& operator=(const ConcreteFormedArray3d<T>& rhs);
-  ConcreteFormedArray3d<T>& operator=(const ConcreteArray3dConstRef<SubscriptorT, T>& rhs);
+  ConcreteFormedArray3d<T>& operator=(const ConcreteArray3dConstRef<SubscriptorType, T>& rhs);
   ConcreteFormedArray3d<T>& operator=(const T& rhs);
   
   void reshape(const SubscriptArray<3>& s) { reshapeOnHeap(s); }
