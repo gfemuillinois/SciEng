@@ -55,6 +55,7 @@ WERROR = -Werror
 CXXFLAGS =  $(OPTM) $(PROF)  \
             -Wall -Wno-unused        -pedantic $(WERROR)
 
+#           -Wall -Wno-unused        -pedantic $(WERROR) -Wno-deprecated
 #           -Wall -Wno-unused  -ansi -pedantic -Werror 
 #           -Wall -Wno-unused        -pedantic -Werror -D__USE_GNU 
 
