@@ -12,6 +12,9 @@ See README file for further details.
 //  This is an altered copy of the same class from classes.  Be sure to 
 //  keep them in sync.
 
+#ifndef CHECKEDSIMPLEARRAYH
+#define CHECKEDSIMPLEARRAYH
+
 #include "SciEng/SciEngErr.h"
 #include "SciEng/String.h"
 
@@ -68,4 +71,6 @@ private:
 
 #ifdef XLC_QNOTEMPINC
 #include "examples/ch9/CheckedSimpleArray.c"
+#endif
+
 #endif
