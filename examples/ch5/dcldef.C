@@ -10,7 +10,7 @@ See README file for further details.
 */
 // Compile test only
 #include <math.h>  /* Include to get consistency check with math dcl's below */
-#include <complex.h>  /* Likewise... */
+#include <complex>  /* Likewise... */
 
 extern int day_of_year;
 extern double f(double);
@@ -21,24 +21,15 @@ double f(double x) {
     return 1.0 / x;
 }
 
+// CAD: better use the declarations from math.h, 
+// which are inconsistent with these
+// extern double sin(double);
+// extern double atan2(double x1, double x2);// C++ function for arctan
+// extern double  sin(double x);
+// extern double cos(double x);
+// extern double sin(double x);
 
-extern double sin(double);
-
-
-extern double atan2(double x1, double x2);// C++ function for arctan
-
-
-
-extern double  sin(double x);
-extern complex sin(complex x);
-
-
-
-
-extern double cos(double x);
-extern double sin(double x);
-
-
+extern complex<double> sin(complex<double> x);
 
 
 extern int g(double);      // File scope, type: int (::)(double);
