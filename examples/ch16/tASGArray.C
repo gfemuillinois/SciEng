@@ -8,24 +8,9 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include "Algebra/AbelianSemiGroupCategory.h"
-#include "Array/ConcreteFormedArray1d.h"
 
 
-class AdditiveArray :
-    public ConcreteFormedArray1d<double>,
-    public AbelianSemiGroupCategory<AdditiveArray> {
-public:
-    AdditiveArray(Subscript n) : ConcreteFormedArray1d<double>(n) {}
-    AdditiveArray(const AdditiveArray& a) : ConcreteFormedArray1d<double>(a) {}
-    // ... other constructors and assignment operators
-
-    // User must define for Abelian semigroup category
-    AdditiveArray& operator+=(const AdditiveArray& rhs);
-};
-
-
+#include "tASGArray.h"
 
 AdditiveArray& AdditiveArray::operator+=(const AdditiveArray& rhs) {
     if (numElts() != rhs.numElts()) throw "Mismatched sizes";
