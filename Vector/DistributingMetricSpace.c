@@ -10,12 +10,15 @@ See README file for further details.
 */
 template<class Array, class M>
 M DistributingMetricSpace<Array,M>::dot(const Array& rhs) const { 
+
+  // cout << "DistributingMetricSpace<Array,M>::dot" << endl;
+
     const Array& lhs = (const Array&)(*this);
     if ( ! hasSameShapeAs(lhs, rhs) ) throw ArrayErr::Shape();
 
-    Array::BrowserType lhs_i(lhs);
-    Array::BrowserType rhs_i(rhs);
-    M result = 0;
+    typename Array::BrowserType lhs_i(lhs);
+    typename Array::BrowserType rhs_i(rhs);
+    M result = M();
     for (; rhs_i.more(); rhs_i.advance(), lhs_i.advance()) { 
         result += ::dot(lhs_i.current(), rhs_i.current());
     }
