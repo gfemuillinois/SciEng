@@ -30,7 +30,13 @@ class ConcreteRigidArray1d {
   ConcreteRigidArray1d() {}
   explicit ConcreteRigidArray1d(Subscript s0) { 
     if (n0 != s0) throw ArrayErr::CreationSize(); }
+
+private:
+  // copy constructor provides deep copy
+ ConcreteRigidArray1d(const ConcreteRigidArray1d<T, n0>& rhs);
+public:
   
+
 #ifdef SCIENG_CHECK_SUBSCRIPTS
   void check_subscripts(const Subscript s) const {
     if ( s<0 || s >= shape(0) ) {
@@ -79,8 +85,9 @@ class ConcreteRigidArray1d {
   ConcreteRigidArray1d<T, n0>& operator=(const T& rhs);
   ConcreteRigidArray1d<T, n0>& operator=(const ConcreteRigidArray1d<T, n0>& rhs);
 
- protected:
+protected:
   T data[n0];
+
 };
 
 template<class T, Subscript n0>
@@ -112,6 +119,19 @@ ConcreteRigidArray1d<T,n0>::operator=(const ConcreteRigidArray1d<T, n0>& rhs) {
   while (n-- > 0) (*this)[n] = rhs[n];
 
   return *this;
+}
+
+template<class T, Subscript n0>
+inline
+ConcreteRigidArray1d<T,n0>::ConcreteRigidArray1d<T,n0>
+(const ConcreteRigidArray1d<T, n0>& rhs) {
+
+  // copy constructor provides deep copy
+
+  Subscript n = shape(0);
+  if (n != rhs.shape(0)) throw ArrayErr::Shape();
+  while (n-- > 0) (*this)[n] = rhs[n];
+
 }
 
 #ifdef XLC_QNOTEMPINC

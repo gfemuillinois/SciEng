@@ -29,6 +29,10 @@ class ConcreteRigidArray3d {
   ConcreteRigidArray3d(Subscript s0, Subscript s1, Subscript s2);
   typedef T EltT;
 
+private:
+ ConcreteRigidArray3d(const ConcreteRigidArray3d<T, n0, n1, n2>& rhs);
+public:
+
 #ifdef SCIENG_CHECK_SUBSCRIPTS
   void check_subscripts(const Subscript s0, const Subscript s1, 
 			const Subscript s2) const {
