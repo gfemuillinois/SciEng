@@ -35,8 +35,8 @@ public:
   ConcreteFormedArray1d<T>& operator=(ConcreteArray1dConstRef<SubscriptorType, T> rhs);
   ConcreteFormedArray1d<T>& operator=(const T& rhs);
   
-  void reshape(const SubscriptArray<1>& s) { 
-    reshapeOnHeap( SubscriptArray<1>( s ) ); }
+  void reshape(const Subscript s) { 
+    reshapeOnHeap( s ); }
 };
 
 //}

@@ -32,7 +32,7 @@ public:
   ConcreteFortranArray1d<T>& operator=(ConcreteArray1dConstRef<Subscriptor, T> rhs);
   ConcreteFortranArray1d<T>& operator=(const T& rhs);
   
-  void reshape(const SubscriptArray<1>& s) { reshapeOnHeap(s); }
+  void reshape(const Subscript s) { reshapeOnHeap(s); }
 };
 
 #ifdef XLC_QNOTEMPINC
