@@ -22,6 +22,10 @@ public:
     // User Must Define: T& operator+=(const T&);
 
     friend T operator+(const T& lhs, const T& rhs)  { T temp(lhs); return temp += rhs;    }
+  
+  // CAD small improvement
+  // friend void XplusY(T& lhs, const T& x, const T& y) { lhs = x; lhs += y; }
+
     friend T repeat(const T& x, int n)              { T temp(x); return temp.repeat(n);   }
 
     inline T& repeat(Positive<int> n); 
