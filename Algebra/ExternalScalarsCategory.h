@@ -18,6 +18,15 @@ public:
     // User Must Define: V& operator*=(const S&);
     friend V operator*(const S& s, const V& v) { V temp(v); return temp *= s; }
     friend V operator*(const V& v, const S& s) { V temp(v); return temp *= s; }
+
+  // CAD
+  // User Must Define: V& operator+=(const S&);
+  friend V operator+(const S& s, const V& v) { V temp(v); return temp += s; }
+  friend V operator+(const V& v, const S& s) { V temp(v); return temp += s; }
+
+  // same performance as operator+ above
+  // friend void XplusScalar(V& y, const V& x, const S& s) { y = x; y += s; }
+
 };
 
 #endif
