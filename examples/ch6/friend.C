@@ -11,6 +11,7 @@ See README file for further details.
 
 class A;
 class B {
+public:
     double g() const; 
     double g();
     double g(int);
@@ -24,7 +25,7 @@ public:
     friend double B::g() const;  // Member of B: double g() const
                                  // Note: only one of B's g members is a friend
     friend class D;              // All members of D
-    friend A;                    // All members of A; A already declared
+    friend class A;              // All members of A; A already declared
 private:
     friend void B::h();          // Member of B: void h()
 
