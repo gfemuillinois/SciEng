@@ -8,6 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+#include <iostream>
+
 #include "Algebra/ComplexFloat.h"
 
 
