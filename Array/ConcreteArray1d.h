@@ -11,12 +11,15 @@ See README file for further details.
 #ifndef ConcreteArray1dH
 #define ConcreteArray1dH
 
-class Boolean;
-class ostream;
-
 #include "Array/ConcreteArrayIterator.h"
 #include "Array/ArrayIterator1d.h"
 #include "Array/SubscriptArray.h"
+
+class ostream;
+
+//namespace SciEngLib {
+
+class Boolean;
 
 template<class Subscriptor, class T> class ConcreteArray1dRef;
 template<class Subscriptor, class T> class ConcreteArray1d;
@@ -41,15 +44,18 @@ public:
   const T* firstDatum() const { return datap; }
 
   Subscriptor subscriptor() const { return *this; }
+
 protected:
   ConcreteArray1dConstRef(Subscriptor s, const T* p) : Subscriptor(s), datap(p) {}
-  friend ConcreteArray1dRef<Subscriptor, T>;
-  friend ConcreteArray1d<Subscriptor, T>;
+  friend class ConcreteArray1dRef<Subscriptor, T>;
+  friend class ConcreteArray1d<Subscriptor, T>;
+
 private:
   void operator=(const ConcreteArray1dConstRef<Subscriptor, T>&);   // Prohibit
 private:
   const T* const datap;
 };
+
 
 template<class Subscriptor, class T>
 class ConcreteArray1dRef :              
@@ -78,12 +84,15 @@ public:
 
     ConcreteArray1dRef<Subscriptor, T>& operator=(ConcreteArray1dConstRef<Subscriptor, T> rhs);
     ConcreteArray1dRef<Subscriptor, T>& operator=(const T& rhs);
+
 protected:
     ConcreteArray1dRef(Subscriptor s, T* p) : Subscriptor(s), datap(p) {}
-    friend ConcreteArray1d<Subscriptor, T>;
+    friend class ConcreteArray1d<Subscriptor, T>;
+
 private:
     T* const datap;
 };
+
 
 template<class Subscriptor, class T>
 ConcreteArray1dRef<Subscriptor, T>::operator ConcreteArray1dConstRef<Subscriptor, T>() const { 
@@ -108,6 +117,7 @@ public:
     typedef ConcreteArrayBrowser< ConcreteArray1d<Subscriptor, T> >  BrowserType;
     typedef ConcreteArrayIterator< ConcreteArray1d<Subscriptor, T> > IteratorType;
 
+    // CAD: offset must be used sinse elements are not necessarily contiguous in memory
     T& operator()(Subscript s)       { return firstDatum()[offset(s)]; }
     const T& operator()(Subscript s) const { return firstDatum()[offset(s)]; }
 
@@ -144,6 +154,7 @@ protected:
     ConcreteArray1d(Subscriptor s, T* p) : Subscriptor(s), datap(p) {}
     void setSizeOnHeap(Subscript n);
     void reshapeOnHeap(const SubscriptArray<1>&s);
+
 protected:
     T* datap;
 };
@@ -184,6 +195,8 @@ inline
 void concreteCopy(ConcreteArray1d<ArrayShape, T>& lhs, ConcreteArray1dConstRef<AnotherShape, T> rhs) {
   concreteCopy(ConcreteArray1dRef<ArrayShape, T>(lhs), rhs);
 }
+
+//}
 
 #ifdef XLC_QNOTEMPINC
 #include "Array/ConcreteArray1d.c"
