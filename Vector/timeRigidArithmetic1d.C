@@ -13,33 +13,35 @@ Timer  the_timer(10);	// 10 clocks
 
 int main() {
 
-#define TEST_ALL 1
+#define TEST_ALL 0
 
-#define TEST1 1  // Test/timing for operator ++ -- - (negate)
+#define TEST1 0  // Test/timing for operator ++ -- - (negate)
 
-#define TEST2 1  // Test/timing for operators += -=(const Array& rhs)
+#define TEST2 0  // Test/timing for operators += -=(const Array& rhs)
 
-#define TEST3 1  // Test/timing for operators *= /=(const Array& rhs)
+#define TEST3 0  // Test/timing for operators *= /=(const Array& rhs)
 
-#define TEST4 1  // Test/timing for operators += -=(const T& rhs)
+#define TEST4 0  // Test/timing for operators += -=(const T& rhs)
 
-#define TEST5 1  // Test/timing for operators *= /=(const T& rhs)
+#define TEST5 0  // Test/timing for operators *= /=(const T& rhs)
 
-#define TEST6 1  // Test/timing for operators * / (const T& rhs)
+#define TEST6 0  // Test/timing for operators * / (const T& rhs)
                  // Test/timing for XmultScalar
 
-#define TEST7 1  // Test/timing for operators + - (const T& rhs)
+#define TEST7 0  // Test/timing for operators + - (const T& rhs)
                  // Test/timing for XplusScalar
 
-#define TEST8 1  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
+#define TEST8 0  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
                  // Test/Timing for XplusY, XminusY
 
-#define TEST9 1  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
+#define TEST9 0  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
                  // Test/Timing for XtimesY, XdivY
 
-#define TEST10 1 // Test/Timing for operators == != (const Array& rhs)
+#define TEST10 0 // Test/Timing for operators == != (const Array& rhs)
 
-#define TEST11 1 // Test/Timing for Metric space category
+#define TEST11 0 // Test/Timing for Metric space category
+
+#define TEST12 1 // Test/Timing for crossProd of 3D vectors
 
 #if TEST1 || TEST_ALL
   cout << "\nTest/timing for operator ++ -- - (negate) " << endl;
@@ -1143,6 +1145,7 @@ a_eq_c = 0
 
     // ----------------------------
   }
+
   /*
     const int vec_dim = 250;
     const unsigned int n_equal = 300000;
@@ -1168,6 +1171,31 @@ cos_a_b = 0.520564064424075
 Angle_a_b = 1.02328487483649
 
   */
+#endif
+
+#if TEST12 || TEST_ALL
+  cout << "\nTest/Timing for crossProd( a, b, c)" << endl;
+  {
+
+  RigidArithmetic1d<double, 3>  vec_a, vec_b, vec_c;
+  vec_a = 0.; 
+  vec_b = 0.;
+  vec_a(0) = 1.0;
+  vec_b(1) = 1.0;
+
+  vec_c = 100.0; // trash
+  crossProd(vec_a, vec_b, vec_c);
+  cout << " c = a x b = " << vec_c << endl;
+
+  vec_a = 100.0; // trash
+  crossProd(vec_b, vec_c, vec_a);
+  cout << " a = b x c = " << vec_a << endl;
+
+  vec_b = 100.0; // trash
+  crossProd(vec_c, vec_a, vec_b);
+  cout << " b = c x a = " << vec_b << endl;
+
+  }
 #endif
 
 
