@@ -18,16 +18,29 @@ template class ConcreteFortranArray1d<double>;
 template class ConcreteArrayShape<2>;
 
 template void mult<double>
-(ConcreteBlas2d<double> const &, ConcreteBlas2d<double> const &, ConcreteBlas2d<double> &);
+(ConcreteBlas2d<double> const &, ConcreteBlas2d<double> const &, 
+ConcreteBlas2d<double> &);
 
 template void mult<double>
-(TransposedConcreteBlas2d<double> const &, TransposedConcreteBlas2d<double> const &, ConcreteBlas2d<double> &);
+(TransposedConcreteBlas2d<double> const &, TransposedConcreteBlas2d<double> const &, 
+ConcreteBlas2d<double> &);
 
 template void mult<double>
-(ConcreteBlas2d<double> const &, TransposedConcreteBlas2d<double> const &, ConcreteBlas2d<double> &);
+(ConcreteBlas2d<double> const &, TransposedConcreteBlas2d<double> const &, 
+ ConcreteBlas2d<double> &);
 
 template void mult<double>
-(ConcreteBlas2d<double> const &, ConcreteBlas1d<double> const &, ConcreteBlas1d<double> &);
+(TransposedConcreteBlas2d<double> const &, ConcreteBlas2d<double> const &, 
+ ConcreteBlas2d<double> &);
+
+template void mult<double>
+(ConcreteBlas2d<double> const &, ConcreteBlas1d<double> const &, 
+ ConcreteBlas1d<double> &);
+
+template void mult<double>
+(TransposedConcreteBlas2d<double> const &, ConcreteBlas1d<double> const &, 
+ ConcreteBlas1d<double> &);
+
 
 template ConcreteBlas2d<double> operator*<double>
 (TransposedConcreteBlas2d<double> const &, TransposedConcreteBlas2d<double> const &);
@@ -35,7 +48,13 @@ template ConcreteBlas2d<double> operator*<double>
 template ConcreteBlas2d<double> operator*<double>
 (ConcreteBlas2d<double> const &, TransposedConcreteBlas2d<double> const &);
 
+template ConcreteBlas2d<double> operator*<double>
+(TransposedConcreteBlas2d<double> const &, ConcreteBlas2d<double> const &);
+
 template ConcreteBlas1d<double> operator*<double>
 (ConcreteBlas2d<double> const &, ConcreteBlas1d<double> const &);
+
+template ConcreteBlas1d<double> operator*<double>
+(TransposedConcreteBlas2d<double> const &, ConcreteBlas1d<double> const &);
 
 #endif
