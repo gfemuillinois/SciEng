@@ -19,6 +19,8 @@ template<class T>
 class ConcreteFortranArray3d :
   public ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T > {
 public:
+  typedef ConcreteColumnMajorSubscriptor<3> SubscriptorType;
+
   ConcreteFortranArray3d(Subscript s0, Subscript s1, Subscript s2);
   ConcreteFortranArray3d(const ConcreteFortranArray3d<T>& p);
   ConcreteFortranArray3d(const ConcreteArray3dConstRef<ConcreteColumnMajorSubscriptor<3>, T>&);
@@ -27,7 +29,7 @@ public:
   ~ConcreteFortranArray3d();
 
   ConcreteFortranArray3d<T>& operator=(const ConcreteFortranArray3d<T>& rhs);
-  ConcreteFortranArray3d<T>& operator=(const ConcreteArray3dConstRef<SubscriptorT, T>& rhs);
+  ConcreteFortranArray3d<T>& operator=(const ConcreteArray3dConstRef<SubscriptorType, T>& rhs);
   ConcreteFortranArray3d<T>& operator=(const T& rhs);
   
   void reshape(const SubscriptArray<3>& s) { reshapeOnHeap(s); }
