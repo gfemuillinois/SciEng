@@ -8,8 +8,12 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+#include <iostream>
+
 #include "Array/ArrayTuplize.h"
 #include "SciEng/ArrayErr.h"
+
+//namespace SciEngLib {
 
 template<class Subscriptor, class T>
 ostream& operator<<(ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a) {
@@ -50,6 +54,7 @@ void ConcreteArray1d<Subscriptor, T>::setSizeOnHeap(Subscript n) {
 
 
 template<class Subscriptor, class T>
+// inline
 ConcreteArray1dRef<Subscriptor, T>& 
 ConcreteArray1dRef<Subscriptor, T>::operator=(const T& rhs) {
     Subscript n = shape(0);
@@ -79,6 +84,9 @@ ConcreteArray1dRef<Subscriptor, T>::operator=(ConcreteArray1dConstRef<Subscripto
  
 template<class Subscriptor, class T>
 void ConcreteArray1d<Subscriptor, T>::reshapeOnHeap(const SubscriptArray<1>& s) {
-  setShape(s(0));
+  //  setShape( s(0) );
+  setShape( s );
   setSizeOnHeap(numElts());
 }
+
+//}
