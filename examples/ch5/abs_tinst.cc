@@ -11,6 +11,8 @@
 
 #include "SciEng/utils.h"
 
+using sce::abs;
+
 template int abs<int>(int);
 
 #endif
