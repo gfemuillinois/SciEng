@@ -27,7 +27,7 @@ void linefit() {
     // Accumulate sums Sx and Sy in double precision
     double sx  = 0.0;
     double sy  = 0.0;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         sx += x[i];
         sy += y[i];
     }
@@ -36,7 +36,7 @@ void linefit() {
     double sx_over_n = sx / n;
     double stt = 0.0;
     double  b = 0.0;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         double ti = x[i] - sx_over_n;
 
         stt += ti * ti;
