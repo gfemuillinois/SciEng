@@ -45,7 +45,7 @@ Line::Line(Point p, Number xDir, Number yDir) {
  
 Number Line::distance(Point point) {
     // Returns the distance from point to the line.
-    return abs( a * point.x() + b * point.y() + c ) / sqrt(a*a + b*b);
+    return fabs( a * point.x() + b * point.y() + c ) / sqrt(a*a + b*b);
 }
 
 
