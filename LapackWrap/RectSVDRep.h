@@ -29,6 +29,8 @@ public:
     class Factored {
     public:
         Factored(RectSVDRep<T>::Unfactored* mp);
+	virtual ~Factored() {}
+
         void solve(Knowns1d& b); // Overwrites b with x
         void solve(Unknowns1d& x, const Knowns1d& b);
         void solve(Knowns2d& b); // Overwrites b with x
