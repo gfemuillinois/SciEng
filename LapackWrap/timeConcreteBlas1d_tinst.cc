@@ -9,7 +9,7 @@ template class ConcreteBlas1d<double>;
 
 template class ConcreteFortranArray1d<double>;
 
-template class ConcreteArrayShape<1>;
+//template class ConcreteArrayShape<1>;
 
 template class DistributingEquivalentCategory< ConcreteBlas1d<double> >;
 #endif
