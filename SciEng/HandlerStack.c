@@ -9,6 +9,8 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
+//namespace SciEngLib{
+
 template<HandlerFunctionSetter set_function>
 HandlerStack<set_function>::HandlerStack(HandlerFunction new_handler) :
     old_handler( set_function(new_handler) ) {
@@ -24,3 +26,4 @@ HandlerStack<set_function>::~HandlerStack() {
     set_function(old_handler);
 }
 
+//}

@@ -11,6 +11,7 @@ See README file for further details.
 #ifndef HandlerStackH
 #define HandlerStackH
 
+//namespace SciEngLib{
 
 typedef void (*HandlerFunction)();
 typedef HandlerFunction (*HandlerFunctionSetter)(HandlerFunction);
@@ -28,6 +29,7 @@ private:
 
 };
 
+//}
 
 #ifdef XLC_QNOTEMPINC
 #include "SciEng/HandlerStack.c"

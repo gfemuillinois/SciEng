@@ -11,6 +11,7 @@ See README file for further details.
 #include "SciEng/Fallible.h"
 #include "SciEng/String.h"
 
+//namespace SciEngLib{
 
 String FallibleBase::UsedInInvalidStateErr::message() const {
     return "Fallible object used in invalid state.";
@@ -20,3 +21,4 @@ void FallibleBase::throwErr() const {
     throw FallibleBase::UsedInInvalidStateErr();
 }
 
+//}

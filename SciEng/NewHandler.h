@@ -14,8 +14,11 @@ See README file for further details.
 #include <new.h>
 #include "SciEng/HandlerStack.h"
 
+//namespace SciEngLib{
 
 typedef HandlerStack<set_new_handler> NewHandler;
+
+//}
 
 #endif
 
