@@ -14,6 +14,9 @@ See README file for further details.
 #include "Array/FormedArray.h"
 #include "DataModeling/IteratedEquations.h"
 
+template<class T> class LinearizationIterator;
+template<class T>
+ostream& operator<<(ostream& os, const LinearizationIterator<T>& l);
 
 template<class T>
 class LinearizationIterator { 
@@ -33,7 +36,7 @@ public:
     void solve();
 
     static T default_correction_convergence;
-    friend ostream& operator<<(ostream& os, const LinearizationIterator<T>& l);
+  friend ostream& operator<< <T>(ostream& os, const LinearizationIterator<T>& l);
 protected:
     IteratedEquations<T>& the_eqns;
     FormedArray1d<T>  cur;
