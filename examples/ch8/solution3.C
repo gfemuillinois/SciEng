@@ -14,6 +14,9 @@ See README file for further details.
 #include "examples/ch6/Point.h"
 #include "examples/ch6/SimpleArray.h"
 
+#include "examples/ch8/Element3.h"
+
+
 // Redefine EXIT_SUCCESS and EXIT_FAILURE.  When this program works it should return
 // EXIT_FAILURE, but run-test in the Makefile tests for EXIT_SUCCESS.
 #undef EXIT_SUCCESS
@@ -22,28 +25,9 @@ See README file for further details.
 #define EXIT_FAILURE 0
 
 class ElementsOfMesh;
-class NodesOfElement;
 class NodesOfMesh;
-class NodeReader;
-class Mesh;
-
 
 typedef Point Node;
-
-
-
-class Element {
-public:
-    friend NodesOfElement; // Iterator over nodes of an element
-
-    friend void operator>>(NodeReader& reader, Element& e);
-    friend ostream& operator<<(ostream& os, const Element& e);
-
-    Number maxAngle() const;
-private:
-    SimpleArray<Node*> node_ptrs;
-};
-
 
 class Mesh {
 public:
@@ -87,31 +71,6 @@ private:
     int cur;
 };
 
-
-class NodesOfElement {
-public:
-    NodesOfElement(const Element& e) :
-                           node_ptrs(e.node_ptrs), cur(e.node_ptrs.numElts()-1) {}
-
-// Iteration
-
-    Boolean more()    const { return cur >= 0;        }
-    void    advance()       { --cur;                  }
-    Node&   current() const { return *node_ptrs[cur]; }
-
-
-// Neighbors of current iterate
-    Node& ccwNeighbor() const { return *node_ptrs[(cur + 1) % node_ptrs.numElts()]; }
-    Node& cwNeighbor() const {
-                           int numNodes = node_ptrs.numElts();
-                           return *node_ptrs[(cur + numNodes - 1) % numNodes];
-    }
-private:
-    const SimpleArray<Node*>& node_ptrs;
-    int cur;
-};
-
-
 int main() {
     Mesh m;
     cin >> m;
@@ -125,24 +84,14 @@ int main() {
 
 
 Boolean Mesh::checkElementAngles(Number angle_threshold) const {
-    Boolean anglesOK = Boolean::true;
+    Boolean anglesOK = Boolean::IsTrue;
     for (ElementsOfMesh elts(*this); elts.more(); elts.advance()) {
                            if (elts.current().maxAngle() > angle_threshold) {
             cout << "Element " << elts.current() << " has a large angle." << endl;
-            anglesOK = Boolean::false;
+            anglesOK = Boolean::IsFalse;
                            }
     }
     return anglesOK;
-}
-
-
-Number Element::maxAngle() const {
-    Number maxang = 0.0;
-    for (NodesOfElement nodes(*this); nodes.more(); nodes.advance()) {
-                           Number angle = nodes.current().angle(nodes.cwNeighbor(), nodes.ccwNeighbor());
-                           if ( angle > maxang ) maxang = angle;
-    }
-    return maxang;
 }
 
 
