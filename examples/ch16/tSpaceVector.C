@@ -8,22 +8,22 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <strstream.h>
+#include <iostream>
+#include <strstream>
+#include <cstdlib>
 #include "Vector/ConcreteVector3d.h"
 
 double circle_radius(ConcreteVector3d a, ConcreteVector3d b, ConcreteVector3d c) {
+
   double r;
-
-
   r = ( (a-c).norm() * (b-c).norm() * (a-b).norm() ) /
       ( 2.0 * ((a-c) * (b-c)).norm() );
-
 
   return r;
 }
 
 int main(int argc, char** argv){
+
   ConcreteVector3d v1(0, 0, 0);
   ConcreteVector3d v2(1, 2, 3);
   ConcreteVector3d v3(4, 5, 6);
