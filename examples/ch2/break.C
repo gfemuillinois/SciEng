@@ -14,11 +14,11 @@ int main() {
   int x;
   while (cin >> x) {
     if (x < 0) {
-        cout << "Negative number " << x << " read" << endl;
-        break;
+      cout << "Negative number " << x << " read" << endl;
+      break;
     }
     // ... processing of input goes here
-}
+  }
 
   return 0;
 }
