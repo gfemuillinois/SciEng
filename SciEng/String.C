@@ -8,10 +8,11 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <iomanip.h>
+#include <iostream>
+#include <iomanip>
 #include <ctype.h>
-#include <strstream.h>
+//#include <sstream>  // iso C++
+//#include <strstream> // old C++
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -158,17 +159,17 @@ Subscript String::cspan(const String& consisting_not_of_me) const {
     return strcspn(data, consisting_not_of_me.data);
 }
 
-ostream& operator<<(ostream& s, const String& cs) {
+std::ostream& operator<<(std::ostream& s, const String& cs) {
     return s << cs.data;
 }
 
 
 
-istream& operator>>(istream& s, String& cs) {
+std::istream& operator>>(std::istream& s, String& cs) {
     const int bufsize = 100;
     char buf[bufsize];
     cs = String();
-    while ( s >> setw(bufsize) >> buf ) {
+    while ( s >> std::setw(bufsize) >> buf ) {
         cs += buf;
         int next_input_char = s.peek();
         if (isspace(next_input_char)) {

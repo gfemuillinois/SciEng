@@ -15,8 +15,7 @@ See README file for further details.
 #include "SciEng/Subscript.h"
 #include "SciEng/Fallible.h"
 
-class istream;
-class ostream;
+#include <iosfwd>
 
 //namespace SciEngLib{
 
@@ -96,8 +95,8 @@ public:
 
     // I/O
 
-    friend ostream& operator<<(ostream& s, const String& cs);
-    friend istream& operator>>(istream& s, String& cs);
+    friend std::ostream& operator<<(std::ostream& s, const String& cs);
+    friend std::istream& operator>>(std::istream& s, String& cs);
 
 
 

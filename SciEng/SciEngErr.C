@@ -8,13 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include "SciEng/SciEngErr.h"
 #include "SciEng/String.h"
 
 //namespace SciEngLib{
 
-ostream& operator<<(ostream& s, const SciEngErr& e) { 
+std::ostream& operator<<(std::ostream& s, const SciEngErr& e) { 
     return s << e.message();
 }
 

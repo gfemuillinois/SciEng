@@ -10,12 +10,18 @@ See README file for further details.
 */
 #include "SciEng/SciEngEnvironment.h"
 
-#include <iostream.h>
+#include <iostream>
+
+using std::cerr;
+using std::endl;
+using std::cout;
 
 //namespace SciEngLib{
 
 void userErrMessage(const SciEngErr& e) {     
-    cerr << endl << "*** \"Scientific and Engineering C++\" -- error detected." << endl;
+    cerr << endl 
+	 << "*** \"Scientific and Engineering C++\" -- error detected." 
+	 << endl;
     cerr << e;
     cerr << endl << "*** End of error message ***" << endl;
 }

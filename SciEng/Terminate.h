@@ -18,7 +18,7 @@ See README file for further details.
 
 //namespace SciEngLib{
 
-typedef HandlerStack<set_terminate> Terminate;
+typedef HandlerStack<std::set_terminate> Terminate;
 
 
 //}

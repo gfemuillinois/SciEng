@@ -11,7 +11,7 @@ See README file for further details.
 #ifndef SciEngErrH
 #define SciEngErrH
 
-class ostream;
+#include <iosfwd>
 
 //namespace SciEngLib{
 
@@ -23,7 +23,7 @@ public:
     virtual ~SciEngErr();             
 };
 
-ostream& operator<<(ostream& s, const SciEngErr& e);
+std::ostream& operator<<(std::ostream& s, const SciEngErr& e);
 
 //}
 #endif
