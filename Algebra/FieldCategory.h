@@ -17,15 +17,15 @@ See README file for further details.
 
 template<class T>
 class FieldCategory : 
-    public AbelianGroupCategory<T>, 
-    public GroupCategory<T> {
+  public AbelianGroupCategory<T>, 
+  public GroupCategory<T> {
+public:
+  T& operator++()     { T one((T&)*this); one.setToOne(); return (T&)*this += one; }
+  T  operator++(int)  { T orig((T&)*this); ++*this; return orig;                   }
+  T& operator--()     { T one((T&)*this); one.setToOne(); return (T&)*this -= one; }
+  T  operator--(int)  { T orig((T&)*this); --*this; return orig;                   }
 
-        T& operator++()     { T one((T&)*this); one.setToOne(); return (T&)*this += one; }
-        T  operator++(int)  { T orig((T&)*this); ++*this; return orig;                   }
-        T& operator--()     { T one((T&)*this); one.setToOne(); return (T&)*this -= one; }
-        T  operator--(int)  { T orig((T&)*this); --*this; return orig;                   }
-
-    };
+};
 
 
     #endif
