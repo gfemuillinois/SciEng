@@ -1,0 +1,12 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+timeFormedArithmetic1d
+timeFormedArithmetic2d
+timeRigidArithmetic1d
+timeRigidArithmetic2d
+
