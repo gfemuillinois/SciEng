@@ -30,9 +30,9 @@ const double& d = temp;
 }
 }
 
-#include <complex.h>
+#include <complex>
 
-typedef complex ComplexDouble;
+typedef complex<double> ComplexDouble;
 
 class ComplexFloat {
 public:
