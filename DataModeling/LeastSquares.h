@@ -21,12 +21,12 @@ template<class A>
 class LeastSquares :            
     public A {  // Will be e.g LapackUnfactored< RectSVDRep<double> >
 public:
-    typedef A::EltT EltT;
-    typedef A::Representation::Unfactored Unfactored;
-    typedef A::Representation::Unknowns2d Unknowns2d;
-    typedef A::Representation::Knowns2d Knowns2d;
-    typedef A::Representation::Unknowns1d Unknowns1d;
-    typedef A::Representation::Knowns1d Knowns1d;
+    typedef typename A::EltT EltT;
+    typedef typename A::Representation::Unfactored Unfactored;
+    typedef typename A::Representation::Unknowns2d Unknowns2d;
+    typedef typename A::Representation::Knowns2d Knowns2d;
+    typedef typename A::Representation::Unknowns1d Unknowns1d;
+    typedef typename A::Representation::Knowns1d Knowns1d;
 
     LeastSquares( 
         const PhysicalData<EltT>& data,
