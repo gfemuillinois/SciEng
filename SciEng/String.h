@@ -11,13 +11,14 @@ See README file for further details.
 #ifndef StringH
 #define StringH
 
-#include <string.h>
+#include <cstring>
 #include "SciEng/Subscript.h"
 #include "SciEng/Fallible.h"
 
 class istream;
 class ostream;
 
+//namespace SciEngLib{
 
 class String {
 public:
@@ -26,7 +27,7 @@ public:
     String();                           // Null string
     String(const char*);                // From built-in string
     String(const char*, Subscript n);   // ... for at most n characters
-    String(char);                       // From single character
+    String(char);              // From single character
     String(const String&);              // From another String
 
     // Assignment
@@ -178,13 +179,20 @@ String& operator<<(String& s, const T& obj); // Format into string object
 // Declare commonly used cases of << to avoid proliferation of functions
 String& operator<<(String&, const char*);  // Special case
 
+// CAD: These guys are not defined anywhere so the compiler must
+// expand the template. When we declare these guys, g++ does not
+// expand the template and the loader complains about undefined 
+// function!
+
 String& operator<<(String&, const char&);
-String& operator<<(String&, const int&);
+//String& operator<<(String&, const int&);
 String& operator<<(String&, const unsigned int&);
 String& operator<<(String&, const long int&);
 String& operator<<(String&, const unsigned long int&);
 String& operator<<(String&, const float&);
 String& operator<<(String&, const double&);
+
+//}
 
 #ifdef XLC_QNOTEMPINC
 #include "SciEng/String.c"
