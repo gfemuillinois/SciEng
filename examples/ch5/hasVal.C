@@ -14,7 +14,7 @@ int hasVal(int val, int n, int values[]) {
     // Return true if the n-element array "values" contains an element
     // with value "val"; otherwise, return false.
     for (int i = 0; i < n; i++) {
-        if (values[i] = val) return 1;
+        if (values[i] == val) return 1;
     }
     return 0;
 }
