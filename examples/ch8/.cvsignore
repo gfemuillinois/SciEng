@@ -1,0 +1,10 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+solution1
+solution2
+solution3
