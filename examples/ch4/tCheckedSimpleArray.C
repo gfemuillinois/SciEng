@@ -8,9 +8,9 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <strstream.h>
-#include <stdlib.h>
+#include <iostream>
+#include <strstream>
+#include <cstdlib>
 #include "examples/ch4/CheckedSimpleArray.h"
 
 int main() {
@@ -32,29 +32,32 @@ int main() {
   }
 
 
-{
-  istrstream cin("10 2");
+  {
+    istrstream cin("10 2");
 
-  try {
-    int n;
-    cin >> n;
-    CheckedSimpleArray<float> a(n);
+    try {
+      int n;
+      cin >> n;
+      CheckedSimpleArray<float> a(n);
+      cout << "\nCreated CheckedSimpleArray<float> a(10) " << endl;
 
-    // ...
+      // ...
 
-    int j;
-    cin >> j;
-    float x = 2.1 * a[j];
+      int j;
+      cin >> j;
+      float x = 2.1 * a[j];
+      cout << " x = 2.1 * a[2] = " << x << endl;
 
-    // ...
-}
-  catch(SubscriptRangeError e) {
-    cerr << "SubscriptRangeError caught bad subscript = " << e.badSubscript() << endl;
+      // ...
+    }
+    catch(SubscriptRangeError e) {
+      cerr << "SubscriptRangeError caught bad subscript = " 
+	   << e.badSubscript() << endl;
+    }
+    catch(ArraySizeError e) {
+      cerr << "ArraySizeError caught, bad size = " << e.badSize() << endl;
+    }
+
   }
-  catch(ArraySizeError e) {
-    cerr << "ArraySizeError caught, bad size = " << e.badSize() << endl;
-  }
-
-}
   return 0;  
 }
