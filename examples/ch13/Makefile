@@ -8,11 +8,12 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 FILES_WITH_MAIN	= tConcreteRigidArray.C tConcreteFormedArray.C \
 	IteratorFrobenius.C tConcreteMax.C tCollect.C tDiagonal.C \
 	while.C timeConcreteArray.C timeConcreteRigidArray1D.C  \
-	timeConcreteRigidArray2D.C
+	timeConcreteRigidArray2D.C timeConcreteArray3d.C
 
 TEMPLATE_INSTANCES = tConcreteFormedArray_tinst.cc tConcreteRigidArray_tinst.cc \
 	IteratorFrobenius_tinst.cc tConcreteMax_tinst.cc tCollect_tinst.cc \
 	tDiagonal_tinst.cc timeConcreteArray_tinst.cc \
+	timeConcreteArray3d_tinst.cc \
 	timeConcreteRigidArray1D_tinst.cc  timeConcreteRigidArray2D_tinst.cc
 
 SOURCE_FILES = bad-assign.C timer.C error.C
@@ -62,6 +63,12 @@ timeConcreteArray: timeConcreteArray.o timer.o timeConcreteArray_tinst.o $(SCIEN
 	@echo Linking $@
 	$(LINK)	timeConcreteArray.o timer.o timeConcreteArray_tinst.o $(SCIENGMATXLIB)
 
+timeConcreteArray3d: timeConcreteArray3d.o timer.o timeConcreteArray3d_tinst.o \
+	$(SCIENGMATXLIB)
+	@echo Linking $@
+	$(LINK)	timeConcreteArray3d.o timer.o timeConcreteArray3d_tinst.o $(SCIENGMATXLIB)
+
+
 timeConcreteRigidArray1D: timeConcreteRigidArray1D.o timer.o \
 			  timeConcreteRigidArray1D_tinst.o $(SCIENGMATXLIB)
 	@echo Linking $@
@@ -108,6 +115,7 @@ run_all:
 	@echo Running tConcreteFormedArray: ; tConcreteFormedArray
 	@echo Running tConcreteRigidArray: ; tConcreteRigidArray
 	@echo Running timeConcreteArray: ; timeConcreteArray
+	@echo Running timeConcreteArray3d: ; timeConcreteArray3d
 	@echo Running timeConcreteRigidArray1D: ; timeConcreteRigidArray1D
 	@echo Running timeConcreteRigidArray2D: ; timeConcreteRigidArray2D
 

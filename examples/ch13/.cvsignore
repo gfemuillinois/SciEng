@@ -10,6 +10,7 @@ tConcreteFormedArray
 tConcreteMax
 tConcreteRigidArray
 timeConcreteArray
+timeConcreteArray3d
 timeConcreteRigidArray1D
 timeConcreteRigidArray2D
 while
