@@ -22,7 +22,7 @@ ALL_FILES = Newton.C Stirling.C array-reverse.C array-zero.C bitwise.C \
 	iodemo.C linefit.C mat3by3mult.C mat3by3mult2.C prepostfix.C \
 	ptrArray.C ptrconst.C ptrdclstyles.C ptrs.C refs.C regurgitate.C \
 	scope.C simplecpp.C sqrtTable.C tempctrl.C trivial.C typedef.C \
-	vertstyle.C
+	vertstyle.C coulombsLawDef.C
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(ALL_FILES:%.C=Deps/%.d)
