@@ -20,6 +20,12 @@ See README file for further details.
 
 #include "Array/ConcreteRigidArray.h"
 
+template<class T, Subscript n0> class RigidArithmetic1d;
+
+template<class T>
+void crossProd(const RigidArithmetic1d<T, 3>& a, 
+	       const RigidArithmetic1d<T, 3>& b, 
+	       RigidArithmetic1d<T, 3>& c);
 
 template<class T, Subscript n0>
 class RigidArithmetic1d :            
@@ -44,6 +50,12 @@ public:
         ConcreteRigidArray1d<T, n0>::operator=(rhs);
         return *this;
     }
+
+  // c = a X b
+  // Note that cross product makes sence only for vectors in 3D space.
+  friend void crossProd<T>(const RigidArithmetic1d<T, 3>& a, 
+			   const RigidArithmetic1d<T, 3>& b, 
+			   RigidArithmetic1d<T, 3>& c);
 
   // CAD
   // moved to DistributingExternalScalars
@@ -119,5 +131,9 @@ public:
     return *this;
   }
 };
+
+#ifdef XLC_QNOTEMPINC
+#include "Vector/RigidArithmetic.c"
+#endif
 
 #endif
