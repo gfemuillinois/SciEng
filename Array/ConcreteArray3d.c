@@ -12,7 +12,7 @@ See README file for further details.
 #include "SciEng/ArrayErr.h"
 
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, ConcreteArray3dConstRef<Subscriptor, T> a) {
+ostream& operator<<(ostream& os, const ConcreteArray3dConstRef<Subscriptor, T>& a) {
   return arrayTuplize(a, os);
 }
 
