@@ -118,7 +118,7 @@ private:
 template<class T>
 FactoredLapackRect<T>::FactoredLapackRect(FortranArray2d<T>* ap) :
     fmat_p(ap), 
-    pivots( min(ap->shape(0), ap->shape(1)) ) {
+    pivots( sce::min(ap->shape(0), ap->shape(1)) ) {
     // Call LAPACK factoring routine ...
 }
 
