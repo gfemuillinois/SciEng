@@ -46,7 +46,7 @@ for (int i = 0; i < 3; i++) {
     }
 }
 
-for (i=0; i < 3; i++) {
+for (int i=0; i < 3; i++) {
   if ( m[i][i] != 1 ) return 1;
   for (int j=0; j < 3; j++) {
     if (i != j && m[i][j] != 0) return 1;
