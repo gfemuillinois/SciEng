@@ -8,54 +8,81 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+#include <iostream>
+
 #include "Array/ConcreteFortranArray2d.h"
+
+#include "Array/FormedArray1d.h"
 #include "Array/FormedArray2d.h"
-#include <iostream.h>
+#include "Array/FormedArray3d.h"
+
 
 int main() {
 
+  int i = 5;             // Object, value 5.
+  int &ir = i;           // non-const reference to i.
+  const int& cir = i;    // const reference to i.
+  const int& cir1 = ir;  // const reference to i.
+  /*
+    int& ir1 = cir;        // WRONG: const int& can't be converted to int&
+  */
+  ir = 6;                // Alter object i
 
+// ------------------------------------------------------
+  {
 
-int i = 5;             // Object, value 5.
-int &ir = i;           // non-const reference to i.
-const int& cir = i;    // const reference to i.
-const int& cir1 = ir;  // const reference to i.
-/*
-int& ir1 = cir;        // WRONG: const int& can't be converted to int&
-*/
-ir = 6;                // Alter object i
+    typedef ConcreteFortranArray2d<double> Array; // Abbreviation
+    Array a(3, 4);
+    a = 1.0;
+    cout << "a = " << a << endl;
+    ConcreteArray2dRef<Array::SubscriptorT, Array::EltT> ar = a;
+    ar = 10.0;
 
+    cout << "a = " << a << endl;
+  }
+// ------------------------------------------------------
 
-{
+ {
+   ConcreteFortranArray2d<double> a(3, 4);
+   a[1] = 1.0;
+  
+   a[0] = 0;
+   a[2] = 2;
+   cout << " a = " << a << endl;
+   if (sizeof(a[1]) != sizeof(double*) + 2 * sizeof(Subscript)) {
+     cout << "Surprising size for a projection: " << sizeof(a[1]) << endl;
+   }
+  
+ }
+// ------------------------------------------------------
 
-typedef ConcreteFortranArray2d<double> Array; // Abbreviation
-Array a(3, 4);
-ConcreteArray2dRef<Array::SubscriptorT, Array::EltT> ar = a;
-ar = 10.0;
+  FormedArray2d<double> a(3, 4);
+  a[1] = 1;
 
-}
-{
+  a[0] = 0;
+  a[2] = 2;
+  cout << a << endl;
 
-ConcreteFortranArray2d<double> a(3, 4);
-a[1] = 1.0;
+  FormedArray1d<int> fa(5);
 
-a[0] = 0;
-a[2] = 2;
-cout << a << endl;
-if (sizeof(a[1]) != sizeof(double*) + 2 * sizeof(Subscript)) {
-  cout << "Surprising size for a projection: " << sizeof(a[1]) << endl;
-}
-}
+  fa[0] = fa[1] = 3; fa[2] = fa[3] = 4; fa(4) = 5;
 
-FormedArray2d<double> a(3, 4);
-a[1] = 1;
+  cout << " fa = " << fa << endl;
 
-a[0] = 0;
-a[2] = 2;
-cout << a << endl;
-return 0;
-}
+  /*
+  FormedArray3d<float> fa3d(1,2,3);
 
+  fa3d = 1.0;
+
+  fa3d[0] = 2.0;
+
+  cout << " fa3d = " << fa3d << endl;
+  */
+
+  return 0;
+
+} // main
+// ------------------------------------------------------
 
 
 typedef ConcreteFortranArray2d<double>                       Array;  // Abbreviations
