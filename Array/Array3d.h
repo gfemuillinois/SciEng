@@ -47,12 +47,13 @@ template<class T>
 class Array3d :
     public ConstArray3d<T> {
 public:
+  typedef typename ConstArray3d<T>::ConstProjectionT ConstProjectionT;
+  typedef          AccessedArray2d<T>                ProjectionT;
+  typedef          ArrayIterator3d<Array3d<T> >      IteratorType;
+ 
   virtual       T& operator()(Subscript i, Subscript j, Subscript k)       = 0;
   virtual const T& operator()(Subscript i, Subscript j, Subscript k) const = 0;
-
-  typedef AccessedArray2d<T> ProjectionT;
-  typedef ArrayIterator3d<Array3d<T> > IteratorType;
-  
+ 
   virtual ProjectionT      project(Subscript i, Dimension d = 0) = 0;
   virtual ConstProjectionT project(Subscript i, Dimension d = 0) const = 0;
   virtual ConstProjectionT operator[](Subscript i)               const { return project(i,0); }
