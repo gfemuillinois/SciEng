@@ -21,11 +21,29 @@ class DistributingDivisionAlgebra :
     public DistributingLeftScalars<Array, T, S> {
 public:
 
-    Array& operator*=(const Array& rhs) { return DistributingField<Array, T>::operator*=(rhs); }
-    Array& operator/=(const Array& rhs) { return DistributingField<Array, T>::operator/=(rhs); }
-    Array& operator*=(const S& rhs)     { return DistributingLeftScalars<Array, T, S>::operator*=(rhs); }
-    Array& operator/=(const S& rhs)     { return DistributingLeftScalars<Array, T, S>::operator/=(rhs); }
+   Array& operator*=(const Array& rhs) { 
+      return DistributingField<Array, T>::operator*=(rhs); }
+    Array& operator/=(const Array& rhs) { 
+      return DistributingField<Array, T>::operator/=(rhs); }
 
+    Array& operator*=(const S& rhs)     { 
+      return DistributingLeftScalars<Array, T, S>::operator*=(rhs); }
+    Array& operator/=(const S& rhs)     { 
+      return DistributingLeftScalars<Array, T, S>::operator/=(rhs); }
+
+  // CAD
+  Array& operator+=(const Array& rhs) { 
+    return DistributingField<Array, T>::operator+=(rhs); }
+  // CAD
+  Array& operator-=(const Array& rhs) { 
+    return DistributingField<Array, T>::operator-=(rhs); }
+
+  // CAD
+  Array& operator+=(const S& rhs) {
+    return DistributingLeftScalars<Array, T, S>::operator+=(rhs); }
+  // CAD
+  Array& operator-=(const S& rhs) {
+    return DistributingLeftScalars<Array, T, S>::operator-=(rhs); }
 };
 
 
