@@ -51,6 +51,12 @@ extern "C" {
 
 class LapackSubroutines { 
 public:
+    enum Job { all, separate, overwrite, none };                                                      
+    static char job_symbol[4];                                                                         
+
+    enum Trans {no_trans, trans, conj};
+    static char trans_char[3];
+
     // Factoring general matrices
     static void xgetrf(
         const int& M, const int& N, float* A, const int& LDA, 
@@ -70,12 +76,24 @@ public:
         int& INFO
     );
 
+    static void xgetrs(const Trans t, 
+        const int& N, const int& NRHS, float* A, const int& LDA,
+        const int IPIV[], 
+        float* B, const int& LDB, 
+        int& INFO
+    );
+
     static void xgetrs(const char TRANS[], 
         const int& N, const int& NRHS, double* A, const int& LDA,
         	    const int* IPIV, double* B, const int& LDB,
         	    int& INFO
     );  	    
 
+    static void xgetrs(const Trans t, 
+        const int& N, const int& NRHS, double* A, const int& LDA,
+        	    const int* IPIV, double* B, const int& LDB,
+        	    int& INFO
+    );
 
     // Factoring symmetric, positive-definite, packed matrices
     static void xpptrf(const char UPLO[], const int& N, float* AP, int& INFO);
@@ -95,8 +113,6 @@ public:
         	  int& INFO
     );  	  
 
-    enum Job { all, separate, overwrite, none };                                                      
-    static char job_symbol[4];                                                                         
     static void xgesvd(Job u_storage, Job vt_storage, const int& M, const int& N, const double AP[],   
         const int& LDA, double SP[], double UP[], const int& LDU, double VTP[], const int& LDVT, 
         double WORK[], const int& LWORK, int& INFO);                                             
@@ -105,7 +121,6 @@ public:
         float WORK[], const int& LWORK, int& INFO);                                             
 
 };
-
 
 
 // Factoring general matrices
@@ -130,11 +145,24 @@ inline void LapackSubroutines::xgetrs(const char TRANS[], const int& N, const in
     FTNAME(sgetrs)(TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO);
 }
 
+inline void LapackSubroutines::xgetrs(const LapackSubroutines::Trans t, const int& N, const int& NRHS, float* A, 
+				      const int& LDA, const int IPIV[], float* B, const int& LDB, int& INFO) {
+
+    FTNAME(sgetrs)( &trans_char[t], N, NRHS, A, LDA, IPIV, B, LDB, INFO);
+}
+
 inline void LapackSubroutines::xgetrs(const char TRANS[], const int& N, const int& NRHS, double* A, const int& LDA,
 	                                     const int* IPIV, double* B, const int& LDB, int& INFO) {
 
     FTNAME(dgetrs)(TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO);
 }
+
+inline void LapackSubroutines::xgetrs(const LapackSubroutines::Trans t, const int& N, const int& NRHS, double* A, 
+				      const int& LDA, const int* IPIV, double* B, const int& LDB, int& INFO) {
+
+    FTNAME(dgetrs)( &trans_char[t], N, NRHS, A, LDA, IPIV, B, LDB, INFO);
+}
+
 
 // Factoring symmetric, positive-definite, packed matrices
 inline void LapackSubroutines::xpptrf(const char UPLO[], const int& N, float* AP, int& INFO) {
@@ -181,7 +209,5 @@ inline void LapackSubroutines::xgesvd(
               SP, UP, LDU, VTP, LDVT,
               WORK, LWORK, INFO);
 }
-
-char LapackSubroutines::job_symbol[] = { 'A', 'S', 'O', 'N' };
 
 #endif
