@@ -9,17 +9,19 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include "examples/ch5/axpy.h"
-#include <complex.h>
+#include <complex>
 
 int main() {
 
   Vector<double> a(4);
   Vector<int> ai(4);
-  Vector<complex> ac(4);
+  Vector< double_complex > ac(4);
   Vector<double> b(4); 
   Vector<int> bi(4); 
-  Vector<complex> bc(4); 
+  Vector< double_complex > bc(4); 
+
   // Initialize a, b, ai, and bi ...
+
   a[0] = 1; a[1] = 2; a[2] = 3; a[3] = 4;
   ai[0] = 1; ai[1] = 2; ai[2] = 3; ai[3] = 4;
   ac[0] = 1; ac[1] = 2; ac[2] = 3; ac[3] = 4;
