@@ -21,11 +21,14 @@ See README file for further details.
 // was not one of ours, about the only thing we can do is to print a
 // message and go home.
 
+//namespace SciEngLib{
+
 static void rethrow() { throw; }
 
+template<>
 void Terminate::defaultHandler() { 
     try { 
-        rethrow();
+       rethrow();
     }
     catch(const SciEngErr& e) { 
         userErrMessage(e);
@@ -36,3 +39,5 @@ void Terminate::defaultHandler() {
         exit(EXIT_FAILURE);
     }
 }
+
+//}
