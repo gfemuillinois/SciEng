@@ -16,12 +16,12 @@ See README file for further details.
 //namespace SciEngLib {
 
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a) {
   return arrayTuplize(a, os);
 }
 
 template<class Subscriptor, class T>
-istream& operator>>(istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
+std::istream& operator>>(std::istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
   char c = 0;
   is >> c;
   if (c == '[') {
@@ -33,7 +33,7 @@ istream& operator>>(istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
 	is >> c;
 	i++;
 	if ( i == n ) {
-	  if (c != ']') is.clear(ios::badbit);
+	  if (c != ']') is.clear(std::ios::badbit);
 	} else {
 	  if (c != ',') is.putback(c);
 	}
@@ -41,7 +41,7 @@ istream& operator>>(istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
   }
   else {
     is.putback(c);
-    is.clear(ios::badbit);
+    is.clear(std::ios::badbit);
   }
   return is;
 }
