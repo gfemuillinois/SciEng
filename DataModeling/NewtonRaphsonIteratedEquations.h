@@ -29,7 +29,7 @@ public:
     NewtonRaphsonFunction(RallFunctionType fp = 0) : f_i(fp) {}
 
     // Evaluate f_i(a)
-    TaylorCoefficient1d<RallT::EltT> operator()(const Array1d<RallT>& a) const { 
+    TaylorCoefficient1d<typename RallT::EltT> operator()(const Array1d<RallT>& a) const { 
         return reform(f_i(a)); 
     }
 private:
