@@ -1,0 +1,12 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+tAcme130_Acs
+tAcme130_GIData
+tAcme140
+tAcme230
+tCheckedFloatArray
