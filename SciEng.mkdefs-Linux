@@ -14,15 +14,37 @@ Debug =
 PROF =
 OPTM =
 
+# MAX_OPTIMIZE_IT and OPTIMIZE are typically env vars
+# while OPT is given on the command line. OPT has precedence
+# over the others.
+
+ifndef OPT
 ifeq ($(MAX_OPTIMIZE_IT),ON)
-OPTM = -O3
+OPT  = FULL
 else
 ifeq ($(OPTIMIZE),ON)
-OPTM = -O
+OPT = 1
+endif
+endif
+endif
+
+ifndef OPT
+# debug compiler options -------------------------
+OPTM = -g  
+
 else
-OPTM = -g
+# optimize flags ----------------------------
+OPTM = -O
+
+ifeq ($(OPT),FULL)
+OPTM = -O3
 endif
+
+#compile rules for trouble files (limited optimization)
+# can go here
 endif
+
+CXX_OPTM_FLAG = CXX_OPTM_FLAG$(OPTM)
 
 # we can overwrite this on the command line
 WERROR = -Werror
@@ -47,12 +69,14 @@ LDFLAGS = $(OPTM) $(PROF)
 
 LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
 
-SCIENGLIB = $(HOME)/Galileu/SciEng_gal/SciEng.a
+#PWD := $(shell pwd)
+
+SCIENGLIB = $(HOME)/Galileu_arm/SciEng_arm/SciEng.a
 #SCIENGLIB = 
-SCIENGMATXLIB = $(HOME)/Galileu/SciEng_gal/SciEngMatx.a
+SCIENGMATXLIB = $(HOME)/Galileu_arm/SciEng_arm/SciEngMatx.a
 
 # location of libg2c.a  =  Fortran run-time library
-LIBSYSPATH = -L/usr/lib/gcc-lib/i386-redhat-linux/egcs-2.91.66 
+#LIBSYSPATH = -L/usr/lib/gcc-lib/i386-redhat-linux/egcs-2.91.66 
 
 ALLLIBS =  $(SCIENGLIB) $(LIBSYS)   
 
@@ -99,7 +123,8 @@ INC = -I../.. -I.. -I.
 
 %.o : %.C
 	@echo Compiling $<
-	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@
+	rm  -f CXX_OPTM_FLAG*;	touch $(CXX_OPTM_FLAG)
 
 # See GNU make info page: "Generating Dependencies Automatically"
 Deps/%.d : %.C
@@ -108,9 +133,9 @@ Deps/%.d : %.C
 		| sed '\''s/\($*\)\.o[ :]*/\1.o Deps\/$*.d : /g'\'' > $@; \
 		[ -s $@ ] || rm -f $@'
 
-%.o : %.c
-	@echo Compiling $<
-	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
+#%.o : %.c
+#	@echo Compiling $<
+#	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
 
 %.o : %.cc
 	@echo Compiling $<
