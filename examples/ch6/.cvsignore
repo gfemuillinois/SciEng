@@ -1,0 +1,12 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+Bool-examples
+arrayAssign
+demoFal
+demoList
+run_all
