@@ -1,5 +1,6 @@
 #
 #
+HOSTTYPE = $(shell uname)
 include ../SciEng.mkdefs-$(HOSTTYPE)
 
 FILES_WITH_MAIN	= test.C
