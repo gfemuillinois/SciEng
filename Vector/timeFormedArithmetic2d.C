@@ -44,6 +44,33 @@ int main() {
 
 #define TEST11 1 // Miscelaneous tests:
 
+
+#if TEST11 || TEST_ALL
+  {
+  ConcreteFormedArray2d<double> fa10(5,5), fa20(7,7);
+
+  fa10 = 10.0;
+  fa20 = 20.0;
+
+  cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
+  fa10.swap( fa20 );
+
+  cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
+  FormedArithmetic2d<double> far30(8,8);
+
+  far30 = 30.0;
+
+  fa10.swap( far30 );
+
+  cout << "\nfa10: " << fa10 << "\nfar30: " << far30 << endl;
+  }
+#endif
+
+
+
+
 #if TEST1 || TEST_ALL
 
   cout << "\nTest/timing for operator ++ -- - (negate) " << endl;
