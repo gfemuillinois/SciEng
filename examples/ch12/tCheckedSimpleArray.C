@@ -11,13 +11,7 @@ See README file for further details.
 #include <iostream.h>
 #include "examples/ch11/CheckedSimpleArray.h"
 
-
-template<class T>
-float average(SimpleArray<T>& a) {
-    double sum = 0.0;
-    for (int i = 0; i < a.numElts(); i++) sum += a[i];
-    return sum / a.numElts();
-}
+#include "tCheckedSimpleArray.h"
 
 void f() {
   CheckedSimpleArray<float> a(10);
@@ -27,20 +21,23 @@ void f() {
 }
 
 int main() {
+
   // Check operation as array
   CheckedSimpleArray<float> a(10);
   for (int i = 0; i < a.numElts(); i++) a[i] = 2*i;
+
   CheckedSimpleArray<float> b(a);
   if (a.numElts() != b.numElts()) { cerr << "Bad copy: numElts wrong" << endl; return 1; }
-  for (i = 0; i < b.numElts(); i++) {
+
+  for (int i = 0; i < b.numElts(); i++) {
     if (b[i] != 2*i) { cerr << "Bad copy: elements wrong" << endl; return 1; }
   }
   b = 10;
-  for (i = 0; i < b.numElts(); i++) {
+  for (int i = 0; i < b.numElts(); i++) {
     if (b[i] != 10) { cerr << "Bad assignment of scalar" << endl; return 1; }
   }
   b = a;
-  for (i = 0; i < b.numElts(); i++) {
+  for (int i = 0; i < b.numElts(); i++) {
     if (b[i] != 2*i) { cerr << "Bad array assignment" << endl; return 1; }
   }
   
@@ -48,24 +45,26 @@ int main() {
 
   // Check that errors are caught
   try {
+
    b[100];
    cerr << "Bad subscript not caught" << endl;
    return 1;
   } catch(CheckedSimpleArray<float>::SubscriptRangeError) {
+
   }
+
  {
 
+   CheckedSimpleArray<int> ia(4);                           // ok
+   CheckedSimpleArray<int*> ipa(4);                         // ok
 
-CheckedSimpleArray<int> ia(4);                           // ok
-CheckedSimpleArray<int*> ipa(4);                         // ok
+   typedef float Coord;
+   CheckedSimpleArray<Coord> ca(4);                         // ok
+   CheckedSimpleArray<float> fa(4);                         // ok, same as previous.
 
-typedef float Coord;
-CheckedSimpleArray<Coord> ca(4);                         // ok
-CheckedSimpleArray<float> fa(4);                         // ok, same as previous.
+   CheckedSimpleArray< CheckedSimpleArray<int> > iaa(4);    // ok
 
-CheckedSimpleArray< CheckedSimpleArray<int> > iaa(4);    // ok
-
-
-}
+   
+ }
   return 0;
 }
