@@ -17,9 +17,19 @@ template<class Array, class T, class S>
 class DistributingFieldScalars :
   public DistributingExternalScalars<Array, T, S> {
 public:
-  Array& operator/=(const S& rhs) { return DistributeS<Div,Array,T>::over((Array&) *this, rhs); }
+  Array& operator/=(const S& rhs) { 
+    return DistributeS<Div,Array,T>::over((Array&) *this, rhs); }
+
+  // CAD :
+  Array& operator-=(const S& rhs) { 
+    return DistributeS<Sub,Array,T>::over((Array&) *this, rhs); }
+  
+
 private:
   class Div { public: Div(T& lhs, const S& rhs) { lhs /= rhs; } };
+
+  // CAD:
+  class Sub { public: Sub(T& lhs, const S& rhs) { lhs -= rhs; } };
 };
 
 #endif
