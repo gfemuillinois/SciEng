@@ -130,8 +130,8 @@ Test/timing for operator ++ -- - (negate)
   cout << "\nTest/timing for operators += -=(const Array& rhs)" << endl;
 
   {
-    const int vec_dim = 250;
-    const unsigned int n_equal = 200000;
+    const int vec_dim = 25000;
+    const unsigned int n_equal = 2000;
 
     the_timer.set(0);
     the_timer.start(0);
@@ -213,8 +213,8 @@ Test/timing for operator ++ -- - (negate)
   cout << "\nTest/timing for operators *= /=(const Array& rhs)" << endl;
 
   {
-    const int vec_dim = 250;
-    const unsigned int n_equal = 200000;
+    const int vec_dim = 25000;
+    const unsigned int n_equal = 2000;
     
     the_timer.set(0);
     the_timer.start(0);
@@ -1028,8 +1028,8 @@ a_eq_c = 0
 #if TEST11 || TEST_ALL
   cout << "\nTest/Timing for dot(const Array& rhs)" << endl;
   {
-    const int vec_dim = 250;
-    const unsigned int n_equal = 300000;
+    const int vec_dim = 25000;
+    const unsigned int n_equal = 3000;
 
     the_timer.set(0);
     the_timer.start(0);
@@ -1085,11 +1085,11 @@ a_eq_c = 0
     for(unsigned int equal=0; equal<n_equal; ++equal) {
       inner = cra_a.dot(cra_b);
 
-      //inner_a = cra_a.dot(cra_a);
-      //inner_b = cra_b.dot(cra_b);
+      inner_a = cra_a.dot(cra_a);
+      inner_b = cra_b.dot(cra_b);
 
-      inner_a = dot(cra_a, cra_a);
-      inner_b = dot(cra_b, cra_b);
+      //inner_a = dot(cra_a, cra_a);
+      //inner_b = dot(cra_b, cra_b);
  
     }
 
