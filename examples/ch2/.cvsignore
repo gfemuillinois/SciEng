@@ -1,0 +1,43 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+*.save
+
+ Newton 
+ Stirling 
+ array-reverse
+ array-zero
+ bitwise
+ break
+ charArray
+ charcomp
+ commandLine
+ const
+ cosang
+ coulombUse
+ coulombsLaw-onefile
+ enum
+ ex-ptrs
+ ex-varsketch
+ ex-while
+ fortran-compatible-io
+ funcarg
+ intercepts
+ io
+ iodemo
+ linefit
+ mat3by3mult
+ mat3by3mult2
+ prepostfix
+ ptrArray
+ ptrconst
+ ptrs
+ refs
+ regurgitate
+ scope
+ sqrtTable
+ trivial
+ typedef
