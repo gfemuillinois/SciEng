@@ -8,7 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
+#include <cstdlib>
 #include "LapackWrap/Lapack.h"
 #include "LapackWrap/RectSVDRep.h"
 #include "SciEng/SciEngErr.h"
@@ -33,6 +34,8 @@ a(2,0) = 0;   a(2,1) = 0;   a(2,2) = -1;
     ConcreteBlas1d<float> b(3);
     b(0) = 1; b(1) = 2;  b(2) = 1;
 
+    cout << "Expected answer is [0.5, 0.5, 0.5]" << endl;
+    cout << "Answer obtained is ";
     cout << fa.solve(b) << endl;
 
   }
@@ -48,13 +51,14 @@ a(2,0) = 0;   a(2,1) = 0;   a(2,2) = -1;
     b(0,0) = 4;  b(0,1) = 8;
     b(1,0) = 7;  b(1,1) = 14;
     
-    String answer;
+    String answer, expected_answer("[[-0.999999, -2], [2, 4]]");
     answer << fa.solve(b);
-    if (answer != String("[[-0.999998, -2], [2, 4]]")) {
-      cout << "Bad answer for second problem" << endl;
+    if (answer != expected_answer) {
+      cout << "Bad answer for second problem (?)" << endl;
       cout << "Answer obtained is " << answer << endl;
-      return 1;
+      cout << "Expected answer is " << expected_answer << endl;
+      return EXIT_FAILURE;
     }
  }
-  return 0;
+  return EXIT_SUCCESS;
 }
