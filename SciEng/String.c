@@ -8,7 +8,9 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <strstream.h>
+#include <strstream>
+
+//namespace SciEngLib{
 
 template<class T>
 String& operator<<(String& s, const T& obj) {
@@ -19,3 +21,5 @@ String& operator<<(String& s, const T& obj) {
   os.rdbuf()->freeze(0);   // "Thaw" buffer so it will be deleted when os is destroyed
   return s;
 }
+
+//}

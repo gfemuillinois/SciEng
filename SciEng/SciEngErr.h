@@ -11,9 +11,11 @@ See README file for further details.
 #ifndef SciEngErrH
 #define SciEngErrH
 
-class String;
 class ostream;
 
+//namespace SciEngLib{
+
+class String;
 
 class SciEngErr {
 public:                             
@@ -23,6 +25,6 @@ public:
 
 ostream& operator<<(ostream& s, const SciEngErr& e);
 
-
+//}
 #endif
 

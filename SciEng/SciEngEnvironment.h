@@ -16,6 +16,7 @@ See README file for further details.
 #include "SciEng/Terminate.h"
 #include "SciEng/NewHandler.h"
 
+//namespace SciEngLib{
 
 class SciEngStartup {
 public:
@@ -44,4 +45,6 @@ public:
 private:
     static String out_of_memory_message;
 };
+
+//}
 #endif

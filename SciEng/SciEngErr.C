@@ -12,6 +12,7 @@ See README file for further details.
 #include "SciEng/SciEngErr.h"
 #include "SciEng/String.h"
 
+//namespace SciEngLib{
 
 ostream& operator<<(ostream& s, const SciEngErr& e) { 
     return s << e.message();
@@ -19,3 +20,5 @@ ostream& operator<<(ostream& s, const SciEngErr& e) {
 
 
 SciEngErr::~SciEngErr() {}
+
+//}

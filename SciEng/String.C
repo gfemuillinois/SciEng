@@ -18,6 +18,8 @@ See README file for further details.
 
 #include "SciEng/String.h"
 
+//namespace SciEngLib{
+
 String::String() :
     data(new char[1]) {
     data[0] = 0;
@@ -225,3 +227,4 @@ Fallible<unsigned long> String::strtoul() const {
   else             return Fallible<unsigned long>(result);
 }
 
+//}
