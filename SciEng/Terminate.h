@@ -11,11 +11,16 @@ See README file for further details.
 #ifndef TerminateH
 #define TerminateH
 
-#include <terminate.h>
+//#include <terminate.h>
+#include <exception>
+
 #include "SciEng/HandlerStack.h"
 
+//namespace SciEngLib{
 
 typedef HandlerStack<set_terminate> Terminate;
 
+
+//}
 #endif
 
