@@ -1,0 +1,30 @@
+## C++ compiler
+CXX	 = /bin/xlC
+## C++ compiler options
+CXXFLAGS = 
+
+## Fortran compiler
+FC 	= /bin/xlf
+## Fortran compiler options
+FFLAGS	=
+
+## Flags to add to linker line for various libraries
+COMPLEXLIB = -lcomplex
+LAPACKLIB  = -llapack
+FORTRANLIB = -lxlf
+BLASLIB    = -lblas
+
+## Following options are to cause template expansion on the fly
+## instead of expanding into a "tempinc" directory
+CXXTEMPLATE = -qnotempinc -DXLC_QNOTEMPINC
+
+LINK = $(CXX) $(CXXTEMPLATE) -I ../.. $(CXXFLAGS) ../../SciEng.a -o $@ 
+
+.C.o:
+	$(CXX) $(CXXTEMPLATE) -I ../.. $(CXXFLAGS) $< -c -o $@ 
+.c.o:
+	$(CXX) $(CXXTEMPLATE) -I ../.. $(CXXFLAGS) $< -c -o $@ 
+.f.o:
+	$(FC) $(FFLAGS) $< -c -o $@
+.o:
+	$(CXX) $(CXXTEMPLATE) -I ../../.. $(CXXFLAGS) $< ../../SciEng.a -o $@ 

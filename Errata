@@ -1,0 +1,43 @@
+Errata for "Scientific and Engineering C++: 
+   An Introduction with Advanced Techniques and Examples"
+
+by John J. Barton and Lee R. Nackman
+1994, Addison-Wesley, Reading MA.
+ISBN 0-201-53393-6
+
+pg 281  Fig. 10.5  A black dot belongs below "GPIBController&" in the center of
+the figure and a black solid arrow should run from the dot to bottom
+of the funky dome shaped object on the right.
+
+pg 321  ARM reference to 14. should be to 14.4c.
+
+pg 337  Fig. 12.1 The trapezodial "interface" part of the three squares
+on the left-center of the figure should have been black to match the
+interface at the top-center.  The interface part of the fourth square
+should not match.  The lines to this fourth square should have been
+gray or dashed.
+
+pg 521  Fig. 17.1 A third dashed line should run from the origin of
+the other two lines to the bottom of third funky dome object on the bottom of
+the figure.
+
+pg 550 The code given for String::operator+=(const String& rhs) does
+not work for self modification:
+       String s = "abc";
+       s += s;
+
+The correct code is:
+
+  String& String::operator+=(const String& rhs) { 
+      char* new_data = 
+          strcat(strcpy(new char[this->strlen() + rhs.strlen() + 1], data), rhs.data);
+      delete [] data;
+      data = new_data;
+      return *this;
+  }
+
+The two sentences immediately following the code should read as
+follows: "The first statement allocates the memory necessary to hold the result
+string and copies the argument strings into the result.  Then the
+original string is deleted, and the left-hand argument's pointer is
+set to point to the result string."

@@ -1,0 +1,262 @@
+Source Code for 
+
+"Scientific and Engineering C++: 
+   An Introduction with Advanced Techniques and Examples"
+
+by John J. Barton and Lee R. Nackman
+1994, Addison-Wesley, Reading MA.
+ISBN 0-201-53393-6
+
+This version includes fixes in the Errata through 05Oct94.
+
+Copyright:
+
+Every file in this tree of directories as read from its origin
+at software.ibm.com is copyrighted like this:
+/*
+Example programs from the book Scientific and Engineering Programming
+in C++: An Introduction with Advanced Techniques and Examples,
+Addison-Wesley, 1994.
+ 
+                 (c) COPYRIGHT INTERNATIONAL BUSINESS MACHINES
+                 CORPORATION 1994.  ALL RIGHTS RESERVED.
+
+See README file for further details.
+*/
+
+The details appear at the end of this file.
+
+
+Obtaining the code:
+
+All of the source code that appears in the book can be obtained for
+non-commercial use via anonymous FTP from software.watson.ibm.com
+(Internet address 129.34.139.5).  FTP to this site and give
+"anonymous" as the user name and your e-mail address as the password.
+The code is in directory "/pub/SciEng".  The file you are reading now
+is stored in /pub/SciEng/README.  The code is stored in a "tar" file
+compressed with "compress" and called SciEng.tar.Z.  Ftp the file in
+binary mode (bin) and use uncompress to recreate the SciEng.tar file.
+Then "cd" to a directory where you want SciEng to live and run tar -xf
+on the SciEng.tar to extract the files.  The tar command will create
+./SciEng and its subdirectories (see Organization below). About 3MB of
+disk space is required; additional space will be needed to compile and
+link the examples.
+
+
+Our environment:
+
+All code in the book has been compiled and executed on an IBM RISC
+System/6000 using the IBM xlC for AIX/6000 compiler, version 2.1.  Our
+code uses templates and exceptions, both relatively new features of
+C++.  These features were described in the Annotated C++ Reference
+Manual (ARM) by M. Ellis and B. Stroustroup as ``experimental.''  They
+have since been accepted by the standardization committees and
+supported in several (but not all) commercially available compilers.
+We expect most compilers to implement these features soon.
+
+Our AIX system uses long, case-dependent files names so you may
+have to change names for other systems.  Note in particular that 
+template definitions are in .c files (lower case) and regular
+definitions are in .C files (upper case) and some C++ classes have
+both types of files.
+
+We have provided "make" scripts for AIX /bin/make, which should work
+for most Unix-like make commands.  We have not provided header file
+dependencies; if you make extensive modifications you might want to
+use some automatic dependency generator (e.g., the -M option on the
+IBM compiler) to construct them for you.
+
+
+We welcome comments and corrections:
+
+Please send correspondance to C++SciEn@aw.com; it will be forwarded to
+us.  
+
+
+Organization of the source code:
+
+We call the top of the source code tree "SciEng".  This top-level
+subdirectory contains the README, Errata, a Makefile for the complete
+system, and SciEng.mkdefs, a file of common "make" definitions that is
+included in each subdirectory's Makefile.
+
+The subdirectories below the top-level contain the source code and
+Makefiles for compiling it.  Except for "examples", these
+subdirectories are organized like a C++ class library might be
+organized, with each subdirectory containing related source code;
+the "examples" subdirectory contains subdirectories for each
+chapter after the first one.
+
+In the right margin of the book, above each section of code, there is
+a file name that corresponds to a subdirectory and file in the SciEng
+tree.  If the subdirectory has a chapter number, like ch7/dangle.C,
+then the code will be in SciEng/examples, like
+SciEng/examples/ch7/dangle.C.  If the subdirectory does not have a
+chapter number, like Vector/Distribute.h, then the code will be in
+SciEng, like SciEng/Vector/Distribute.h.  The "Source Code Index" at
+the back of the book gives page numbers for each file that appears in
+the book.
+
+
+The library-like subdirectories are:
+
+  SciEng -- utility classes used by many other classes.
+
+  Array -- Tons of arrays, See Chapter 13.
+  LapackWrap -- C++ over LAPACK FORTRAN functions, See Chapters 15, 18, and 19
+  Function -- Function objects, See Chapter 17.
+
+  Algebra -- Algebraic Structure Categories ,See Chapter 16.
+  Units -- Dimensional analysis, See Chapter 16.
+  Vector -- Vectors and Matrices, See Chapter 16.
+
+  AutoDeriv -- Automatic Differentiation, See Chapter 19.
+  DataModeling -- Nonlinear least squares, See Chapter 19.
+
+There are ordered roughly by their dependency: you have to get
+SciEng/SciEng to compile before you can get anything else to work,
+and most of the other classes use Array classes.  
+
+The SciEng/example subdirectories contains code snippets from the book
+that illustrate C++, code designed to demonstrate and test the library
+code, and code for some of the exercises.  For example,
+SciEng/examples/ch16 has AtwoodsMachine.C, tASGArray.C, and
+tSpaceVector.C among others.  AtwoodsMachine.C appears on page 494 in
+the book. Part of tASGArray.C appears on page 501 but the rest
+demonstrates the AdditiveArray class.  Two lines of tSpaceVector.C
+appears on page 506 of the book as the requirement for Exercise 16.6;
+the rest of tSpaceVector.C is an answer (don't peek!).
+
+
+Compiling the code:
+
+To compile the code for an IBM AIX 3.2.5 system, copy SciEng.mkdefs to
+SciEng.mkdefs.orig and change SciEng.mkdefs to match the compile and
+link commands on your system (no changes may be needed); alternatively
+provide appropriate make variable definitions on the make command
+line.  Then in the SciEng directory, type "make all".  First the
+libraries are compiled and archived into SciEng/SciEng.a, then all of
+the examples will be compiled.
+
+
+LAPACK:
+
+ Our system has /lib/liblapack.a installed and this is what we used in
+the makefiles. If your system does not have lapack.a, the FORTRAN
+source code for the LAPACK subroutine library and must be obtained
+separately.  See reference [5] in our book for the details.  Once you
+have the lapack.a file, you can set the LAPACKLIB make variable to
+point to it.
+
+Plans:
+  
+As time permits we plan to port this code to OS/2 under IBM's C++
+compiler and perhaps to other compilers and machines.  But no
+promises: porting is not too much fun...
+
+
+Restrictions on the use of this source code:
+
+Our source code is copyrighted to assure you that we are the authors
+of this code, that we have obtained permission from the owners of this
+code, the International Business Machines Corporation, to distribute
+the code via the software.watson.ibm.com network site, and that you
+are specifically allowed to copy this source code subject to the
+specific restrictions below.
+
+1. COPYRIGHT
+/*
+Example programs from the book Scientific and Engineering Programming
+in C++: An Introduction with Advanced Techniques and Examples,
+Addison-Wesley, 1994.
+ 
+                 (c) COPYRIGHT INTERNATIONAL BUSINESS MACHINES
+                 CORPORATION 1994.  ALL RIGHTS RESERVED.
+
+*/
+ 
+2. RESEARCH SOFTWARE DISCLAIMER
+ 
+     As experimental, research software, this program is
+     provided free of charge on an "as is" basis without
+     warranty of any kind, either expressed or implied,
+     including but not limited to implied warranties of
+     merchantability and fitness for a particular
+     purpose.  IBM does not warrant that the functions
+     contained in this program will meet the user's
+     requirements or that the operation of this program
+     will be uninterrupted or error-free.  Acceptance
+     and use of this program constitutes the user's
+     understanding that he will have no recourse to IBM
+     for any actual or consequential damages, including,
+     but not limited to, lost profits or savings,
+     arising out of the use or inability to use this
+     program.  Even if the user informs IBM of the
+     possibility of such damages, IBM expects the user
+     of this program to accept the risk of any harm
+     arising out of the use of this program, or the user
+     shall not attempt to use this program for any
+     purpose.
+ 
+ 
+ 3.  USER AGREEMENT
+ 
+     BY ACCEPTANCE AND USE OF THIS EXPERIMENTAL PROGRAM
+     THE USER AGREES TO THE FOLLOWING:
+ 
+     a.  This program is provided for the user's
+         personal, non-commercial, experimental use and
+         the user is granted permission to copy this
+         program to the extent reasonably required for
+         such use.
+ 
+     b.  All title, ownership and rights to this program
+         and any copies remain with IBM, irrespective of
+         the ownership of the media on which the program
+         resides.
+ 
+     c.  The user is permitted to create derivative
+         works to this program.  However, all copies of
+         the program and its derivative works must
+         contain the IBM copyright notice, the
+         EXPERIMENTAL SOFTWARE DISCLAIMER and this USER
+         AGREEMENT.
+ 
+     d.  By furnishing this program to the user, IBM
+         does NOT grant either directly or by
+         implication, estoppel, or otherwise any license
+         under any patents, patent applications,
+         trademarks, copyrights or other rights
+         belonging to IBM or to any third party, except
+         as expressly provided herein.
+ 
+     e.  The user understands and agrees that this
+         program and any derivative works are to be used
+         solely for experimental uses and are not to be
+         sold, distributed to a commercial organization,
+         or be commercially exploited in any manner.
+ 
+     f.  IBM requests that the user supply to IBM a copy
+         of any changes, enhancements, or derivative
+         works which the user may create.  The user
+         grants IBM and its subsidiaries an irrevocable,
+         nonexclusive, worldwide and royalty-free
+         license to use, execute, reproduce, display,
+         perform, prepare derivative works based upon,
+         and distribute, (INTERNALLY AND EXTERNALLY)
+         copies of any and all such materials and
+         derivative works thereof, and to sublicense
+         others to do any, some, or all of the
+         foregoing, (including supporting
+         documentation).
+ 
+         Copies of these modifications should be sent
+         to:
+ 
+                        SOFTWARE @ YKTVMV
+
+END.
+
+
+

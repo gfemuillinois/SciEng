@@ -1,0 +1,12 @@
+/*
+Example programs from the book Scientific and Engineering Programming
+in C++: An Introduction with Advanced Techniques and Examples,
+Addison-Wesley, 1994.
+ 
+                 (c) COPYRIGHT INTERNATIONAL BUSINESS MACHINES
+                 CORPORATION 1994.  ALL RIGHTS RESERVED.
+
+See README file for further details.
+*/
+[Hydrogen, Hydrogen, Oxygen]
+Enter H for hydrogen, O for oxygen:Enter H for hydrogen, O for oxygen:Enter H for hydrogen, O for oxygen:[Hydrogen, Hydrogen, Oxygen]

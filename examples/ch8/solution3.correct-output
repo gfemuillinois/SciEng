@@ -1,0 +1,13 @@
+/*
+Example programs from the book Scientific and Engineering Programming
+in C++: An Introduction with Advanced Techniques and Examples,
+Addison-Wesley, 1994.
+ 
+                 (c) COPYRIGHT INTERNATIONAL BUSINESS MACHINES
+                 CORPORATION 1994.  ALL RIGHTS RESERVED.
+
+See README file for further details.
+*/
+Element [ (9,1) (8,3) (6,2) ] has a large angle.
+Element [ (8,3) (6,5) (4,4) (6,2) ] has a large angle.
+Element [ (2,2) (4,4) (2,6) ] has a large angle.
