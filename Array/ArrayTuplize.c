@@ -12,8 +12,8 @@ See README file for further details.
 
 template<class Array>
 ostream& arrayTuplize(const Array& a, ostream& os) {
-  os << '[';
+  os << endl << '[';
   Subscript last = a.shape(0) - 1;
   for (Subscript i = 0; i < last; i++) os << a[i] << ", ";
-  return os << a[last] << ']';
+  return os << a[last] << ']';;
 }
