@@ -143,9 +143,9 @@ Deps/%.d : %.C
 		| sed '\''s/\($*\)\.o[ :]*/\1.o Deps\/$*.d : /g'\'' > $@; \
 		[ -s $@ ] || rm -f $@'
 
-#%.o : %.c
-#	@echo Compiling $<
-#	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
+%.o : %.c
+	@echo Compiling $<
+	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
 
 %.o : %.cc
 	@echo Compiling $<
