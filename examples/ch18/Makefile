@@ -6,7 +6,7 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 .PHONY: all clean real_clean run_all check
 
 FILES_WITH_MAIN	= blank-concat.C demoString.C miscdcls.C nrerror.C \
-             syncIO.C tLegendreFit.C tRectSVDRep.C tXERBLA.C tempdel.C \
+             syncIO.C tLegendreFit.C tRectSVDRep.C tXERBLA.C tempdel.C
 
 TEMPLATE_INSTANCES = tLegendreFit_tinst.cc tRectSVDRep_tinst.cc
 
@@ -23,7 +23,7 @@ OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:
 
 # Targets:
 
-all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=) tXERBLA_FT.f
+all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=) tXERBLA_FT
 
 # Executables built from more than one object go here:
 miscdcls:	miscdcls.o rand.o 
@@ -54,19 +54,20 @@ clean:
 	rm -f $(OBJ_FILES) 
 
 real_clean: clean
-	rm -f $(FILES_WITH_MAIN:.C=)
+	rm -f $(FILES_WITH_MAIN:.C=) tXERBLA_FT
 	rm -rf Deps
 	rm -f clarch.h
 
 #-include Deps/empty.d
-Deps/empty.d: clarch.h
+#Deps/empty.d: clarch.h
+Deps/empty.d:
 	test -d Deps || mkdir Deps
 	touch $@
 
 $(DEPENDLIST): Deps/empty.d
 
-clarch.h:
-	ln -s ../../../util++_ut/util/clarch.h
+#clarch.h:
+#	ln -s ../../../util++_ut/util/clarch.h
 
 
 #Automatically generated dependencies for .C and .cc files
@@ -88,3 +89,12 @@ check:
 run_all:
 	@echo Running tLegendreFit: ; tLegendreFit
 	@echo !!! NOT Running tRectSVDRep: ";  tRectSVDRep" !!!
+	@echo Running blank-concat: ; blank-concat
+	@echo Running demoString: ; demoString
+	@echo Running miscdcls: ; miscdcls
+	@echo Running nrerror: ; nrerror 
+	@echo Running syncIO: ; syncIO
+	@echo Running tempdel: ; tempdel
+	@echo !!! NOT Running tXERBLA: 
+	@echo Running tXERBLA_FT: ; tXERBLA_FT
+
