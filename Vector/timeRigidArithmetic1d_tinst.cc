@@ -8,4 +8,10 @@ template class DistributingEquivalentCategory<RigidArithmetic1d<double, 250> >;
 
 template class DistributingMetricSpace<RigidArithmetic1d<double, 250>, double>;
 
+template void crossProd<double>
+(RigidArithmetic1d<double, 3> const &, RigidArithmetic1d<double, 3> const &, 
+ RigidArithmetic1d<double, 3> &);
+
+template ostream & operator<<<double, 3>(ostream &, ConcreteRigidArray1d<double, 3> const &);
+
 #endif
