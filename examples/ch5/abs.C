@@ -11,13 +11,15 @@ See README file for further details.
 // Include standard headers to ensure consistency with
 // our declarations of abs, etc.
 #include <math.h>
-#include <complex.h>
+#include <complex>
 
+#include "SciEng/utils.h"
 
-
-extern int    abs(int);
-extern double abs(double);
-extern double abs(complex);
+// CAD with these declarions the expansion of the template
+// is prevented.
+//extern int    abs(int);
+//extern double abs(double);
+//extern double abs(double_complex);
 
 
 
@@ -26,7 +28,7 @@ void foo() {
 
 extern int    abs(int&);
 extern double abs(double&);
-extern double abs(complex&);
+extern double abs(double_complex&);
 
 
 }
@@ -38,8 +40,8 @@ int i = -3;
 int iabs    = abs(i);  // Calls abs(int)
 double d = 3.2; 
 double dabs = abs(d);  // Calls abs(double)
-complex c(-1, 2);
-double cabs = abs(c);  // Calls abs(complex)
+double_complex c(-1, 2);
+double cabs = abs(c);  // Calls abs(double_complex)
 
 
 return 0;
