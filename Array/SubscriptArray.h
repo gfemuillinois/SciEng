@@ -13,6 +13,7 @@ See README file for further details.
 
 #include "SciEng/Subscript.h"
 
+//namespace SciEngLib {
 
 template<Dimension ndim> 
 class SubscriptArray {
@@ -21,11 +22,11 @@ class SubscriptArray {
 };
 
                        
-
+template<>
 class SubscriptArray<1> {
 public:
     SubscriptArray() {}
-    SubscriptArray(Subscript s0) : sub0(s0) {}
+  explicit SubscriptArray(const Subscript s0) : sub0(s0) {}
     SubscriptArray<1>& operator=(Subscript rhs) {
         sub0 = rhs;
         return *this;
@@ -38,6 +39,7 @@ private:
     Subscript sub0;
 };
 
+template<>
 class SubscriptArray<2> {
 public:
     SubscriptArray() {}
@@ -57,7 +59,7 @@ private:
     Subscript sub[2];
 };
 
-
+template<>
 class SubscriptArray<3> { 
 public:
     SubscriptArray() {}
@@ -76,6 +78,7 @@ private:
     Subscript sub[3];
 };
 
+template<>
 class SubscriptArray<4> { 
 public:
     SubscriptArray() {}
@@ -94,5 +97,7 @@ public:
 private:
     Subscript sub[4];
 };
+
+//}
 
 #endif
