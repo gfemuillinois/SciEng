@@ -12,5 +12,5 @@
 
 template class ConcreteFormedArray1d<float>;
 
-template class ConcreteArrayShape<1>;
+//template class ConcreteArrayShape<1>;
 #endif
