@@ -66,13 +66,17 @@ ConcreteBlas2d<T>& ConcreteBlas2d<T>::setToOne() {
 
 template<class T>
 ConcreteBlasProjection1d<T>& ConcreteBlasProjection1d<T>::operator*=(const T& rhs) {
-  for (IteratorType i(*this); i.more(); i.advance()) i.current() *= rhs;
+  for (typename ConcreteFortranArray2d<T>::ProjectionT::IteratorType i(*this); i.more(); i.advance()) {
+    i.current() *= rhs;
+  }
   return *this;
 }
 
 template<class T>
 ConcreteBlasProjection1d<T>& ConcreteBlasProjection1d<T>::operator/=(const T& rhs) {
-  for (IteratorType i(*this); i.more(); i.advance()) i.current() /= rhs;
+  for (typename ConcreteFortranArray2d<T>::ProjectionT::IteratorType i(*this); i.more(); i.advance()) {
+    i.current() /= rhs;
+  }
   return *this;
 }
 
@@ -96,7 +100,7 @@ ConcreteBlas1d<T> operator/(const ConcreteBlasProjection1d<T>& lhs, const T& rhs
 
 template<class T>
 ostream& operator<<(ostream& os, const ConstConcreteBlasProjection1d<T>& p) {
-  ConcreteArray1dConstRef<ConcreteBlas2d<T>::ConstProjectionT::SubscriptorT, T> pr = p;
+  ConcreteArray1dConstRef< typename ConcreteBlas2d<T>::ConstProjectionT::SubscriptorT, T> pr = p;
   return os << pr;
 }
 
@@ -125,14 +129,52 @@ ConcreteBlas1d<T> operator/(const ConstConcreteBlasProjection1d<T>& lhs, const T
 
 
 template<class T>
-ConstConcreteBlasProjection1d<T> 
+ConcreteBlas2d<T>::ConstProjectionT
 ConcreteBlas2d<T>::project(Subscript i, Dimension d) const {
     return ConcreteFortranArray2d<T>::project(i, d);
 }
 
 
 template<class T>
-ConcreteBlas2d<T>::ProjectionT ConcreteBlas2d<T>::project(Subscript i, Dimension d) {
+ConcreteBlas2d<T>::ProjectionT 
+ConcreteBlas2d<T>::project(Subscript i, Dimension d) {
   return ConcreteFortranArray2d<T>::project(i, d);
 }
 
+template<class T>
+void
+mult(const ConcreteBlas2d<T>& a, const ConcreteBlas2d<T>& b,
+     ConcreteBlas2d<T>& c) {
+
+  // To be used instead of operator* from SemiGroupCategory
+  // c = a * b
+
+  if ( c.shape(0) != a.shape(0) ) throw  ArrayErr::Shape();
+  if ( c.shape(1) != b.shape(1) ) throw  ArrayErr::Shape();
+  if ( a.shape(1) != b.shape(0) ) throw  ArrayErr::Shape();
+
+  Blas3Subroutines::xgemm( Blas3Subroutines::no_trans, 
+			   Blas3Subroutines::no_trans, 
+			   c.shape(0), c.shape(1), b.shape(0),
+			   T(1), a.firstDatum(), a.shape(0),
+			   b.firstDatum(), b.shape(0),
+			   T(0), c.firstDatum(), c.shape(0)  );
+}
+
+
+template<class T>
+void 
+mult(const ConcreteBlas2d<T>& A, const ConcreteBlas1d<T>& b,
+     ConcreteBlas1d<T>& c) {
+
+  //  c = A * b
+
+  if ( c.shape(0) != A.shape(0) ) throw  ArrayErr::Shape();
+  if ( A.shape(1) != b.shape(0) ) throw  ArrayErr::Shape();
+
+  Blas3Subroutines::xgemv( Blas3Subroutines::no_trans,
+			   A.shape(0), A.shape(1),
+			   T(1), A.firstDatum(), A.shape(0), 
+			   b.firstDatum(), 1,
+			   T(0), c.firstDatum(), 1 );
+}
