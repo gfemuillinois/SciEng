@@ -15,7 +15,7 @@ TEMPLATE_INSTANCES = tConcreteFormedArray_tinst.cc tConcreteRigidArray_tinst.cc 
 	tDiagonal_tinst.cc timeConcreteArray_tinst.cc \
 	timeConcreteRigidArray1D_tinst.cc  timeConcreteRigidArray2D_tinst.cc
 
-SOURCE_FILES = bad-assign.C timer.C
+SOURCE_FILES = bad-assign.C timer.C error.C
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
@@ -37,9 +37,9 @@ tConcreteRigidArray:   tConcreteRigidArray.o tConcreteRigidArray_tinst.o $(SCIEN
 
 
 tConcreteFormedArray: tConcreteFormedArray.o  tConcreteFormedArray_tinst.o \
-		     $(SCIENGMATXLIB)
+		     error.o $(SCIENGMATXLIB)
 	@echo Linking $@
-	$(LINK)	  tConcreteFormedArray.o tConcreteFormedArray_tinst.o $(SCIENGMATXLIB)
+	$(LINK)	  tConcreteFormedArray.o tConcreteFormedArray_tinst.o error.o $(SCIENGMATXLIB)
 
 IteratorFrobenius: IteratorFrobenius.o  IteratorFrobenius_tinst.o $(SCIENGLIB)
 	@echo Linking $@
