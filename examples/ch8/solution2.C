@@ -8,11 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include "SciEng/Boolean.h"
 #include "examples/ch6/Point.h"
 #include "examples/ch6/SimpleArray.h"
+
+#include "examples/ch8/Element.h"
 
 // Redefine EXIT_SUCCESS and EXIT_FAILURE.  When this program works it should return
 // EXIT_FAILURE, but run-test in the Makefile tests for EXIT_SUCCESS.
@@ -23,32 +25,6 @@ See README file for further details.
 
 
 typedef Point Node;
-
-
-class Element {
-public:
-
-    int operator[](int i) const;
-    int numNodes()        const;
-
-    friend istream& operator>>(istream&, Element&);
-private:
-    SimpleArray<int> node_numbers;
-};
-
-
-
-int Element::operator[](int i) const { return node_numbers[i];        }
-int Element::numNodes()        const { return node_numbers.numElts(); }
-
-
-istream& operator>>(istream& instream, Element& e) {
-    int n;
-    instream >> n;
-    e.node_numbers.setSize(n);
-    for (int i = 0; i < n; i++) instream >> e.node_numbers[i];
-    return instream;
-}
 
 
 class Mesh {
@@ -68,14 +44,14 @@ int Mesh::numNodes() const { return node_table.numElts(); }
 int Mesh::numElements() const { return element_table.numElts(); }
 
 Boolean Mesh::checkElementAngles(Number angle_threshold) const {
-    Boolean anglesOK = Boolean::true;
+    Boolean anglesOK = Boolean::IsTrue;
     for (int eltNum = 0; eltNum < numElements(); eltNum++) {
         const Element& e = element_table[eltNum]; // e is an alias for element # eltNum
         if (maxAngle(e) > angle_threshold) {
             cout << "Element [ ";
             for (int i = 0; i < e.numNodes(); i++) cout << node_table[e[i]] << " ";
             cout << "] has a large angle." << endl;
-            anglesOK = Boolean::false;
+            anglesOK = Boolean::IsFalse;
         }
     }
     return anglesOK;
