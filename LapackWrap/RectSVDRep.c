@@ -21,8 +21,9 @@ RectSVDRep<T>::Factored::Factored(RectSVDRep<T>::Unfactored* mp) :
     n( mp->shape(1) ), 
     k( min(m, n) ),
     sigma(k),          // k X k diagonal matrix, stored as vector
-    u(m, k),           // m X k
-    v_T(k, n) {        // k X n
+    v_T(k, n),         // k X n
+    u(m, k)  {         // m X k 
+
 
 
     // Minimum size work area required by LAPACK
