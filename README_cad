@@ -39,6 +39,9 @@ Tagged original files:
 
 cvs tag -c SciEngOrig
 
+later we can do:
+cvs co -r SciEngOrig SciEng
+
 (5) Imcorporating our changes to the repository:
 
 cd tmp
@@ -55,4 +58,5 @@ ci changes, add files, etc.
 
 cvs tag -c RH7_2_port
 
-
+later we can do:
+cvs co -r RH7_2_port SciEng
