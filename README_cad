@@ -36,6 +36,9 @@ cvs release -d CVSROOT
 
 (4)
 Tagged original files:
+(This was done after co the module and cd to the directory:
+cvs co SciEng ; cd SciEng   
+since the import command does not create CVS dirs locally)
 
 cvs tag -c SciEngOrig
 
