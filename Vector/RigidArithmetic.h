@@ -29,27 +29,28 @@ void crossProd(const RigidArithmetic1d<T, 3>& a,
 
 template<class T, Subscript n0>
 class RigidArithmetic1d :            
-    public DivisionAlgebraCategory< RigidArithmetic1d<T, n0>, T >,
-    public MetricSpaceCategory< RigidArithmetic1d<T, n0>, double>,
+  public DivisionAlgebraCategory< RigidArithmetic1d<T, n0>, T >,
+  public MetricSpaceCategory< RigidArithmetic1d<T, n0>, double>,
 
-    public DistributingDivisionAlgebra<RigidArithmetic1d<T, n0>,T, T>,
-    public DistributingEquivalentCategory<RigidArithmetic1d<T, n0> >,
-    public DistributingMetricSpace<RigidArithmetic1d<T, n0>, double>,
+  public DistributingDivisionAlgebra<RigidArithmetic1d<T, n0>,T, T>,
+  public DistributingEquivalentCategory<RigidArithmetic1d<T, n0> >,
+  public DistributingMetricSpace<RigidArithmetic1d<T, n0>, double>,
 
-    public ConcreteRigidArray1d<T, n0> {
+  public ConcreteRigidArray1d<T, n0> {
 public:
-    RigidArithmetic1d() : ConcreteRigidArray1d<T, n0>() {}
-    explicit RigidArithmetic1d(Subscript n) : ConcreteRigidArray1d<T, n0>(n) {}
-    RigidArithmetic1d(const RigidArithmetic1d<T, n0>& a) : ConcreteRigidArray1d<T, n0>(a) {}
+  RigidArithmetic1d() : ConcreteRigidArray1d<T, n0>() {}
+  explicit RigidArithmetic1d(Subscript n) : ConcreteRigidArray1d<T, n0>(n) {}
+  RigidArithmetic1d(const RigidArithmetic1d<T, n0>& a) : 
+    ConcreteRigidArray1d<T, n0>(a) {}
 
-    const RigidArithmetic1d<T, n0>& operator=(const RigidArithmetic1d<T, n0>& rhs) {
-        ConcreteRigidArray1d<T, n0>::operator=(rhs);
-        return *this;
-    }
-    const RigidArithmetic1d<T, n0>& operator=(const T& rhs) {
-        ConcreteRigidArray1d<T, n0>::operator=(rhs);
-        return *this;
-    }
+  const RigidArithmetic1d<T, n0>& 
+  operator=(const RigidArithmetic1d<T, n0>& rhs) {
+    ConcreteRigidArray1d<T, n0>::operator=(rhs);
+    return *this; }
+
+  const RigidArithmetic1d<T, n0>& operator=(const T& rhs) {
+    ConcreteRigidArray1d<T, n0>::operator=(rhs);
+    return *this; }
 
   // c = a X b
   // Note that cross product makes sence only for vectors in 3D space.
@@ -114,18 +115,23 @@ class RigidArithmetic2d :
   public DistributingDivisionAlgebra< RigidArithmetic2d<T, n0, n1>, T, T>,
   public DistributingEquivalentCategory<RigidArithmetic2d<T, n0, n1> >,
 
-  public ConcreteRigidArray2d<T, n0, n1>                                     {
+  public ConcreteRigidArray2d<T, n0, n1> {
 public:
-  RigidArithmetic2d() :
-    ConcreteRigidArray2d<T, n0, n1>() {}
 
+  RigidArithmetic2d() :  ConcreteRigidArray2d<T, n0, n1>() {}
+  
   RigidArithmetic2d(Subscript na, Subscript nb) :
-      ConcreteRigidArray2d<T, n0, n1>(na, nb) {}
+    ConcreteRigidArray2d<T, n0, n1>(na, nb) {}
+
+  RigidArithmetic2d(const RigidArithmetic2d<T, n0, n1>& a) : 
+    ConcreteRigidArray2d<T, n0, n1>(a) {}  
       
-  const RigidArithmetic2d<T, n0, n1>& operator=(const RigidArithmetic2d<T, n0, n1>& rhs) {
+  const RigidArithmetic2d<T, n0, n1>& 
+  operator=(const RigidArithmetic2d<T, n0, n1>& rhs) {
     ConcreteRigidArray2d<T, n0, n1>::operator=(rhs);
     return *this;
   }
+
   const RigidArithmetic2d<T, n0, n1>& operator=(const T& rhs) {
     ConcreteRigidArray2d<T, n0, n1>::operator=(rhs);
     return *this;
