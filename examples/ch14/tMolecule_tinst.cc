@@ -11,6 +11,6 @@ template class CloneableObjPtr<Atom>;
 
 template class ConcreteFormedArray1d<CloneableObjPtr<Atom> >;
 
-template class ConcreteArrayShape<1>;
+//template class ConcreteArrayShape<1>;
 
 #endif
