@@ -10,27 +10,27 @@ See README file for further details.
 */
 template<class T>
 ConcreteFormedArray2d<T>::ConcreteFormedArray2d() :
-   ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(0, 0), 0) {
+  ConcreteArray2d< typename ConcreteArray2d< ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>(SubscriptArray<2>(0, 0), 0) {
 }
 
 template<class T>
 ConcreteFormedArray2d<T>::ConcreteFormedArray2d(Subscript s0, Subscript s1) :
-   ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(s0, s1), 0) {
+  ConcreteArray2d< typename ConcreteArray2d< ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>(SubscriptArray<2>(s0, s1), 0) {
    setSizeOnHeap(s0 * s1);
 }
 
 template<class T>
 ConcreteFormedArray2d<T>::
 ConcreteFormedArray2d(const ConcreteFormedArray2d<T>& a) :
-  ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+  ConcreteArray2d< typename ConcreteArray2d< ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
   setSizeOnHeap(a.numElts());
   concreteCopy(*this, a);
 }
 
 template<class T>
 ConcreteFormedArray2d<T>::
-ConcreteFormedArray2d(const ConcreteArray2dConstRef<SubscriptorT, T>& a) :
-  ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+ConcreteFormedArray2d(const ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<2>, T>& a) :
+  ConcreteArray2d< typename ConcreteArray2d< ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
   setSizeOnHeap(a.numElts());
   concreteCopy(*this, a);
 }
@@ -38,7 +38,7 @@ ConcreteFormedArray2d(const ConcreteArray2dConstRef<SubscriptorT, T>& a) :
 template<class T>
 ConcreteFormedArray2d<T>::
 ConcreteFormedArray2d(const ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<3>::ProjectionT, T>& a) :
-   ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+   ConcreteArray2d< typename ConcreteArray2d< ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T> (SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
    setSizeOnHeap(a.numElts());
    concreteCopy(*this, a);
 }
@@ -55,7 +55,7 @@ ConcreteFormedArray2d<T>& ConcreteFormedArray2d<T>::operator=(const ConcreteForm
 }
 
 template<class T>
-ConcreteFormedArray2d<T>& ConcreteFormedArray2d<T>::operator=(const ConcreteArray2dConstRef<SubscriptorT, T>& rhs) {
+ConcreteFormedArray2d<T>& ConcreteFormedArray2d<T>::operator=(const ConcreteArray2dConstRef< typename ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>& rhs) {
   concreteCopy(*this, rhs);
   return *this;
 }
@@ -66,8 +66,10 @@ ConcreteFormedArray2d<T>& ConcreteFormedArray2d<T>::operator=(const T& rhs) {
   return *this;
 }
 
+/* CAD: already defined in ConcreteFormedArray2d.h:34 
 template<class T>
 void ConcreteFormedArray2d<T>::reshape(const SubscriptArray<2>& s) {
-  ConcreteArray2d<SubscriptorT, T>::reshapeOnHeap(s);
+  ConcreteArray2d< typename ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>::reshapeOnHeap(s);
 }
+*/
 

@@ -23,12 +23,12 @@ public:
   ConcreteFormedArray2d(Subscript s0, Subscript s1);
   ConcreteFormedArray2d(const ConcreteFormedArray2d<T>&);
   ConcreteFormedArray2d(const ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<2>, T>&);
-  ConcreteFormedArray2d(const ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<3>::ProjectionT, T>&);
+  ConcreteFormedArray2d(const ConcreteArray2dConstRef< typename ConcreteRowMajorSubscriptor<3>::ProjectionT, T>&);
 
   ~ConcreteFormedArray2d();
 
   ConcreteFormedArray2d<T>& operator=(const ConcreteFormedArray2d<T>& rhs);
-  ConcreteFormedArray2d<T>& operator=(const ConcreteArray2dConstRef<SubscriptorT, T>& rhs);
+  ConcreteFormedArray2d<T>& operator=(const ConcreteArray2dConstRef< typename ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::SubscriptorT, T>& rhs);
   ConcreteFormedArray2d<T>& operator=(const T& rhs);
   
   void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
