@@ -1,0 +1,15 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+average
+sizet
+tArrayErr
+tTuplize
+test_rigid
+
+SciEngErr.C
+String.C
