@@ -18,7 +18,9 @@ See README file for further details.
 #include "Vector/DistributingEquivalentCategory.h"
 #include "Array/FormedArray.h"
 
-
+// CAD 
+// Similar to class FormedArithmetic1d from file FormedArithmetic.h
+//
 
 template<class T>
 class ElasticArithmetic1d :            
@@ -27,7 +29,7 @@ class ElasticArithmetic1d :
     public DistributingEquivalentCategory< ElasticArithmetic1d<T> >,
     public ConcreteFormedArray1d<T>                                     {
 public:
-    ElasticArithmetic1d(Subscript n) : ConcreteFormedArray1d<T>(n) {}
+    explicit ElasticArithmetic1d(Subscript n) : ConcreteFormedArray1d<T>(n) {}
     ElasticArithmetic1d(const Array1d<T>& a);
     ElasticArithmetic1d(const ConcreteFormedArray1d<T>& a) : ConcreteFormedArray1d<T>(a) {}
     ElasticArithmetic1d(const ElasticArithmetic1d<T>& a) : ConcreteFormedArray1d<T>(a) {}
@@ -48,21 +50,22 @@ public:
     void reshape(const SubscriptArray<1>& ea);  // Pads with T(0.).
 
     typedef DistributingDivisionAlgebra<ElasticArithmetic1d<T>, T, T> AlgebraicParent;
+
     ElasticArithmetic1d<T>& operator+=(const ElasticArithmetic1d<T>& rhs) {
-    reshape(SubscriptArray<1>(rhs.shape(0)));
-    return AlgebraicParent::operator+=(rhs); 
+      reshape(SubscriptArray<1>(rhs.shape(0)));
+      return AlgebraicParent::operator+=(rhs); 
     }
     ElasticArithmetic1d<T>& operator-=(const ElasticArithmetic1d<T>& rhs) {
-    reshape(SubscriptArray<1>(rhs.shape(0)));
-    return AlgebraicParent::operator-=(rhs);
+      reshape(SubscriptArray<1>(rhs.shape(0)));
+      return AlgebraicParent::operator-=(rhs);
     }
     ElasticArithmetic1d<T>& operator*=(const ElasticArithmetic1d<T>& rhs) {
-    reshape(SubscriptArray<1>(rhs.shape(0)));
-    return AlgebraicParent::operator*=(rhs);
+      reshape(SubscriptArray<1>(rhs.shape(0)));
+      return AlgebraicParent::operator*=(rhs);
     }
     ElasticArithmetic1d<T>& operator/=(const ElasticArithmetic1d<T>& rhs) {
-    reshape(SubscriptArray<1>(rhs.shape(0)));
-    return AlgebraicParent::operator/=(rhs);
+      reshape(SubscriptArray<1>(rhs.shape(0)));
+      return AlgebraicParent::operator/=(rhs);
     }
     ElasticArithmetic1d<T>& operator*=(const T& rhs) { return AlgebraicParent::operator*=(rhs); }
     ElasticArithmetic1d<T>& operator/=(const T& rhs) { return AlgebraicParent::operator/=(rhs); }
