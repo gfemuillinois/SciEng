@@ -11,11 +11,11 @@ See README file for further details.
 #ifndef ConcreteArray1dH
 #define ConcreteArray1dH
 
+#include <iosfwd>
+
 #include "Array/ConcreteArrayIterator.h"
 #include "Array/ArrayIterator1d.h"
 #include "Array/SubscriptArray.h"
-
-#include <iosfwd>
 
 //namespace SciEngLib {
 
