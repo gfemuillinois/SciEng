@@ -29,6 +29,7 @@ extern "C" void nrerror(char error_text[]) {
 
 
 NumericalRecipesErr::NumericalRecipesErr(const String& msg) : the_msg(msg) {}
+
 String NumericalRecipesErr::message() const { return the_msg; }
 
 extern "C" void nrfunction();
