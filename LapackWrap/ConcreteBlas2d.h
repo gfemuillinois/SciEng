@@ -197,6 +197,10 @@ template<class T>
 void mult( const ConcreteBlas2d<T>& A, const ConcreteBlas2d<T>& B,
 	   ConcreteBlas2d<T>& C);
 
+template<class T>
+void mult(const Subscript m, const Subscript n, const Subscript k,
+	  const ConcreteBlas2d<T>& A, const ConcreteBlas2d<T>& B,
+	  ConcreteBlas2d<T>& C);
 
 template<class T>
 class ConcreteBlas2d :               
@@ -255,6 +259,11 @@ public:
   friend void mult<T>( const ConcreteBlas2d<T>& A, const ConcreteBlas2d<T>& B,
 		       ConcreteBlas2d<T>& C);
 
+  // m, n and k have the same meaning as in Blas3Subroutines::xgemm
+  friend void mult<T>(const Subscript m, const Subscript n, const Subscript k,
+		      const ConcreteBlas2d<T>& A, const ConcreteBlas2d<T>& B,
+		      ConcreteBlas2d<T>& C);
+
 };
 
 
@@ -286,6 +295,68 @@ ConcreteBlas2d<T>& ConcreteBlas2d<T>::operator=(const T& rhs){
 
 template<class T>
 ostream& operator<<(ostream& os, const ConstConcreteBlasProjection1d<T>& p);
+
+// **************************************************
+// **************************************************
+
+template<class T>
+inline
+void mult(const ConcreteBlas2d<T>& a, const ConcreteBlas2d<T>& b,
+	  ConcreteBlas2d<T>& c) {
+
+  // To be used instead of operator* from SemiGroupCategory
+  // c = a * b
+
+  if ( c.shape(0) != a.shape(0) ) throw  ArrayErr::Shape();
+  if ( c.shape(1) != b.shape(1) ) throw  ArrayErr::Shape();
+  if ( a.shape(1) != b.shape(0) ) throw  ArrayErr::Shape();
+
+  Blas3Subroutines::xgemm( Blas3Subroutines::no_trans, 
+			   Blas3Subroutines::no_trans, 
+			   c.shape(0), c.shape(1), b.shape(0),
+			   T(1), a.firstDatum(), a.shape(0),
+			   b.firstDatum(), b.shape(0),
+			   T(0), c.firstDatum(), c.shape(0)  );
+}
+// **************************************************
+// **************************************************
+
+template<class T>
+inline
+void mult(const ConcreteBlas2d<T>& A, const ConcreteBlas1d<T>& b,
+	  ConcreteBlas1d<T>& c) {
+
+  //  c = A * b
+
+  if ( c.shape(0) != A.shape(0) ) throw  ArrayErr::Shape();
+  if ( A.shape(1) != b.shape(0) ) throw  ArrayErr::Shape();
+
+  Blas3Subroutines::xgemv( Blas3Subroutines::no_trans,
+			   A.shape(0), A.shape(1),
+			   T(1), A.firstDatum(), A.shape(0), 
+			   b.firstDatum(), 1,
+			   T(0), c.firstDatum(), 1 );
+}
+
+// **************************************************
+// **************************************************
+
+template<class T>
+inline
+void mult(const Subscript m, const Subscript n, const Subscript k,
+	  const ConcreteBlas2d<T>& A, const ConcreteBlas2d<T>& B,
+	  ConcreteBlas2d<T>& C) {
+
+  // m, n and k have the same meaning as in Blas3Subroutines::xgemm
+  // C_mxn = A_mxk * B_kxn
+
+  Blas3Subroutines::xgemm( Blas3Subroutines::no_trans, 
+			   Blas3Subroutines::no_trans, 
+			   m, n, k,
+			   T(1), A.firstDatum(), A.shape(0),
+			   B.firstDatum(), B.shape(0),
+			   T(0), C.firstDatum(), C.shape(0)  );
+}
 
 #ifdef XLC_QNOTEMPINC
 #include "LapackWrap/ConcreteBlas2d.c"
