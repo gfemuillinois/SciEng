@@ -51,18 +51,20 @@ int main() {
    int a = 1, b = 2, c = -3;
 
    do {
-   c *= -1;
+     c *= -1;
 
-   // ... Set a, b, c ...
-   try {
-    QuadraticPolynomial eqn(a, b, c);
-    QuadraticPolynomial::RealRoots roots = eqn.realRoots();
-    cout << "Real roots are: " << roots.minRoot() << ", " << roots.maxRoot() << endl;
-    // ... computation using the real roots ...
-}
-   catch (QuadraticPolynomial::NoRealRoots) {
-    cout << "No real roots." << endl;
-}
+     // ... Set a, b, c ...
+     try {
+       cout << "\na = " << a << " b = " << b << " c = " << c << endl; 
+       QuadraticPolynomial eqn(a, b, c);
+       QuadraticPolynomial::RealRoots roots = eqn.realRoots();
+       cout << "Real roots are: " << roots.minRoot() << ", " 
+	    << roots.maxRoot() << endl;
+       // ... computation using the real roots ...
+     }
+     catch (QuadraticPolynomial::NoRealRoots) {
+       cout << "No real roots." << endl;
+     }
 
    } while (c == 3);
    return 0;
