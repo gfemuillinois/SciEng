@@ -83,10 +83,23 @@ ConcreteArray1dRef<Subscriptor, T>::operator=(ConcreteArray1dConstRef<Subscripto
 }
  
 template<class Subscriptor, class T>
-void ConcreteArray1d<Subscriptor, T>::reshapeOnHeap(const SubscriptArray<1>& s) {
-  //  setShape( s(0) );
+void ConcreteArray1d<Subscriptor, T>::reshapeOnHeap(const Subscript s) {
+
   setShape( s );
   setSizeOnHeap(numElts());
+}
+
+template<class Subscriptor, class T>
+void ConcreteArray1d<Subscriptor, T>::swap( ConcreteArray1d<Subscriptor, T>&
+					    rhs ) {
+
+  Subscript subs_temp = shape(0);
+  setShape( rhs.shape(0) );
+  rhs.setShape( subs_temp );
+
+  T* datap_temp = datap;
+  datap = rhs.datap;
+  rhs.datap = datap_temp;
 }
 
 //}
