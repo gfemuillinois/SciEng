@@ -22,7 +22,7 @@ public:
   FormedArray1d(const ConstArray1d<T>& a) : InterfacedArray1d< ConcreteFormedArray1d<T> >(a) {}
   
   virtual void reshape(const SubscriptArray<1>& s)     { 
-    the_concrete.reshape( SubscriptArray<1>( s ) ); }
+    the_concrete.reshape( s(0) ); }
 
   virtual Array1d<T>& operator=(const ConstArray1d<T>& rhs) {
     return InterfacedArray1d< ConcreteFormedArray1d<T> >::operator=(rhs);

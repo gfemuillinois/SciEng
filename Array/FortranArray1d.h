@@ -21,7 +21,8 @@ public:
   FortranArray1d(Subscript n)              : InterfacedArray1d< ConcreteFortranArray1d<T> >(n) {}
   FortranArray1d(const ConstArray1d<T>& a) : InterfacedArray1d< ConcreteFortranArray1d<T> >(a) {}
   
-  virtual void reshape(const SubscriptArray<1>& s)     { the_concrete.reshape(s); }
+  virtual void reshape(const SubscriptArray<1>& s) 
+  { the_concrete.reshape( s(0) ); }
 
   virtual Array1d<T>& operator=(const ConstArray1d<T>& rhs) {
     return InterfacedArray1d< ConcreteFortranArray1d<T> >::operator=(rhs);
