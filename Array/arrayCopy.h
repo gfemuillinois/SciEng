@@ -32,19 +32,19 @@ void arrayCopy(const ConcreteArray1dRef<Subscriptor, T>& lhs, const ConstArray1d
 
 template<class T>
 inline void arrayCopy(ConcreteFormedArray1d<T>& lhs, const ConstArray1d<T>& rhs) {
-  ConcreteArray1dRef< ConcreteFormedArray1d<T>::SubscriptorT, T > _lhs(lhs);
+  ConcreteArray1dRef< typename ConcreteFormedArray1d<T>::SubscriptorT, T > _lhs(lhs);
   arrayCopy(_lhs, rhs);
 }
 
 template<class T>
 inline void arrayCopy(ConcreteFortranArray1d<T>& lhs, const ConstArray1d<T>& rhs) {
-  ConcreteArray1dRef< ConcreteFortranArray1d<T>::SubscriptorT, T > _lhs(lhs);
+  ConcreteArray1dRef< typename ConcreteFortranArray1d<T>::SubscriptorT, T > _lhs(lhs);
   arrayCopy(_lhs, rhs);
 }
 
 template<class T>
 inline void arrayCopy(ConcreteBlas1d<T>& lhs, const ConstArray1d<T>& rhs) {
-  ConcreteArray1dRef< ConcreteBlas1d<T>::SubscriptorT, T > _lhs(lhs);
+  ConcreteArray1dRef< typename ConcreteBlas1d<T>::SubscriptorT, T > _lhs(lhs);
   arrayCopy(_lhs, rhs);
 }
 
