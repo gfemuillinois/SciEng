@@ -17,6 +17,9 @@ See README file for further details.
 
 
 template<class T>
+class ListIterator;
+
+template<class T>
 class List {
 public:
     List() : first(0), last(0) {}
