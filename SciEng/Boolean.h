@@ -14,19 +14,20 @@ See README file for further details.
 class ostream;
 class istream;
 
+//namespace SciEngLib{
 
 class Boolean {
 public:
     // Constants
-    enum constants { false = 0, true = 1 };
+    enum constants { IsFalse = 0, IsTrue = 1 };
 
     // Construction.
 
-    Boolean()                      {}   // Construct uninitialized.
-    Boolean(int i) :    v(i != 0)  {}   // Construct and initialize to (i != 0).
-    Boolean(float f) :  v(f != 0)  {}   // Construct and initialize to (f != 0).
-    Boolean(double d) : v(d != 0)  {}   // Construct and initialize to (d != 0).
-    Boolean(void* p) :  v(p != 0)  {}   // Construct and initialize to (p != 0).
+  Boolean()                      {}   // Construct uninitialized.
+  Boolean(int i) :    v(i != 0)  {}   // Construct and initialize to (i != 0).
+  explicit Boolean(float f) :  v(f != 0)  {}   // Construct and initialize to (f != 0).
+  explicit Boolean(double d) : v(d != 0)  {}   // Construct and initialize to (d != 0).
+  explicit Boolean(void* p) :  v(p != 0)  {}   // Construct and initialize to (p != 0).
 
     // Conversion.
     operator int() const{ return v; }   // To allow "if (boolean-value)..."
@@ -44,5 +45,7 @@ private:
 
 ostream& operator<<(ostream& s, Boolean  b);
 istream& operator>>(istream& s, Boolean& b);
+
+//}
 
 #endif
