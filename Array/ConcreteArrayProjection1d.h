@@ -16,30 +16,50 @@ See README file for further details.
 class ostream;
 class istream;
 
+#undef  PROTECT_COPY_CONSTRUCTOR
+#define PROTECT_COPY_CONSTRUCTOR 0
+#if PROTECT_COPY_CONSTRUCTOR
+template<class Subscriptor, class T> class ConcreteArrayProjection1d;
+template<class Subscriptor, class T> class ConcreteArray2d;
+template<class Subscriptor, class T> class ConcreteArray2dRef;
+template<class Subscriptor, class T> class ConcreteArray2dConstRef;
+//template<class T, Subscript n0, Subscript n1> class ConcreteRigidArray2d;
+#endif
+
 template<class Subscriptor, class T>
 class ConstConcreteArrayProjection1d :
-  public ConcreteArray1dConstRef<Subscriptor::ProjectionT, T> {
+  public ConcreteArray1dConstRef< typename Subscriptor::ProjectionT, T> {
 public:
-  typedef Subscriptor::ProjectionT ProjectionSubscriptor;
+  typedef typename Subscriptor::ProjectionT ProjectionSubscriptor;
   ConstConcreteArrayProjection1d(const ProjectionSubscriptor& s, const T* t) :
      ConcreteArray1dConstRef<ProjectionSubscriptor, T>(s, t) {
   }
-protected:
+
+#if PROTECT_COPY_CONSTRUCTOR  
+  // cad: These classes need access to the copy constructor
+  friend class ConcreteArrayProjection1d< Subscriptor, T >;
+  friend class ConcreteArray2d< Subscriptor, T >;
+  friend class ConcreteArray2dRef< Subscriptor, T >;
+  friend class ConcreteArray2dConstRef< Subscriptor, T >;
+  template <T, Subscript n0, Subscript n1>  friend class ConcreteRigidArray2d; 
+
+  protected:
+#endif
   // Copying a projection does not copy the underlying array elements.  It only duplicates
   // the reference to the underlying array.  We make the copy constructor protected to avoid
   // accidental copies by client code.  Assignment is already prohibited because
   // ConcreteArray1dConstRef's can't be assigned.
   ConstConcreteArrayProjection1d(const ConstConcreteArrayProjection1d<Subscriptor, T>& proj) :
-     ConcreteArray1dConstRef<Subscriptor::ProjectionT, T>(proj.subscriptor(), proj.firstDatum()) { 
+    ConcreteArray1dConstRef< typename Subscriptor::ProjectionT, T>(proj.subscriptor(), proj.firstDatum()) { 
   }
 };
 
 
 template<class Subscriptor, class T>
 class ConcreteArrayProjection1d :                         
-    public ConcreteArray1dRef<Subscriptor::ProjectionT, T> {
+    public ConcreteArray1dRef< typename Subscriptor::ProjectionT, T> {
 public:
-    typedef Subscriptor::ProjectionT ProjectionSubscriptor;
+    typedef typename Subscriptor::ProjectionT ProjectionSubscriptor;
     ConcreteArrayProjection1d(const ProjectionSubscriptor& s, T* t);
 
     operator ConstConcreteArrayProjection1d<Subscriptor, T>() const;
@@ -48,7 +68,16 @@ public:
         operator=(ConcreteArray1dConstRef<ProjectionSubscriptor, T> rhs);
     ConcreteArrayProjection1d<Subscriptor, T>& 
         operator=(const T& rhs);
-protected:
+
+#if PROTECT_COPY_CONSTRUCTOR
+    // cad: These classes need access to the copy constructor
+    friend class ConcreteArray2d< Subscriptor, T >;
+    friend class ConcreteArray2dRef< Subscriptor, T >;
+    friend class ConcreteArray2dConstRef< Subscriptor, T >;
+    template< T, Subscript n0, Subscript n1> friend class ConcreteRigidArray2d;
+
+    protected:
+#endif
     // Copying a projection does not copy the underlying array elements.  It only duplicates
     // the reference to the underlying array.  We make the copy constructor protected to avoid
     // accidental copies by client code.  
@@ -60,7 +89,7 @@ protected:
 template<class Subscriptor, class T>
 ConcreteArrayProjection1d<Subscriptor, T>::
 ConcreteArrayProjection1d(const ProjectionSubscriptor& s, T* t) : 
-    ConcreteArray1dRef<Subscriptor::ProjectionT, T>(s, t) {
+    ConcreteArray1dRef< typename Subscriptor::ProjectionT, T>(s, t) {
 }
 
 
@@ -93,19 +122,19 @@ ConcreteArrayProjection1d<Subscriptor, T>::ConcreteArrayProjection1d(const Concr
 template<class Subscriptor, class T>
 inline
 ostream& operator<<(ostream& os, const ConstConcreteArrayProjection1d<Subscriptor, T>& a) {
-  return os << ConcreteArray1dConstRef<Subscriptor::ProjectionT, T>(a);
+  return os << ConcreteArray1dConstRef< typename Subscriptor::ProjectionT, T>(a);
 }
 
 template<class Subscriptor, class T>
 inline
 ostream& operator<<(ostream& os, const ConcreteArrayProjection1d<Subscriptor, T>& a) {
-  return os << ConcreteArray1dConstRef<Subscriptor::ProjectionT, T>(a);
+  return os << ConcreteArray1dConstRef< typename Subscriptor::ProjectionT, T>(a);
 }
 
 template<class Subscriptor, class T>
 inline
 istream& operator<<(istream& is, const ConcreteArrayProjection1d<Subscriptor, T>& a) {
-  return is >> ConcreteArray1dRef<Subscriptor::ProjectionT, T>(a);
+  return is >> ConcreteArray1dRef< typename Subscriptor::ProjectionT, T>(a);
 }
 
 #endif
