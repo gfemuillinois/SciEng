@@ -8,6 +8,10 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+
+#ifndef ARRAYXDHPP
+#define ARRAYXDHPP
+
 #include "Array/ArrayShape.h"
 
 // WARNING: A modified copy of Array2d is in the file average.C.
@@ -41,3 +45,5 @@ public:
 
 };
 
+
+#endif
