@@ -10,7 +10,7 @@ FILES_WITH_MAIN	= blank-concat.C demoString.C miscdcls.C nrerror.C \
 
 TEMPLATE_INSTANCES = tLegendreFit_tinst.cc tRectSVDRep_tinst.cc
 
-SOURCE_FILES = 
+SOURCE_FILES =
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
@@ -51,7 +51,7 @@ tXERBLA_FT:     tXERBLA_FT.o tXERBLA_FT.f
 		g77 -o tXERBLA_FT  tXERBLA_FT.o -lblas
 
 clean:
-	rm -f $(OBJ_FILES) 
+	rm -f $(OBJ_FILES) rand.o tXERBLA_FT.o nrfunction.o
 
 real_clean: clean
 	rm -f $(FILES_WITH_MAIN:.C=) tXERBLA_FT
