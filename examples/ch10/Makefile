@@ -1,4 +1,4 @@
-include ../../SciEng.mkdefs
+include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 FILES_WITH_MAIN	= tAcme130_Acs.C tAcme130_GIData.C tAcme140.C tAcme230.C tCheckedFloatArray.C
 
@@ -30,3 +30,8 @@ tAcme230:		tAcme230.o Acme230.o VoltyMetrics_VM_GI.o Acme130_GIData.o GPIBInstru
 
 tCheckedFloatArray:	tCheckedFloatArray.o ../ch6/SimpleFloatArray.o
 			$(LINK) tCheckedFloatArray.o ../ch6/SimpleFloatArray.o
+
+clean:
+	rm -f $(ALL_FILES:.C=.o)
+
+real_clean: clean
