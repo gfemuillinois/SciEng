@@ -10,7 +10,7 @@ See README file for further details.
 */
 #include "SciEng/String.h"
 #include <stdlib.h>
-#include <iostream.h>
+#include <iostream>
 
 template<class Array>
 void check(const Array& a, const char* comp_string) {

@@ -24,7 +24,7 @@ ConcreteRigidArray3d<T, n0, n1, n2>& ConcreteRigidArray3d<T, n0, n1, n2>::operat
 }
  
 template<class T, Subscript n0, Subscript n1, Subscript n2>
-ConstConcreteArrayProjection2d<ConcreteRigidArray3d<T, n0, n1, n2>::Subscriptor, T>
+ConstConcreteArrayProjection2d<typename ConcreteRigidArray3d<T, n0, n1, n2>::Subscriptor, T>
 ConcreteRigidArray3d<T, n0, n1, n2>::project(Subscript s, Dimension d) const {
   SubscriptArray<3> pjs(0,0,0);
   pjs(d) = s;
@@ -36,7 +36,7 @@ ConcreteRigidArray3d<T, n0, n1, n2>::project(Subscript s, Dimension d) const {
 }
 
 template<class T, Subscript n0, Subscript n1, Subscript n2>
-ConcreteArrayProjection2d<ConcreteRigidArray3d<T, n0, n1, n2>::Subscriptor, T>
+ConcreteArrayProjection2d<typename ConcreteRigidArray3d<T, n0, n1, n2>::Subscriptor, T>
 ConcreteRigidArray3d<T, n0, n1, n2>::project(Subscript s, Dimension d) {
   SubscriptArray<3> pjs(0,0,0);
   pjs(d) = s;

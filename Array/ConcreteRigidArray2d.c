@@ -11,7 +11,7 @@ See README file for further details.
 #include "Array/ArrayTuplize.h"
 
 template<class T, Subscript n0, Subscript n1>
-ConstConcreteArrayProjection1d<ConcreteRigidArray2d<T, n0, n1>::SubscriptorT, T>
+ConstConcreteArrayProjection1d<typename ConcreteRigidArray2d<T, n0, n1>::SubscriptorT, T>
 ConcreteRigidArray2d<T, n0, n1>::project(Subscript s, Dimension d)  const {
    SubscriptArray<2> pjs(0,0);
    pjs(d) = s;
@@ -23,7 +23,7 @@ ConcreteRigidArray2d<T, n0, n1>::project(Subscript s, Dimension d)  const {
 }
 
 template<class T, Subscript n0, Subscript n1>
-ConcreteArrayProjection1d<ConcreteRigidArray2d<T, n0, n1>::SubscriptorT, T>
+ConcreteArrayProjection1d<typename ConcreteRigidArray2d<T, n0, n1>::SubscriptorT, T>
 ConcreteRigidArray2d<T, n0, n1>::project(Subscript s, Dimension d)  {
    SubscriptArray<2> pjs(0,0);
    pjs(d) = s;
@@ -56,6 +56,7 @@ ConcreteRigidArray2d<T, n0, n1>::operator=(const ConcreteRigidArray2d<T, n0, n1>
 
 
 template<class T, Subscript n0, Subscript n1>
-ostream& operator<<(ostream& os, const ConcreteRigidArray2d<T, n0, n1>& a) {
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteRigidArray2d<T, n0, n1>& a) {
   return arrayTuplize(a, os);
 }

@@ -40,13 +40,13 @@ istream& operator>>(istream& is, Array2d<T>& a) {
       Subscript n = a.shape(0);
       Subscript i = 0;
       while ( i < n ) {
-        Array2d<T>::ProjectionT a_i = a[i];
+        typename Array2d<T>::ProjectionT a_i = a[i];
 	is >> a_i;
 	if (!is.good()) break;
 	is >> c;
 	i++;
 	if ( i == n ) {
-	  if (c != ']') is.clear(ios::badbit);
+	  if (c != ']') is.clear(std::ios::badbit);
 	} else {
 	  if (c != ',') is.putback(c);
 	}
@@ -54,34 +54,43 @@ istream& operator>>(istream& is, Array2d<T>& a) {
   }
   else {
     is.putback(c);
-    is.clear(ios::badbit);
+    is.clear(std::ios::badbit);
   }
   return is;
 }
 
 template<class T>
-ConstArray2d<T>::ConstProjectionT ConstArray2d<T>::operator[](Subscript i) const { return project(i, 0); }
+typename ConstArray2d<T>::ConstProjectionT 
+ConstArray2d<T>::operator[](Subscript i) const { return project(i, 0); }
 
 template<class T>
-ConstArray2d<T>::ConstProjectionT ConstArray2d<T>::row(Subscript i)        const { return project(i, 0); }
+typename ConstArray2d<T>::ConstProjectionT 
+ConstArray2d<T>::row(Subscript i)        const { return project(i, 0); }
 
 template<class T>
-ConstArray2d<T>::ConstProjectionT ConstArray2d<T>::column(Subscript i)     const { return project(i, 1); }
+typename ConstArray2d<T>::ConstProjectionT 
+ConstArray2d<T>::column(Subscript i)     const { return project(i, 1); }
 
 template<class T>
-Array2d<T>::ConstProjectionT Array2d<T>::operator[](Subscript i) const { return project(i, 0); }
+typename Array2d<T>::ConstProjectionT 
+Array2d<T>::operator[](Subscript i) const { return project(i, 0); }
 
 template<class T>
-Array2d<T>::ConstProjectionT Array2d<T>::row(Subscript i)        const { return project(i, 0); }
+typename Array2d<T>::ConstProjectionT 
+Array2d<T>::row(Subscript i)        const { return project(i, 0); }
 
 template<class T>
-Array2d<T>::ConstProjectionT Array2d<T>::column(Subscript i)     const { return project(i, 1); }
+typename Array2d<T>::ConstProjectionT 
+Array2d<T>::column(Subscript i)     const { return project(i, 1); }
 
 template<class T>
-Array2d<T>::ProjectionT Array2d<T>::operator[](Subscript i)  { return project(i, 0); }
+typename Array2d<T>::ProjectionT 
+Array2d<T>::operator[](Subscript i)  { return project(i, 0); }
 
 template<class T>
-Array2d<T>::ProjectionT Array2d<T>::row(Subscript i)         { return project(i, 0); }
+typename Array2d<T>::ProjectionT 
+Array2d<T>::row(Subscript i)         { return project(i, 0); }
 
 template<class T>
-Array2d<T>::ProjectionT Array2d<T>::column(Subscript i)      { return project(i, 1); }
+typename Array2d<T>::ProjectionT 
+Array2d<T>::column(Subscript i)      { return project(i, 1); }

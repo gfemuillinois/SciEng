@@ -14,6 +14,8 @@ See README file for further details.
 #ifdef SCIENG_CHECK_SUBSCRIPTS
 #include <assert.h>
 #include <iostream>
+#else
+#include <iosfwd>
 #endif
 
 #include "SciEng/ArrayErr.h"
@@ -82,7 +84,8 @@ class ConcreteRigidArray1d {
 };
 
 template<class T, Subscript n0>
-ostream& operator<<(ostream& os, const ConcreteRigidArray1d<T, n0>& a);
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteRigidArray1d<T, n0>& a);
 
 template<class T, Subscript n0>
 inline

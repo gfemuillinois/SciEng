@@ -33,13 +33,13 @@ istream& operator>>(istream& is, Array3d<T>& a) {
       Subscript n = a.shape(0);
       Subscript i = 0;
       while ( i < n ) {
-        Array3d<T>::ProjectionT a_i = a[i];
+        typename Array3d<T>::ProjectionT a_i = a[i];
 	is >> a_i;
 	if (!is.good()) break;
 	is >> c;
 	i++;
 	if ( i == n ) {
-	  if (c != ']') is.clear(ios::badbit);
+	  if (c != ']') is.clear(std::ios::badbit);
 	} else {
 	  if (c != ',') is.putback(c);
 	}
@@ -47,7 +47,7 @@ istream& operator>>(istream& is, Array3d<T>& a) {
   }
   else {
     is.putback(c);
-    is.clear(ios::badbit);
+    is.clear(std::ios::badbit);
   }
   return is;
 }

@@ -12,25 +12,27 @@ See README file for further details.
 #include "SciEng/ArrayErr.h"
 
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, const ConcreteArray2dConstRef<Subscriptor, T>& a) {
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteArray2dConstRef<Subscriptor, T>& a){
   return arrayTuplize(a, os);
 }
 
 template<class Subscriptor, class T>
-istream& operator>>(istream& is, const ConcreteArray2dRef<Subscriptor, T>& a) {
+std::istream& 
+operator>>(std::istream& is, const ConcreteArray2dRef<Subscriptor, T>& a) {
   char c = 0;
   is >> c;
   if (c == '[') {
       Subscript n = a.shape(0);
       Subscript i = 0;
       while ( i < n ) {
-        ConcreteArray2dRef<Subscriptor, T>::ProjectionT a_i = a[i];
+        typename ConcreteArray2dRef<Subscriptor, T>::ProjectionT a_i = a[i];
 	is >> a_i;
 	if (!is.good()) break;
 	is >> c;
 	i++;
 	if ( i == n ) {
-	  if (c != ']') is.clear(ios::badbit);
+	  if (c != ']') is.clear(std::ios::badbit);
 	} else {
 	  if (c != ',') is.putback(c);
 	}
@@ -38,7 +40,7 @@ istream& operator>>(istream& is, const ConcreteArray2dRef<Subscriptor, T>& a) {
   }
   else {
     is.putback(c);
-    is.clear(ios::badbit);
+    is.clear(std::ios::badbit);
   }
   return is;
 }

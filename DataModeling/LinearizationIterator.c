@@ -56,8 +56,8 @@ void LinearizationIterator<T>::solve() {
 
 
 // Needs iostream and iomanip...
-#include <iostream.h>
-#include <iomanip.h>
+#include <iostream>
+#include <iomanip>
 
 template<class T>
 ostream& operator<<(ostream& os, const LinearizationIterator<T>& l) { 

@@ -11,6 +11,7 @@ See README file for further details.
 #include "Array/ArrayTuplize.h"
 
 template<class T, Subscript n0>
-ostream& operator<<(ostream& os, const ConcreteRigidArray1d<T, n0>& a) {
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteRigidArray1d<T, n0>& a) {
   return arrayTuplize(a, os);
 }

@@ -11,12 +11,12 @@ See README file for further details.
 #ifndef NewHandlerH
 #define NewHandlerH
 
-#include <new.h>
+#include <new>
 #include "SciEng/HandlerStack.h"
 
 //namespace SciEngLib{
 
-typedef HandlerStack<set_new_handler> NewHandler;
+typedef HandlerStack<std::set_new_handler> NewHandler;
 
 //}
 

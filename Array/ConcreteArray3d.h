@@ -47,8 +47,8 @@ public:
   Subscriptor subscriptor() const { return *this; }
 protected:
   ConcreteArray3dConstRef(Subscriptor s, const T* p) : Subscriptor(s), datap(p) {}
-  friend ConcreteArray3dRef<Subscriptor, T>;
-  friend ConcreteArray3d<Subscriptor, T>;
+  friend class ConcreteArray3dRef<Subscriptor, T>;
+  friend class ConcreteArray3d<Subscriptor, T>;
 private:
   void operator=(const ConcreteArray3dConstRef<Subscriptor, T>&);   // Prohibit
 private:
@@ -93,7 +93,7 @@ public:
   ConcreteArray3dRef<Subscriptor, T>& operator=(const T& rhs);
 protected:
   ConcreteArray3dRef(Subscriptor s, T* p) : Subscriptor(s), datap(p) {}
-  friend ConcreteArray3d<Subscriptor, T>;
+  friend class ConcreteArray3d<Subscriptor, T>;
 private:
   T* const datap;
 };

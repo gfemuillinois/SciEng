@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include "SciEng/ArrayErr.h"
 #include "SciEng/Boolean.h"
 #include "SciEng/String.h"

@@ -129,14 +129,14 @@ ConcreteBlas1d<T> operator/(const ConstConcreteBlasProjection1d<T>& lhs, const T
 
 
 template<class T>
-ConcreteBlas2d<T>::ConstProjectionT
+typename ConcreteBlas2d<T>::ConstProjectionT
 ConcreteBlas2d<T>::project(Subscript i, Dimension d) const {
     return ConcreteFortranArray2d<T>::project(i, d);
 }
 
 
 template<class T>
-ConcreteBlas2d<T>::ProjectionT 
+typename ConcreteBlas2d<T>::ProjectionT 
 ConcreteBlas2d<T>::project(Subscript i, Dimension d) {
   return ConcreteFortranArray2d<T>::project(i, d);
 }

@@ -14,18 +14,18 @@ See README file for further details.
 
 //namespace SciEngLib{
 
-ostream& operator<<(ostream& s, Boolean b) {
+std::ostream& operator<<(std::ostream& s, Boolean b) {
   return s << (b ? "IsTrue" : "IsFalse");
 }
 
-istream& operator>>(istream& s, Boolean& b) {
+std::istream& operator>>(std::istream& s, Boolean& b) {
   const size_t bufsize = 1 + sizeof("IsFalse");
   char inbuf[bufsize];
   s.width(int(bufsize));     // Set maximum # of characters to be read
   s >> inbuf;		      // Read character string (also resets width)
   if (strcmp(inbuf, "IsTrue") == 0)       b = Boolean::IsTrue;
   else if (strcmp(inbuf, "IsFalse") == 0) b = Boolean::IsFalse;
-  else s.clear(ios::failbit);    // Indicate extraction failed
+  else s.clear(std::ios::failbit);    // Indicate extraction failed
   return s;
 }
 

@@ -14,6 +14,8 @@ See README file for further details.
 #ifdef SCIENG_CHECK_SUBSCRIPTS
 #include <assert.h>
 #include <iostream>
+#else
+#include <iosfwd>
 #endif
 
 #include "Array/SubscriptArray.h"
@@ -91,7 +93,8 @@ protected:
 };
 
 template<class T, Subscript n0, Subscript n1>
-ostream& operator<<(ostream& os, const ConcreteRigidArray2d<T, n0, n1>& a);
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteRigidArray2d<T, n0, n1>& a);
 
 #ifdef XLC_QNOTEMPINC
 #include "Array/ConcreteRigidArray2d.c"

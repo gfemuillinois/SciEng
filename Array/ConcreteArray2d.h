@@ -211,14 +211,14 @@ T& ConcreteArray2d<Subscriptor, T>::operator()(Subscript s0, Subscript s1) {
 
                                
 template<class Subscriptor, class T>
-inline ConcreteArray2d<Subscriptor, T>::ConstProjectionT 
+inline typename ConcreteArray2d<Subscriptor, T>::ConstProjectionT 
 ConcreteArray2d<Subscriptor, T>::project(Subscript s, Dimension d) const {
    return ConcreteArray2dConstRef<Subscriptor, T>(*this).project(s, d);
 } 
 
 
 template<class Subscriptor, class T>
-inline 
+inline typename
 ConcreteArray2d<Subscriptor, T>::ProjectionT 
 ConcreteArray2d<Subscriptor, T>::project(Subscript s, Dimension d) {
     return ConcreteArray2dRef<Subscriptor, T>(*this).project(s, d);
@@ -263,20 +263,20 @@ ConcreteArray2d<Subscriptor, T>::operator ConcreteArray2dRef<Subscriptor, T>() {
 
    
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, const ConcreteArray2dConstRef<Subscriptor, T>& a);
+std::ostream& operator<<(std::ostream& os, const ConcreteArray2dConstRef<Subscriptor, T>& a);
 
 template<class Subscriptor, class T>
-istream& operator>>(istream& is, const ConcreteArray2dRef<Subscriptor, T>& a);
+std::istream& operator>>(std::istream& is, const ConcreteArray2dRef<Subscriptor, T>& a);
 
 template<class Subscriptor, class T>
 inline
-ostream& operator<<(ostream& os, const ConcreteArray2d<Subscriptor, T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConcreteArray2d<Subscriptor, T>& a) {
   return os << ConcreteArray2dConstRef<Subscriptor, T>(a);
 }
 
 template<class Subscriptor, class T>
 inline
-istream& operator>>(istream& is, ConcreteArray2d<Subscriptor, T>& a) {
+std::istream& operator>>(std::istream& is, ConcreteArray2d<Subscriptor, T>& a) {
   return is >> ConcreteArray2dRef<Subscriptor, T>(a);
 }
 

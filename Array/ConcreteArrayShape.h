@@ -14,6 +14,8 @@ See README file for further details.
 #ifdef SCIENG_CHECK_SUBSCRIPTS
 #include <assert.h>
 #include <iostream>
+using std::cerr;
+using std::endl;
 #endif
 
 #include "Array/SubscriptArray.h"

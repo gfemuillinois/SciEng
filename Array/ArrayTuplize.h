@@ -11,10 +11,10 @@ See README file for further details.
 #ifndef ArrayTuplizeH
 #define ArrayTuplizeH
 
-class ostream;
+#include <iosfwd>
 
 template<class Array>
-ostream& arrayTuplize(const Array& a, ostream& os);
+std::ostream& arrayTuplize(const Array& a, std::ostream& os);
 
 #ifdef XLC_QNOTEMPINC
 #include "Array/ArrayTuplize.c"

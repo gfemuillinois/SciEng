@@ -8,11 +8,11 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 template<class Array>
-ostream& arrayTuplize(const Array& a, ostream& os) {
-  os << endl << '[';
+std::ostream& arrayTuplize(const Array& a, std::ostream& os) {
+  os << std::endl << '[';
   Subscript last = a.shape(0) - 1;
   for (Subscript i = 0; i < last; i++) os << a[i] << ", ";
   return os << a[last] << ']';;
