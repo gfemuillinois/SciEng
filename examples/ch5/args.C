@@ -16,7 +16,9 @@ See README file for further details.
 
 
 extern double exp(int y);
-extern double exp(double y);
+// CAD: better use the declaration from math.h, 
+// which is inconsistent with this one
+//extern double exp(double y);
 
 double exp(int) { return 1; }  // Used only to check overloading
 
