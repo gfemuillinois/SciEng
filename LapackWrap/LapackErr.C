@@ -38,8 +38,8 @@ String LapackErr::UnableToFactorSVD::message() const {
   if (info_val < 0) {
     s << "argument " << -info_val << " has illegal value!";
   } else {
-    s << "info off-diagonal elements of an intermediate bidiagonal form did not converge to zero;";
-    s << endl;
+    s << "info off-diagonal elements of an intermediate bidiagonal form did not converge to zero;\n";
+    //   s << endl;
     s << "Likely cause: Infinite (NaNQ, INF) numbers in SVD input.";
   }
   return s;
