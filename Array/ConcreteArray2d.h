@@ -37,7 +37,7 @@ public:
 
 
     const T& operator()(Subscript s0, Subscript s1) const { 
-        return firstDatum()[offset(SubscriptArray<2>(s0, s1))]; 
+        return firstDatum()[offset( s0, s1 )]; 
     }                  
 
     ConstProjectionT project(Subscript, Dimension) const;
@@ -53,8 +53,8 @@ public:
     Subscriptor subscriptor() const { return *this; }
 protected:
     ConcreteArray2dConstRef(Subscriptor s, const T* p) : Subscriptor(s), datap(p) {}
-    friend ConcreteArray2dRef<Subscriptor, T>;
-    friend ConcreteArray2d<Subscriptor, T>;
+    friend class ConcreteArray2dRef<Subscriptor, T>;
+    friend class ConcreteArray2d<Subscriptor, T>;
 private:
     void operator=(const ConcreteArray2dConstRef<Subscriptor, T>&);// Prohibit
 private:
@@ -110,7 +110,7 @@ public:
     const ConcreteArray2dRef<Subscriptor, T>& operator=(const T& rhs) const;
 protected:
     ConcreteArray2dRef(Subscriptor s, T* p) : Subscriptor(s), datap(p) {}
-    friend ConcreteArray2d<Subscriptor, T>;
+    friend class ConcreteArray2d<Subscriptor, T>;
 private:
     T* const datap;
 };
@@ -118,7 +118,7 @@ private:
 
 template<class Subscriptor, class T>
 inline T& ConcreteArray2dRef<Subscriptor, T>::operator()(Subscript s0, Subscript s1) const {
-    return firstDatum()[offset(SubscriptArray<2>(s0, s1))]; 
+    return firstDatum()[offset( s0, s1 )]; 
 }
 
 
@@ -140,9 +140,6 @@ public:
     Subscriptor::offset;
     Subscriptor::setShape;
 
-
-
-
     typedef T                                                         EltT;
     typedef Subscriptor                                               SubscriptorT;
 
@@ -152,26 +149,17 @@ public:
     typedef ConcreteArrayBrowser< ConcreteArray2d<Subscriptor, T> >   BrowserType;
     typedef ConcreteArrayIterator< ConcreteArray2d<Subscriptor, T> >  IteratorType;
 
-
-
     const T& operator()(Subscript s0, Subscript s1) const;
     T&       operator()(Subscript s0, Subscript s1);
 
 
     Subscriptor subscriptor() const { return *this; }
 
-
     T const * firstDatum()  const { return datap; }
-    T       * firstDatum()        { return datap; }
-
-
-
-
+    inline T       * firstDatum()        { return datap; }
 
     ConstProjectionT project(Subscript s, Dimension d) const;
     ProjectionT      project(Subscript s, Dimension d);
-
-
 
     ConstProjectionT operator[](Subscript s) const { return project(s, 0); }
     ProjectionT      operator[](Subscript s)       { return project(s, 0); }
@@ -181,9 +169,6 @@ public:
 
     ConstProjectionT column(Subscript i)     const { return project(i, 1); }
     ProjectionT      column(Subscript i)           { return project(i, 1); }
-
-
-
 
     operator ConcreteArray2dConstRef<Subscriptor, T>() const;
     operator ConcreteArray2dRef<Subscriptor, T>();
@@ -206,13 +191,21 @@ private:
 template<class Subscriptor, class T>
 inline 
 const T& ConcreteArray2d<Subscriptor, T>::operator()(Subscript s0, Subscript s1) const {
-    return firstDatum()[offset(SubscriptArray<2>(s0, s1))];
+
+  //  return firstDatum()[offset(SubscriptArray<2>(s0, s1))];
+  //return datap[offset(s0, s1)];
+
+  return firstDatum()[offset(s0, s1)]; // faster than using datap.  why?
 }
 
 template<class Subscriptor, class T>
 inline 
 T& ConcreteArray2d<Subscriptor, T>::operator()(Subscript s0, Subscript s1) {
-    return firstDatum()[offset(SubscriptArray<2>(s0, s1))];
+
+  //  return firstDatum()[offset(SubscriptArray<2>(s0, s1))];
+  // return datap[offset(s0, s1) ];
+
+  return firstDatum()[ offset(s0, s1) ]; // faster than using datap. Why?
 }
 
 
