@@ -19,7 +19,7 @@ template<class Domain>
 class SubDomainErr : 
     public SciEngErr {
 public:
-    SubDomainErr(const Domain& x, const String& msg) : bad_value(x), err_message(msg) {}
+    SubDomainErr(const Domain& x, const String& msg) : err_message(msg), bad_value(x)  {}
     virtual String message() const;
 private:
     const String err_message;
