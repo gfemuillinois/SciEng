@@ -12,15 +12,15 @@ See README file for further details.
 
 ostream& powerPrinter(ostream& os, int units[7]) {
    static char* letters = "MLTQKIA";
-   Boolean saw_positive = Boolean::false;
-   Boolean saw_negative = Boolean::false;
+   Boolean saw_positive = Boolean::IsFalse;
+   Boolean saw_negative = Boolean::IsFalse;
    for (int i = 0; i < 7; i++) {
-     if (units[i] < 0) saw_negative = Boolean::true;
-     if (units[i] > 0) saw_positive = Boolean::true;
+     if (units[i] < 0) saw_negative = Boolean::IsTrue;
+     if (units[i] > 0) saw_positive = Boolean::IsTrue;
    }
    if (saw_negative || saw_positive) os << ' ';
 
-   for (i = 0; i < 7; i++) {
+   for (int i = 0; i < 7; i++) {
      if (units[i] > 0) {
         os << letters[i];
         if (units[i] > 1) os << '^' << units[i];
@@ -31,7 +31,7 @@ ostream& powerPrinter(ostream& os, int units[7]) {
 
    if (saw_negative) {
       os << '/';
-      for (i = 0; i < 7; i++) {
+      for (int i = 0; i < 7; i++) {
         if (units[i] < 0) os << letters[i];
         if (units[i] < -1) os << '^' << -units[i];
       }
