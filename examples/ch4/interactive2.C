@@ -18,7 +18,7 @@ extern void command_c();
 
 int main() {
     char command[100];
-    while (cin >> command) {
+    while (cin >> command && strcmp(command, "e") != 0) {
         try {
 
             if      (strcmp(command, "a") == 0) command_a();
@@ -41,7 +41,8 @@ void command_a() {
     float x; 
     cin >> x;
     if (x < 0) {
-        throw "Nonnegative input expected in command a";
+      //        throw "Nonnegative input expected in command a";
+      cout << "Nonnegative input expected in command a";
     }
     // ... process the command with valid input ...
 }
