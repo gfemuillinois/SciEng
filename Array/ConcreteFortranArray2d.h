@@ -23,6 +23,7 @@ public:
 
     ConcreteFortranArray2d();  // For arrays of arrays.
     ConcreteFortranArray2d(Subscript s0, Subscript s1);
+    // copy constructor provides deep copy
     ConcreteFortranArray2d(const ConcreteFortranArray2d<T>& p);
     ConcreteFortranArray2d(const ConcreteArray2dConstRef< SubscriptorType, T>&);
     ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<3>::ProjectionT, T>&);
