@@ -1,0 +1,14 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+AtwoodsMachine
+lin-frac
+tASGArray
+tGroupD3
+tIntMod5
+tSpaceVector
+FormedPhysicalData.C
