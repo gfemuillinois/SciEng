@@ -14,6 +14,7 @@ See README file for further details.
 #include "SciEng/Boolean.h"
 #include "SciEng/SciEngErr.h"
 
+//namespace SciEngLib{
 
 class FallibleBase {
 public:
@@ -21,7 +22,7 @@ public:
 
     Boolean failed() const { return !is_valid;          }   // True if invalid.
     Boolean valid()  const { return is_valid;           }   // True if valid.
-    void invalidate()      { is_valid = Boolean::false; }   // Make invalid.
+    void invalidate()      { is_valid = Boolean::IsFalse; }   // Make invalid.
 
 
     class UsedInInvalidStateErr : 
@@ -42,8 +43,8 @@ class Fallible :
     private FallibleBase {
 public:
 
-    Fallible(const T& t) : FallibleBase(Boolean::true), instance(t) {}   // Valid.
-    Fallible()           : FallibleBase(Boolean::false)             {}   // Invalid.
+    Fallible(const T& t) : FallibleBase(Boolean::IsTrue), instance(t) {}   // Valid.
+    Fallible()           : FallibleBase(Boolean::IsFalse)             {}   // Invalid.
 
     FallibleBase::failed;
     FallibleBase::valid;
@@ -69,4 +70,5 @@ T Fallible<T>::elseDefaultTo(const T& default_value) const {
     return valid() ? instance : default_value;
 }
 
+//}
 #endif
