@@ -118,11 +118,13 @@ public:
   typedef ConcreteArrayIterator< ConcreteArray3d<Subscriptor, T> >  IteratorType;
   
   const T& operator()(Subscript s0, Subscript s1, Subscript s2) const {
-    return firstDatum()[offset(SubscriptArray<3>(s0, s1, s2))];
+    //    return firstDatum()[offset(SubscriptArray<3>(s0, s1, s2))];
+    return firstDatum()[offset(s0, s1, s2)];
   }
 
   T& operator()(Subscript s0, Subscript s1, Subscript s2) {
-    return firstDatum()[offset(SubscriptArray<3>(s0, s1, s2))];
+    //    return firstDatum()[offset(SubscriptArray<3>(s0, s1, s2))];
+    return firstDatum()[offset(s0, s1, s2)];
   }
   
   ConstProjectionT project(Subscript s, Dimension d) const { 
