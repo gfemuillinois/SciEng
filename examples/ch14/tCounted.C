@@ -17,6 +17,8 @@ See README file for further details.
 
 #include "SciEng/CountedObjPtr.h"
 
+#include "tCounted.h"
+
 // Redefine EXIT_SUCCESS and EXIT_FAILURE.  When this program works it should return
 // EXIT_FAILURE, but run-test in the Makefile tests for EXIT_SUCCESS.
 #undef EXIT_SUCCESS
@@ -32,27 +34,6 @@ class Mesh;
 
 
 typedef Point Node;
-
-
-
-class Element {
-public:
-    friend NodesOfElement; // Iterator over nodes of an element
-
-    friend void operator>>(NodeReader& reader, Element& e);
-    friend ostream& operator<<(ostream& os, const Element& e);
-    Number maxAngle() const;
-private:
-    SimpleArray< CountedObjPtr<Node> > node_ptrs;
-};
-
-inline Boolean operator==(const Element& lhs, const Element& rhs) { 
-    return &lhs == &rhs;
-}
-
-inline Boolean operator!=(const Element& lhs, const Element& rhs) { 
-    return !(lhs == rhs);
-}
 
 
 class Mesh {
@@ -154,11 +135,11 @@ int main() {
 
 
 Boolean Mesh::checkElementAngles(Number angle_threshold) const {
-    Boolean anglesOK = Boolean::true;
+    Boolean anglesOK = Boolean::IsTrue;
     for (ElementsOfMesh elts(*this); elts.more(); elts.advance()) {
                            if (elts.current()->maxAngle() > angle_threshold) {
             cout << "Element " << *elts.current() << " has a large angle." << endl;
-            anglesOK = Boolean::false;
+            anglesOK = Boolean::IsFalse;
                            }
     }
     return anglesOK;
