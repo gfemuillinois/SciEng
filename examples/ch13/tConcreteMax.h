@@ -8,7 +8,7 @@ typename ArrayType::EltT maxArray2dElement(const ArrayType& a) {
     typename ArrayType::EltT the_max = a(0, 0);
     for (Subscript i = 0; i < a.shape(0); i++) {
         for (Subscript j = 0; j < a.shape(1); j++) {
-            the_max = max( the_max, a(i, j) );
+            the_max = sce::max( the_max, a(i, j) );
         }
     }
     return the_max;
