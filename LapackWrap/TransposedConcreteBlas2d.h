@@ -19,29 +19,29 @@ See README file for further details.
 template<class T>
 class TransposedConcreteBlas2d;
 
-template<class T>
-ConcreteBlas2d<T> operator*(const TransposedConcreteBlas2d<T>& t, const TransposedConcreteBlas2d<T>& u);
+template<class T> ConcreteBlas2d<T> 
+operator*(const TransposedConcreteBlas2d<T>& t, const TransposedConcreteBlas2d<T>& u);
 // same as above: C = A^t * B^t
 template<class T>
 void mult(const TransposedConcreteBlas2d<T>& A, const TransposedConcreteBlas2d<T>& B, 
 	     ConcreteBlas2d<T>& C );
 
-template<class T>
-ConcreteBlas2d<T> operator*(const ConcreteBlas2d<T>& u, const TransposedConcreteBlas2d<T>& t);
+template<class T> ConcreteBlas2d<T> 
+operator*(const ConcreteBlas2d<T>& u, const TransposedConcreteBlas2d<T>& t);
 // same as above: C = A * B^t
 template<class T>
 void mult(const ConcreteBlas2d<T>& A, const TransposedConcreteBlas2d<T>& B, 
 	  ConcreteBlas2d<T>& C );
 
-template<class T>
-ConcreteBlas2d<T> operator*(const TransposedConcreteBlas2d<T>& t, const ConcreteBlas2d<T>& u);
+template<class T> ConcreteBlas2d<T>
+ operator*(const TransposedConcreteBlas2d<T>& t, const ConcreteBlas2d<T>& u);
 // same as above: C = A^t * B
 template<class T>
 void mult(const TransposedConcreteBlas2d<T>& A, const ConcreteBlas2d<T>& B, 
 	  ConcreteBlas2d<T>& C );
 
-template<class T>
-ConcreteBlas1d<T> operator*(const TransposedConcreteBlas2d<T>& t, const ConcreteBlas1d<T>& u);
+template<class T> ConcreteBlas1d<T> 
+operator*(const TransposedConcreteBlas2d<T>& t, const ConcreteBlas1d<T>& u);
 // same as above: c = A^t * c
 template<class T>
 void mult(const TransposedConcreteBlas2d<T>& A, const ConcreteBlas1d<T>& b, 
