@@ -13,7 +13,7 @@ See README file for further details.
 
 String MisMatchedSizeErr::message() const {
   String s;
-  s << " MisMatchedSizeErr, left hand size is: " << the_lhs_size << endl;
-  s << "                    right hand size is:" << the_rhs_size << endl;
+  s << " MisMatchedSizeErr, left hand size is: " << the_lhs_size << "\n"; // endl;
+  s << "                    right hand size is:" << the_rhs_size << "\n"; // endl;
   return s;
 }
