@@ -1,0 +1,17 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+tCollect
+tConcreteFormedArray
+tConcreteMax
+tConcreteRigidArray
+timeConcreteArray
+timeConcreteRigidArray1D
+timeConcreteRigidArray2D
+while
+IteratorFrobenius
+tDiagonal
