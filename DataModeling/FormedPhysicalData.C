@@ -18,7 +18,8 @@ FormedPhysicalData(istream& ns, unsigned int num_data_pts) :
     x(num_data_pts),
     y(num_data_pts),
     sigma(num_data_pts) {
-    for (int n = 0; ns && n < num_data_pts; n++) { 
+    unsigned int n;
+    for (n = 0; ns && n < num_data_pts; n++) { 
         ns >> x(n) >> y(n) >> sigma(n);
     }
     if (n < num_data_pts) throw TooLittleDataInput();
@@ -33,7 +34,7 @@ String
 FormedPhysicalData::TooLittleDataInput::
 message() const {
   String s;
-  s << "Too little data input to FormedPhysicalData" << endl;
+  s << "Too little data input to FormedPhysicalData\n"; // << endl;
   return s;
 }
 
