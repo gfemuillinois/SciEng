@@ -1,0 +1,12 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+SeeCommonality
+SeeVoltageSupply
+tGPIBInstrument
+tIVTester
+tSimulator
