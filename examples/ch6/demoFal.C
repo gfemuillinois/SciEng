@@ -13,18 +13,19 @@ See README file for further details.
 #include "examples/ch4/SimpleArray.h"
 #include "SciEng/Boolean.h"
 
+#include "examples/ch6/Interval.h"
 
 template<class T>
 class Fallible {
 public:
 
-    Fallible(const T& t)  : is_valid(Boolean::true), instance(t) {}     // Valid.
-    Fallible()            : is_valid(Boolean::false)             {}     // Invalid.
+    Fallible(const T& t)  : is_valid(Boolean::IsTrue), instance(t) {}     // Valid.
+    Fallible()            : is_valid(Boolean::IsFalse)             {}     // Invalid.
 
 
     Boolean failed()  const { return !is_valid;          }   // True if invalid.
     Boolean valid()   const { return is_valid;           }   // True if valid.
-    void invalidate()       { is_valid = Boolean::false; }   // Make invalid.
+    void invalidate()       { is_valid = Boolean::IsFalse; }   // Make invalid.
     operator T()      const;
 
     T elseDefaultTo(const T& default_value) const; // Value if valid, else default_value
@@ -53,17 +54,6 @@ inline T Fallible<T>::elseDefaultTo(const T& default_value) const {
 }
 
 
-class Interval {
-public:
-    Interval();
-    Interval(double lo, double hi);
-    double lo() const;
-    double hi() const;
-private:
-    double the_lo;
-    double the_hi;
-};
-
 
 
 
@@ -71,7 +61,6 @@ extern ostream& operator<<(ostream& os, const Interval& i);
 
 
 extern istream& operator>>(istream& is, Interval& i);
-
 
 
 class SetOfIntervals {
