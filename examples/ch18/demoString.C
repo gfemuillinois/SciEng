@@ -8,6 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+
+#include <iostream>
 #include "SciEng/String.h"
 
 int main() {
@@ -19,6 +21,9 @@ int main() {
   String s3 = s2 + "123";// Right operand converted; result: xyzabcdefg123
 
 
-  if (s1 != "abcdefg" || s2 != "xyzabcdefg" || s3 != "xyzabcdefg123") return 1;
+  if (s1 != "abcdefg" || s2 != "xyzabcdefg" || s3 != "xyzabcdefg123") {
+    cout << "\nunexpected result" << endl;
+    return 1;
+  }
   return 0;
 }
