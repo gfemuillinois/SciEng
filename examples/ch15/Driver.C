@@ -15,13 +15,7 @@ See README file for further details.
 #include "LapackWrap/RectLURep.h"
 #include "LapackWrap/SymPosDefPackedLURep.h"
 
-
-template<class LapackMatrix, class EltT>
-LapackUnfactored< RectLURep<EltT> >
-xForAxEqb(LapackMatrix& matrixA, ConcreteFortranArray2d<EltT>& b) {
-    return matrixA.factor().solve(b);
-}
-
+#include "Driver.h"
 
 int
 main() {
