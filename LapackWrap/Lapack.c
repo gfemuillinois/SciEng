@@ -14,37 +14,37 @@ See README file for further details.
 template<class Rep>
 LapackUnfactored<Rep>::Unfactored* LapackUnfactored<Rep>::releaseControl() {
   checkValidity();
-  valid = Boolean::false;
+  valid = Boolean::IsFalse;
   return ap.releaseControl();
 }
 
 template<class Rep>
 LapackFactored<Rep> LapackUnfactored<Rep>::factor() {
   checkValidity();
-  valid = Boolean::false;
-  Rep::Unfactored* fp = ap.releaseControl();
-  return LapackFactored<Rep>(new Rep::Factored(fp));
+  valid = Boolean::IsFalse;
+  typename Rep::Unfactored* fp = ap.releaseControl();
+  return LapackFactored<Rep>(new typename Rep::Factored(fp));
 }
 
 template<class Rep>
 LapackUnfactored<Rep>::LapackUnfactored(Subscript n1, Subscript n2) :
-     ap(new Rep::Unfactored(n1, n2)), valid(Boolean::true) {
+     ap(new typename Rep::Unfactored(n1, n2)), valid(Boolean::IsTrue) {
 }
 
 template<class Rep>
 LapackUnfactored<Rep>::LapackUnfactored(const LapackUnfactored<Rep>& a):
-     ap(new Rep::Unfactored(a.rep())), valid(Boolean::true) {
+     ap(new typename Rep::Unfactored(a.rep())), valid(Boolean::IsTrue) {
 }
 
 template<class Rep>
 LapackUnfactored<Rep>::LapackUnfactored(const ConstArray2d<EltT>& a):
-     ap(new Rep::Unfactored(a.shape(0), a.shape(1))), valid(Boolean::true) {
+     ap(new typename Rep::Unfactored(a.shape(0), a.shape(1))), valid(Boolean::IsTrue) {
   *this = a;
 }
 
 template<class Rep>
 LapackUnfactored<Rep>::LapackUnfactored(const ConcreteFortranArray2d<EltT>& a):
-     ap(new Rep::Unfactored(a.shape(0), a.shape(1))), valid(Boolean::true) {
+     ap(new typename Rep::Unfactored(a.shape(0), a.shape(1))), valid(Boolean::IsTrue) {
   *this = a;
 }
 
@@ -67,13 +67,15 @@ LapackUnfactored<Rep>::EltT& LapackUnfactored<Rep>::operator()(Subscript s0, Sub
 }
 
 template<class Rep>
-LapackUnfactored<Rep>::ConstProjectionT LapackUnfactored<Rep>::project(Subscript s, Dimension d) const {
-  return new InterfacedConstArrayProjection1d< Rep::Unfactored >(rep().project(s, d));
+typename Array2d< LapackUnfactored<Rep>::EltT >::ConstProjectionT 
+LapackUnfactored<Rep>::project(Subscript s, Dimension d) const {
+  return new InterfacedConstArrayProjection1d< typename Rep::Unfactored >(rep().project(s, d));
 }
 
 template<class Rep>
-LapackUnfactored<Rep>::ProjectionT LapackUnfactored<Rep>::project(Subscript s, Dimension d) {
-  return new InterfacedArrayProjection1d< Rep::Unfactored >(rep().project(s, d));
+typename Array2d< LapackUnfactored<Rep>::EltT >::ProjectionT 
+LapackUnfactored<Rep>::project(Subscript s, Dimension d) {
+  return new InterfacedArrayProjection1d< typename Rep::Unfactored >(rep().project(s, d));
 }
 
 template<class Rep>
@@ -91,37 +93,37 @@ Array2d<LapackUnfactored<Rep>::EltT>& LapackUnfactored<Rep>::operator=(const Elt
 template<class Rep>
 Array2d<LapackUnfactored<Rep>::EltT>& LapackUnfactored<Rep>::operator=(const LapackUnfactored<Rep>& rhs) {
   if (!valid) {  // then we are loading a new unfactored, allocate for it.
-    ap = new Rep::Unfactored(rhs.rep());
+    ap = new typename Rep::Unfactored(rhs.rep());
   } else {       // We are over-writing, use assignment rules of Rep.
     *ap = rhs.rep();  // rep() checks validity
   }
-  valid = Boolean::true;
+  valid = Boolean::IsTrue;
   return *this;
 }
 
 template<class Rep>
 Array2d<LapackUnfactored<Rep>::EltT>& LapackUnfactored<Rep>::operator=(const ConstArray2d<EltT>& rhs) {
   if (!valid) {
-    ap = new Rep::Unfactored(rhs.shape(0), rhs.shape(1));
+    ap = new typename Rep::Unfactored(rhs.shape(0), rhs.shape(1));
   }
-  Rep::Unfactored& lhs = *ap;
+  typename Rep::Unfactored& lhs = *ap;
   if (lhs.shape(0) != rhs.shape(0) || lhs.shape(1) != rhs.shape(1)) throw ArrayErr::Shape();
-  LapackUnfactored<Rep>::IteratorType lhs_i(*this);
-  ConstArray2d<EltT>::BrowserType rhs_i(rhs);
+  typename Array2d< EltT >::IteratorType lhs_i(*this);
+  typename ConstArray2d<EltT>::BrowserType rhs_i(rhs);
   for (; lhs_i.more(); lhs_i.advance(), rhs_i.advance()) lhs_i.current() = rhs_i.current();
-  valid = Boolean::true;
+  valid = Boolean::IsTrue;
   return *this;
 }
 
 template<class Rep>
 Array2d<LapackUnfactored<Rep>::EltT>& LapackUnfactored<Rep>::operator=(const ConcreteFortranArray2d<EltT>& rhs) {
   if (!valid) {
-    ap = new Rep::Unfactored(rhs.shape(0), rhs.shape(1));
+    ap = new typename Rep::Unfactored(rhs.shape(0), rhs.shape(1));
   }
-  Rep::Unfactored& lhs = *ap;
+  typename Rep::Unfactored& lhs = *ap;
   if (lhs.shape(0) != rhs.shape(0)) throw ArrayErr::Shape();
   for (Subscript i = 0; i < lhs.shape(0); i++) concreteCopy(lhs[i], rhs[i]);
-  valid = Boolean::true;
+  valid = Boolean::IsTrue;
   return *this;
 }
 
