@@ -11,6 +11,11 @@ See README file for further details.
 #ifndef ConcreteRigidArray1dH
 #define ConcreteRigidArray1dH
 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+#include <assert.h>
+#include <iostream>
+#endif
+
 #include "SciEng/ArrayErr.h"
 #include "Array/ConcreteArray1d.h"
 #include "Array/ConcreteArrayShape.h"
@@ -24,10 +29,24 @@ class ConcreteRigidArray1d {
   explicit ConcreteRigidArray1d(Subscript s0) { 
     if (n0 != s0) throw ArrayErr::CreationSize(); }
   
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+  void check_subscripts(const Subscript s) const {
+    if ( s<0 || s >= shape(0) ) {
+      cerr << "ConcreteRigidArray1d<T,n0>::check_subscripts: Invalid arg: " 
+	   << s << "\nshape(0) = " << shape(0) << endl;
+      assert(0);
+    }
+  }
+#endif
+
   Dimension         dim()              const { return 1;    }  
   Subscript         shape(Dimension d) const { return n0;   }
   Subscript         numElts()          const { return n0;   }
-  Subscript         offset(const Subscript s) const { return s; }   
+  Subscript         offset(const Subscript s) const {
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    check_subscripts(s);
+#endif
+ return s; }   
 
 
   typedef T EltT;
@@ -36,10 +55,20 @@ class ConcreteRigidArray1d {
   typedef ConcreteArrayBrowser< ConcreteRigidArray1d<T, n0> >  BrowserType;
   typedef ConcreteArrayIterator< ConcreteRigidArray1d<T, n0>  > IteratorType;
 
-  const EltT&      operator()(Subscript s) const { return data[s]; }
+  const EltT&      operator()(Subscript s) const {
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    check_subscripts(s);
+#endif
+    return data[s]; }
+
   ConstProjectionT operator[](Subscript s) const { return data[s]; }
 
-  EltT&       operator()(Subscript s) { return data[s]; }
+  EltT&       operator()(Subscript s) { 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    check_subscripts(s);
+#endif
+    return data[s]; }
+
   ProjectionT operator[](Subscript s) { return data[s]; }
 
   T const * firstDatum() const { return data; }
