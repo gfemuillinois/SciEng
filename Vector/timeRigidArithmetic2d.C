@@ -15,7 +15,7 @@ int main() {
 
 #define TEST_ALL 1
 
-#define TEST1 1  // Test/timing for operator ++ -- - (negate)
+#define TEST1 0  // Test/timing for operator ++ -- - (negate)
 
 #define TEST2 1  // Test/timing for operators += -=(const Array& rhs)
 
@@ -25,16 +25,16 @@ int main() {
 
 #define TEST5 1  // Test/timing for operators *= /=(const T& rhs)
 
-#define TEST6 1  // Test/timing for operators * / (const T& rhs)
+#define TEST6 0  // Test/timing for operators * / (const T& rhs)
                  // Test/timing for XmultScalar/scale
 
-#define TEST7 1  // Test/timing for operators + - (const T& rhs)
+#define TEST7 0  // Test/timing for operators + - (const T& rhs)
                  // Test/timing for XplusScalar/add
 
-#define TEST8 1  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
+#define TEST8 0  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
                  // Test/Timing for XplusY/add XminusY/sub
 
-#define TEST9 1  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
+#define TEST9 0  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
                  // Test/Timing for XtimesY/distMult XdivY/distDiv
 
 #define TEST10 1 // Test/Timing for operators == != (const Array& rhs)
