@@ -11,7 +11,7 @@ See README file for further details.
 
 template<class T>
 ConcreteFortranArray2d<T>::ConcreteFortranArray2d(Subscript s0, Subscript s1) : 
-    ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(s0, s1), 0) {
+    ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(s0, s1), 0) {
     setSizeOnHeap(s0 * s1);
 }
 
@@ -20,7 +20,7 @@ ConcreteFortranArray2d<T>::ConcreteFortranArray2d(Subscript s0, Subscript s1) :
 template<class T>
 ConcreteFortranArray2d<T>::
 ConcreteFortranArray2d(const ConcreteFortranArray2d<T>& a) : 
-    ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+   ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
     setSizeOnHeap(a.numElts());
     concreteCopy(*this, a);
 }
@@ -28,8 +28,8 @@ ConcreteFortranArray2d(const ConcreteFortranArray2d<T>& a) :
 
 template<class T>
 ConcreteFortranArray2d<T>::
-ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteFortranArray2d<T>::SubscriptorT, T>& a) :
-  ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteFortranArray2d<T>::SubscriptorType, T>& a) :
+  ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
   setSizeOnHeap(a.numElts());
   concreteCopy(*this, a);
 }
@@ -37,7 +37,7 @@ ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteFortranArray2d<T>::
 template<class T>
 ConcreteFortranArray2d<T>::
 ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<3>::ProjectionT, T>& a) :
-   ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+   ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
    setSizeOnHeap(a.numElts());
    concreteCopy(*this, a);
 }
@@ -54,7 +54,7 @@ ConcreteFortranArray2d<T>& ConcreteFortranArray2d<T>::operator=(const ConcreteFo
 }
 
 template<class T>
-ConcreteFortranArray2d<T>& ConcreteFortranArray2d<T>::operator=(const ConcreteArray2dConstRef<SubscriptorT, T>& rhs) {
+ConcreteFortranArray2d<T>& ConcreteFortranArray2d<T>::operator=(const ConcreteArray2dConstRef<SubscriptorType, T>& rhs) {
   concreteCopy(*this, rhs);
   return *this;
 }
