@@ -46,7 +46,7 @@ istream& operator>>(istream& is, Array1d<T>& a) {
 	is >> c;
 	i++;
 	if ( i == n ) {
-	  if (c != ']') is.clear(ios::badbit);
+	  if (c != ']') is.clear(std::ios::badbit);
 	} else {
 	  if (c != ',') is.putback(c);
 	}
@@ -54,7 +54,7 @@ istream& operator>>(istream& is, Array1d<T>& a) {
   }
   else {
     is.putback(c);
-    is.clear(ios::badbit);
+    is.clear(std::ios::badbit);
   }
   return is;
 }

@@ -12,7 +12,8 @@ See README file for further details.
 #define ComplexFloatH
 #include "Algebra/FieldCategory.h"
 
-#include <complex.h>
+#include <complex>
+#include <iosfwd>
 
 class ZeroDivideErr {
 };
@@ -25,8 +26,8 @@ public:
     ComplexFloat() {}
 
     // Convert to complex numbers from <complex.h>
-    operator complex<double>() const {
-      return complex<double>(real_part, imag_part); }
+    operator std::complex<double>() const {
+      return std::complex<double>(real_part, imag_part); }
 
 
     float  real()  const { return real_part;}
@@ -51,8 +52,7 @@ private:
 };
 
 
-class ostream;
-extern ostream& operator<<(ostream&, ComplexFloat);
+extern std::ostream& operator<<(std::ostream&, ComplexFloat);
 
 
 inline ComplexFloat& ComplexFloat::operator*=(const ComplexFloat& rhs) {

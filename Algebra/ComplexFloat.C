@@ -10,7 +10,7 @@ See README file for further details.
 */
 #include "Algebra/ComplexFloat.h"
 #include <math.h>
-#include <iostream.h>
+#include <iostream>
 
 ComplexFloat& ComplexFloat::operator/=(const ComplexFloat& rhs) {
   // Implements equation 5.4.5, Numerical Recipes in C, second ed.
@@ -40,7 +40,7 @@ ComplexFloat& ComplexFloat::operator/=(const ComplexFloat& rhs) {
   return *this;
 }
 
-ostream& operator<<(ostream& os, ComplexFloat c) {
+std::ostream& operator<<(std::ostream& os, ComplexFloat c) {
   os << c.real();
   if      (c.imag() > 0)  os << '+' << c.imag() << 'i';
   else if (c.imag() == 0) os << '+' << "0i";

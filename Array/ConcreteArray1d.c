@@ -16,12 +16,14 @@ See README file for further details.
 //namespace SciEngLib {
 
 template<class Subscriptor, class T>
-std::ostream& operator<<(std::ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a) {
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a){
   return arrayTuplize(a, os);
 }
 
 template<class Subscriptor, class T>
-std::istream& operator>>(std::istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
+std::istream& 
+operator>>(std::istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
   char c = 0;
   is >> c;
   if (c == '[') {
