@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-void main() {
+int main() {
 
 const float pi = 3.14159;    // Constant object
 const float* p = &pi;
