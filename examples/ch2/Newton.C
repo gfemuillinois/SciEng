@@ -23,7 +23,7 @@ do {
     dx = f(x) / fprime(x);
     x  -= dx;
 
-} while (abs(dx) > desired_accuracy);
+} while (fabs(dx) > desired_accuracy);
 
 cout << x << endl;
 return 0;
