@@ -33,15 +33,15 @@ int main() {
   for (int i = 0; i < a.numElts(); i++) a[i] = 2*i;
   CheckedFloatArray b(a);
   if (a.numElts() != b.numElts()) { cerr << "Bad copy: numElts wrong" << endl; return 1; }
-  for (i = 0; i < b.numElts(); i++) {
+  for (int i = 0; i < b.numElts(); i++) {
     if (b[i] != 2*i) { cerr << "Bad copy: elements wrong" << endl; return 1; }
   }
   b = 10;
-  for (i = 0; i < b.numElts(); i++) {
+  for (int i = 0; i < b.numElts(); i++) {
     if (b[i] != 10) { cerr << "Bad assignment of scalar" << endl; return 1; }
   }
   b = a;
-  for (i = 0; i < b.numElts(); i++) {
+  for (int i = 0; i < b.numElts(); i++) {
     if (b[i] != 2*i) { cerr << "Bad array assignment" << endl; return 1; }
   }
   
