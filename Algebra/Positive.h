@@ -13,7 +13,7 @@ See README file for further details.
 
 #include "Algebra/SubDomain.h"
 #include "SciEng/Boolean.h"
-
+#include "SciEng/String.h"
 
 template<class T>
 class PositivePredicate { 
