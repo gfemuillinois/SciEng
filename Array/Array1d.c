@@ -10,7 +10,7 @@ See README file for further details.
 */
 #include "Array/ArrayTuplize.h"
 
-
+#include "SciEng/ArrayErr.h"
 
 template<class T>
 Array1d<T>& Array1d<T>::operator=(const ConstArray1d<T>& rhs) {
