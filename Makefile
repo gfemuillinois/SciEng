@@ -26,11 +26,11 @@ RM = /bin/rm
 # We are using templates implicitly instantiated ALWAYS!
 #	$(CXX) $(CXXTEMPLATE) -I. $(CXXFLAGS) -c $<  -o $*.o
 
-(%.o) : %.C
-	$(CXX) -DXLC_QNOTEMPINC -I. $(CXXFLAGS) -c $< -o $*.o 
-	$(AR) rv $@ $*.o 
-	$(RM) $*.o
-	ranlib $@
+#(%.o) : %.C
+#	$(CXX) -DXLC_QNOTEMPINC -I. $(CXXFLAGS) -c $< -o $*.o 
+#	$(AR) rv $@ $*.o 
+#	$(RM) $*.o
+#	ranlib $@
 
 all:	SciEng.a  SciEngMatx.a templ_instatiation_g++
 	cd examples/ch2; $(MAKE)
