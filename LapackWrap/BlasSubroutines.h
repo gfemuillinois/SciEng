@@ -11,25 +11,27 @@ See README file for further details.
 #ifndef BlasSubroutinesH
 #define BlasSubroutinesH
 
-extern "FORTRAN" {          // Raw BLAS prototypes.
-  void dgemv(const char TRANS[], const int& M, const int& N, const double& ALPHA,
+#include "clarch.h"
+
+extern "C" {          // Raw BLAS prototypes.
+  void FTNAME(dgemv)(const char TRANS[], const int& M, const int& N, const double& ALPHA,
              const double* AP, const int& LDA, const double* XP, const int& INCX,
              const double& BETA, double* YP, const int& INCY);
-  void sgemv(const char TRANS[], const int& M, const int& N, const float& ALPHA,
+  void FTNAME(sgemv)(const char TRANS[], const int& M, const int& N, const float& ALPHA,
              const float* AP, const int& LDA, const float* XP, const int& INCX,
              const float& BETA, float* YP, const int& INCY);
-  void dgemm(const char TRANSA[], const char TRANSB[], const int& M, const int& N, const int& K, const double& ALPHA,
+  void FTNAME(dgemm)(const char TRANSA[], const char TRANSB[], const int& M, const int& N, const int& K, const double& ALPHA,
              const double* AP, const int& LDA, const double* BP, const int& LDB,
              const double& BETA, double* CP, const int& LDC);
-  void sgemm(const char TRANSA[], const char TRANSB[], const int& M, const int& N, const int& K, const float& ALPHA,
+  void FTNAME(sgemm)(const char TRANSA[], const char TRANSB[], const int& M, const int& N, const int& K, const float& ALPHA,
              const float* AP, const int& LDA, const float* BP, const int& LDB,
              const float& BETA, float* CP, const int& LDC);
-  double ddot(const int& n, const double* xp, const int& incx, const double* yp, const int& incy);
-  float  sdot(const int& n, const float* xp, const int& incx, const float* yp, const int& incy);
-  float  sscal(const int& n, const float& alpha, const float* xp, const int& incx);
-  double dscal(const int& n, const double& alpha, const double* xp, const int& incx);
-  float  snrm2(const int& n, const float* xp, const int& incx);
-  double dnrm2(const int& n, const double* xp, const int& incx);
+  double FTNAME(ddot)(const int& n, const double* xp, const int& incx, const double* yp, const int& incy);
+  float  FTNAME(sdot)(const int& n, const float* xp, const int& incx, const float* yp, const int& incy);
+  float  FTNAME(sscal)(const int& n, const float& alpha, const float* xp, const int& incx);
+  double FTNAME(dscal)(const int& n, const double& alpha, const double* xp, const int& incx);
+  float  FTNAME(snrm2)(const int& n, const float* xp, const int& incx);
+  double FTNAME(dnrm2)(const int& n, const double* xp, const int& incx);
 };
 
 
@@ -91,24 +93,24 @@ public:
 
       
 inline double Blas1Subroutines::xdot(int n, const double* xp, int incx, const double* yp, int incy){
-     return ddot(n,xp,incx,yp,incy);
+     return FTNAME(ddot)(n,xp,incx,yp,incy);
 }
 
 inline float Blas1Subroutines::xdot(int n, const float* xp, int incx, const float* yp, int incy){
-     return sdot(n,xp,incx,yp,incy);
+     return FTNAME(sdot)(n,xp,incx,yp,incy);
 }
 
 inline double Blas1Subroutines::xscal(int n, const double alpha, const double* xp, int incx){
-     return dscal(n,alpha,xp,incx);
+     return FTNAME(dscal)(n,alpha,xp,incx);
 }
 inline float Blas1Subroutines::xscal(int n, const float alpha, const float* xp, int incx){
-     return sscal(n,alpha,xp,incx);
+     return FTNAME(sscal)(n,alpha,xp,incx);
 }
 inline double Blas1Subroutines::xnrm2(int n, const double* xp, int incx){
-     return dnrm2(n,xp,incx);
+     return FTNAME(dnrm2)(n,xp,incx);
 }
 inline float Blas1Subroutines::xnrm2(int n, const float* xp, int incx){
-     return snrm2(n,xp,incx);
+     return FTNAME(snrm2)(n,xp,incx);
 }
 
                                                                               
@@ -116,28 +118,28 @@ inline void Blas2Subroutines::xgemv(Blas2Subroutines::Trans t,
      int m, int n, double alpha, const double* a_p, int lda,
      const double* x_p, int inc_x, double beta,
      double* y_p, int inc_y){
-  dgemv(&trans_char[t], m, n, alpha, a_p, lda, x_p, inc_x, beta, y_p, inc_y);
+  FTNAME(dgemv)(&trans_char[t], m, n, alpha, a_p, lda, x_p, inc_x, beta, y_p, inc_y);
 }
 
 inline void Blas2Subroutines::xgemv(Blas2Subroutines::Trans t,
      int m, int n, float alpha, const float* a_p, int lda,
      const float* x_p, int inc_x, float beta,
      float* y_p, int inc_y){
-  sgemv(&trans_char[t], m, n, alpha, a_p, lda, x_p, inc_x, beta, y_p, inc_y);
+  FTNAME(sgemv)(&trans_char[t], m, n, alpha, a_p, lda, x_p, inc_x, beta, y_p, inc_y);
 }
 
 inline void Blas3Subroutines::xgemm(Blas3Subroutines::Trans ta, Blas3Subroutines::Trans tb,
      int m, int n, int k, double alpha, const double* a_p, int lda,
      const double* b_p, int ldb, double beta,
      double* c_p, int ldc){
-  dgemm(&trans_char[ta], &trans_char[tb], m, n, k, alpha, a_p, lda, b_p, ldb, beta, c_p, ldc);
+  FTNAME(dgemm)(&trans_char[ta], &trans_char[tb], m, n, k, alpha, a_p, lda, b_p, ldb, beta, c_p, ldc);
 }
 
 inline void Blas3Subroutines::xgemm(Blas3Subroutines::Trans ta, Blas3Subroutines::Trans tb,
      int m, int n, int k, float alpha, const float* a_p, int lda,
      const float* b_p, int ldb, float beta,
      float* c_p, int ldc){
-  sgemm(&trans_char[ta], &trans_char[tb], m, n, k, alpha, a_p, lda, b_p, ldb, beta, c_p, ldc);
+  FTNAME(sgemm)(&trans_char[ta], &trans_char[tb], m, n, k, alpha, a_p, lda, b_p, ldb, beta, c_p, ldc);
 }
 
 #include "SciEng/String.h"

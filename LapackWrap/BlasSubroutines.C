@@ -26,10 +26,11 @@ String BlasErr::message() const {
 
 }
 
+extern "C"
+void FTNAME(xerbla)( const char subr_name[6], int& arg_num){ 
 
+  //  cout << "FTNAME(xerbla) called " << endl;
 
-extern "FORTRAN"
-void xerbla( const char subr_name[6], int& arg_num){ 
     throw BlasErr(String(subr_name, 6), arg_num);
 }
 
