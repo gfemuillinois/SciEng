@@ -12,6 +12,9 @@ See README file for further details.
 //  An altered copy of this class is used in intrcat.  Be sure to 
 //  keep them in sync.
 
+#ifndef CHECKEDSIMPLEARRAYHPP
+#define CHECKEDSIMPLEARRAYHPP
+
 
 class SubscriptRangeError {
 public:
@@ -52,15 +55,15 @@ template<class T>
 class CheckedSimpleArray {
 public:
 
-    CheckedSimpleArray(int n);                                        // Create array of n elements
+    CheckedSimpleArray(const int n);                                  // Create array of n elements
     CheckedSimpleArray();                                             // Create empty array
     CheckedSimpleArray(const CheckedSimpleArray<T>&);                 // Copy array
     ~CheckedSimpleArray();                                            // Destroy array
-    T& operator[](int i);                                             // Subscripting
-    int numElts();                                                    // Number of elements
+    T& operator[](const int i);                                       // Subscripting
+    int numElts() const;                                              // Number of elements
     CheckedSimpleArray<T>& operator=(const CheckedSimpleArray<T>&);   // Array assignment
-    CheckedSimpleArray<T>& operator=(T);                              // Scalar assignment 
-    void setSize(int n);                                              // Change size
+    CheckedSimpleArray<T>& operator=(const T);                        // Scalar assignment 
+    void setSize(const int n);                                        // Change size
 private:
     int num_elts;
     T* ptr_to_data;
@@ -73,3 +76,6 @@ private:
 #ifdef XLC_QNOTEMPINC
 #include "examples/ch4/CheckedSimpleArray.c"
 #endif
+
+
+#endif /* CHECKEDSIMPLEARRAYHPP */
