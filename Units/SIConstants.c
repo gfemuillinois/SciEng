@@ -9,6 +9,13 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
+#include "SIConstants.h"
+
+// CAD: Had to do this to avoid undefined references
+
+template<> const SIConstants<double>::Mass         SIConstants<double>::kilogram       = 1;
+template<> const SIConstants<double>::Acceleration SIConstants<double>::g              = 9.80665;
+
 
 template<class T> const SIConstants<T>::Mass         SIConstants<T>::kilogram       = 1;
 template<class T> const SIConstants<T>::Length       SIConstants<T>::meter          = 1;

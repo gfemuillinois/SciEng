@@ -8,6 +8,16 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+// CAD: Had to do this to avoid undefined references
+
+template<> 
+const BritishConstants<double>::Mass  BritishConstants<double>::slug = 14.59;
+template<> 
+const BritishConstants<double>::Force BritishConstants<double>::pound = 4.448;
+template<> 
+const BritishConstants<double>::Acceleration BritishConstants<double>::ft_per_sec2 = .3048;
+
+
 template<class T> 
 const BritishConstants<T>::Mass BritishConstants<T>::slug = 14.59;
 template<class T> 
