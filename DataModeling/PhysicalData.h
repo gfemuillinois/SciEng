@@ -13,6 +13,7 @@ See README file for further details.
 
 
 #include "SciEng/CountedObjPtr.h"
+#include "SciEng/Subscript.h"
 
 
 template<class T>
