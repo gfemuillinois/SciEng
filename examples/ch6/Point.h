@@ -8,8 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+
+#ifndef _POINT_H_
+#define _POINT_H_
+
+#include <iostream>
 #include <math.h>
+
 typedef float Number;
 
 class Line;
@@ -61,3 +66,5 @@ Number Point::angle(Point p1, Point p3) const {
   if (ang < 0) ang += 2.0 * M_PI;
   return ang;
 }
+
+#endif
