@@ -14,7 +14,7 @@ See README file for further details.
 
 GaussianDeviates::GaussianDeviates(int seed) :
   ran(seed),
-  one_saved(Boolean::false),
+  one_saved(Boolean::IsFalse),
   saved_one(0) {
 }
                          
@@ -23,7 +23,7 @@ double GaussianDeviates::operator()() {
   //  Press, Flannery, Teukolsky, Vetterling
   // 1st ed, section 7.2
   if(one_saved) {
-    one_saved = Boolean::false;
+    one_saved = Boolean::IsFalse;
     return saved_one;
   }
   double r;
@@ -37,6 +37,6 @@ double GaussianDeviates::operator()() {
   // Box-Muller transform
   double fac = sqrt(-2.0*log(r)/r);
   saved_one = v1*fac;
-  one_saved = Boolean::true;
+  one_saved = Boolean::IsTrue;
   return v2*fac;
 }
