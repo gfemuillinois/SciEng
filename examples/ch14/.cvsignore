@@ -1,0 +1,11 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+exceptionLeak
+exceptionNoLeak
+tCounted
+tMolecule
