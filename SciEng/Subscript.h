@@ -11,13 +11,13 @@ See README file for further details.
 #ifndef SubscriptH
 #define SubscriptH
 
+#include <cstddef>
 
-#include <stddef.h>
-
+//namespace SciEngLib{
 
 typedef unsigned short int Dimension;
 typedef ptrdiff_t          Subscript;  // Signed, machine-dependent int; from <stddef.h>
 
-
+//}
 
 #endif
