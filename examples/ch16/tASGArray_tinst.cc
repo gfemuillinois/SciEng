@@ -10,8 +10,6 @@ template ostream & operator<< <ConcreteRowMajorSubscriptor<1>, double>
 
 template class ConcreteFormedArray1d<double>;
 
-template class ConcreteFormedArray1d<double>;
-
 template class AbelianSemiGroupCategory<AdditiveArray>;
 
 template class ConcreteArrayShape<1>;
