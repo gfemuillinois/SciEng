@@ -13,6 +13,11 @@ See README file for further details.
 
 #include "SciEng/Boolean.h"
 
+//namespace SciEngLib {
+
+template<class T>
+class ConcreteArrayIterator;
+
 
 template<class ConcreteArray>
 class ConcreteArrayBrowser {              
@@ -24,21 +29,21 @@ public:
 
 
     Boolean                    more()    const { return cur < end; }
-    void                       advance()       { cur++; }
-    const ConcreteArray::EltT& current() const { return *cur; }
+  void                       advance()       { ++cur; } // CAD cur++; }
+  const typename ConcreteArray::EltT& current() const { return *cur; }
 
 
 private:
-    const ConcreteArray::EltT* cur;
-    const ConcreteArray::EltT* end;
+    const typename ConcreteArray::EltT* cur;
+    const typename ConcreteArray::EltT* end;
 
     friend class ConcreteArrayIterator<ConcreteArray>;
-    ConcreteArrayBrowser(const ConcreteArray::EltT* c, const ConcreteArray::EltT* e) :
+    ConcreteArrayBrowser(const typename ConcreteArray::EltT* c, 
+			 const typename ConcreteArray::EltT* e) :
         cur(c), 
         end(e) {
     }
 };
-
 
 
 template<class ConcreteArray>
@@ -50,16 +55,17 @@ public:
     }
 
     Boolean more() const { return cur < end; }
-    void    advance()    { cur++; }
-    ConcreteArray::EltT& current() const { return *cur; }
+  void    advance()    { ++cur; } // CAD cur++; }
+    typename ConcreteArray::EltT& current() const { return *cur; }
 
     operator ConcreteArrayBrowser<ConcreteArray>() { 
         return ConcreteArrayBrowser<ConcreteArray>(cur, end); 
     }
 private:
-    ConcreteArray::EltT* cur;
-    ConcreteArray::EltT* end;
+    typename ConcreteArray::EltT* cur;
+    typename ConcreteArray::EltT* end;
 };
 
+//}
 
 #endif
