@@ -21,7 +21,7 @@ class ConcreteFortranArray1d :
 public:
   typedef ConcreteColumnMajorSubscriptor<1> Subscriptor;
   
-  ConcreteFortranArray1d(Subscript s0);
+  explicit ConcreteFortranArray1d(Subscript s0);
   ConcreteFortranArray1d(const ConcreteFortranArray1d<T>&);
   ConcreteFortranArray1d(ConcreteArray1dConstRef<Subscriptor, T>);
   ConcreteFortranArray1d(ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<2>::ProjectionT, T>);
