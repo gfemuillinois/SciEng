@@ -14,8 +14,7 @@ See README file for further details.
 #include "SciEng/Subscript.h"
 #include "SciEng/SciEngErr.h"
 
-class ostream;
-
+#include<iosfwd>
 
 class ArrayShape {		
 public:

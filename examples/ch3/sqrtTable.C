@@ -8,15 +8,19 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <iomanip.h>
-#include <math.h>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
 
 float x;
 while (cin >> x && x >= 0.) {
-    cout << setw(25) << x << setw(25) << sqrt(x) << endl;
+    cout << std::setw(25) << x << std::setw(25) << sqrt(x) << endl;
 }
 
 return 0;

@@ -7,7 +7,7 @@
 
 #ifdef NO_IMPLICIT_TEMPLATE
 
-#include <complex.h>
+#include <complex>
 #include "SciEng/utils.h"        /* the template fn sqr is declared here */
 
 using sce::sqr;

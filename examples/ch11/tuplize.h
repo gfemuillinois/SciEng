@@ -10,12 +10,12 @@ See README file for further details.
 */
 #ifndef tuplizeH
 #define tuplizeH
+#include<iosfwd>
 
-class ostream;
 template<class T> class SimpleArray;
 
 template<class T>
-ostream& tuplize(ostream& os, const SimpleArray<T>& a);
+std::ostream& tuplize(std::ostream& os, const SimpleArray<T>& a);
 
 #ifdef XLC_QNOTEMPINC
 #include "examples/ch11/tuplize.c"

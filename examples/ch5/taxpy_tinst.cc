@@ -8,6 +8,8 @@
 
 #include <complex>
 
+using std::complex;
+
 #include "axpy.h"
 
 template void axpy(double alpha, const Vector<double>& x, 

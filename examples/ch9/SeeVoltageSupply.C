@@ -8,8 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <math.h>
-#include <iostream.h>
+#include <cmath>
+#include <iostream>
 
 #include "examples/ch9/Acme130_VS.h"
 #include "examples/ch9/VoltOn59_VS.h"
@@ -17,6 +17,10 @@ See README file for further details.
 
 #include "examples/ch9/VoltyMetrics.h"
 #include "examples/ch9/checkCalibration_VS.h"
+
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
 GPIBController_Stub gpib;

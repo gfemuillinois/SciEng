@@ -5,13 +5,16 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 .PHONY: all clean real_clean run_all check
 
 
-FILES_WITH_MAIN	= abs.C abstemp.C args.C arrayArg.C con-callbr.C expdev.C resolve.C \
-		 swap.C taxpy.C taxpy1.C wrong2.C
+FILES_WITH_MAIN	=   args.C arrayArg.C con-callbr.C expdev.C resolve.C \
+		 swap.C   wrong2.C  taxpy.C  
+#                  abs.C taxpy1.C abstemp.C
 
-TEMPLATE_INSTANCES =  taxpy_tinst.cc taxpy1_tinst.cc  abs_tinst.cc args_tinst.cc \
-		resolve_tinst.cc
+TEMPLATE_INSTANCES =  args_tinst.cc \
+		resolve_tinst.cc \
+                taxpy_tinst.cc 
+#                abs_tinst.cc taxpy1_tinst.cc
 
-SOURCE_FILES = blastemp.C dcldef.C dot.C hasVal.C logof.C  retdcl.C wrong1.C
+SOURCE_FILES = blastemp.C  dot.C hasVal.C logof.C  retdcl.C wrong1.C  dcldef.C
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
@@ -21,7 +24,7 @@ DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
 ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
 
 OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:.cc=.o) 
-	    
+
 # Targets:
 
 all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
@@ -77,8 +80,8 @@ check:
 # The sequence of runs will stop if any executable 
 # returns non-zero value.
 run_all:
-	@echo Running abs: ;  abs
-	@echo Running abstemp: ;  abstemp
+#	@echo Running abs: ;  abs
+#	@echo Running abstemp: ;  abstemp
 	@echo Running args: ;  args
 	@echo Running arrayArg: ;  arrayArg
 	@echo Running con-callbr: ;  con-callbr

@@ -14,6 +14,9 @@ See README file for further details.
 #include <iostream>
 #include "examples/ch9/GPIBController.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 class GPIBController_GC :
     public GPIBController  {

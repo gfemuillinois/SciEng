@@ -28,12 +28,12 @@ Array2d<T>& Array2d<T>::operator=(const T& rhs) {
 
 
 template<class T>
-ostream& operator<<(ostream& os, const ConstArray2d<T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConstArray2d<T>& a) {
   return arrayTuplize(a, os);
 }
 
 template<class T>
-istream& operator>>(istream& is, Array2d<T>& a) {
+std::istream& operator>>(std::istream& is, Array2d<T>& a) {
   char c = 0;
   is >> c;
   if (c == '[') {

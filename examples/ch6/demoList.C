@@ -10,6 +10,10 @@ See README file for further details.
 */
 #include "examples/ch6/List.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 int main() {
     // Read list of values and find minimum.
     List<float> list;

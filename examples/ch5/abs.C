@@ -21,7 +21,7 @@ See README file for further details.
 //extern double abs(double);
 //extern double abs(double_complex);
 
-
+typedef std::complex<double> double_complex;
 
 void foo() {
 
@@ -39,7 +39,7 @@ int i = -3;
 
 int iabs    = abs(i);  // Calls abs(int)
 double d = 3.2; 
-double dabs = abs(d);  // Calls abs(double)
+//double dabs = abs(d);  // Calls abs(double)
 double_complex c(-1, 2);
 double cabs = abs(c);  // Calls abs(double_complex)
 

@@ -26,7 +26,7 @@ Array3d<T>& Array3d<T>::operator=(const T& rhs) {
 }
 
 template<class T>
-istream& operator>>(istream& is, Array3d<T>& a) {
+std::istream& operator>>(std::istream& is, Array3d<T>& a) {
   char c = 0;
   is >> c;
   if (c == '[') {
@@ -53,6 +53,6 @@ istream& operator>>(istream& is, Array3d<T>& a) {
 }
 
 template<class T>
-ostream& operator<<(ostream& os, const ConstArray3d<T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConstArray3d<T>& a) {
   return arrayTuplize(a, os);
 }

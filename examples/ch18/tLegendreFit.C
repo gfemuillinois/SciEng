@@ -13,6 +13,11 @@ See README file for further details.
 #include "LapackWrap/Lapack.h"
 #include "LapackWrap/RectSVDRep.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
+
 // 1 + x + x^2 + x^3 = \sum_{l=0}^{4} a_l P_l(x)
 //  P_0(x) = 1                   P_1(x) = x
 //  P_2(x) = (1/2)(3x^2 - 1)     P_3(x) = (1/2)(5x^3 - 3 x)

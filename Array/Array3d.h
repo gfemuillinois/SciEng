@@ -72,10 +72,10 @@ public:
 
 
 template<class T>
-istream& operator>>(istream& is, Array3d<T>& a);
+std::istream& operator>>(std::istream& is, Array3d<T>& a);
 
 template<class T>
-ostream& operator<<(ostream& os, const ConstArray3d<T>& a);
+std::ostream& operator<<(std::ostream& os, const ConstArray3d<T>& a);
 
 #ifdef XLC_QNOTEMPINC
 #include "Array/Array3d.c"

@@ -8,14 +8,17 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include "SciEng/Boolean.h"
 #include "examples/ch6/Point.h"
 #include "examples/ch6/SimpleArray.h"
 
 #include "examples/ch8/Element3.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 // Redefine EXIT_SUCCESS and EXIT_FAILURE.  When this program works it should return
 // EXIT_FAILURE, but run-test in the Makefile tests for EXIT_SUCCESS.
@@ -32,11 +35,11 @@ typedef Point Node;
 class Mesh {
 public:
 
-    friend ElementsOfMesh; // Iterator over elements of a mesh
-    friend NodesOfMesh;    // Iterator over nodes of a mesh
+    friend class ElementsOfMesh; // Iterator over elements of a mesh
+    friend class NodesOfMesh;    // Iterator over nodes of a mesh
 
-    friend istream& operator>>(istream&, Mesh&);
-    friend NodeReader;
+    friend std::istream& operator>>(std::istream&, Mesh&);
+    friend class NodeReader;
 
     Boolean checkElementAngles(Number angle_threshold) const;
 private:
@@ -47,19 +50,19 @@ private:
 
 class NodeReader {
 public:
-    NodeReader(Mesh& m, istream& instream);
+    NodeReader(Mesh& m, std::istream& instream);
     int   getSize();
     Node* getNode();
 private:
     Mesh& mesh;
-    istream& in;
+    std::istream& in;
 };
 
 
 class ElementsOfMesh {
 public:
     ElementsOfMesh(const Mesh& m) :
-                           element_table(m.element_table), cur(m.element_table.numElts()-1) { }
+                   element_table(m.element_table), cur(m.element_table.numElts()-1) { }
 
 
     Boolean        more()    const { return cur >= 0;           }
@@ -95,7 +98,7 @@ Boolean Mesh::checkElementAngles(Number angle_threshold) const {
 }
 
 
-istream& operator>>(istream& instream, Mesh& m) {
+std::istream& operator>>(std::istream& instream, Mesh& m) {
     // Set sizes of node and element tables
     int nNodes;
     int nElements;
@@ -127,7 +130,7 @@ void operator>>(NodeReader& reader, Element& e) {
 }
 
 
-ostream& operator<<(ostream& os, const Element& e) {
+std::ostream& operator<<(std::ostream& os, const Element& e) {
     os << "[ ";
     for (int i = 0; i < e.node_ptrs.numElts(); i++) {
                            os << *e.node_ptrs[i] << " ";
@@ -136,7 +139,7 @@ ostream& operator<<(ostream& os, const Element& e) {
 }
 
 
-NodeReader::NodeReader(Mesh& m, istream& instream) :
+NodeReader::NodeReader(Mesh& m, std::istream& instream) :
     mesh(m), in(instream) {}
 
 

@@ -9,6 +9,9 @@
 #include "timer.h"
 #include "RigidArithmetic.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {
@@ -17,13 +20,13 @@ int main() {
 
 #define TEST1 0  // Test/timing for operator ++ -- - (negate)
 
-#define TEST2 1  // Test/timing for operators += -=(const Array& rhs)
+#define TEST2 0  // Test/timing for operators += -=(const Array& rhs)
 
-#define TEST3 1  // Test/timing for operators *= /=(const Array& rhs)
+#define TEST3 0  // Test/timing for operators *= /=(const Array& rhs)
 
-#define TEST4 1  // Test/timing for operators += -=(const T& rhs)
+#define TEST4 0  // Test/timing for operators += -=(const T& rhs)
 
-#define TEST5 1  // Test/timing for operators *= /=(const T& rhs)
+#define TEST5 0  // Test/timing for operators *= /=(const T& rhs)
 
 #define TEST6 0  // Test/timing for operators * / (const T& rhs)
                  // Test/timing for XmultScalar/scale
@@ -37,7 +40,8 @@ int main() {
 #define TEST9 0  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
                  // Test/Timing for XtimesY/distMult XdivY/distDiv
 
-#define TEST10 1 // Test/Timing for operators == != (const Array& rhs)
+#define TEST10 0 // Test/Timing for operators == != (const Array& rhs)
+
 
 #if TEST1 || TEST_ALL
 
@@ -1088,6 +1092,7 @@ a_eq_c = 0
 
   */
 #endif
+
 
   return EXIT_SUCCESS;
 }

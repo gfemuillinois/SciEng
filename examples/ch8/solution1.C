@@ -8,11 +8,15 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include "SciEng/Boolean.h"
 #include "examples/ch6/Point.h"
 #include "examples/ch6/SimpleArray.h"
+
+using std::cout;
+using std::cin;
+using std::endl;
 
 // Redefine EXIT_SUCCESS and EXIT_FAILURE.  When this program works it should return
 // EXIT_FAILURE, but run-test in the Makefile tests for EXIT_SUCCESS.

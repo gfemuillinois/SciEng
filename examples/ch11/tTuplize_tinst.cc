@@ -10,8 +10,8 @@ template class SimpleArray<int>;
 
 template class SimpleArray<double>;
 
-template ostream & tuplize<int>(ostream &, const SimpleArray<int> &);
+template std::ostream & tuplize<int>(std::ostream &, const SimpleArray<int> &);
 
-template ostream & tuplize<double>(ostream &, const SimpleArray<double> &);
+template std::ostream & tuplize<double>(std::ostream &, const SimpleArray<double> &);
 
 #endif

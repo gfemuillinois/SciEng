@@ -11,7 +11,11 @@ See README file for further details.
 
 #include "tGroupD3.h"
 
-ostream& operator<<(ostream& s, const GroupD3& x) {
+using std::cout;
+using std::cin;
+using std::endl;
+
+std::ostream& operator<<(std::ostream& s, const GroupD3& x) {
   return s << GroupD3::name_tab[x.val];
 }
 

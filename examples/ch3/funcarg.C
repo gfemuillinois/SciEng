@@ -8,8 +8,10 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 void swap(int& i1, int& i2) {
     // Swap arguments

@@ -16,10 +16,10 @@ typedef Point Node;
 
 class Element {
 public:
-    friend NodesOfElement; // Iterator over nodes of an element
+    friend class NodesOfElement; // Iterator over nodes of an element
 
     friend void operator>>(NodeReader& reader, Element& e);
-    friend ostream& operator<<(ostream& os, const Element& e);
+    friend std::ostream& operator<<(std::ostream& os, const Element& e);
 
     Number maxAngle() const;
 private:

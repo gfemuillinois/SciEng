@@ -9,10 +9,12 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include "examples/ch7/TraceLifetime.h"
-#include <iostream.h>
-#include <string.h>
+#include <iostream>
+#include <cstring>
 
-
+using std::cout;
+using std::cin;
+using std::endl;
 
 int  TraceLifetime::total_created = 0;
 char TraceLifetime::existing_objects[1+TraceLifetime::max_objects_to_trace] = "";

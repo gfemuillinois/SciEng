@@ -20,6 +20,10 @@ See README file for further details.
 
 #include "Driver.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 int
 main() {
   // cad: just testing projections

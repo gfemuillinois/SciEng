@@ -11,6 +11,10 @@ See README file for further details.
 #include <iostream>
 #include "examples/ch10/CheckedFloatArray.h"
 
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
 
 float average(SimpleFloatArray& a) {
     double sum = 0.0;

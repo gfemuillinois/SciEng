@@ -294,7 +294,7 @@ ConcreteBlas2d<T>& ConcreteBlas2d<T>::operator=(const T& rhs){
 }
 
 template<class T>
-ostream& operator<<(ostream& os, const ConstConcreteBlasProjection1d<T>& p);
+std::ostream& operator<<(std::ostream& os, const ConstConcreteBlasProjection1d<T>& p);
 
 // **************************************************
 // **************************************************

@@ -5,13 +5,15 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all clean real_clean run_all check
 
-FILES_WITH_MAIN	= sizet.C tTuplize.C tArrayErr.C average.C
+FILES_WITH_MAIN	= sizet.C tTuplize.C tArrayErr.C
+#                  average.C
 
 
 SOURCE_FILES = Array2d-with-dim.C ArrayErr.C ArraynT.C ArrayxD.C rigid.C \
                SciEngErr.C String.C
 
-TEMPLATE_INSTANCES = tTuplize_tinst.cc average_tinst.cc
+TEMPLATE_INSTANCES = tTuplize_tinst.cc
+#                    average_tinst.cc
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
@@ -82,4 +84,4 @@ run_all:
 #	@echo Running sizet: ;  sizet
 	@echo Running tTuplize: ;   tTuplize
 	@echo Running tArrayErr: ;  tArrayErr
-	@echo Running average: ;   average
+#	@echo Running average: ;   average

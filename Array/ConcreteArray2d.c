@@ -125,4 +125,17 @@ void ConcreteArray2d<Subscriptor, T>::reshapeOnHeap(const SubscriptArray<2>& s) 
     setSizeOnHeap(numElts());
 }
 
+template<class Subscriptor, class T>
+void ConcreteArray2d<Subscriptor, T>::swap( ConcreteArray2d<Subscriptor, T>&
+					    rhs ) {
 
+  // swap the Subscriptor
+  SubscriptArray<2> subs_temp = the_shape;
+  setShape( rhs.the_shape );
+  rhs.setShape( subs_temp );
+
+  // swap the data
+  T* datap_temp = datap;
+  datap = rhs.datap;
+  rhs.datap = datap_temp;
+}

@@ -12,6 +12,8 @@ See README file for further details.
 #include <math.h>  /* Include to get consistency check with math dcl's below */
 #include <complex>  /* Likewise... */
 
+using std::complex;
+
 extern int day_of_year;
 extern double f(double);
 

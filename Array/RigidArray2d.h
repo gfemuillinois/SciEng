@@ -14,7 +14,7 @@ See README file for further details.
 #include "Array/ConcreteRigidArray2d.h"
 #include "Array/InterfacedArray2d.h"
 
-class ostream;
+#include<iosfwd>
 
 template<class T, Subscript n0, Subscript n1>
 class RigidArray2d :

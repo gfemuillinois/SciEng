@@ -15,6 +15,9 @@ See README file for further details.
 
 #include "tMolecule.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 void duplicate(  ConcreteFormedArray1d<Atom*>& lhs,
 		 const ConcreteFormedArray1d<Atom*>& rhs) { 
@@ -91,7 +94,7 @@ void Molecule::readAtoms() {
 }
 
 
-ostream& operator<<(ostream& os, const Molecule& m) {
+std::ostream& operator<<(std::ostream& os, const Molecule& m) {
   os << '[';
   for (Subscript i = 0; i < m.numAtoms()-1; i++) os << m(i)->name() << ", ";
   return os << m(m.numAtoms()-1)->name() << ']';

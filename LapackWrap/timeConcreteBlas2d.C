@@ -10,11 +10,14 @@
 #include "ConcreteBlas2d.h"
 #include "TransposedConcreteBlas2d.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {
 
-#define TEST_ALL  0
+#define TEST_ALL  1
 
 #define TEST1 0  // Test/timing for operator ++ -- - (negate)
 

@@ -11,6 +11,9 @@ See README file for further details.
 
 #include <iostream>
 #include "SciEng/String.h"
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
 

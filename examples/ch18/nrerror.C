@@ -12,7 +12,9 @@ See README file for further details.
 #include "SciEng/SciEngErr.h"
 #include "SciEng/String.h"
 
-
+using std::cout;
+using std::cin;
+using std::endl;
 
 class NumericalRecipesErr :
     public SciEngErr {

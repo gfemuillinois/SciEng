@@ -12,9 +12,9 @@ class GPIBInstrumentSimulation;
 
 template class CheckedSimpleArray< GPIBInstrumentSimulation * >;
 
-template class HandlerStack< set_terminate >;
+template class HandlerStack< std::set_terminate >;
 
-template class HandlerStack< set_new_handler >;
+template class HandlerStack< std::set_new_handler >;
 
 
 #endif

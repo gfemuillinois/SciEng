@@ -13,6 +13,11 @@ See README file for further details.
 #include <cstdlib>
 #include "examples/ch4/CheckedSimpleArray.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+using std::cerr;
+
 int main() {
 
   try { 
@@ -33,7 +38,7 @@ int main() {
 
 
   {
-    istrstream cin("10 2");
+    std::istrstream cin("10 2");
 
     try {
       int n;

@@ -19,7 +19,7 @@ Boolean operator==(const A& lhs, const A& rhs){
 }
 
 
-main(){
+int main(){
   A a;
   A b;
   if (a != b){

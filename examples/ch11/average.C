@@ -14,13 +14,19 @@ See README file for further details.
 #include "Array/FormedArray2d.h"
 
 #include <iostream>
-#include <strstream.h>
+//#include <strstream>
+#include <sstream>
 #include <float.h>
 
 // CAD We moved lots of stuff to the include file below so
 // we can use to it instantiate template explicitly
 
 #include "average.h"
+
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
 
 double average(const Array2d<float>& a) {
     double sum = 0;

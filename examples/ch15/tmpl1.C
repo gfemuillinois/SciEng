@@ -12,6 +12,10 @@ See README file for further details.
 
 #include "tmpl1.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 int main() {
 
   LapackRect<float> a(10,10);

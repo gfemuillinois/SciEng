@@ -12,14 +12,14 @@ template class ConcreteFortranArray2d<double>;
 
 template class ConcreteArray2dRef<ConcreteColumnMajorSubscriptor<2>, double>;
 
-template ostream & operator<< <double>
-(ostream &, ConstArray2d<double> const &);
+template std::ostream & operator<< <double>
+(std::ostream &, ConstArray2d<double> const &);
 
-template ostream & operator<< <int>
-(ostream &, ConstArray1d<int> const &);
+template std::ostream & operator<< <int>
+(std::ostream &, ConstArray1d<int> const &);
 
-template ostream & operator<< <ConcreteColumnMajorSubscriptor<2>, double>
-(ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, double> const &);
+template std::ostream & operator<< <ConcreteColumnMajorSubscriptor<2>, double>
+(std::ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, double> const &);
 
 template class FormedArray1d<int>;
 

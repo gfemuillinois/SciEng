@@ -32,19 +32,19 @@ template class ConcreteFortranArray2d<float>;
 
 template class ConcreteFortranArray3d<float>;
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<3>, float>
-(ostream &, ConcreteArray3dConstRef<ConcreteColumnMajorSubscriptor<3>, float> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<3>, float>
+(std::ostream &, ConcreteArray3dConstRef<ConcreteColumnMajorSubscriptor<3>, float> const &);
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<2>, float>
-(ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, float> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<2>, float>
+(std::ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, float> const &);
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<1>, float>
-(ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, float> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<1>, float>
+(std::ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, float> const &);
 
-template ostream & operator<<<ConcreteRowMajorSubscriptor<1>, double>(ostream &, ConcreteArray1dConstRef<ConcreteRowMajorSubscriptor<1>, double> const &);
+template std::ostream & operator<<<ConcreteRowMajorSubscriptor<1>, double>(std::ostream &, ConcreteArray1dConstRef<ConcreteRowMajorSubscriptor<1>, double> const &);
 
 
-template ostream & operator<<<ConcreteRowMajorSubscriptor<3>, float>(ostream &, ConcreteArray3dConstRef<ConcreteRowMajorSubscriptor<3>, float> const &);
+template std::ostream & operator<<<ConcreteRowMajorSubscriptor<3>, float>(std::ostream &, ConcreteArray3dConstRef<ConcreteRowMajorSubscriptor<3>, float> const &);
 
 template class ConcreteArray2dRef<ConcreteColumnMajorSubscriptor<2>, float>;
 

@@ -14,6 +14,9 @@ See README file for further details.
 
 #include "AtwoodsMachine.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 void DemoAtwoodsMachine::demo() {
 

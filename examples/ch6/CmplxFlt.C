@@ -8,19 +8,21 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 class ComplexFloat {
 public:
     ComplexFloat(float r, float i);  // Construct from real & imaginary parts
-    static ComplexFloat fromFile(istream& input = cin);
+    static ComplexFloat fromFile(std::istream& input = cin);
     // ...
 };
 
 
 
-ComplexFloat ComplexFloat::fromFile(istream& input) {
+ComplexFloat ComplexFloat::fromFile(std::istream& input) {
     float r;  input >> r;
     float i;  input >> i;
     return ComplexFloat(r, i);

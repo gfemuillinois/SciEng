@@ -11,6 +11,9 @@ See README file for further details.
 #include <iostream>
 #include "examples/ch6/SimpleArray.h"
 #include "examples/ch11/tuplize.h"
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
 

@@ -23,6 +23,9 @@ See README file for further details.
 #define EXIT_SUCCESS 1
 #define EXIT_FAILURE 0
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 typedef Point Node;
 
@@ -33,7 +36,7 @@ public:
     Number  maxAngle(const Element& e) const;
     int numNodes() const;
     int numElements() const;
-    friend istream& operator>>(istream&, Mesh&);
+    friend std::istream& operator>>(std::istream&, Mesh&);
 private:
     SimpleArray<Node> node_table;
     SimpleArray<Element> element_table;
@@ -74,7 +77,7 @@ Number Mesh::maxAngle(const Element& e) const {
 }
 
 
-istream& operator>>(istream& instream, Mesh& m) {
+std::istream& operator>>(std::istream& instream, Mesh& m) {
     int nNodes;
     int nElements;
     instream >> nNodes >> nElements;

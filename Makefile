@@ -18,7 +18,7 @@
 HOSTTYPE = $(shell uname)
 include  SciEng.mkdefs-$(HOSTTYPE)
 
-.PHONY: all clean real_clean run_all check clean_SciEng
+.PHONY: all tests clean real_clean run_all run_tests check clean_SciEng
 
 ## Command to remove a file
 RM = /bin/rm
@@ -32,7 +32,7 @@ RM = /bin/rm
 #	$(RM) $*.o
 #	ranlib $@
 
-all:	SciEng.a  SciEngMatx.a templ_instatiation_g++
+all:	SciEng.a  SciEngMatx.a templ_instatiation_g++ examples/SciEng.a examples/SciEngMatx.a
 	cd examples/ch2; $(MAKE)
 	cd examples/ch3; $(MAKE)
 	cd examples/ch4; $(MAKE)
@@ -43,19 +43,33 @@ all:	SciEng.a  SciEngMatx.a templ_instatiation_g++
 	cd examples/ch9; $(MAKE)
 	cd examples/ch10; $(MAKE)
 	cd examples/ch11; $(MAKE)
-	cd examples/ch12; $(MAKE) WERROR=
+	cd examples/ch12; $(MAKE)
 	cd examples/ch13; $(MAKE)
 	cd examples/ch14; $(MAKE)
 	cd examples/ch15; $(MAKE) 
 	cd examples/ch16; $(MAKE) USE_IMPLICITY_TEMPL=YES
 	cd examples/ch18; $(MAKE)
-	cd LapackWrap;    $(MAKE) WERROR=
+	cd LapackWrap;    $(MAKE)
 	cd Vector;        $(MAKE)
 #	cd examples/ch17; $(MAKE)
 #	cd examples/ch19; $(MAKE)
 
+# folders with timings and tests for several classes we use
+tests: SciEng.a  SciEngMatx.a templ_instatiation_g++
+	ln -s SciEng.a examples/SciEng.a
+	ln -s SciEngMatx.a examples/SciEngMatx.a
+	cd examples/ch13; $(MAKE)
+	cd LapackWrap;    $(MAKE)
+	cd Vector;        $(MAKE)
+
 templ_instatiation_g++:
 	ln -s examples/ch4/templ_instatiation_g++ .
+
+examples/SciEng.a: SciEng.a
+	ln -s SciEng.a examples/SciEng.a
+
+examples/SciEngMatx.a: SciEngMatx.a
+	ln -s SciEngMatx.a examples/SciEngMatx.a
 
 SciEngMatx.a:	\
 	SciEngMatx.a(LapackWrap/BlasSubroutines.o) \
@@ -240,6 +254,13 @@ run_all:
 	@echo Running examples/ch15;  cd examples/ch15;  $(MAKE) run_all
 	@echo Running examples/ch16;  cd examples/ch16;  $(MAKE) run_all
 	@echo Running examples/ch18;  cd examples/ch18; $(MAKE) run_all
+	@echo Running LapackWrap;     cd LapackWrap;    $(MAKE) run_all
+	@echo Running Vector;         cd Vector;        $(MAKE) run_all
+
+# The sequence of runs will stop if any executable 
+# returns non-zero value.
+run_tests:
+	@echo Running examples/ch13;  cd examples/ch13;  $(MAKE) run_all
 	@echo Running LapackWrap;     cd LapackWrap;    $(MAKE) run_all
 	@echo Running Vector;         cd Vector;        $(MAKE) run_all
 

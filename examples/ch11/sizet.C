@@ -8,12 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <stddef.h>
+#include <cstddef>
 #include <iostream>
+
 
 int main() {
 
-  for (size_t i = 9; i >= 0; i--) cout << i << endl;
+  for (size_t i = 9; i >= 0; i--) std::cout << i << std::endl;
 
   return 0;
 }

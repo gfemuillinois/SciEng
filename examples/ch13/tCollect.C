@@ -16,6 +16,8 @@ See README file for further details.
 #include "Array/FormedArray2d.h"
 #include "Array/FormedArray3d.h"
 
+using std::cout;
+using std::endl;
 
 int main() {
 

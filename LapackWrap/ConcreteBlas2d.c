@@ -99,7 +99,7 @@ ConcreteBlas1d<T> operator/(const ConcreteBlasProjection1d<T>& lhs, const T& rhs
 }
 
 template<class T>
-ostream& operator<<(ostream& os, const ConstConcreteBlasProjection1d<T>& p) {
+std::ostream& operator<<(std::ostream& os, const ConstConcreteBlasProjection1d<T>& p) {
   ConcreteArray1dConstRef< typename ConcreteBlas2d<T>::ConstProjectionT::SubscriptorT, T> pr = p;
   return os << pr;
 }

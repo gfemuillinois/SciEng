@@ -12,6 +12,9 @@ See README file for further details.
 #include <complex>
 #include <iostream>
 
+using std::cout;
+using std::cin;
+using std::endl;
 using std::complex;
 
 extern float zero;        // Forward declaration

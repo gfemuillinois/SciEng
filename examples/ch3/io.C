@@ -10,11 +10,14 @@ See README file for further details.
 */
 #include <unistd.h>
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
-  ofstream out("pi.out");
+  std::ofstream out("pi.out");
   out << 3.14159 << endl;
 
   unlink("pi.out");

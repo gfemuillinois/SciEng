@@ -32,7 +32,7 @@ const double& d = temp;
 
 #include <complex>
 
-typedef complex<double> ComplexDouble;
+typedef std::complex<double> ComplexDouble;
 
 class ComplexFloat {
 public:

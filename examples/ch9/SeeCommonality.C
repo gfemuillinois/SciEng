@@ -8,11 +8,10 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <math.h>
-#include <iostream.h>
+#include <cmath>
+#include <iostream>
 
 #include "examples/ch9/GPIBController_Stub.h"
-
 
 class Acme130 {
 public:         
@@ -41,7 +40,7 @@ private:
 
 // Common code in test/SeeCommonality.C and test/SeeVoltageSupply.C
 
-#include <strstream.h>
+//#include <strstream.h>
 
 
 void VoltOn59::set(float volts) {

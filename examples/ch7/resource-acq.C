@@ -8,16 +8,16 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 
 static int data_is_bad = 0;
 class BadData {};
 
 
 void process_file(const char* in_name, const char* out_name) {
-    ifstream in_file(in_name);
-    ofstream out_file(out_name);
+    std::ifstream in_file(in_name);
+    std::ofstream out_file(out_name);
 
     // Process input file, generating output file
     // ...

@@ -61,7 +61,7 @@ public:
         virtual String message() const;
     };
 
-    FormedPhysicalData(istream& stream_in, unsigned int n_data_pts);
+    FormedPhysicalData(std::istream& stream_in, unsigned int n_data_pts);
     FormedPhysicalData(    
         const ConstArray1d<double>& x_in,
         const ConstArray1d<double>& y_in,

@@ -18,11 +18,11 @@ template<class T>
 class SIConstants :
     public DerivedUnits<T> {
 public:
-  typedef FundamentalUnits<T>::Mass     Mass;
-  typedef FundamentalUnits<T>::Length   Length;
-  typedef DerivedUnits<T>::Force        Force;
-  typedef FundamentalUnits<T>::Time     Time;  
-  typedef DerivedUnits<T>::Acceleration Acceleration;
+  typedef typename FundamentalUnits<T>::Mass     Mass;
+  typedef typename FundamentalUnits<T>::Length   Length;
+  typedef typename DerivedUnits<T>::Force        Force;
+  typedef typename FundamentalUnits<T>::Time     Time;  
+  typedef typename DerivedUnits<T>::Acceleration Acceleration;
 
     static const Mass         kilogram;
     static const Length       meter;

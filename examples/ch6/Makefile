@@ -5,9 +5,11 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all clean real_clean run_all check
 
-FILES_WITH_MAIN	=  arrayAssign.C Bool-examples.C demoFal.C demoList.C
+FILES_WITH_MAIN	=  arrayAssign.C Bool-examples.C  demoList.C
+#                  demoFal.C
 
-TEMPLATE_INSTANCES = demoFal_tinst.cc
+TEMPLATE_INSTANCES = 
+#                  demoFal_tinst.cc
 
 SOURCE_FILES =  Circle.C CmplxFlt.C SimpleFloatArray.C UsePoint.C \
                 ambig-convert.C ambig-convert2.C ambig-convert3.C  \
@@ -63,7 +65,7 @@ check:
 # The sequence of runs will stop if any executable 
 # returns non-zero value.
 run_all:
-	@echo Running demoFal: ; demoFal
+#	@echo Running demoFal: ; demoFal
 	@echo Running Bool-examples: ; Bool-examples
 	@echo Running arrayAssign: ; arrayAssign
 

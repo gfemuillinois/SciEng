@@ -32,21 +32,21 @@ template LapackUnfactored<RectLURep<float> >
 xForAxEqb<LapackUnfactored<SymPosDefPackedLURep<float> >, float>
 (LapackUnfactored<SymPosDefPackedLURep<float> > &, ConcreteFortranArray2d<float> &);
 
-template ostream & operator<< <double> (ostream &, ConstArray2d<double> const &);
+template std::ostream & operator<< <double> (std::ostream &, ConstArray2d<double> const &);
 
-template ostream & operator<< <float> (ostream &, ConstArray2d<float> const &);
+template std::ostream & operator<< <float> (std::ostream &, ConstArray2d<float> const &);
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<2>, double>(ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, double> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<2>, double>(std::ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, double> const &);
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<2>, float>(ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, float> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<2>, float>(std::ostream &, ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, float> const &);
 
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<1>, double>(ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, double> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<1>, double>(std::ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, double> const &);
 
-template ostream & operator<<<ConcreteRowMajorSubscriptor<2>, double>(ostream &, ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<2>, double> const &);
+template std::ostream & operator<<<ConcreteRowMajorSubscriptor<2>, double>(std::ostream &, ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<2>, double> const &);
 
-template ostream & operator<<<ConcreteColumnMajorSubscriptor<3>, double>(ostream &, ConcreteArray3dConstRef<ConcreteColumnMajorSubscriptor<3>, double> const &);
+template std::ostream & operator<<<ConcreteColumnMajorSubscriptor<3>, double>(std::ostream &, ConcreteArray3dConstRef<ConcreteColumnMajorSubscriptor<3>, double> const &);
 
-template ostream & operator<<<ConcreteRowMajorSubscriptor<3>, double>(ostream &, ConcreteArray3dConstRef<ConcreteRowMajorSubscriptor<3>, double> const &);
+template std::ostream & operator<<<ConcreteRowMajorSubscriptor<3>, double>(std::ostream &, ConcreteArray3dConstRef<ConcreteRowMajorSubscriptor<3>, double> const &);
 
 #endif

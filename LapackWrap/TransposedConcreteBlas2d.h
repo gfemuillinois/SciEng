@@ -92,7 +92,7 @@ public:
 
 template<class T>
 inline
-ostream& operator<<(ostream& os, const TransposedConcreteBlas2d<T>& a) {
+std::ostream& operator<<(std::ostream& os, const TransposedConcreteBlas2d<T>& a) {
   return os << ConcreteArray2dConstRef< typename TransposedConcreteBlas2d<T>::SubscriptorT, T>(a);
 }
 

@@ -8,8 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <math.h>
-#include <iostream.h>
+#include <cmath>
+#include <iostream>
 #include "Function/Function.h"
 #include "SciEng/String.h"
 

@@ -17,7 +17,7 @@ public:
   GroupD3& operator*=(const GroupD3& rhs){ val = mult_tab[val][rhs.val]; return *this;}
   GroupD3& operator/=(const GroupD3& rhs){ val = inv_tab[rhs.val]; return *this;}
   GroupD3& setToOne(){ val = R0; return *this; }
-  friend ostream& operator<<(ostream& s, const GroupD3& x);
+  friend std::ostream& operator<<(std::ostream& s, const GroupD3& x);
 
 private:
   static sym_op mult_tab[6][6];

@@ -10,6 +10,9 @@
 #include "timer.h"
 #include "ConcreteBlas1d.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {
@@ -855,8 +858,8 @@ a_eq_c = 0
     cout << "\n Time spent with built in arrays (s) = "
 	 << the_timer.read(0) << endl;
     
-    cout << setiosflags( ios::showpoint );
-    cout << setprecision(15);
+    cout << setiosflags( std::ios::showpoint );
+    cout << std::setprecision(15);
 
     cout << "inner_a_b = " << inner << endl;
     cout << "inner_a = " << inner_a << endl;

@@ -8,7 +8,10 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 template<class T> T abs(T x) {
   if (x < 0) return -x;

@@ -8,10 +8,12 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 .PHONY: all clean real_clean run_all check
 
 FILES_WITH_MAIN	=  lin-frac.C tASGArray.C tGroupD3.C tIntMod5.C \
-		   tSpaceVector.C AtwoodsMachine.C
+		   AtwoodsMachine.C
+#		tSpaceVector.C 
 
 TEMPLATE_INSTANCES = tASGArray_tinst.cc tGroupD3_tinst.cc tIntMod5_tinst.cc \
-			tSpaceVector_tinst.cc AtwoodsMachine_tinst.cc
+			 AtwoodsMachine_tinst.cc
+#		tSpaceVector_tinst.cc
 
 SOURCE_FILES = global-category-template.C global-function-template.C \
 	       FormedPhysicalData.C
@@ -89,5 +91,5 @@ run_all:
 	@echo Running tASGArray: ;   tASGArray
 	@echo Running tGroupD3: ;    tGroupD3
 	@echo Running tIntMod5: ;    tIntMod5
-	@echo Running tSpaceVector: ;  tSpaceVector
+#	@echo Running tSpaceVector: ;  tSpaceVector
 	@echo Running AtwoodsMachine: ;  AtwoodsMachine

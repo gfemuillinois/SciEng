@@ -67,7 +67,7 @@ public:
     void    advance()       { cur = cur->link;   }
 
 private:
-    List<T>::Node* cur;
+    typename List<T>::Node* cur;
 };
 
 

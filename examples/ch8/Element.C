@@ -6,7 +6,7 @@ int Element::operator[](int i) const { return node_numbers[i];        }
 int Element::numNodes()        const { return node_numbers.numElts(); }
 
 
-istream& operator>>(istream& instream, Element& e) {
+std::istream& operator>>(std::istream& instream, Element& e) {
     int n;
     instream >> n;
     e.node_numbers.setSize(n);

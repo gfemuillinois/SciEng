@@ -9,15 +9,15 @@
 
 template class ConcreteRigidArray1d<float, 5>;
 
-template ostream & operator<<<float, 5>(ostream &, ConcreteRigidArray1d<float, 5> const &);
+template std::ostream & operator<<<float, 5>(std::ostream &, ConcreteRigidArray1d<float, 5> const &);
 
 template class ConcreteRigidArray2d<float, 3, 4>;
 
-template ostream & operator<<<float, 3, 4>(ostream &, ConcreteRigidArray2d<float, 3, 4> const &);
+template std::ostream & operator<<<float, 3, 4>(std::ostream &, ConcreteRigidArray2d<float, 3, 4> const &);
 
 template class ConcreteRigidArray3d<int, 4, 3, 2>;
 
-template ostream & operator<<<int, 4, 3, 2>(ostream &, ConcreteRigidArray3d<int, 4, 3, 2> const &);
+template std::ostream & operator<<<int, 4, 3, 2>(std::ostream &, ConcreteRigidArray3d<int, 4, 3, 2> const &);
 
 template class ConcreteRigidArray2d<float, 5, 6>;
 

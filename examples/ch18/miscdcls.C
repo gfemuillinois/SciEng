@@ -12,12 +12,12 @@ See README file for further details.
 #include "clarch.h"
 
 
-extern "C" int rand();// C random number generator
+//extern "C" int rand();// C random number generator
 
 extern "C" {
     // ANSI C random number generator functions
-    int rand();
-    void srand(unsigned int seed);
+    int rand() throw ();
+    void srand(unsigned int seed) throw ();
 }
 
 /*
@@ -30,6 +30,10 @@ extern "C" double FTNAME(drand)();// Fortran random number generator
 
 
 #include <iostream>
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
 
 int main() {
   if ( FTNAME(drand)() != .5 ) {

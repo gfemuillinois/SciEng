@@ -14,9 +14,7 @@ See README file for further details.
 #include "Array/ArrayShape.h"
 #include "Array/ArrayIterator1d.h"
 
-class ostream;
-class istream;
-
+#include <iosfwd>
 
 template<class T>
 class ConstArray1d :              
@@ -58,10 +56,10 @@ public:
 
 
 template<class T>
-istream& operator>>(istream& is, Array1d<T>& a);
+std::istream& operator>>(std::istream& is, Array1d<T>& a);
 
 template<class T>
-ostream& operator<<(ostream& os, const ConstArray1d<T>& a);
+std::ostream& operator<<(std::ostream& os, const ConstArray1d<T>& a);
 
 
 #ifdef XLC_QNOTEMPINC

@@ -11,11 +11,14 @@
 #include "Array/ConcreteRigidArray1d.h"
 #include "Array/ConcreteRigidArray2d.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {
 
-#define TEST_ALL  0
+#define TEST_ALL  1
 #define TEST1     1
 
 #if TEST1 || TEST_ALL

@@ -8,8 +8,12 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include "examples/ch7/TraceLifetime.h"
+
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
     cout << "-- main starts --" << endl;

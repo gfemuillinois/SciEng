@@ -13,6 +13,9 @@ See README file for further details.
 
 #include <iostream>
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 class GPIBController_Stub {
 public:

@@ -15,6 +15,7 @@ See README file for further details.
 #include "Array/ArrayIterator3d.h"
 #include "Array/ConcreteArrayProjection2d.h"
 
+
 template<class Subscriptor, class T> class ConcreteArray3dRef;
 template<class Subscriptor, class T> class ConcreteArray3d;
 
@@ -175,20 +176,20 @@ protected:
 };
 
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, const ConcreteArray3dConstRef<Subscriptor, T>& a);
+std::ostream& operator<<(std::ostream& os, const ConcreteArray3dConstRef<Subscriptor, T>& a);
 
 template<class Subscriptor, class T>
-istream& operator>>(istream& is, const ConcreteArray3dRef<Subscriptor, T>& a);
+std::istream& operator>>(std::istream& is, const ConcreteArray3dRef<Subscriptor, T>& a);
 
 template<class Subscriptor, class T>
 inline
-ostream& operator<<(ostream& os, const ConcreteArray3d<Subscriptor, T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConcreteArray3d<Subscriptor, T>& a) {
   return os << ConcreteArray3dConstRef<Subscriptor, T>(a);
 }
 
 template<class Subscriptor, class T>
 inline
-istream& operator>>(istream& is, ConcreteArray3d<Subscriptor, T>& a) {
+std::istream& operator>>(std::istream& is, ConcreteArray3d<Subscriptor, T>& a) {
   return is >> ConcreteArray3dRef<Subscriptor, T>(a);
 }
 

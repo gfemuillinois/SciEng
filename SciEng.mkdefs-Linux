@@ -59,7 +59,7 @@ CXXFLAGS =  $(OPTM) $(PROF)  \
 #           -Wall -Wno-unused  -ansi -pedantic -Werror 
 #           -Wall -Wno-unused        -pedantic -Werror -D__USE_GNU 
 
-CXXFLAGS += -finline-functions -Winline 
+CXXFLAGS += -finline-functions -Wno-inline 
 
 CXXFLAGS_DEPENDLIST = $(CXXFLAGS) -MM
 
@@ -76,9 +76,9 @@ LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
 
 #PWD := $(shell pwd)
 
-SCIENGLIB = $(HOME)/Galileu_arm/SciEng/SciEng.a
+SCIENGLIB = ../SciEng.a
 #SCIENGLIB = 
-SCIENGMATXLIB = $(HOME)/Galileu_arm/SciEng/SciEngMatx.a
+SCIENGMATXLIB = ../SciEngMatx.a
 
 # location of libg2c.a  =  Fortran run-time library
 #LIBSYSPATH = -L/usr/lib/gcc-lib/i386-redhat-linux/egcs-2.91.66 

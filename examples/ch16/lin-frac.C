@@ -12,6 +12,9 @@ See README file for further details.
 
 #include "Algebra/ComplexFloat.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 class LinearFractionalTrans {
 public:

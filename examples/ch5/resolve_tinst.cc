@@ -7,6 +7,9 @@
 #ifdef NO_IMPLICIT_TEMPLATE
 
 #include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 template<class T> extern void f(T) { cout << "f(T)" << endl; }
 

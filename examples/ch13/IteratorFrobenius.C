@@ -17,6 +17,9 @@ See README file for further details.
 
 #include "IteratorFrobenius.h"
 
+using std::cerr;
+using std::endl;
+
 int main() {
   ConcreteFormedArray1d<double> a1(3);
   a1(0) = 2; a1(1) = 3; a1(2) = 4;

@@ -10,8 +10,8 @@ template class LapackUnfactored< RectSVDRep<double> >;
 
 template class LapackFactored< RectSVDRep<double> >;
 
-template ostream & operator<< <ConcreteColumnMajorSubscriptor<1>, double>
-(ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, double> const &);
+template std::ostream & operator<< <ConcreteColumnMajorSubscriptor<1>, double>
+(std::ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, double> const &);
 
 template class ConcreteFortranArray1d<double>;
 

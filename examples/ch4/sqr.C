@@ -8,9 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include <complex>
 #include "SciEng/utils.h"
+
+using std::cout;
+using std::cin;
+using std::endl;
 
 // GNUC g++/std/complex.h: typedef complex<double> double_complex;
 // or in egcs-1.0.2/libstdc++/complex

@@ -14,6 +14,9 @@
 #include "Array/ConcreteFormedArray1d.h"
 #include "Array/ConcreteFormedArray3d.h"
 
+using std::cout;
+using std::endl;
+
 int main() {
 
   ConcreteRowMajorSubscriptor<1>  RowSub1( SubscriptArray<1>(5) );

@@ -10,6 +10,9 @@
 
 #include "Array/ConcreteFormedArray2d.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {

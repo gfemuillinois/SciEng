@@ -176,6 +176,9 @@ public:
     ConcreteArray2d<Subscriptor, T>& operator=(const ConcreteArray2d<Subscriptor, T>& rhs);
     ConcreteArray2d<Subscriptor, T>& operator=(const ConcreteArray2dConstRef<Subscriptor, T>& rhs);
     ConcreteArray2d<Subscriptor, T>& operator=(const T& rhs);
+
+  void swap( ConcreteArray2d<Subscriptor, T>& rhs );
+
 protected:
     ConcreteArray2d(const Subscriptor& s, T* p) : Subscriptor(s), datap(p) {}
     void reshapeOnHeap(const SubscriptArray<2>& s);

@@ -12,12 +12,12 @@ See README file for further details.
 #include "SciEng/ArrayErr.h"
 
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, const ConcreteArray3dConstRef<Subscriptor, T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConcreteArray3dConstRef<Subscriptor, T>& a) {
   return arrayTuplize(a, os);
 }
 
 template<class Subscriptor, class T>
-istream& operator>>(istream& is, const ConcreteArray3dRef<Subscriptor, T>& a) {
+std::istream& operator>>(std::istream& is, const ConcreteArray3dRef<Subscriptor, T>& a) {
   char c = 0;
   is >> c;
   if (c == '[') {

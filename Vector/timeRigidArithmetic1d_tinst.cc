@@ -12,6 +12,6 @@ template void crossProd<double>
 (RigidArithmetic1d<double, 3> const &, RigidArithmetic1d<double, 3> const &, 
  RigidArithmetic1d<double, 3> &);
 
-template ostream & operator<<<double, 3>(ostream &, ConcreteRigidArray1d<double, 3> const &);
+template std::ostream & operator<<<double, 3>(std::ostream &, ConcreteRigidArray1d<double, 3> const &);
 
 #endif

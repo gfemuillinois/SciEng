@@ -12,11 +12,11 @@ template class SIConstants<double>;
 
 template class BritishConstants<double>;
 
-template ostream & operator<< <double, 0, 1, -2, 0, 0, 0, 0>
-(ostream &, Physical<double, 0, 1, -2, 0, 0, 0, 0> const &);
+template std::ostream & operator<< <double, 0, 1, -2, 0, 0, 0, 0>
+(std::ostream &, Physical<double, 0, 1, -2, 0, 0, 0, 0> const &);
 
-template ostream & operator<< <double, 1, 1, -2, 0, 0, 0, 0>
-(ostream &, Physical<double, 1, 1, -2, 0, 0, 0, 0> const &);
+template std::ostream & operator<< <double, 1, 1, -2, 0, 0, 0, 0>
+(std::ostream &, Physical<double, 1, 1, -2, 0, 0, 0, 0> const &);
 
 template class PhysicalData<double>;
 

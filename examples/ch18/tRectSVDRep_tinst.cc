@@ -15,8 +15,8 @@ template class LapackFactored< RectSVDRep<float> >;
 template String & operator<< <ConcreteBlas2d<float> >
 (String &, ConcreteBlas2d<float> const &);
 
-template ostream & operator<< <ConcreteColumnMajorSubscriptor<1>, float>
-(ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, float> const &);
+template std::ostream & operator<< <ConcreteColumnMajorSubscriptor<1>, float>
+(std::ostream &, ConcreteArray1dConstRef<ConcreteColumnMajorSubscriptor<1>, float> const &);
 
 template class ConcreteFortranArray1d<float>;
 

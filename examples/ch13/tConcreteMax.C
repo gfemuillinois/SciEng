@@ -21,6 +21,8 @@ See README file for further details.
 
 #include "tConcreteMax.h"
 
+using std::cout;
+using std::endl;
 
 int main() {
 

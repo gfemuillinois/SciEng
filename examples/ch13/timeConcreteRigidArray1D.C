@@ -11,6 +11,9 @@
 #include "Array/ConcreteFormedArray1d.h"
 #include "Array/ConcreteFortranArray1d.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {
@@ -155,7 +158,7 @@ int main() {
 
     double *da_a = new double[vec_dim];
     double *da_b = new double[vec_dim];
-    double result;
+    double result = 0.0;
 
     the_timer.set(5);
     the_timer.start(5);

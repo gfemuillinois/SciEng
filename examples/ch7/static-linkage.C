@@ -9,7 +9,7 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include <complex>
-typedef complex<double> Complex;
+typedef std::complex<double> Complex;
 
 
 

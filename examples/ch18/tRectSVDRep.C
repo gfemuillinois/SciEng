@@ -15,6 +15,10 @@ See README file for further details.
 #include "SciEng/SciEngErr.h"
 #include "SciEng/String.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 // WARNING: the output of this program is included in the text.  Be careful changing it.
 
 int main() {

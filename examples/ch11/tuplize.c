@@ -13,7 +13,7 @@ See README file for further details.
 
 
 template<class T>
-ostream& tuplize(ostream& os, const SimpleArray<T>& a) {
+std::ostream& tuplize(std::ostream& os, const SimpleArray<T>& a) {
     // Output a comma-separated list of T's
     int n = a.numElts();
     for (int i = 0; i < n; i++) {

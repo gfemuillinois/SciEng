@@ -13,7 +13,7 @@ See README file for further details.
 #define _POINT_H_
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 typedef float Number;
 
@@ -47,12 +47,12 @@ inline Number  Point::x() const { return the_x; }
 inline Number  Point::y() const { return the_y; }
 
 inline
-istream& operator>>(istream& is, Point& p) {
+std::istream& operator>>(std::istream& is, Point& p) {
   return is >> p.x() >> p.y();
 }
 
 inline
-ostream& operator<<(ostream& os, const Point& p) {
+std::ostream& operator<<(std::ostream& os, const Point& p) {
   return os << "(" << p.x() << "," << p.y() << ")";
 }
 

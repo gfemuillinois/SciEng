@@ -17,6 +17,9 @@ See README file for further details.
 
 #include "tDiagonal.h"
 
+using std::cout;
+using std::endl;
+
 int
 main() {
   FormedArray2d<int> a(5, 4);

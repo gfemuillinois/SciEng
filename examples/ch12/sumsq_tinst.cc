@@ -7,9 +7,9 @@
 #include "Array/FormedArray.h"
 #include "Array/RigidArray.h"
 
-template istream & operator>><float>(istream &, Array1d<float> &);
+template std::istream & operator>><float>(std::istream &, Array1d<float> &);
 
-template ostream & operator<<<float>(ostream &, ConstArray1d<float> const &);
+template std::ostream & operator<<<float>(std::ostream &, ConstArray1d<float> const &);
 
 template class RigidArray1d<float, 5>;
 

@@ -8,13 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <fstream.h>
+#include <fstream>
 #include "DataModeling/FormedPhysicalData.h"
 #include "SciEng/String.h"
 
 
 FormedPhysicalData::
-FormedPhysicalData(istream& ns, unsigned int num_data_pts) : 
+FormedPhysicalData(std::istream& ns, unsigned int num_data_pts) : 
     x(num_data_pts),
     y(num_data_pts),
     sigma(num_data_pts) {

@@ -36,11 +36,11 @@ maxArray2dElement<ConcreteFortranArray2d<double> >(ConcreteFortranArray2d<double
 
 template int maxArray3dPlane<ConcreteFormedArray3d<int> >(ConcreteFormedArray3d<int> &);
 
-template ostream & operator<< < ConcreteRowMajorSubscriptor<3>, int >
-(ostream &, ConcreteArray3dConstRef<ConcreteRowMajorSubscriptor<3>, int> const &);
+template std::ostream & operator<< < ConcreteRowMajorSubscriptor<3>, int >
+(std::ostream &, ConcreteArray3dConstRef<ConcreteRowMajorSubscriptor<3>, int> const &);
 
-template ostream & operator<< <ConcreteRowMajorProjectionSubscriptor<1>, int>
-(ostream &, ConcreteArray1dConstRef<ConcreteRowMajorProjectionSubscriptor<1>, int> const &);
+template std::ostream & operator<< <ConcreteRowMajorProjectionSubscriptor<1>, int>
+(std::ostream &, ConcreteArray1dConstRef<ConcreteRowMajorProjectionSubscriptor<1>, int> const &);
 
 
 

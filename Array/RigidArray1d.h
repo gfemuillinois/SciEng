@@ -14,7 +14,7 @@ See README file for further details.
 #include "Array/InterfacedArray1d.h"
 #include "Array/ConcreteRigidArray1d.h"
 
-class ostream;
+#include<iosfwd>
 
 template<class T, Subscript n0>
 class RigidArray1d :

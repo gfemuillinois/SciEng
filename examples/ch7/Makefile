@@ -5,9 +5,9 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all clean real_clean run_all check
 
-FILES_WITH_MAIN	= cache.C mixedNesting.C newDemo.C static-linkage.C \
+FILES_WITH_MAIN	= cache.C mixedNesting.C newDemo.C  \
 	tAutoException.C tAutoNesting.C tDynLifetime.C \
-	tStaticNesting.C zero.C
+	tStaticNesting.C zero.C static-linkage.C
 
 TEMPLATE_INSTANCES = 
 
@@ -23,7 +23,8 @@ DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
 ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
 
 OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:.cc=.o) 
-	    
+
+
 # Targets:
 
 all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)

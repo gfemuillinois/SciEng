@@ -27,8 +27,11 @@ double FrobeniusNorm(double* array, int n) {
     return scale * sqrt(sumsq);
 }
 
-
 #include <iostream>
+
+using std::cout;
+using std::endl;
+
 int
 main() {
   double m[2][3] = { {1, 2, 3}, 

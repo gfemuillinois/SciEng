@@ -13,6 +13,9 @@ See README file for further details.
 
 #include <iostream>
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 extern double sumsq(const Array1d<float>& a);
 

@@ -15,9 +15,7 @@ See README file for further details.
 #include "Algebra/LinearAlgebraCategory.h"
 #include "Algebra/MetricSpaceCategory.h"
 
-class ostream;
-class istream;
-
+#include <iosfwd>
 
 class ConcreteVector3d :
     public LinearAlgebraCategory< ConcreteVector3d, double >,
@@ -57,11 +55,11 @@ private:
 
 
 
-extern ostream& operator<<(ostream& os, const ConcreteVector3d& v);
+extern std::ostream& operator<<(std::ostream& os, const ConcreteVector3d& v);
 
 
 
-extern istream& operator>>(istream& os, ConcreteVector3d& v);
+extern std::istream& operator>>(std::istream& os, ConcreteVector3d& v);
 
 
 

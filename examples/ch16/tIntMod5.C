@@ -13,6 +13,10 @@ See README file for further details.
 
 #include "tIntMod5.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 int main() {    
     IntMod5 a = 2;
     IntMod5 b = 4;

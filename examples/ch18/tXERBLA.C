@@ -15,6 +15,11 @@ See README file for further details.
 
 #include "clarch.h"
 
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
+
 // SciEngStartup initialize_SciEngErr;
 
 // Tests the FORTRAN calling C++ example xerbla() in BlasSubroutines.h

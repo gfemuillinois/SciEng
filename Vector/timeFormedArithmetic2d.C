@@ -9,35 +9,40 @@
 #include "timer.h"
 #include "FormedArithmetic.h"
 
+using std::cout;
+using std::endl;
+
 Timer  the_timer(10);	// 10 clocks
 
 int main() {
 
 #define TEST_ALL 1
 
-#define TEST1 1  // Test/timing for operator ++ -- - (negate)
+#define TEST1 0  // Test/timing for operator ++ -- - (negate)
 
-#define TEST2 1  // Test/timing for operators += -=(const Array& rhs)
+#define TEST2 0  // Test/timing for operators += -=(const Array& rhs)
 
-#define TEST3 1  // Test/timing for operators *= /=(const Array& rhs)
+#define TEST3 0  // Test/timing for operators *= /=(const Array& rhs)
 
-#define TEST4 1  // Test/timing for operators += -=(const T& rhs)
+#define TEST4 0  // Test/timing for operators += -=(const T& rhs)
 
-#define TEST5 1  // Test/timing for operators *= /=(const T& rhs)
+#define TEST5 0  // Test/timing for operators *= /=(const T& rhs)
 
-#define TEST6 1  // Test/timing for operators * / (const T& rhs)
+#define TEST6 0  // Test/timing for operators * / (const T& rhs)
                  // Test/timing for XmultScalar/scale
 
-#define TEST7 1  // Test/timing for operators + - (const T& rhs)
+#define TEST7 0  // Test/timing for operators + - (const T& rhs)
                  // Test/timing for XplusScalar/add
 
-#define TEST8 1  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
+#define TEST8 0  // Test/Timing for operators + - (const Array& lhs, const Array& rhs)
                  // Test/Timing for XplusY/add XminusY/sub
 
-#define TEST9 1  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
+#define TEST9 0  // Test/Timing for operators * / (const Array& lhs, const Array& rhs)
                  // Test/Timing for XtimesY/distMult XdivY/distDiv
 
-#define TEST10 1 // Test/Timing for operators == != (const Array& rhs)
+#define TEST10 0 // Test/Timing for operators == != (const Array& rhs)
+
+#define TEST11 1 // Miscelaneous tests:
 
 #if TEST1 || TEST_ALL
 
@@ -1098,6 +1103,27 @@ a_eq_c = 0
 
   */
 #endif
+
+#if TEST10 || TEST_ALL
+  cout << "\nmiscellaneous Tests " << endl;
+  {
+    const int mat_dim = 25;
+    const unsigned int n_equal = 600000;
+    const double value = 10.0;
+
+    FormedArithmetic2d<double> cra_a(mat_dim, mat_dim), 
+      cra_b(mat_dim, mat_dim), cra_c(mat_dim, mat_dim);
+
+    cra_a = value;
+    cra_b = value;
+    cra_c = (value + 1.);
+
+
+    // not valid...
+    // (cra_a.column(0)).dot(cra_a.column(0));
+  }
+#endif
+
 
   return EXIT_SUCCESS;
 }

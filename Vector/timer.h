@@ -111,9 +111,9 @@ class Timer
         t  = new double[num_timers];
         dt = new seconds[num_timers]; 
  	if ( !t ) 
-	cerr << " No ticks created. num_timers = " << n << endl ;
+	std::cerr << " No ticks created. num_timers = " << n << std::endl ;
  	if ( !dt )
-	cerr << " No timers created. num_timers = " << n << endl ;
+	std::cerr << " No timers created. num_timers = " << n << std::endl ;
     }
 
     //

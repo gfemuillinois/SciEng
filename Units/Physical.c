@@ -11,7 +11,7 @@ See README file for further details.
 #include <iostream>
 
 template<class T, int m, int l, int t, int q, int k, int i, int a>
-ostream& operator<<(ostream& os, const Physical<T, m, l, t, q, k, i, a>& p) {
+std::ostream& operator<<(std::ostream& os, const Physical<T, m, l, t, q, k, i, a>& p) {
   int units[7] = { m, l, t, q, k, i, a };
   os << p.value(); 
   return powerPrinter(os, units);

@@ -13,8 +13,7 @@ See README file for further details.
 
 #include "Array/ConcreteArray2d.h"
 
-class ostream;
-class istream;
+#include <iosfwd>
 
 #undef PROTECT_COPY_CONSTRUCTOR
 #define PROTECT_COPY_CONSTRUCTOR 0
@@ -101,19 +100,19 @@ public:
 
 template<class Subscriptor, class T>
 inline
-ostream& operator<<(ostream& os, const ConstConcreteArrayProjection2d<Subscriptor, T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConstConcreteArrayProjection2d<Subscriptor, T>& a) {
   return os << ConcreteArray2dConstRef< typename Subscriptor::ProjectionT, T>(a);
 }
 
 template<class Subscriptor, class T>
 inline
-ostream& operator<<(ostream& os, const ConcreteArrayProjection2d<Subscriptor, T>& a) {
+std::ostream& operator<<(std::ostream& os, const ConcreteArrayProjection2d<Subscriptor, T>& a) {
   return os << ConcreteArray2dConstRef< typename Subscriptor::ProjectionT, T>(a);
 }
 
 template<class Subscriptor, class T>
 inline
-ostream& operator<<(istream& is, const ConcreteArrayProjection2d<Subscriptor, T>& a) {
+std::ostream& operator<<(std::istream& is, const ConcreteArrayProjection2d<Subscriptor, T>& a) {
   return is >> ConcreteArray2dRef< typename Subscriptor::ProjectionT, T>(a);
 }
 

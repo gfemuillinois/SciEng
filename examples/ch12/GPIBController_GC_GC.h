@@ -15,6 +15,10 @@ See README file for further details.
 
 #include "examples/ch9/GPIBController.h"
 #include "examples/ch12/GPIBComponent.h"
+
+using std::cout;
+using std::cin;
+using std::endl;
                        
 class GPIBController_GC_GC :
   public GPIBController,

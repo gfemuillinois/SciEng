@@ -12,7 +12,7 @@ See README file for further details.
 #define PhysicalH
 
 #include "Algebra/LinearSpaceCategory.h"
-class ostream;
+#include <iosfwd>
 
 
 template<class T, int m, int l, int t, int q, int k, int i, int a>
@@ -69,9 +69,9 @@ operator/(const Physical<T, m1, l1, t1, q1, k1, i1, a1>& lhs,
 
 
 template<class T, int m, int l, int t, int q, int k, int i, int a>
-ostream& operator<<(ostream& os, const Physical<T, m, l, t, q, k, i, a>& p);
+std::ostream& operator<<(std::ostream& os, const Physical<T, m, l, t, q, k, i, a>& p);
 
-extern ostream& powerPrinter(ostream&, int[7]);  
+extern std::ostream& powerPrinter(std::ostream&, int[7]);  
 
 #ifdef XLC_QNOTEMPINC
 #include "Units/Physical.c"

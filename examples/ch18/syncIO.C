@@ -9,10 +9,10 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 //...
 int main() {
-  ios::sync_with_stdio();
+  std::ios::sync_with_stdio();
 
   return 0;
 }

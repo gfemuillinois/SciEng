@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <string.h>
+#include <cstring>
 #include "SciEng/SciEngEnvironment.h"
 #include "examples/ch9/Acme130_VS_GI_GC.h"
 #include "examples/ch9/VoltyMetrics_VM_GI.h"
@@ -19,6 +19,10 @@ See README file for further details.
 #include "examples/ch9/IVTester.h"
 #include "examples/ch9/SimulatorFactory.h"
 
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
 
 class MySimulators :
     public SimulatorFactory {

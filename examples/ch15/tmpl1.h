@@ -34,8 +34,8 @@ public:
     virtual Array2d<T>& operator=(const ConstArray2d<T>&);
     virtual T& operator()(Subscript,Subscript);
     virtual const T& operator()(Subscript,Subscript) const;
-    virtual Array2d<T>::ProjectionT project(Subscript, Dimension);
-    virtual Array2d<T>::ConstProjectionT project(Subscript, Dimension) const;
+    virtual typename Array2d<T>::ProjectionT project(Subscript, Dimension);
+    virtual typename Array2d<T>::ConstProjectionT project(Subscript, Dimension) const;
 private:
 
     CopiedObjPtr< FortranArray2d<T> > ap;         // Lapack A
@@ -88,11 +88,11 @@ template<class T>
 const T& LapackRect<T>::operator()(Subscript s0, Subscript s1) const { checkValidity(); return ap->operator()(s0, s1); }
 
 template<class T>
-Array2d<T>::ProjectionT 
+typename Array2d<T>::ProjectionT 
 LapackRect<T>::project(Subscript s, Dimension d) { checkValidity(); return ap->project(s, d); }
 
 template<class T>
-Array2d<T>::ConstProjectionT 
+typename Array2d<T>::ConstProjectionT 
 LapackRect<T>::project(Subscript s, Dimension d) const { 
   checkValidity();
   // Following code is to get back a const projection even though the

@@ -12,6 +12,10 @@ See README file for further details.
 
 #include "tASGArray.h"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 AdditiveArray& AdditiveArray::operator+=(const AdditiveArray& rhs) {
     if (numElts() != rhs.numElts()) throw "Mismatched sizes";
     IteratorType i(*this);

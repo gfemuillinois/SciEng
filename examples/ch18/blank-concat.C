@@ -11,6 +11,10 @@ See README file for further details.
 #include <iostream>
 #include <string.h>
 
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
 
 char* blank_concat(const char* word1, const char* word2) {
     unsigned result_len = strlen(word1) + strlen(word2) + 2;

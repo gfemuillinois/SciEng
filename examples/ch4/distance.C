@@ -9,10 +9,13 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 #include "examples/ch4/Point.h"
 
-#include <math.h>
+#include <cmath>
+using std::cout;
+using std::cin;
+using std::endl;
  
 int main() {
 

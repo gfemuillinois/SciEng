@@ -11,6 +11,8 @@ See README file for further details.
 #include "examples/ch5/axpy.h"
 #include <complex>
 
+typedef std::complex<double> double_complex;
+
 int main() {
 
   Vector<double> a(4);

@@ -8,12 +8,17 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <strstream.h>
+#include <iostream>
+//#include <strstream>
+#include <sstream>
 #include "examples/ch4/SimpleArray.h"
 #include "SciEng/Boolean.h"
 
 #include "examples/ch6/Interval.h"
+
+using std::cout;
+using std::cin;
+using std::endl;
 
 template<class T>
 class Fallible {
@@ -57,10 +62,10 @@ inline T Fallible<T>::elseDefaultTo(const T& default_value) const {
 
 
 
-extern ostream& operator<<(ostream& os, const Interval& i);
+extern std::ostream& operator<<(std::ostream& os, const Interval& i);
 
 
-extern istream& operator>>(istream& is, Interval& i);
+extern std::istream& operator>>(std::istream& is, Interval& i);
 
 
 class SetOfIntervals {
@@ -108,7 +113,7 @@ int main() {
   cout << small << endl;
 
 
-  istrstream in("[1,2] [3,,4]");
+  std::istrstream in("[1,2] [3,,4]");
   Interval i;
   in >> i;
   if (i.lo() != 1 || i.hi() != 2) return 1;
@@ -136,20 +141,20 @@ double Interval::lo() const { return the_lo; }
 double Interval::hi() const { return the_hi; }
 
 
-ostream& operator<<(ostream& os, const Interval& i) { 
+std::ostream& operator<<(std::ostream& os, const Interval& i) { 
     return os << '[' << i.lo() << ", " << i.hi() << ']';
 }
 
 
 
-istream& operator>>(istream& is, Interval& i) {
+std::istream& operator>>(std::istream& is, Interval& i) {
     char lbracket = 0;
     char rbracket = 0;
     char comma = 0;
     double lo;
     double hi;
     is >> lbracket >> lo >> comma >> hi >> rbracket;
-    if (lbracket != '[' || comma != ',' || rbracket != ']') is.clear(ios::badbit);
+    if (lbracket != '[' || comma != ',' || rbracket != ']') is.clear(std::ios::badbit);
     else if (is) i = Interval(lo, hi);
     return is;
 }

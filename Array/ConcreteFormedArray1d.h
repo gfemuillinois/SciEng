@@ -25,7 +25,9 @@ public:
   
   ConcreteFormedArray1d();
   explicit ConcreteFormedArray1d(Subscript s0);
+  // concrete copy is done here
   ConcreteFormedArray1d(const ConcreteFormedArray1d<T>&);
+
   ConcreteFormedArray1d(ConcreteArray1dConstRef<SubscriptorType, T>);
   ConcreteFormedArray1d(ConcreteArray1dConstRef<ConcreteRowMajorSubscriptor<2>::ProjectionT, T>);
 

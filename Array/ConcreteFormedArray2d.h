@@ -21,7 +21,9 @@ class ConcreteFormedArray2d :
 public:
   ConcreteFormedArray2d();  // For arrays of arrays.
   ConcreteFormedArray2d(Subscript s0, Subscript s1);
+  // concrete copy is done here
   ConcreteFormedArray2d(const ConcreteFormedArray2d<T>&);
+
   ConcreteFormedArray2d(const ConcreteArray2dConstRef<ConcreteRowMajorSubscriptor<2>, T>&);
   ConcreteFormedArray2d(const ConcreteArray2dConstRef< typename ConcreteRowMajorSubscriptor<3>::ProjectionT, T>&);
 

@@ -15,7 +15,7 @@ public:
     val = (val * rhs.val) % 5;
     return *this;
   }
-  friend ostream& operator<<(ostream& s, const IntMod5& x) {
+  friend std::ostream& operator<<(std::ostream& s, const IntMod5& x) {
     return s << x.val;
   }
 

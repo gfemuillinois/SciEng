@@ -6,14 +6,16 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 .PHONY: all clean real_clean run_all check
 
 FILES_WITH_MAIN	= linefit.C linefit2.C  \
-	          sqr.C  intersect.C ptrselect.C \
+	          intersect.C ptrselect.C \
 	          interactive.C  interactive2.C \
-	          tCheckedSimpleArray.C quadratic.C \
+	          quadratic.C \
 		  distance.C distance2.C 
+#                 sqr.C tCheckedSimpleArray.C
 
 TEMPLATE_INSTANCES = SimpleArray_tinst.cc  sqr_tinst.cc  CheckedSimpleArray_tinst.cc
 
-SOURCE_FILES = FixedArray.C Point.C Line.C sqr_1.C SimpleFloatArray.C
+SOURCE_FILES = FixedArray.C Point.C Line.C  SimpleFloatArray.C
+#              sqr_1.C
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
@@ -96,12 +98,12 @@ check:
 run_all:
 	@echo Running linefit: ;  linefit < input_for_linefit
 	@echo Running linefit2: ;  linefit2  < input_for_linefit
-	@echo Running sqr: ;  sqr
+#	@echo Running sqr: ;  sqr
 	@echo Running intersect: ;  intersect
 	@echo Running ptrselect: ;  ptrselect
 	@echo Running interactive: ;  interactive < input_for_interactive
 	@echo Running interactive2: ;  interactive2 < input_for_interactive2
-	@echo Running tCheckedSimpleArray: ;  tCheckedSimpleArray
+#	@echo Running tCheckedSimpleArray: ;  tCheckedSimpleArray
 	@echo Running quadratic: ; quadratic 
 	@echo Running distance: ; distance < input_for_distance
 	@echo Running distance2: ;  distance2 < input_for_distance

@@ -13,7 +13,7 @@ public:
     int operator[](int i) const;
     int numNodes()        const;
 
-    friend istream& operator>>(istream&, Element&);
+    friend std::istream& operator>>(std::istream&, Element&);
 private:
     SimpleArray<int> node_numbers;
 };

@@ -11,8 +11,7 @@ See README file for further details.
 #ifndef BOOLEANH
 #define BOOLEANH
 
-class ostream;
-class istream;
+#include<iosfwd>
 
 //namespace SciEngLib{
 
@@ -43,8 +42,8 @@ private:
 
   // I/O
 
-ostream& operator<<(ostream& s, Boolean  b);
-istream& operator>>(istream& s, Boolean& b);
+std::ostream& operator<<(std::ostream& s, Boolean  b);
+std::istream& operator>>(std::istream& s, Boolean& b);
 
 //}
 

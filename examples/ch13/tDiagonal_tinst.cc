@@ -14,11 +14,11 @@ template class FormedArray2d<int>;
 
 template class ConcreteFormedArray2d<int>;
 
-template ostream & operator<< <int> 
-(ostream &, ConstArray1d<int> const &);
+template std::ostream & operator<< <int> 
+(std::ostream &, ConstArray1d<int> const &);
 
-template ostream & operator<< <int>
-(ostream &, ConstArray2d<int> const &);
+template std::ostream & operator<< <int>
+(std::ostream &, ConstArray2d<int> const &);
 
 template void set_to_identity<int>(Array2d<int> &);
 

@@ -9,6 +9,9 @@
 #include "Array/ConcreteRigidArray2d.h"
 #include "Array/ConcreteRigidArray3d.h"
 
+using std::cout;
+using std::endl;
+
 int main() {
 
   ConcreteRigidArray1d<float, 5> ra1d, ra1d_;     // 5x1 array of floats

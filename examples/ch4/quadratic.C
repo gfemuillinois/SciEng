@@ -8,9 +8,11 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <math.h>
-
+#include <iostream>
+#include <cmath>
+using std::cout;
+using std::cin;
+using std::endl;
 
 class QuadraticPolynomial {
 public:

@@ -13,6 +13,11 @@ See README file for further details.
 
 #include "tCheckedSimpleArray.h"
 
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::endl;
+
 void f() {
   CheckedSimpleArray<float> a(10);
   // ... set values in a

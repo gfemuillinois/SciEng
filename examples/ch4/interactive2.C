@@ -8,8 +8,11 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <string.h>
+#include <iostream>
+#include <cstring>
+using std::cout;
+using std::cin;
+using std::endl;
 
 extern void command_a();
 extern void command_b();
