@@ -12,6 +12,7 @@ See README file for further details.
 
 #include <iostream.h>
 
+//namespace SciEngLib{
 
 void userErrMessage(const SciEngErr& e) {     
     cerr << endl << "*** \"Scientific and Engineering C++\" -- error detected." << endl;
@@ -37,6 +38,9 @@ String OutOfMemoryErr::message() const {
 
 NewHandler SciEngStartup::nh;           // These handlers are initialized ...
 Terminate  SciEngStartup::th;
-SciEngStartup::SciEngStartup() {}       // ... before this constructor is first called.
+SciEngStartup::SciEngStartup() { // ... before this constructor is first called.
 
+  cout << "SciEngStartup::SciEngStartup() called " << endl;
+}       
 
+//}
