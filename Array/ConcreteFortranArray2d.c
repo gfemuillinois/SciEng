@@ -10,6 +10,11 @@ See README file for further details.
 */
 
 template<class T>
+ConcreteFortranArray2d<T>::ConcreteFortranArray2d() :
+  ConcreteArray2d< SubscriptorType, T >(SubscriptArray<2>(0, 0), 0) {
+}
+
+template<class T>
 ConcreteFortranArray2d<T>::ConcreteFortranArray2d(Subscript s0, Subscript s1) : 
     ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(s0, s1), 0) {
     setSizeOnHeap(s0 * s1);

@@ -21,6 +21,7 @@ class ConcreteFortranArray2d :
 public:
   typedef ConcreteColumnMajorSubscriptor<2> SubscriptorType;
 
+    ConcreteFortranArray2d();  // For arrays of arrays.
     ConcreteFortranArray2d(Subscript s0, Subscript s1);
     ConcreteFortranArray2d(const ConcreteFortranArray2d<T>& p);
     ConcreteFortranArray2d(const ConcreteArray2dConstRef< SubscriptorType, T>&);
