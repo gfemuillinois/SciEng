@@ -14,6 +14,8 @@
 #include "Array/ConcreteFormedArray1d.h"
 #include "Array/ConcreteFormedArray3d.h"
 
+#include "Array/ConcreteArray2dUtil.h"
+
 using std::cout;
 using std::endl;
 
@@ -115,6 +117,57 @@ int main() {
   fa10.swap( fa20 );
 
   cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
+  // --------------------------------------------------------
+
+  const int dim = 6, nkol = 4, nblocks = 3;
+  int nrow_block = dim / nblocks;
+
+  ConcreteFortranArray2d<double> vect(4*dim, nkol), subv(dim,nkol);
+
+  vect = 0.0;
+
+  ConcreteFormedArray1d<int> destIndex(dim);
+  ConcreteFormedArray1d<int> firstEq(nblocks);
+  ConcreteFormedArray1d<short int> blockSize(nblocks);
+
+  Subscript i=0;
+  for(Subscript ibl=0; ibl<nblocks; ++ibl){
+    firstEq(ibl) = (ibl*2 + 2)*nrow_block;
+    blockSize(ibl) = nrow_block;
+    for(Subscript irowbl=0; irowbl<nrow_block; ++irowbl, ++i){
+      destIndex(i) = firstEq(ibl) + irowbl;
+      for(Subscript kol=0; kol<nkol; ++kol){
+	subv(i,kol) = ibl + 1.0;
+      }
+    }
+  }
+  cout << "\nvect = " << vect << endl;
+  cout << "\ndestIndex = " << destIndex << endl;
+  cout << "\firstEq = " << firstEq << endl;
+  cout << "\blockSize = " << blockSize << endl;
+  cout << "\nsubv = " << subv << endl;
+
+  addSubVector( vect, subv, dim, destIndex);
+
+  cout << "\nvect = " << vect << endl;
+
+  vect = 0.0;
+
+  addSubVector( vect, subv, firstEq, blockSize, nblocks);
+
+  cout << "\nvect = " << vect << endl;
+
+  vect.clear();
+  destIndex.clear();
+
+  //  cout << "\nvect = " << vect << endl;
+  // cout << "\ndestIndex = " << destIndex << endl;
+
+  // TBD: Need to handle empty arrays
+  //  ConcreteFormedArray1d<int> empty;
+
+  //  cout << empty;
 
   return EXIT_SUCCESS;
 
