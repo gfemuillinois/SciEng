@@ -32,7 +32,8 @@ RM = /bin/rm
 #	$(RM) $*.o
 #	ranlib $@
 
-all:	SciEng.a  SciEngMatx.a templ_instatiation_g++ examples/SciEng.a examples/SciEngMatx.a
+all:	SciEng.a  SciEngMatx.a templ_instatiation_g++ \
+	examples/SciEng.a examples/SciEngMatx.a
 	cd examples/ch2; $(MAKE)
 	cd examples/ch3; $(MAKE)
 	cd examples/ch4; $(MAKE)
@@ -54,10 +55,10 @@ all:	SciEng.a  SciEngMatx.a templ_instatiation_g++ examples/SciEng.a examples/Sc
 #	cd examples/ch17; $(MAKE)
 #	cd examples/ch19; $(MAKE)
 
-# folders with timings and tests for several classes we use
-tests: SciEng.a  SciEngMatx.a templ_instatiation_g++
-	ln -s SciEng.a examples/SciEng.a
-	ln -s SciEngMatx.a examples/SciEngMatx.a
+# folders with timings and tests for several classes we use in SetSolver
+# At least these guys should be tested regularly!
+tests: SciEng.a  SciEngMatx.a templ_instatiation_g++ \
+	examples/SciEng.a examples/SciEngMatx.a
 	cd examples/ch13; $(MAKE)
 	cd LapackWrap;    $(MAKE)
 	cd Vector;        $(MAKE)
