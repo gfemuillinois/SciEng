@@ -15,7 +15,7 @@ See README file for further details.
 int main() {
 
 float x;
-while (cin >> x) {
+while (cin >> x && x >= 0.) {
     cout << setw(25) << x << setw(25) << sqrt(x) << endl;
 }
 
