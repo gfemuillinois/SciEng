@@ -59,6 +59,7 @@ templ_instatiation_g++:
 
 SciEngMatx.a:	\
 	SciEngMatx.a(LapackWrap/BlasSubroutines.o) \
+	SciEngMatx.a(LapackWrap/LapackSubroutines.o) \
 	SciEngMatx.a(SciEng/ArrayErr.o) \
 	SciEngMatx.a(SciEng/String.o) \
 	SciEngMatx.a(SciEng/SciEngErr.o) \
@@ -88,6 +89,7 @@ SciEng.a:	\
 	SciEng.a(Array/ArrayShape.o) \
 	SciEng.a(Array/ConcreteFortranSymmetricPackedArray2d.o) \
 	SciEng.a(LapackWrap/BlasSubroutines.o) \
+	SciEng.a(LapackWrap/LapackSubroutines.o) \
 	SciEng.a(LapackWrap/LapackErr.o) \
 	SciEng.a(Algebra/ComplexFloat.o) \
 	SciEng.a(Units/Physical.o) \
@@ -109,6 +111,7 @@ clean:
 	Array/ArrayShape.o \
 	Array/ConcreteFortranSymmetricPackedArray2d.o \
 	LapackWrap/BlasSubroutines.o \
+	LapackWrap/LapackSubroutines.o \
 	LapackWrap/LapackErr.o \
 	Algebra/ComplexFloat.o \
 	Units/Physical.o \
@@ -154,6 +157,7 @@ real_clean:
 	Array/ArrayShape.o \
 	Array/ConcreteFortranSymmetricPackedArray2d.o \
 	LapackWrap/BlasSubroutines.o \
+	LapackWrap/LapackSubroutines.o \
 	LapackWrap/LapackErr.o \
 	Algebra/ComplexFloat.o \
 	Units/Physical.o \
@@ -199,6 +203,7 @@ clean_SciEng:
 	Array/ArrayShape.o \
 	Array/ConcreteFortranSymmetricPackedArray2d.o \
 	LapackWrap/BlasSubroutines.o \
+	LapackWrap/LapackSubroutines.o \
 	LapackWrap/LapackErr.o \
 	Algebra/ComplexFloat.o \
 	Units/Physical.o \
