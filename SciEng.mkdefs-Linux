@@ -1,47 +1,133 @@
+################### SYSTEM DEPENDENT DEFINITIONS ######################
+### NOTE: This file is originally set-up for a Linux system. Change these
+###       system dependent definitions for other machines.
+
+#########compiler definitions
+
 ## C++ compiler
-CXX	 = egcs-g++
-##CXX	 = g++
-## C++ compiler options
-##CXXFLAGS = -ansi -fexceptions -Wall -pedantic
-CXXFLAGS = -ansi -Wall -pedantic
+CXX	 = g++
+CC       = gcc
+FC 	 = g77
+LD       = g++
 
-## Fortran compiler
-FC 	=  egcs-g77
-## Fortran compiler options
-FFLAGS	=
+Debug = 
+PROF =
+OPTM =
 
-## Flags to add to linker line for various libraries
-COMPLEXLIB = -lstdc++
-LAPACKLIB  = -llapack
-FORTRANLIB = -lf2c  -lm
-BLASLIB    = -lblas
+ifeq ($(MAX_OPTIMIZE_IT),ON)
+OPTM = -O3
+else
+ifeq ($(OPTIMIZE),ON)
+OPTM = -O
+else
+OPTM = -g
+endif
+endif
 
-#SCIENGLIB = ../../SciEng.a
-SCIENGLIB = 
+# we can overwrite this on the command line
+WERROR = -Werror
+CXXFLAGS =  $(OPTM) $(PROF)  \
+            -Wall -Wno-unused        -pedantic $(WERROR)
 
-## Following options are to cause template expansion on the fly
-## instead of expanding into a "tempinc" directory
-#CXXTEMPLATE = -qnotempinc -DXLC_QNOTEMPINC
-#CXXTEMPLATELINK = $(CXXTEMPLATE)
+#           -Wall -Wno-unused  -ansi -pedantic -Werror 
+#           -Wall -Wno-unused        -pedantic -Werror -D__USE_GNU 
+
+CXXFLAGS += -finline-functions -Winline 
+
+CXXFLAGS_DEPENDLIST = $(CXXFLAGS) -MM
+
+CFLAGS =  $(OPTM)  $(PROF)
+FFLAGS =  $(OPTM)  $(PROF)
+
+LDFLAGS = $(OPTM) $(PROF)
+
+#########general libraries
+
+# this one is for tsunami (red hat 6.0 and egcs-2.91.66)
+
+LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
+
+SCIENGLIB = $(HOME)/Galileu/SciEng_gal/SciEng.a
+#SCIENGLIB = 
+SCIENGMATXLIB = $(HOME)/Galileu/SciEng_gal/SciEngMatx.a
+
+# location of libg2c.a  =  Fortran run-time library
+LIBSYSPATH = -L/usr/lib/gcc-lib/i386-redhat-linux/egcs-2.91.66 
+
+ALLLIBS =  $(SCIENGLIB) $(LIBSYS)   
 
 #
 # This is how we handle template instatiation in g++
 
-##CXXTEMPLATE = -fno-implicit-templates  -DNO_IMPLICIT_TEMPLATE
-CXXTEMPLATE = 
-##CXXTEMPLATEINSTANCE =                  -DNO_IMPLICIT_TEMPLATE
-CXXTEMPLATEINSTANCE =
+USE_IMPLICITY_TEMPL = NO
+
+ifeq ($(USE_IMPLICITY_TEMPL),NO) 
+# This option requires the explicity creation of template 
+# instances in a *_tinst.cc file. It gives more control and leads to
+# smaller executables.
+
+#CXXTEMPLATE = -fno-implicit-templates  -DNO_IMPLICIT_TEMPLATE
+CXXTEMPLATE = -fno-implicit-templates
+
+# NOTE:
+# defining XLC_QNOTEMPINC so we do not need to include *.tdef in *_tinst.cc
+#CXXTEMPLATEINSTANCE =                  -DNO_IMPLICIT_TEMPLATE
+CXXTEMPLATEINSTANCE = -DXLC_QNOTEMPINC  -DNO_IMPLICIT_TEMPLATE
 CXXTEMPLATELINK = 
 
-LINK = $(CXX) $(CXXTEMPLATELINK) -I ../.. $(CXXFLAGS) $(SCIENGLIB) -o $@ 
+else
+# Following options are to cause template expansion on the fly
+# Will cause the creation of multiple (repeated) instances and
+# large executables...
 
-.C.o:
-	$(CXX) $(CXXTEMPLATE)  -I ../.. -I.. $(CXXFLAGS) $< -c -o $@ 
-.cc.o:
-	$(CXX) $(CXXTEMPLATEINSTANCE) -I ../.. $(CXXFLAGS) $< -c -o $@
-.c.o:
-	$(CXX) $(CXXTEMPLATE) -I ../.. $(CXXFLAGS) $< -c -o $@ 
-.f.o:
-	$(FC) $(FFLAGS) $< -c -o $@
-.o:
-	$(CXX) $(CXXTEMPLATE) -I ../../.. $(CXXFLAGS) $< $(SCIENGLIB) -o $@ 
+CXXTEMPLATE         =   -DXLC_QNOTEMPINC
+CXXTEMPLATEINSTANCE =
+CXXTEMPLATELINK     = 
+
+endif
+
+
+##### end of customization
+# No implicity suffix rules. Use the partern rules below instead.
+.SUFFIXES:
+
+
+#LINK = $(LD) $(CXXTEMPLATELINK) -I../.. $(CXXFLAGS)  -o $@   $(SCIENGLIB)
+LINK = $(LD)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@  
+
+INC = -I../.. -I.. -I.
+
+%.o : %.C
+	@echo Compiling $<
+	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
+
+# See GNU make info page: "Generating Dependencies Automatically"
+Deps/%.d : %.C
+	@echo Generating Rule for $<
+	$(SHELL) -ec '$(CXX) $(CXXTEMPLATE) $(INC) $(CXXFLAGS_DEPENDLIST) $< \
+		| sed '\''s/\($*\)\.o[ :]*/\1.o Deps\/$*.d : /g'\'' > $@; \
+		[ -s $@ ] || rm -f $@'
+
+%.o : %.c
+	@echo Compiling $<
+	$(CXX) $(CXXTEMPLATE)         $(INC) $(CXXFLAGS) -c $< -o $@ 
+
+%.o : %.cc
+	@echo Compiling $<
+	$(CXX) $(CXXTEMPLATEINSTANCE) $(INC) $(CXXFLAGS) -c $< -o $@
+
+Deps/%.d : %.cc 
+	@echo Generating Rule for $<
+	$(SHELL) -ec '$(CXX) $(CXXTEMPLATEINSTANCE) $(INC) $(CXXFLAGS_DEPENDLIST) $< \
+		| sed '\''s/\($*\)\.o[ :]*/\1.o Deps\/$*.d : /g'\'' > $@; \
+		[ -s $@ ] || rm -f $@' 
+
+%.o : %.f
+	@echo Compiling $<
+	$(FC) $(FFLAGS) -c $<  -o $@
+
+% : %.o
+	@echo Linking $@
+	$(CXX) $(CXXTEMPLATE) -I../../.. $(CXXFLAGS) $< $(SCIENGLIB) -o $@
+
+
