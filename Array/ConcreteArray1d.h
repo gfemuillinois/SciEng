@@ -73,8 +73,8 @@ public:
     typedef ArrayBrowser1d< ConcreteArray1dRef<Subscriptor, T> >  BrowserType;
     typedef ArrayIterator1d< ConcreteArray1dRef<Subscriptor, T> > IteratorType;
 
-    T&          operator()(Subscript s) const { return firstDatum()[offset(s)]; }                  
-    ProjectionT operator[](Subscript s) const { return firstDatum()[offset(s)]; }
+  T&          operator()(Subscript s) const { return firstDatum()[offset(s)]; }
+  ProjectionT operator[](Subscript s) const { return firstDatum()[offset(s)]; }
 
     T* firstDatum() const { return datap; }
 
@@ -117,12 +117,14 @@ public:
     typedef ConcreteArrayBrowser< ConcreteArray1d<Subscriptor, T> >  BrowserType;
     typedef ConcreteArrayIterator< ConcreteArray1d<Subscriptor, T> > IteratorType;
 
-    // CAD: offset must be used sinse elements are not necessarily contiguous in memory
+    // CAD: offset must be used sinse elements are not necessarily
+    // contiguous in memory
     T& operator()(Subscript s)       { return firstDatum()[offset(s)]; }
     const T& operator()(Subscript s) const { return firstDatum()[offset(s)]; }
 
-    ProjectionT operator[](Subscript s)       { return firstDatum()[offset(s)]; }
-    ConstProjectionT operator[](Subscript s) const { return firstDatum()[offset(s)]; }
+    ProjectionT operator[](Subscript s)    { return firstDatum()[offset(s)]; }
+    ConstProjectionT operator[](Subscript s) const { 
+      return firstDatum()[offset(s)]; }
 
     const T * firstDatum() const { return datap; }
     T*        firstDatum()       { return datap; }
@@ -134,10 +136,11 @@ public:
     return *this;
     }
 
-    ConcreteArray1d<Subscriptor, T>& operator=(ConcreteArray1d<Subscriptor, T> rhs) {
-    ConcreteArray1dRef<Subscriptor, T>(*this) = rhs;
-    return *this;
-    }
+    ConcreteArray1d<Subscriptor, T>& 
+    operator=( ConcreteArray1d<Subscriptor, T> rhs ) {
+      ConcreteArray1dRef<Subscriptor, T>(*this) = rhs;
+      return *this; }
+
     ConcreteArray1d<Subscriptor, T>& operator=(const T& rhs) {
     ConcreteArray1dRef<Subscriptor, T>(*this) = rhs;
     return *this;
@@ -150,10 +153,12 @@ public:
     return ConcreteArray1dRef<Subscriptor, T>(*this, datap);
     }
 
+  void swap( ConcreteArray1d<Subscriptor, T>& rhs );
+
 protected:
     ConcreteArray1d(Subscriptor s, T* p) : Subscriptor(s), datap(p) {}
     void setSizeOnHeap(Subscript n);
-    void reshapeOnHeap(const SubscriptArray<1>&s);
+    void reshapeOnHeap(const Subscript s);
 
 protected:
     T* datap;
