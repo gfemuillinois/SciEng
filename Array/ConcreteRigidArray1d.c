@@ -11,12 +11,6 @@ See README file for further details.
 #include "Array/ArrayTuplize.h"
 
 template<class T, Subscript n0>
-ConcreteRigidArray1d<T,n0>& ConcreteRigidArray1d<T,n0>::operator=(const T& rhs) {
-  for (IteratorType i(*this); i.more(); i.advance()) i.current() = rhs;
-  return *this;
-}
-
-template<class T, Subscript n0>
 ostream& operator<<(ostream& os, const ConcreteRigidArray1d<T, n0>& a) {
   return arrayTuplize(a, os);
 }
