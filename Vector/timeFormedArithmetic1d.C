@@ -41,6 +41,30 @@ int main() {
 
 #define TEST11 1 // Test/Timing for Metric space category
 
+  // --------------------------------------------------------
+
+  ConcreteFormedArray1d<double> fa10(10), fa20(20);
+
+  fa10 = 10.0;
+  fa20 = 20.0;
+
+  cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
+  fa10.swap( fa20 );
+
+  cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
+  FormedArithmetic1d<double> far30(30);
+
+  far30 = 30.0;
+
+  fa10.swap( far30 );
+
+  cout << "\nfa10: " << fa10 << "\nfar30: " << far30 << endl;
+
+  // --------------------------------------------------------
+
+
 #if TEST1 || TEST_ALL
   cout << "\n Test/timing for operator ++ -- - (negate) " << endl;
 
