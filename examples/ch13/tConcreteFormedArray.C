@@ -11,6 +11,9 @@
 
 #include "Array/ConcreteArrayShape.h"
 
+#include "Array/ConcreteFormedArray1d.h"
+#include "Array/ConcreteFormedArray3d.h"
+
 int main() {
 
   ConcreteRowMajorSubscriptor<1>  RowSub1( SubscriptArray<1>(5) );
@@ -69,7 +72,8 @@ int main() {
 
   cout << " fa2d_1: " << fa2d_1 << endl;
 
-  ConcreteFortranArray3d<float> fa3d(3,4,2), fa3d_1(3,4,2);
+  //  ConcreteFortranArray3d<float> fa3d(3,4,2), fa3d_1(3,4,2);
+  ConcreteFortranArray3d<float> fa3d(3,1,1), fa3d_1(3,1,1);
 
   fa3d = 1.0;
 
@@ -81,6 +85,33 @@ int main() {
   cout << " fa3d: " << fa3d << endl;
 
   cout << " fa3d_1: " << fa3d_1 << endl;
+
+  ConcreteFormedArray3d<float> fma3d(3,1,1), fma3d_1(3,1,1);
+
+  fma3d = 1.0;
+
+  fma3d_1 = fma3d;
+
+  fma3d_1[1] =  2.0;
+
+  cout << " fma3d(0,0,0) = " << fma3d(0,0,0) << endl;
+  cout << " fma3d: " << fma3d << endl;
+
+  cout << " fma3d_1: " << fma3d_1 << endl;
+
+
+  // --------------------------------------------------------
+
+  ConcreteFormedArray1d<double> fa10(10), fa20(20);
+
+  fa10 = 10.0;
+  fa20 = 20.0;
+
+  cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
+  fa10.swap( fa20 );
+
+  cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
 
   return EXIT_SUCCESS;
 
