@@ -15,6 +15,11 @@ See README file for further details.
 #include "Vector/DistributingDivisionAlgebra.h"
 #include "Array/ConcreteRigidArray1d.h"
 
+// CAD
+// Use RigidArithmetic1d from file RigidArithmetic.h
+//
+
+
 template<class T, Subscript n0>
 class ConcreteRigidArithmetic :            
     public DivisionAlgebraCategory< ConcreteRigidArithmetic<T, n0>, T >,
