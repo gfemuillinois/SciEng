@@ -19,43 +19,71 @@ See README file for further details.
 
 template<class T, Subscript n0>
 class ConcreteRigidArray1d { 
-    public:
-    ConcreteRigidArray1d() {}
-    ConcreteRigidArray1d(Subscript s0) { if (n0 != s0) throw ArrayErr::CreationSize(); }
+ public:
+  ConcreteRigidArray1d() {}
+  explicit ConcreteRigidArray1d(Subscript s0) { 
+    if (n0 != s0) throw ArrayErr::CreationSize(); }
+  
+  Dimension         dim()              const { return 1;    }  
+  Subscript         shape(Dimension d) const { return n0;   }
+  Subscript         numElts()          const { return n0;   }
+  Subscript         offset(const Subscript s) const { return s; }   
 
 
-    Dimension         dim()              const { return 1;    }  
-    Subscript         shape(Dimension d) const { return n0;   }
-    Subscript         numElts()          const { return n0;   }
-    Subscript         offset(const SubscriptArray<1>& s)
-                                         const { return s(0); }   
+  typedef T EltT;
+  typedef const EltT& ConstProjectionT;
+  typedef EltT& ProjectionT;
+  typedef ConcreteArrayBrowser< ConcreteRigidArray1d<T, n0> >  BrowserType;
+  typedef ConcreteArrayIterator< ConcreteRigidArray1d<T, n0>  > IteratorType;
 
+  const EltT&      operator()(Subscript s) const { return data[s]; }
+  ConstProjectionT operator[](Subscript s) const { return data[s]; }
 
-    typedef T EltT;
-    typedef const EltT& ConstProjectionT;
-    typedef EltT& ProjectionT;
-    typedef ConcreteArrayBrowser< ConcreteRigidArray1d<T, n0> >  BrowserType;
-    typedef ConcreteArrayIterator< ConcreteRigidArray1d<T, n0>  > IteratorType;
+  EltT&       operator()(Subscript s) { return data[s]; }
+  ProjectionT operator[](Subscript s) { return data[s]; }
 
-    const EltT&      operator()(Subscript s) const { return data[s]; }
-    ConstProjectionT operator[](Subscript s) const { return data[s]; }
+  T const * firstDatum() const { return data; }
+  T*        firstDatum()       { return data; }
 
-    EltT&       operator()(Subscript s) { return data[s]; }
-    ProjectionT operator[](Subscript s) { return data[s]; }
+  ConcreteRigidArray1d<T, n0>& operator=(const T& rhs);
+  ConcreteRigidArray1d<T, n0>& operator=(const ConcreteRigidArray1d<T, n0>& rhs);
 
-    T const * firstDatum() const { return data; }
-    T*        firstDatum()       { return data; }
+ protected:
+  T data[n0];
+};
 
-    ConcreteRigidArray1d<T, n0>& operator=(const T& rhs);
-    protected:
-    T data[n0];
-    };
+template<class T, Subscript n0>
+ostream& operator<<(ostream& os, const ConcreteRigidArray1d<T, n0>& a);
 
-    template<class T, Subscript n0>
-    ostream& operator<<(ostream& os, const ConcreteRigidArray1d<T, n0>& a);
+template<class T, Subscript n0>
+inline
+ConcreteRigidArray1d<T,n0>& ConcreteRigidArray1d<T,n0>::operator=(const T& rhs) {
+  /*  for ( IteratorType i(*this); i.more(); i.advance() ) {
+    i.current() = rhs;
+  }*/
 
-    #ifdef XLC_QNOTEMPINC
-    #include "Array/ConcreteRigidArray1d.c"
-    #endif
+  Subscript n = shape(0);
+  while (n-- > 0) (*this)(n) = rhs;
 
-    #endif
+  //while (n-- > 0) data[n] = rhs;
+  //  for(Subscript i=0; i<n0; ++i) data[i] = rhs;
+  
+  return *this;
+}
+
+template<class T, Subscript n0>
+inline
+ConcreteRigidArray1d<T,n0>& 
+ConcreteRigidArray1d<T,n0>::operator=(const ConcreteRigidArray1d<T, n0>& rhs) {
+  Subscript n = shape(0);
+  if (n != rhs.shape(0)) throw ArrayErr::Shape();
+  while (n-- > 0) (*this)[n] = rhs[n];
+
+  return *this;
+}
+
+#ifdef XLC_QNOTEMPINC
+#include "Array/ConcreteRigidArray1d.c"
+#endif
+
+#endif
