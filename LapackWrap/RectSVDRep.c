@@ -19,7 +19,7 @@ RectSVDRep<T>::Factored::Factored(RectSVDRep<T>::Unfactored* mp) :
     facmat_p(mp),
     m( mp->shape(0) ),
     n( mp->shape(1) ), 
-    k( min(m, n) ),
+    k( sce::min(m, n) ),
     sigma(k),          // k X k diagonal matrix, stored as vector
     v_T(k, n),         // k X n
     u(m, k)  {         // m X k 
@@ -27,7 +27,8 @@ RectSVDRep<T>::Factored::Factored(RectSVDRep<T>::Unfactored* mp) :
 
 
     // Minimum size work area required by LAPACK
-    ConcreteFortranArray1d<T> work( max(3 * k + max(m,n), 5 * k - 4) );
+    ConcreteFortranArray1d<T> work( sce::max(3 * k + sce::max(m,n), 
+					     5 * k - 4) );
 
     int info;  // info return from LAPACK factor routine.
     LapackSubroutines::xgesvd( 
