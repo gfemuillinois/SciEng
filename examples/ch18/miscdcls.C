@@ -9,8 +9,10 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-extern "C" int rand();// C random number generator
+#include "clarch.h"
 
+
+extern "C" int rand();// C random number generator
 
 extern "C" {
     // ANSI C random number generator functions
@@ -18,19 +20,19 @@ extern "C" {
     void srand(unsigned int seed);
 }
 
-
+/*
 extern "C" {
 #include "examples/ch18/myCfuncs.h"
 }
+*/
 
-
-extern "FORTRAN" double drand();// Fortran random number generator
+extern "C" double FTNAME(drand)();// Fortran random number generator
 
 
 #include <iostream.h>
 
 int main() {
-  if (drand() != .5) {
+  if ( FTNAME(drand)() != .5 ) {
     cerr << "Something wrong in call to Fortran dummy random routine" << endl;
     return 1;
   }
