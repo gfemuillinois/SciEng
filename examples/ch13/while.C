@@ -19,10 +19,10 @@ double FrobeniusNorm(double* array, int n) {
     for (double* cur = array; cur < end; cur++) {
         double absx = fabs(*cur);
         if (absx > scale) {
-            sumsq = sqr(scale / absx) * sumsq + 1;
+            sumsq = sce::sqr(scale / absx) * sumsq + 1;
             	scale = absx;
         }
-        else sumsq += sqr(absx / scale);
+        else sumsq += sce::sqr(absx / scale);
     }
     return scale * sqrt(sumsq);
 }
