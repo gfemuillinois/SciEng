@@ -8,12 +8,12 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 int main() {
 
 
-cout << ('a' < 'b') << " " << ('1' >= '3') << " " << ('a' != 'A') <<
-        " " << ('a' == 'a') << " " << ('z' > 'y') << endl;
+std::cout << ('a' < 'b') << " " << ('1' >= '3') << " " << ('a' != 'A') <<
+        " " << ('a' == 'a') << " " << ('z' > 'y') << std::endl;
 
 
 return 0;

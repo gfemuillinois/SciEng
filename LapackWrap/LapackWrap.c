@@ -25,8 +25,8 @@ bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A,
   LapackSubroutines::xgetrf( prob_dim /*m*/, prob_dim /*n*/, A.firstDatum(),
 			     n0 /*lda*/, ipiv, info);
   if (info < 0) {
-    cerr << "\nLapackWrap::factAndSolve: Invalid argument " << -info 
-	 << " to LapackSubroutines::xgetrf " << endl;
+    std::cerr << "\nLapackWrap::factAndSolve: Invalid argument " << -info 
+	 << " to LapackSubroutines::xgetrf " << std::endl;
     return false;
   }
   if (info > 0) {
@@ -34,7 +34,8 @@ bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A,
      * has been completed, but the factor U is exactly singular, and
      * division by zero will occur if it is used to solve a system
      * of equations. */
-    cerr << "\nLapackWrap::factAndSolve: Matrix is singular " << endl;
+    std::cerr << "\nLapackWrap::factAndSolve: Matrix is singular " 
+	      << std::endl;
     return false;
   }
 
@@ -50,8 +51,8 @@ bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A,
 			    n0 /*ldb*/, info);
 
   if (info < 0) {
-    cerr << "\nLapackWrap::factAndSolve: Invalid argument " << -info 
-	 << " to LapackSubroutines::xgetrs " << endl;
+    std::cerr << "\nLapackWrap::factAndSolve: Invalid argument " << -info 
+	 << " to LapackSubroutines::xgetrs " << std::endl;
     return false;
   }
 

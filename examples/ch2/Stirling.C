@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 
 
@@ -22,8 +22,8 @@ int stirling(int n, int k) {
 
 int main() {
   int n, k;
-  while (cin >> n >> k) {
-    cout << stirling(n, k) << endl;
+  while (std::cin >> n >> k) {
+    std::cout << stirling(n, k) << std::endl;
   }
   return 0;
 }

@@ -8,13 +8,13 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 int main() {
 
   int x;
-  while (cin >> x) {
+  while (std::cin >> x) {
     if (x < 0) {
-      cout << "Negative number " << x << " read" << endl;
+      std::cout << "Negative number " << x << " read" << std::endl;
       break;
     }
     // ... processing of input goes here

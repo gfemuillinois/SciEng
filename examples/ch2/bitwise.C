@@ -8,17 +8,17 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <iomanip.h>
+#include <iostream>
+#include <iomanip>
 int main() {
 
 char command;
 enum commandFlags {enable = 0x01, pulse = 0x02, tone = 0x04, reset = 0x08 };
 command = (enable | tone);
 
-cout.setf(ios::showbase);
-cout.setf(ios::hex, ios::basefield);
-cout << int(command) << endl;
+std::cout.setf(std::ios::showbase);
+std::cout.setf(std::ios::hex, std::ios::basefield);
+std::cout << int(command) << std::endl;
 return 0;
 }
 

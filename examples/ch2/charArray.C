@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 int main() {
 
@@ -25,6 +25,6 @@ name[12] = '\'';
 name[13] = 's';
 name[14] = '\0';
 
-cout << name << endl;
+std::cout << name << std::endl;
 return 0;
 }

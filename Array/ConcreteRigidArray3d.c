@@ -48,6 +48,7 @@ ConcreteRigidArray3d<T, n0, n1, n2>::project(Subscript s, Dimension d) {
 }
 
 template<class T, Subscript n0, Subscript n1, Subscript n2>
-ostream& operator<<(ostream& os, const ConcreteRigidArray3d<T, n0, n1, n2>& a) {
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteRigidArray3d<T, n0, n1, n2>& a) {
   return arrayTuplize(a, os);
 }

@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 static double f(double x) { return x*x-2; }
 static double fprime(double x) { return 2*x; }
@@ -25,7 +25,7 @@ do {
 
 } while (fabs(dx) > desired_accuracy);
 
-cout << x << endl;
+std::cout << x << std::endl;
 return 0;
 }
 
