@@ -20,7 +20,7 @@ DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
 ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
 
 OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:.cc=.o) 
-	    
+
 # Targets:
 
 all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
@@ -34,12 +34,15 @@ exceptionNoLeak: exceptionNoLeak.o exceptionNoLeak_tinst.o
 	$(LINK)	exceptionNoLeak.o exceptionNoLeak_tinst.o $(SCIENGLIB)
 
 # Executables built from more than one object go here:
-tCounted: tCounted.o tCounted_tinst.o
+tCounted: tCounted.o tCounted_tinst.o input_for_tCounted
 	$(LINK)	tCounted.o tCounted_tinst.o $(SCIENGLIB)
 
 # Executables built from more than one object go here:
 tMolecule: tMolecule.o tMolecule_tinst.o
 	$(LINK)	tMolecule.o tMolecule_tinst.o $(SCIENGLIB)
+
+input_for_tCounted:
+	ln -s input_for_sol123 input_for_tCounted
 
 clean:
 	rm -f $(OBJ_FILES) 
@@ -47,6 +50,7 @@ clean:
 real_clean: clean
 	rm -f $(FILES_WITH_MAIN:.C=)
 	rm -rf Deps
+	rm -f input_for_tCounted
 
 #-include Deps/empty.d
 Deps/empty.d:
