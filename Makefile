@@ -20,6 +20,7 @@ include  SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all tests clean real_clean run_all run_tests check clean_SciEng
 
+
 ## Command to remove a file
 RM = /bin/rm
 
@@ -66,11 +67,11 @@ tests: SciEng.a  SciEngMatx.a templ_instatiation_g++ \
 templ_instatiation_g++:
 	ln -s examples/ch4/templ_instatiation_g++ .
 
-examples/SciEng.a: SciEng.a
-	ln -s SciEng.a examples/SciEng.a
+examples/SciEng.a: 
+	cd examples; ln -s ../SciEng.a
 
-examples/SciEngMatx.a: SciEngMatx.a
-	ln -s SciEngMatx.a examples/SciEngMatx.a
+examples/SciEngMatx.a: 
+	cd examples; ln -s ../SciEngMatx.a
 
 SciEngMatx.a:	\
 	SciEngMatx.a(LapackWrap/BlasSubroutines.o) \
@@ -161,6 +162,7 @@ clean:
 	cd Array; 	  $(MAKE) clean
 
 real_clean:
+	rm -f examples/SciEng.a examples/SciEngMatx.a
 	rm -f SciEng/ArrayErr.o \
 	SciEng/Boolean.o \
 	SciEng/Fallible.o \
