@@ -8,7 +8,7 @@ class DiagonalOfArray2d :
 public:
   DiagonalOfArray2d( Array2d<T>& a) : the_array(a) {}
   virtual Subscript shape(Dimension) const { 
-    return min(the_array.shape(0), the_array.shape(1)); 
+    return sce::min(the_array.shape(0), the_array.shape(1)); 
   }
   virtual const T&  operator()(Subscript i) const { 
     return the_array(i,i); 
