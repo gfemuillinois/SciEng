@@ -40,13 +40,11 @@ class ArrayBrowser3d :
   public ArrayStepper3d {
 public:
   ArrayBrowser3d(const Array& anArray) : 
-    a(anArray), 
-    ArrayStepper3d(anArray.shape(0), anArray.shape(1), anArray.shape(2)) {}
-  const Array::EltT& current() const { return a(s0, s1, s2); }
+    ArrayStepper3d(anArray.shape(0), anArray.shape(1), anArray.shape(2)),a(anArray) {}
+  const typename Array::EltT& current() const { return a(s0, s1, s2); }
 
   ArrayBrowser3d(const Array& anArray, const ArrayStepper3d step) :
-    a(anArray),
-    ArrayStepper3d(step) {
+    ArrayStepper3d(step), a(anArray) {
 }
 private:
   const Array& a;
@@ -57,10 +55,9 @@ class ArrayIterator3d :
   public ArrayStepper3d {
 public:
   ArrayIterator3d(Array& anArray) :
-    a(anArray), 
-    ArrayStepper3d(anArray.shape(0), anArray.shape(1), anArray.shape(2)) {}
-  Array::EltT& current() const { return a(s0, s1, s2); }
-  operator Array::BrowserType() { return Array::BrowserType(a, *this); }
+    ArrayStepper3d(anArray.shape(0), anArray.shape(1), anArray.shape(2)), a(anArray){}
+  typename Array::EltT& current() const { return a(s0, s1, s2); }
+  operator typename Array::BrowserType() { return Array::BrowserType(a, *this); }
 private:
   Array& a;
 };

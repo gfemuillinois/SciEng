@@ -39,14 +39,12 @@ class ArrayBrowser2d :
     public ArrayStepper2d {
 public:
     ArrayBrowser2d(const Array& anArray) :
-        a(anArray), 
-        ArrayStepper2d(anArray.shape(0), anArray.shape(1)) {
+      ArrayStepper2d(anArray.shape(0), anArray.shape(1)), a(anArray) {
     }
-    const Array::EltT& current() const { return a(s0, s1); }
+    const typename Array::EltT& current() const { return a(s0, s1); }
 
     ArrayBrowser2d(const Array& anArray, const ArrayStepper2d& step) :
-        a(anArray),
-        ArrayStepper2d(step) {
+      ArrayStepper2d(step), a(anArray) {
     }
 private:
     const Array& a;
@@ -59,11 +57,10 @@ class ArrayIterator2d :
     public ArrayStepper2d {
 public:
     ArrayIterator2d(Array& anArray) :
-        a(anArray), 
-        ArrayStepper2d(anArray.shape(0), anArray.shape(1)) {
+      ArrayStepper2d(anArray.shape(0), anArray.shape(1)), a(anArray) {
     }
-    Array::EltT& current() const { return a(s0, s1); }
-    operator Array::BrowserType() { 
+    typename Array::EltT& current() const { return a(s0, s1); }
+    operator typename Array::BrowserType() { 
         return Array::BrowserType(a, *this); 
     }
 private:
