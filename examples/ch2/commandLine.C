@@ -11,6 +11,7 @@ See README file for further details.
 
 #include <iostream.h>
 #include <stdlib.h>
+#include <getopt.h>
  
 int main(int argc, char* argv[]) {
     cout << "Flags found: ";
