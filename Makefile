@@ -1,4 +1,4 @@
-include SciEng.mkdefs
+include SciEng.mkdefs-$(HOSTTYPE)
 
 ## Command to remove a file
 RM = /bin/rm
@@ -32,4 +32,22 @@ all:	SciEng.a
 	cd examples/ch19; $(MAKE)
 
 SciEng.a:	\
-SciEng.a(Algebra/ComplexFloat.o) SciEng.a(Array/ArrayShape.o) SciEng.a(Array/ConcreteFortranSymmetricPackedArray2d.o) SciEng.a(DataModeling/FormedPhysicalData.o) SciEng.a(DataModeling/GaussianDeviates.o) SciEng.a(Function/Function.o) SciEng.a(LapackWrap/BlasSubroutines.o) SciEng.a(LapackWrap/LapackErr.o) SciEng.a(SciEng/ArrayErr.o) SciEng.a(SciEng/Boolean.o) SciEng.a(SciEng/Fallible.o) SciEng.a(SciEng/NewHandler.o) SciEng.a(SciEng/SciEngEnvironment.o) SciEng.a(SciEng/SciEngErr.o) SciEng.a(SciEng/String.o) SciEng.a(SciEng/Terminate.o) SciEng.a(Units/Physical.o) SciEng.a(Vector/ConcreteVector3d.o) SciEng.a(Vector/MisMatchedSizeErr.o)
+	SciEng.a(Algebra/ComplexFloat.o) \
+	SciEng.a(Array/ArrayShape.o) \
+	SciEng.a(Array/ConcreteFortranSymmetricPackedArray2d.o) \
+	SciEng.a(DataModeling/FormedPhysicalData.o) \
+	SciEng.a(DataModeling/GaussianDeviates.o) \
+	SciEng.a(Function/Function.o) \
+	SciEng.a(LapackWrap/BlasSubroutines.o) \
+	SciEng.a(LapackWrap/LapackErr.o) \
+	SciEng.a(SciEng/ArrayErr.o) \
+	SciEng.a(SciEng/Boolean.o) \
+	SciEng.a(SciEng/Fallible.o) \
+	SciEng.a(SciEng/NewHandler.o) \
+	SciEng.a(SciEng/SciEngEnvironment.o) \
+	SciEng.a(SciEng/SciEngErr.o) \
+	SciEng.a(SciEng/String.o) \
+	SciEng.a(SciEng/Terminate.o) \
+	SciEng.a(Units/Physical.o) \
+	SciEng.a(Vector/ConcreteVector3d.o) \
+	SciEng.a(Vector/MisMatchedSizeErr.o)
