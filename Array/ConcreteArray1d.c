@@ -49,7 +49,10 @@ istream& operator>>(istream& is, ConcreteArray1dRef<Subscriptor, T> a) {
 template<class Subscriptor, class T>
 void ConcreteArray1d<Subscriptor, T>::setSizeOnHeap(Subscript n) {
   delete[] datap;
-  datap = new T[n];
+  if (n>0)
+    datap = new T[n];
+  else
+    datap = 0;
 }
 
 
