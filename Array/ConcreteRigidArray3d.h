@@ -38,10 +38,10 @@ public:
 			const Subscript s2) const {
     if ( s0<0 || s0 >= shape(0) || s1<0 || s1 >= shape(1) ||
 	 s2<0 || s2 >= shape(2)) {
-      cerr << "ConcreteRigidArray2d<T,n0,n1,n2>::check_subscripts: Invalid "
-	   << "args: " << s0 << "  " << s1 << "  " << s2
+      std::cerr <<"ConcreteRigidArray2d<T,n0,n1,n2>::check_subscripts: Invalid"
+	   << " args: " << s0 << "  " << s1 << "  " << s2
 	   << "\nshape(0) = " << shape(0) << " shape(1) = " << shape(1) 
-	   << " shape(2) = " << shape(2) << endl;
+	   << " shape(2) = " << shape(2) << std::endl;
       assert(0);
     }
   }

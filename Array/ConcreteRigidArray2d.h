@@ -37,9 +37,9 @@ public:
 #ifdef SCIENG_CHECK_SUBSCRIPTS
   void check_subscripts(const Subscript s0, const Subscript s1) const {
     if ( s0<0 || s0 >= shape(0) || s1<0 || s1 >= shape(1) ) {
-      cerr << "ConcreteRigidArray2d<T,n0,n1>::check_subscripts: Invalid args: " 
+      std::cerr << "ConcreteRigidArray2d<T,n0,n1>::check_subscripts: Invalid args: " 
 	   << s0 << "  " << s1 << "\nshape(0) = " << shape(0) 
-	   << " shape(1) = " << shape(1) << endl;
+	   << " shape(1) = " << shape(1) << std::endl;
       assert(0);
     }
   }
