@@ -116,7 +116,10 @@ template<class Subscriptor, class T>
 void ConcreteArray2d<Subscriptor, T>::setSizeOnHeap(Subscript n) {
     if (n < 0) throw ArrayErr::NegativeSize();
     delete[] datap;
-    datap = new T[n];
+    if (n>0)
+      datap = new T[n];
+    else
+      datap = 0;
 }
 
 template<class Subscriptor, class T>
