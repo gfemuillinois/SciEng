@@ -16,7 +16,10 @@ void f(int i) {
 }
 
 int main() {
-    f(1.0e15);
+  // wrong2.C:19: warning: `double' used for argument 1 of `f(int)'
+  // wrong2.C:19: warning: overflow in implicit constant conversion
+
+  // f(1.0e15);
     return 0;
 }
 
