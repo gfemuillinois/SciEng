@@ -15,7 +15,7 @@ See README file for further details.
 #include "Array/ArrayIterator1d.h"
 #include "Array/SubscriptArray.h"
 
-class ostream;
+#include <iosfwd>
 
 //namespace SciEngLib {
 
@@ -165,20 +165,22 @@ protected:
 };
 
 template<class Subscriptor, class T>
-ostream& operator<<(ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a);
+std::ostream& 
+operator<<(std::ostream& os, const ConcreteArray1dConstRef<Subscriptor, T>& a);
 
 template<class Subscriptor, class T>
-istream& operator>>(istream& is, ConcreteArray1dRef<Subscriptor, T> a);
+std::istream& 
+operator>>(std::istream& is, ConcreteArray1dRef<Subscriptor, T> a);
 
 template<class Subscriptor, class T>
-inline
-ostream& operator<<(ostream& os, const ConcreteArray1d<Subscriptor, T>& a) {
+inline std::ostream& 
+operator<<(std::ostream& os, const ConcreteArray1d<Subscriptor, T>& a) {
   return os << ConcreteArray1dConstRef<Subscriptor, T>(a);
 }
 
 template<class Subscriptor, class T>
-inline
-istream& operator>>(istream& is, ConcreteArray1d<Subscriptor, T>& a) {
+inline std::istream& 
+operator>>(std::istream& is, ConcreteArray1d<Subscriptor, T>& a) {
   return is >> ConcreteArray1dRef<Subscriptor, T>(a);
 }
 
