@@ -18,7 +18,7 @@ extern void command_c();
 
 int main() {
     char command[100];
-    while (cin >> command) {
+    while (cin >> command && strcmp(command, "e") != 0) {
 
         if      (strcmp(command, "a") == 0) command_a();
         else if (strcmp(command, "b") == 0) command_b();
