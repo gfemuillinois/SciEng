@@ -14,20 +14,22 @@ See README file for further details.
 
 
 template<class T>
-CheckedSimpleArray<T>::CheckedSimpleArray(int n) {
+CheckedSimpleArray<T>::CheckedSimpleArray(const int n) {
     if (n < 0) throw ArraySizeError(n);
     num_elts = n;
     ptr_to_data = new T[n];
+    for(int i=0; i<num_elts; ++i)
+      ptr_to_data[i] = T();
 }
 
 template<class T>
-T& CheckedSimpleArray<T>::operator[](int i) {
+T& CheckedSimpleArray<T>::operator[](const int i) {
     if (i < 0 || i >= num_elts) throw SubscriptRangeError(i);
     return ptr_to_data[i];
 }
 
 template<class T>
-void CheckedSimpleArray<T>::setSize(int n) {
+void CheckedSimpleArray<T>::setSize(const int n) {
     if (n != num_elts) {
 
         if (n < 0) throw ArraySizeError(n);
@@ -58,7 +60,7 @@ CheckedSimpleArray<T>::~CheckedSimpleArray() {
 }
 
 template<class T>
-int CheckedSimpleArray<T>::numElts() {
+int CheckedSimpleArray<T>::numElts() const {
     return num_elts;
 }
 
@@ -80,7 +82,7 @@ CheckedSimpleArray<T>& CheckedSimpleArray<T>::operator=(const CheckedSimpleArray
 }
 
 template<class T>
-CheckedSimpleArray<T>& CheckedSimpleArray<T>::operator=(T rhs) {
+CheckedSimpleArray<T>& CheckedSimpleArray<T>::operator=(const T rhs) {
     T* p = ptr_to_data + num_elts;
     while (p > ptr_to_data) *--p = rhs;
     return *this;
