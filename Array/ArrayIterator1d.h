@@ -12,6 +12,9 @@ See README file for further details.
 #define ArrayIterator1dH
 
 #include "SciEng/Boolean.h"
+#include "SciEng/Subscript.h"
+
+//namespace SciEngLib {
 
 template<class Array>
 class ArrayBrowser1d {
@@ -19,7 +22,7 @@ public:
   ArrayBrowser1d(const Array& anArray) : a(anArray), s0(0), n0(anArray.shape(0)) {}
   Boolean more() const { return s0 < n0; }
   void    advance()    { s0++; }
-  const Array::EltT& current() const { return a(s0); }
+  const typename Array::EltT& current() const { return a(s0); }
 
   ArrayBrowser1d(const Array& array, Subscript sub0, Subscript num0) :
     a(array),
@@ -39,11 +42,14 @@ public:
   ArrayIterator1d(Array& anArray) : a(anArray), s0(0), n0(anArray.shape(0)) {}
   Boolean more() const { return s0 < n0; }
   void    advance()    { s0++; }
-  Array::EltT& current() const { return a(s0); }
-  operator Array::BrowserType() { return Array::BrowserType(a, s0, n0); }
+  typename Array::EltT& current() const { return a(s0); }
+  operator typename Array::BrowserType() { return Array::BrowserType(a, s0, n0); }
 private:
   Array& a;
   Subscript s0;
   const Subscript n0;
 };
+
+//}
+
 #endif
