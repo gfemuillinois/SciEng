@@ -1,6 +1,9 @@
 #
 #
+HOSTTYPE = $(shell uname)
 include ../SciEng.mkdefs-$(HOSTTYPE)
+
+.PHONY: all clean real_clean run_all check
 
 FILES_WITH_MAIN	= tString.C tBool.C
 
@@ -8,33 +11,59 @@ TEMPLATE_INSTANCES = String_tinst.cc
 
 SOURCE_FILES = String.C
 
+#Automatically generated dependencies for .C and .cc files
+DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
+	     $(FILES_WITH_MAIN:%.C=Deps/%.d) \
+	     $(TEMPLATE_INSTANCES:%.cc=Deps/%.d)
+
 ALL_FILES = $(FILES_WITH_MAIN)  $(SOURCE_FILES)  $(TEMPLATE_INSTANCES)
 
-all:    $(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
+OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:.cc=.o)
 
+# Targets:
+
+all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
+
+# Executables built from more than one object go here:
 tString: tString.o String.o String_tinst.o
 	$(LINK) tString.o String.o String_tinst.o
 
 tBool: tBool.o Boolean.o
 	$(LINK) tBool.o Boolean.o
 
+
 clean:
-	rm -f $(FILES_WITH_MAIN:.C=.o) \
-	      $(TEMPLATE_INSTANCES:.cc=.o) \
-	      $(SOURCE_FILES:.C=.o)
+	rm -f $(OBJ_FILES) 
 
 real_clean: clean
 	rm -f $(FILES_WITH_MAIN:.C=)
-	rm -f *.o
+	rm -rf Deps
 
-# Depenedence list created with g++ -c -I.. -MM String.C
+#-include Deps/empty.d
+Deps/empty.d:
+	test -d Deps || mkdir Deps
+	touch $@
 
-String.o: String.C ../SciEng/String.h ../SciEng/Subscript.h \
- ../SciEng/Fallible.h ../SciEng/Boolean.h ../SciEng/SciEngErr.h
+$(DEPENDLIST): Deps/empty.d
 
-tString.o: tString.C ../SciEng/String.h ../SciEng/Subscript.h \
- ../SciEng/Fallible.h ../SciEng/Boolean.h ../SciEng/SciEngErr.h
+#Automatically generated dependencies for .C and .cc files
+-include $(DEPENDLIST)
 
-String_tinst.o: String_tinst.cc
+check:
+	@echo HOSTTYPE: $(HOSTTYPE)
+	@echo CXX,CC,LD: $(CXX) : $(CC) : $(LD)
+	@echo OPT: $(OPT)
+	@echo OPTM: $(OPTM)
+	@echo ALL_FILES: $(ALL_FILES)
+	@echo
+	@echo OBJ_FILES: $(OBJ_FILES)
+	@echo
+	@echo DEPENDLIST: $(DEPENDLIST)
 
-Boolean.o: Boolean.C ../SciEng/Boolean.h 
+# The sequence of runs will stop if any executable 
+# returns non-zero value.
+run_all:
+	@echo Running tBool: ; tBool
+	@echo Running tString: ; tString
+
+
