@@ -1,0 +1,19 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+*.save
+
+ char-out
+ const
+ enum
+ fortran-compatible-io
+ funcarg
+ io
+ iodemo
+ new
+ refs
+ regurgitate
+ sqrtTable
