@@ -13,6 +13,7 @@ See README file for further details.
 
 #include "SciEng/SciEngErr.h"
 
+//namespace SciEngLib{
 
 class ArrayErr {
 public:
@@ -47,6 +48,7 @@ public:
     };
 };
 
+//}
 
 #endif
 

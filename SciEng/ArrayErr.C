@@ -13,6 +13,7 @@ See README file for further details.
 #include "SciEng/Boolean.h"
 #include "SciEng/String.h"
 
+//namespace SciEngLib{
 
 String ArrayErr::Shape::message() const {
     return "Array shapes not commensurate.";
@@ -38,3 +39,4 @@ String ArrayErr::SubscriptRange::message() const {
     return "Subscript out of range.";
 }
 
+//}
