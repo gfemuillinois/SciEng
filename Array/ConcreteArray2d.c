@@ -106,7 +106,7 @@ const ConcreteArray2dRef<Subscriptor, T>&
 ConcreteArray2dRef<Subscriptor, T>::operator=(
         const ConcreteArray2dRef<Subscriptor, T>& rhs) const {
     // Convert rhs reference to const reference and use its assignment
-    const ConcreteArray2dConstRef<Subscriptor, T> rhsa = rhs;
+  //    const ConcreteArray2dConstRef<Subscriptor, T> rhsa = rhs;
     return *this = rhs;
 }
 
