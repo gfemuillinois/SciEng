@@ -28,7 +28,7 @@ int main() {
   {
   cout << "\nTest/timing for operator()" << endl;
 
-  const int mat_dim = 50;
+  const int mat_dim = 10;
   const int n_prods = 20000;  
   {
     the_timer.set(0);
@@ -87,7 +87,7 @@ int main() {
     ConcreteFormedArray2d<double>  cfa_a(mat_dim,mat_dim),
                                    cfa_b(mat_dim,mat_dim);
     //ConcreteFortranArray2d<double>  cfa_a(mat_dim,mat_dim),
-                                      cfa_b(mat_dim,mat_dim);
+    //                                cfa_b(mat_dim,mat_dim);
    
     the_timer.set(3);
     the_timer.start(3);
