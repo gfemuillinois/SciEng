@@ -55,7 +55,8 @@ int main() {
 
 
 
-  for (it = components; it.more(); it.advance()) delete it.current();
+  for (ListIterator<GPIBComponent*> it(components); it.more(); it.advance()) 
+    delete it.current();
   return 0;
 }
 

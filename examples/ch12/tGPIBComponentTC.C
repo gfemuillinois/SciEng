@@ -43,6 +43,7 @@ for (ListIterator<GPIBComponent_TC*> it(components); it.more(); it.advance()) {
 }
 
 
-  for (it = components; it.more(); it.advance()) delete it.current();
+  for (ListIterator<GPIBComponent_TC*> it(components); it.more(); it.advance()) 
+    delete it.current();
 return 0;
 }
