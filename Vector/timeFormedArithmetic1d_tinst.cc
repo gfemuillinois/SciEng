@@ -5,7 +5,7 @@
 
 template class ConcreteFormedArray1d<double>;
 
-template class ConcreteArrayShape<1>;
+//template class ConcreteArrayShape<1>;
 
 template class DistributingEquivalentCategory<FormedArithmetic1d<double> >;
 
