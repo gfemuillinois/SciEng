@@ -13,8 +13,9 @@ See README file for further details.
 
 #include "Algebra/LinearSpaceCategory.h"
 #include "Algebra/MetricSpaceCategory.h"
+
 #include "Vector/DistributingLinearSpace.h"
-#include "Vector/DistributingMetricSpace.h"
+#include "Vector/DistributingEquivalentCategory.h"
 
 #include "SciEng/ArrayErr.h"
 #include "Array/ConcreteFortranArray1d.h"
@@ -26,28 +27,39 @@ template<class T>
 class ConcreteBlas1d :            
     public LinearSpaceCategory< ConcreteBlas1d<T>, T>,
     public MetricSpaceCategory< ConcreteBlas1d<T>, T>,
+ 
     public DistributingLinearSpace<ConcreteBlas1d<T>, T, T>,
+    public DistributingEquivalentCategory<ConcreteBlas1d<T> >,
+
     public ConcreteFortranArray1d<T> {
 public:
-    ConcreteBlas1d(Subscript n) : ConcreteFortranArray1d<T>(n) {}
-    ConcreteBlas1d(const ConcreteBlas1d<T>& a) : ConcreteFortranArray1d<T>(a) {}
-    ConcreteBlas1d(const ConcreteFortranArray2d<T>::ConstProjectionT& a) : ConcreteFortranArray1d<T>(a) {}
-    ConcreteBlas1d(const ConcreteFortranArray2d<T>::ProjectionT& a) : ConcreteFortranArray1d<T>(a) {}
+  explicit ConcreteBlas1d(Subscript n) : 
+    ConcreteFortranArray1d<T>(n) {}
+  ConcreteBlas1d(const ConcreteBlas1d<T>& a) : 
+    ConcreteFortranArray1d<T>(a) {}
+  ConcreteBlas1d(const typename ConcreteFortranArray2d<T>::ConstProjectionT& a) :
+    ConcreteFortranArray1d<T>(a) {}
+  ConcreteBlas1d(const typename ConcreteFortranArray2d<T>::ProjectionT& a) :
+    ConcreteFortranArray1d<T>(a) {}
 
-    T dot(const ConcreteBlas1d<T>& rhs) const {
-        if( numElts() != rhs.numElts() ) throw ArrayErr::Shape();
-        return Blas1Subroutines::xdot(int(numElts()), firstDatum(), 1, rhs.firstDatum(), 1);
-    }
+  // User must define function for MetricSpaceCategory
+  T dot(const ConcreteBlas1d<T>& rhs) const {
+    //  cout << "ConcreteBlas1d<T>::dot" << endl;
 
-    const ConcreteBlas1d<T>& operator=(const ConcreteBlas1d<T>& rhs) {
-        ConcreteFortranArray1d<T>::operator=(rhs);
-        return *this;
-    }
+    if( numElts() != rhs.numElts() ) throw ArrayErr::Shape();
+    return Blas1Subroutines::xdot( int(numElts()), firstDatum(), 1, 
+				   rhs.firstDatum(), 1);
+  }
 
-    const ConcreteBlas1d<T>& operator=(const T& rhs) {
-        ConcreteFortranArray1d<T>::operator=(rhs);
-        return *this;
-    }
+  const ConcreteBlas1d<T>& operator=(const ConcreteBlas1d<T>& rhs) {
+    ConcreteFortranArray1d<T>::operator=(rhs);
+    return *this;
+  }
+
+  const ConcreteBlas1d<T>& operator=(const T& rhs) {
+    ConcreteFortranArray1d<T>::operator=(rhs);
+    return *this;
+  }
 };
 
 
