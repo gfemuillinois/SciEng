@@ -23,4 +23,3 @@ int main() {
     cout << coulombsLaw(1.6e-19, 1.6e-19, 5.3e-11) << " newtons" << endl;
     return 0;
 }
-

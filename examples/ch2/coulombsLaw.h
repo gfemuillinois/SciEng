@@ -10,4 +10,3 @@ See README file for further details.
 */
 
 extern double coulombsLaw(double q1, double q2, double r);
-
