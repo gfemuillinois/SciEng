@@ -19,16 +19,18 @@ template<class T>
 class ConcreteFortranArray2d :              
     public ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T > {
 public:
+  typedef ConcreteColumnMajorSubscriptor<2> SubscriptorType;
+
     ConcreteFortranArray2d(Subscript s0, Subscript s1);
     ConcreteFortranArray2d(const ConcreteFortranArray2d<T>& p);
-    ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<2>, T>&);
+    ConcreteFortranArray2d(const ConcreteArray2dConstRef< SubscriptorType, T>&);
     ConcreteFortranArray2d(const ConcreteArray2dConstRef<ConcreteColumnMajorSubscriptor<3>::ProjectionT, T>&);
     ConcreteFortranArray2d(const ConstArray2d<T>&);
 
     ~ConcreteFortranArray2d();
 
     ConcreteFortranArray2d<T>& operator=(const ConcreteFortranArray2d<T>& rhs);
-    ConcreteFortranArray2d<T>& operator=(const ConcreteArray2dConstRef<SubscriptorT, T>& rhs);
+    ConcreteFortranArray2d<T>& operator=(const ConcreteArray2dConstRef<SubscriptorType, T>& rhs);
     ConcreteFortranArray2d<T>& operator=(const T& rhs);
 
     void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
