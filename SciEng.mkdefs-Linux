@@ -30,21 +30,25 @@ endif
 
 ifndef OPT
 # debug compiler options -------------------------
-OPTM = -g  
+OPTM = -g -DSCIENG_CHECK_SUBSCRIPTS
+CXX_OPTM_FLAG = CXX_OPTM_FLAG-g
 
 else
 # optimize flags ----------------------------
-OPTM = -O
+OPTM = -O -DSCIENG_CHECK_SUBSCRIPTS
+CXX_OPTM_FLAG = CXX_OPTM_FLAG-O 
 
 ifeq ($(OPT),FULL)
 OPTM = -O3
+CXX_OPTM_FLAG = CXX_OPTM_FLAG$(OPTM)
 endif
 
 #compile rules for trouble files (limited optimization)
 # can go here
 endif
 
-CXX_OPTM_FLAG = CXX_OPTM_FLAG$(OPTM)
+
+
 
 # we can overwrite this on the command line
 WERROR = -Werror
@@ -71,9 +75,9 @@ LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
 
 #PWD := $(shell pwd)
 
-SCIENGLIB = $(HOME)/Galileu_arm/SciEng_arm/SciEng.a
+SCIENGLIB = $(HOME)/Galileu_arm/SciEng/SciEng.a
 #SCIENGLIB = 
-SCIENGMATXLIB = $(HOME)/Galileu_arm/SciEng_arm/SciEngMatx.a
+SCIENGMATXLIB = $(HOME)/Galileu_arm/SciEng/SciEngMatx.a
 
 # location of libg2c.a  =  Fortran run-time library
 #LIBSYSPATH = -L/usr/lib/gcc-lib/i386-redhat-linux/egcs-2.91.66 
