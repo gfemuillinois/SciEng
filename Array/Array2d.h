@@ -52,7 +52,7 @@ public:
 
     typedef ArrayIterator2d< Array2d<T> > IteratorType;
     typedef AccessedArray1d<T>            ProjectionT;
-
+    typedef typename ConstArray2d<T>::ConstProjectionT ConstProjectionT;
 
 
     virtual const T&         operator()(Subscript i, Subscript j)  const = 0;

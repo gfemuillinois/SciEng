@@ -17,6 +17,8 @@ template<class T>
 class AccessedConstArray2d :
   public virtual ConstArray2d<T> {
 public:
+  typedef typename ConstArray2d<T>::EltT  EltT;
+  typedef typename ConstArray2d<T>::ConstProjectionT ConstProjectionT;
 
   AccessedConstArray2d(ConstArray2d<T>* newed_a) : the_array(newed_a) {}
   ~AccessedConstArray2d() { delete the_array; }
@@ -38,6 +40,10 @@ template<class T>
 class AccessedArray2d :
     public virtual Array2d<T> {
 public:
+    typedef typename Array2d<T>::EltT             EltT;
+    typedef typename Array2d<T>::ConstProjectionT ConstProjectionT;
+    typedef typename Array2d<T>::ProjectionT      ProjectionT;
+
     AccessedArray2d(Array2d<T>* newed_a) : the_array(newed_a) {}
     ~AccessedArray2d()  { delete the_array; }
 

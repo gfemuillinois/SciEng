@@ -17,6 +17,7 @@ template<class T>
 class AccessedConstArray1d :
   public ConstArray1d<T> {
 public:
+  typedef typename ConstArray1d<T>::EltT EltT;
 
   AccessedConstArray1d(ConstArray1d<T>* newed_t) : the_array(newed_t) {}
   virtual ~AccessedConstArray1d() { delete the_array; }
@@ -35,6 +36,8 @@ template<class T>
 class AccessedArray1d :
   public Array1d<T> {
 public:
+
+  typedef typename Array1d<T>::EltT EltT;
 
   AccessedArray1d(Array1d<T>* newed_t) : the_array(newed_t) {}
   ~AccessedArray1d() { delete the_array; }
