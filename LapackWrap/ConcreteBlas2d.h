@@ -213,6 +213,7 @@ class ConcreteBlas2d :
 
   public ConcreteFortranArray2d<T> {
 public:
+  ConcreteBlas2d() {}
   ConcreteBlas2d(const ConcreteFortranArray2d<T>& a);
   ConcreteBlas2d(Subscript nrows, Subscript ncols);
 
