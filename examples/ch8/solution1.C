@@ -70,14 +70,15 @@ int main() {
     // Read maximum angle threshold and check elements
     Number angle_threshold;
     cin >> angle_threshold;
-    Boolean anglesOK = Boolean::true;
-    for (eltNum = 0; eltNum < numElements; eltNum++) {
+    Boolean anglesOK = Boolean::IsTrue;
+    for (int eltNum = 0; eltNum < numElements; eltNum++) {
         Element& e = elementTable[eltNum]; // e is an alias for element # eltNum
         if (maxAngle(e, nodeTable) > angle_threshold) {
             cout << "Element [ ";
-            for (int i = 0; i < e.numElts(); i++) cout << nodeTable[e[i]] << " ";
+            for (int i = 0; i < e.numElts(); i++) 
+	      cout << nodeTable[e[i]] << " ";
             cout << "] has a large angle." << endl;
-            anglesOK = Boolean::false;
+            anglesOK = Boolean::IsFalse;
         }
     }
     return anglesOK ? EXIT_SUCCESS : EXIT_FAILURE;
