@@ -9,13 +9,15 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <complex.h>
+#include <complex>
+#include <iostream>
 
+using std::complex;
 
 extern float zero;        // Forward declaration
 
-complex one(zero+1);      // Has value 1.0+0.0i
-complex two(zero+2);      // Has value 2.0+0.0i
+complex<double> one(zero+1);      // Has value 1.0+0.0i
+complex<double> two(zero+2);      // Has value 2.0+0.0i
 float zero;               // Has value 0 by default.
 
 
