@@ -8,6 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+#include <iostream>
+
 #include "LapackWrap/Lapack.h"
 #include "LapackWrap/RectSVDRep.h"
 
@@ -47,9 +49,12 @@ int main() {
   
   // Solve
   RectSVDRep<double>::Unknowns1d result(5);
+  //  Should give: [4/3, 1.6, 2/3, 0.4, 0.0]
+  cout << "Expected answer is [4/3, 1.6, 2/3, 0.4, 0.0]" << endl;
+  cout << "Answer obtained is ";
   cout << P.factor().solve(result, y) << endl;
 
-  //  Should give: [4/3, 1.6, 2/3, 0.4, 0.0]
+
   return 0;
 }
 
