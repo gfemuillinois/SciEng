@@ -10,6 +10,8 @@ See README file for further details.
 */
 /* Fake Numerical Recipes function */
 
-void nrfunction(void) {
-  nrerror("bad stuff happened");
+extern "C" void nrerror(char error_text[]);
+
+extern "C" void nrfunction(void) {
+  nrerror("nr: bad stuff happened");
 }
