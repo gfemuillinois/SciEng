@@ -11,7 +11,7 @@ See README file for further details.
 #ifndef utilsH
 #define utilsH
 
-//namespace SciEngLib{
+namespace sce{
 
 template<class T> inline T min(T x1, T x2) { return x1 < x2 ? x1 : x2; }
 
@@ -58,6 +58,6 @@ double abs(complex z) {
 
 template<class T> T abs(T x)        { return x < 0   ? -x : x;  }
 
-//} 
+}
 
 #endif
