@@ -14,7 +14,7 @@ See README file for further details.
 
 Boolean has_real_solution(double a, double b, double c) {
     // Does ax**2 + bx + c = 0 have a real solution?
-    return sqr(b) >= 4 * a * c;
+    return sce::sqr(b) >= 4 * a * c;
 }
 
 
