@@ -20,8 +20,7 @@ Boolean has_real_solution(double a, double b, double c) {
 
 int main() {
 
-
-  Boolean b1(Boolean::true); // Calls Boolean(int)
+  Boolean b1(Boolean::IsTrue); // Calls Boolean(int)
   Boolean b2(3);             // Calls Boolean(int)
   int* p_i = new int(3);
   Boolean b3(p_i);           // Calls Boolean(void*)
@@ -38,6 +37,6 @@ int main() {
     return 1;
   }
 
-  Boolean b5(Boolean::false);
+  Boolean b5(Boolean::IsFalse);
   return (!b5)?0:1;
 }
