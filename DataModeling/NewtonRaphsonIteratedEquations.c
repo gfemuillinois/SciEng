@@ -33,7 +33,7 @@ update(Array1d< NewtonRaphsonIteratedEquations<RallT>::T>& a) {
 
     FormedArray1d< RallT > a_trial(n);
     for (int i = 0; i < n; i++) {   
-                                                            a_trial(i) = RallT(a(i), i, n);  // Convert a_i's to Rall numbers
+      a_trial(i) = RallT(a(i), i, n);  // Convert a_i's to Rall numbers
     }
 
     LapackUnfactored< BlasRectLURep<T> >  jacobian(n, n);
@@ -42,10 +42,10 @@ update(Array1d< NewtonRaphsonIteratedEquations<RallT>::T>& a) {
     Array1d< NewtonRaphsonFunction<RallT> >& f = *this;
 
     for (i = 0; i < n; i++) { // Evaluate equations, unpack derivatives
-                                                            TaylorCoefficient1d<T> f_a_trial = f(i)(a_trial);
+      TaylorCoefficient1d<T> f_a_trial = f(i)(a_trial);
 
-                                                            jacobian.row(i) = f_a_trial;
-                                                            delta_a(i)      = f_a_trial.value();
+      jacobian.row(i) = f_a_trial;
+      delta_a(i)      = f_a_trial.value();
 
     }
 
