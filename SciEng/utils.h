@@ -11,6 +11,8 @@ See README file for further details.
 #ifndef utilsH
 #define utilsH
 
+//namespace SciEngLib{
+
 template<class T> inline T min(T x1, T x2) { return x1 < x2 ? x1 : x2; }
 
 template<class T> inline T max(T x1, T x2) { return x1 > x2 ? x1 : x2; }
@@ -20,6 +22,10 @@ inline
 T sqr(T x) { 
     return x * x; 
 }
+
+// FIXME: should test for xlC compiler instead of !GNUC
+
+#ifndef __GNUC__
 
 class complex;
 extern double abs(complex);    // should return double, not complex
@@ -47,7 +53,11 @@ double abs(complex z) {
 }
   
 // End bug workaround
+#endif  
+
 
 template<class T> T abs(T x)        { return x < 0   ? -x : x;  }
+
+//} 
 
 #endif
