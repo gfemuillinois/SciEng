@@ -119,7 +119,7 @@ endif
 #LINK = $(LD) $(CXXTEMPLATELINK) -I../.. $(CXXFLAGS)  -o $@   $(SCIENGLIB)
 LINK = $(LD)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@  
 
-INC = -I../.. -I.. -I.
+INC = -I../.. -I.. -I. -I../SciEng -I../../SciEng
 
 %.o : %.C
 	@echo Compiling $<
