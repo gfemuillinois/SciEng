@@ -8,8 +8,8 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include "SciEng/Boolean.h"
 #include "examples/ch6/Point.h"
 #include "examples/ch6/List.h"

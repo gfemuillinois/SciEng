@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 #include "examples/ch9/CheckedSimpleArray.h"
 #include "examples/ch9/GPIBController.h"

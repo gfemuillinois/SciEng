@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include "SciEng/String.h"
 #include "SciEng/CloneableObjPtr.h"
 #include "Array/ConcreteFormedArray1d.h"

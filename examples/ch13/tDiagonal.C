@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include "Array/FormedArray2d.h"
 
 #include "Array/Array2d.h"

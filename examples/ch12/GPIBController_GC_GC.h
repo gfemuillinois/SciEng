@@ -11,7 +11,7 @@ See README file for further details.
 #ifndef GPIBController_GCH
 #define GPIBController_GCH
 
-#include <iostream.h>
+#include <iostream>
 
 #include "examples/ch9/GPIBController.h"
 #include "examples/ch12/GPIBComponent.h"

@@ -10,7 +10,7 @@ See README file for further details.
 */
 // Illustrate a function like Lapack's simple drivers
 
-#include <iostream.h>
+#include <iostream>
 #include "LapackWrap/Lapack.h"
 #include "LapackWrap/RectLURep.h"
 #include "LapackWrap/SymPosDefPackedLURep.h"

@@ -2,7 +2,7 @@
 //  Measuring the time spent on virtual function calls
 //
 
-#include <iostream.h>
+#include <iostream>
 #include <assert.h>
 
 #include "timer.h"

@@ -29,7 +29,7 @@ extern "C" {
 extern "C" double FTNAME(drand)();// Fortran random number generator
 
 
-#include <iostream.h>
+#include <iostream>
 
 int main() {
   if ( FTNAME(drand)() != .5 ) {

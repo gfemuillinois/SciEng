@@ -11,7 +11,7 @@ See README file for further details.
 #ifndef ListH
 #define ListH
 
-#include <iostream.h>
+#include <iostream>
 #include <float.h>
 #include "SciEng/Boolean.h"
 

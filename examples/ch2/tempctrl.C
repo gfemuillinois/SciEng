@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 extern void flushWithWater();
 extern void coolingWaterOn();
 extern void coolingWaterOff();

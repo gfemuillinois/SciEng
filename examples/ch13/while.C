@@ -28,7 +28,7 @@ double FrobeniusNorm(double* array, int n) {
 }
 
 
-#include <iostream.h>
+#include <iostream>
 int
 main() {
   double m[2][3] = { {1, 2, 3}, 

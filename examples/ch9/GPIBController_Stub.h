@@ -11,7 +11,7 @@ See README file for further details.
 #ifndef GPIBController_StubH
 #define GPIBController_StubH
 
-#include <iostream.h>
+#include <iostream>
 
 
 class GPIBController_Stub {

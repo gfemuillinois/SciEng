@@ -13,7 +13,7 @@ See README file for further details.
 #include "Array/Array3d.h"
 #include "Array/FormedArray2d.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <strstream.h>
 #include <float.h>
 

@@ -9,7 +9,7 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include "examples/ch17/FAMaker.h"
-#include <iostream.h>
+#include <iostream>
 
 
 int main(int argc, char* argv[]) {
