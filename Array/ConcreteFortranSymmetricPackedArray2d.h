@@ -25,6 +25,7 @@ public:
 
 
     Subscript offset(const SubscriptArray<2>& s) const;
+  Subscript offset(const Subscript s0, const Subscript s1) const; // TBremoved
 
     class ProjectionT {
     public:
@@ -35,6 +36,7 @@ public:
         Subscript         numElts()        const { return n; }
 
         Subscript offset(const SubscriptArray<1>& s) const;
+        Subscript offset(const Subscript s) const;
     private:
 
         const Subscript proj_sub;    // Subscript in projected-out dimension
@@ -58,6 +60,13 @@ FortranSymmetricPackedSubscriptor::offset(const SubscriptArray<2>& s) const {
         return i <= j ? i+(j*(j+1))/2 : j+(i*(i+1))/2;
 }
 
+inline
+Subscript 
+FortranSymmetricPackedSubscriptor::offset(const Subscript s0, const Subscript s1) const {
+        Subscript i = s0;
+        Subscript j = s1;
+        return i <= j ? i+(j*(j+1))/2 : j+(i*(i+1))/2;
+}
 
 
 inline
@@ -73,6 +82,8 @@ template<class T>
 class ConcreteFortranSymmetricPackedArray2d :
     public ConcreteArray2d<FortranSymmetricPackedSubscriptor, T> {
 public:
+  typedef FortranSymmetricPackedSubscriptor SubscriptorType;
+
     ConcreteFortranSymmetricPackedArray2d(Subscript s0, Subscript s1);
     ConcreteFortranSymmetricPackedArray2d(const ConcreteFortranSymmetricPackedArray2d<T>&);
 
