@@ -17,8 +17,23 @@ See README file for further details.
 
 template<class Array, class T, class S>
 class DistributingLinearSpace :             
-    public DistributingAbelianGroup<Array, T>,
-    public DistributingFieldScalars<Array, T, S> {
+  public DistributingAbelianGroup<Array, T>,
+  public DistributingFieldScalars<Array, T, S> {
+
+public:
+
+  // CAD
+  Array& operator+=(const Array& rhs) { 
+    return DistributingAbelianSemiGroup<Array, T>::operator+=(rhs); }
+  // CAD
+  Array& operator-=(const Array& rhs) { 
+    return DistributingAbelianGroup<Array, T>::operator-=(rhs); }
+  // CAD
+  Array& operator+=(const S& rhs) {
+    return DistributingExternalScalars<Array, T, S>::operator+=(rhs); }
+  // CAD
+  Array& operator-=(const S& rhs) {
+    return DistributingFieldScalars<Array, T, S>::operator-=(rhs); }
 };
 
 
