@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 int main() {
 
@@ -23,15 +23,15 @@ int j = 4;
 p = &j;
 
 
-cout << *p << endl;
+std::cout << *p << std::endl;
 
 
 *p = 5;
-cout << *p << " " << i << " " << j << endl;
+std::cout << *p << " " << i << " " << j << std::endl;
 
 
 if (p != 0) {
-    cout << "Pointer p points at " << *p << endl;
+    std::cout << "Pointer p points at " << *p << std::endl;
 } 
 
 return 0;

@@ -9,19 +9,19 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 
 void linefit() {
     // Create arrays with the desired number of elements
     int n;  
-    cin >> n;
+    std::cin >> n;
     float* const x = new float[n];
     float* const y = new float[n];
 
 
     // Read the data points
     for (int i = 0; i < n; i++) {
-        cin >> x[i] >> y[i];
+        std::cin >> x[i] >> y[i];
     }
 
     // Accumulate sums Sx and Sy in double precision
@@ -52,7 +52,7 @@ void linefit() {
 
 
 
-    cout << a << " " << b << endl;
+    std::cout << a << " " << b << std::endl;
 }
 
 

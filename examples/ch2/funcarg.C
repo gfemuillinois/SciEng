@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 
 void swap(int& i1, int& i2) {
@@ -35,8 +35,8 @@ float y[] = {3.0, 4.0, 5.0};
 // ...
 f(j, k, y);
 
-cout << j << " " << k << endl;
-cout << y[0] << " " << y[1] << " " << y[2] << endl;
+std::cout << j << " " << k << std::endl;
+std::cout << y[0] << " " << y[1] << " " << y[2] << std::endl;
 
 
 int i = j;

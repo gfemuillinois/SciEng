@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 int main() {
 
@@ -18,11 +18,11 @@ int& ir = i;      // Reference to variable i
 
 
 
-cout << ir << endl;
+std::cout << ir << std::endl;
 ir = 4;
 
 
-cout << ir << endl;
+std::cout << ir << std::endl;
 
 
 const float pi = 3.14159;

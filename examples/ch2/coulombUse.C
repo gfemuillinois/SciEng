@@ -9,17 +9,17 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 #include "examples/ch2/coulombsLaw.h"
  
 int main() {
-    cout << coulombsLaw(1.6e-19, 1.6e-19, 5.3e-11) << " newtons" << endl;
+    std::cout << coulombsLaw(1.6e-19, 1.6e-19, 5.3e-11) << " newtons" << std::endl;
     return 0;
 }
 
 
 void foo() {
 
-cout << coulombsLaw(1.6e-19, 1.6e-19, 1) << " newtons" << endl;
+std::cout << coulombsLaw(1.6e-19, 1.6e-19, 1) << " newtons" << std::endl;
 
 }

@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 
 enum Color { red, orange, yellow, green, blue, indigo, violet };
@@ -30,6 +30,6 @@ enum Color { red, orange, yellow, green, blue, indigo, violet };
 enum Crt_colors { red, green, blue };
 
 }*/
-  cout << (green + triangle) << endl;
+  std::cout << (green + triangle) << std::endl;
   return 0;
 }

@@ -10,12 +10,12 @@ See README file for further details.
 */
 #include <unistd.h>
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 
 int main() {
-  ofstream out("pi.out");
-  out << 3.14159 << endl;
+  std::ofstream out("pi.out");
+  out << 3.14159 << std::endl;
 
   unlink("pi.out");
   return 0;

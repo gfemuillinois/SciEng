@@ -9,8 +9,8 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
-#include <iomanip.h>
+#include <iostream>
+#include <iomanip>
 
 int main() {
     double a = 3.14159;
@@ -18,15 +18,15 @@ int main() {
     double c = 10 * a;
 
     // Use FORTRAN compatibility output.
-    cout << setiosflags(ios::showpoint | ios::uppercase);
+    std::cout << setiosflags(std::ios::showpoint | std::ios::uppercase);
 
     // Write data in G15.8 format.
-    cout << setw(15) << setprecision(8) << a;
-    cout << setw(15) << setprecision(8) << b;
+    std::cout << std::setw(15) << std::setprecision(8) << a;
+    std::cout << std::setw(15) << std::setprecision(8) << b;
 
     // Write in F10.3 format
-    cout << setiosflags(ios::fixed);
-    cout << setw(10) << setprecision(3) << c << endl;
+    std::cout << setiosflags(std::ios::fixed);
+    std::cout << std::setw(10) << std::setprecision(3) << c << std::endl;
 
     return 0;
 }

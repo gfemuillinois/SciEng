@@ -9,18 +9,18 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <getopt.h>
  
 int main(int argc, char* argv[]) {
-    cout << "Flags found: ";
+    std::cout << "Flags found: ";
     int flag;
     while ((flag = getopt(argc, argv, "abcdefg")) != EOF) {
         char flagc = flag;
-        cout << flagc << " ";
+        std::cout << flagc << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
     return EXIT_SUCCESS;
 }
 

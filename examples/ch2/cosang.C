@@ -10,14 +10,14 @@ See README file for further details.
 */
 
 // Read an angle in degrees and print its cosine.
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 
 int main() {
 
     float angle;                                  // Angle, in degrees
-    cin >> angle;
-    cout << cos(angle * M_PI / 180.0 ) << endl;   // M_PI is from <math.h>
+    std::cin >> angle;
+    std::cout << cos(angle * M_PI / 180.0 ) << std::endl;   // M_PI is from <math.h>
     return 0;
 }
 

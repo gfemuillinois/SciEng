@@ -9,12 +9,12 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 int main() {
     int i = 13;
     while (i) {
         i /= 2;
-        cout << i << endl;
+        std::cout << i << std::endl;
     }
     return 0;
 }

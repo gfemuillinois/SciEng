@@ -8,16 +8,16 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 int main() {
 
 
 int i = 1;
-cout << i << ", ";         // Print i
-cout << (++i) << ", ";     // Increment i, then print its new value
-cout << i << ", ";         // Print i
-cout << (i++) << ", ";     // Print i's old value, then increment i
-cout << i << endl;         // Print i
+std::cout << i << ", ";         // Print i
+std::cout << (++i) << ", ";     // Increment i, then print its new value
+std::cout << i << ", ";         // Print i
+std::cout << (i++) << ", ";     // Print i's old value, then increment i
+std::cout << i << std::endl;    // Print i
 
 
 return 0;   

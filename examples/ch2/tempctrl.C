@@ -23,25 +23,25 @@ float  temp_tolerance = 4;
 
 
 if (current_temp > maximum_safe_temp) {
-    cerr << "EMERGENCY: Too hot--flushing" << endl;
+    std::cerr << "EMERGENCY: Too hot--flushing" << std::endl;
     flushWithWater();
 }
 
 
 if (current_temp > maximum_safe_temp)
-    cerr << "EMERGENCY: Too hot--flushing" << endl;
+    std::cerr << "EMERGENCY: Too hot--flushing" << std::endl;
 
 
 // WRONG!
 if (current_temp > maximum_safe_temp)
-    cerr << "EMERGENCY: Too hot--flushing" << endl;
+    std::cerr << "EMERGENCY: Too hot--flushing" << std::endl;
     flushWithWater();
 
 
 
 if (current_temp > maximum_safe_temp) {
     // Emergency cool down.
-    cerr << "EMERGENCY: Too hot--flushing" << endl;
+    std::cerr << "EMERGENCY: Too hot--flushing" << std::endl;
     flushWithWater();
 }
 else {

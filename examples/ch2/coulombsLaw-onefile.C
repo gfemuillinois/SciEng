@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 double coulombsLaw(double q1, double q2, double r) {
     // Coulomb's law for the force acting on two point charges
@@ -20,6 +20,6 @@ double coulombsLaw(double q1, double q2, double r) {
 }
 
 int main() {
-    cout << coulombsLaw(1.6e-19, 1.6e-19, 5.3e-11) << " newtons" << endl;
+    std::cout << coulombsLaw(1.6e-19, 1.6e-19, 5.3e-11) << " newtons" << std::endl;
     return 0;
 }

@@ -9,7 +9,7 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 
 int main() {
     // Read the coefficients of a line equation in the form ax+by+c = 0,
@@ -17,28 +17,28 @@ int main() {
 
     // Read the equation coefficients.
     float a, b, c;
-    cin >> a >> b >> c;
+    std::cin >> a >> b >> c;
 
     // Print the equation coefficients.
-    cout << "Coefficients: " << a << ", " << b << ", " << c << endl;
+    std::cout << "Coefficients: " << a << ", " << b << ", " << c << std::endl;
 
     // Compute and print the x-intercept.
-    cout << "x-intercept: ";
+    std::cout << "x-intercept: ";
     if (a != 0) {
-        cout << -c / a << ", ";
+        std::cout << -c / a << ", ";
     } 
     else {
-        cout << "none, ";
+        std::cout << "none, ";
     }
 
 
     // Compute and print the y-intercept.
-    cout << "y-intercept: ";
+    std::cout << "y-intercept: ";
     if (b != 0) {
-        cout << -c / b << endl;
+        std::cout << -c / b << std::endl;
     } 
     else {
-        cout << "none" << endl;
+        std::cout << "none" << std::endl;
     }
 
     return 0;

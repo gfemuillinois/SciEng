@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 
 
@@ -16,18 +16,18 @@ void f() {
     float temp = 1.1;
     int a;
     int b;
-    cin >> a >> b;
+    std::cin >> a >> b;
 
     if (a < b) {
         int temp = a;  // This "temp" hides the one in function scope.
-        cout << 2 * temp << endl;
+        std::cout << 2 * temp << std::endl;
     }// Block ends; local "temp" deleted.
     else {
         int temp = b;  // Another "temp" hides the one in function scope.
-        cout << 3 * temp << endl;
+        std::cout << 3 * temp << std::endl;
     }
 
-    cout << a * b + temp << endl;
+    std::cout << a * b + temp << std::endl;
 }
 
 

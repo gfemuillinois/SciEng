@@ -8,12 +8,12 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 void f() {
 
     float x;
-    cin >> x;             // Read value of x
+    std::cin >> x;             // Read value of x
     const float xc = x;
     // ...
 

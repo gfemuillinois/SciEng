@@ -9,13 +9,13 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
-#include <iostream.h>
+#include <iostream>
 
 int main() {
     // Read and print three floating point numbers
     float a, b, c;
-    cin >> a >> b >> c;  
-    cout << a << ", " << b << ", " << c << endl;
+    std::cin >> a >> b >> c;  
+    std::cout << a << ", " << b << ", " << c << std::endl;
 
     return 0;
 }

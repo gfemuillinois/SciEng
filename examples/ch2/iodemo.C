@@ -8,44 +8,44 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <iostream.h>
+#include <iostream>
 
 int main() {
 int x, y;
 
-cin >> x
+std::cin >> x
 
 ;
 
-cin >> x >> y
+std::cin >> x >> y
 
 ;
 
-cout << x
+std::cout << x
 
 ;
-cout << endl;
+std::cout << std::endl;
 {
 
 int i = 1;
 int j = 2;
-cout << i << j;
+std::cout << i << j;
 
-cout << endl;
+std::cout << std::endl;
 }
 {
 
 int i = 1;
 int j = 2;
-cout << i << " " << j;
+std::cout << i << " " << j;
 
-cout << endl;
+std::cout << std::endl;
 }
 {
 
 int i = 1;
 int j = 2;
-cout << i << endl << j << endl;
+std::cout << i << std::endl << j << std::endl;
 
 }
   return 0;
