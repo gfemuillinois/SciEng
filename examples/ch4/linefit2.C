@@ -15,36 +15,39 @@ See README file for further details.
 void linefit() {
     // Create arrays with the desired number of elements
     int n;  
-    cin >> n;
+    cout << "Enter Number of data points:  "; cin >> n;
     SimpleArray<float> x(n);
     SimpleArray<float> y(n);
 
     // Read the data points
+
+    cout << "Enter Data Points x[.] y[.] " << endl;
     for (int i = 0; i < n; i++) {
         cin >> x[i] >> y[i];
     }
 
     // ... same as before ...
     double sx  = 0.0, sy  = 0.0;
-    for (i = 0; i < n; i++) {
+    {for (int i = 0; i < n; i++) {
         sx += x[i];
         sy += y[i];
-    }
+    }}
 
     // Compute coefficients
     double sx_over_n = sx / n;
     double stt = 0.0, b = 0.0;
-    for (i = 0; i < n; i++) {
+    {for (int i = 0; i < n; i++) {
         double ti = x[i] - sx_over_n;
 
         stt += ti * ti;
         b   += ti * y[i];
 
-    }
+    }}
     b /= stt;
     double a = (sy - sx * b) / n;
 
-    cout << a << " " << b << endl;
+    cout << "Coeficients:" << endl;
+    cout << " a = " << a << " " << " b = " << b << endl;
 }
 
 
