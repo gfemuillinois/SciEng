@@ -63,3 +63,17 @@ cvs tag -c RH7_2_port
 
 later we can do:
 cvs co -r RH7_2_port SciEng
+
+------------------------------------------------------------
+Taged  SciEng after we moved the repository to armando-office
+and started using 
+
+CVSROOT :ext:armando@armando-office:/home3/cvsroot
+
+cd SciEng;   make real_clean
+cd ..
+cvs tag -c Move2ArmandoOffice SciEng
+
+later we can do:
+cvs co -r  Move2ArmandoOffice SciEng
+-----------------------------------------------------------
