@@ -1,0 +1,11 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+timeConcreteBlas1d
+timeConcreteBlas2d
+clarch.h
+
