@@ -1,0 +1,16 @@
+!
+Deps
+CXX_OPTM_FLAG*
+*.o
+*~
+CVS
+
+cache
+mixedNesting
+newDemo
+static-linkage
+tAutoException
+tAutoNesting
+tDynLifetime
+tStaticNesting
+zero
