@@ -1,0 +1,47 @@
+## C++ compiler
+CXX	 = egcs-g++
+##CXX	 = g++
+## C++ compiler options
+##CXXFLAGS = -ansi -fexceptions -Wall -pedantic
+CXXFLAGS = -ansi -Wall -pedantic
+
+## Fortran compiler
+FC 	=  egcs-g77
+## Fortran compiler options
+FFLAGS	=
+
+## Flags to add to linker line for various libraries
+COMPLEXLIB = -lstdc++
+LAPACKLIB  = -llapack
+FORTRANLIB = -lf2c  -lm
+BLASLIB    = -lblas
+
+#SCIENGLIB = ../../SciEng.a
+SCIENGLIB = 
+
+## Following options are to cause template expansion on the fly
+## instead of expanding into a "tempinc" directory
+#CXXTEMPLATE = -qnotempinc -DXLC_QNOTEMPINC
+#CXXTEMPLATELINK = $(CXXTEMPLATE)
+
+#
+# This is how we handle template instatiation in g++
+
+##CXXTEMPLATE = -fno-implicit-templates  -DNO_IMPLICIT_TEMPLATE
+CXXTEMPLATE = 
+##CXXTEMPLATEINSTANCE =                  -DNO_IMPLICIT_TEMPLATE
+CXXTEMPLATEINSTANCE =
+CXXTEMPLATELINK = 
+
+LINK = $(CXX) $(CXXTEMPLATELINK) -I ../.. $(CXXFLAGS) $(SCIENGLIB) -o $@ 
+
+.C.o:
+	$(CXX) $(CXXTEMPLATE)  -I ../.. -I.. $(CXXFLAGS) $< -c -o $@ 
+.cc.o:
+	$(CXX) $(CXXTEMPLATEINSTANCE) -I ../.. $(CXXFLAGS) $< -c -o $@
+.c.o:
+	$(CXX) $(CXXTEMPLATE) -I ../.. $(CXXFLAGS) $< -c -o $@ 
+.f.o:
+	$(FC) $(FFLAGS) $< -c -o $@
+.o:
+	$(CXX) $(CXXTEMPLATE) -I ../../.. $(CXXFLAGS) $< $(SCIENGLIB) -o $@ 
