@@ -11,13 +11,16 @@ See README file for further details.
 #include <iostream.h>
 
 #include <math.h>
-extern double random();// Returns uniform deviates in (0, 1)
+#include <cstdlib>
+
+
+extern double my_random();// Returns uniform deviates in (0, 1)
 
 static double exp_random(double mu) {
     // Generates exponentially distributed random deviates using
     // the transformation method described in Knuth, 2nd ed.,
     // Seminumerical Algorithms, Section 3.4.D, Addison-Wesley, 1981.
-    return -mu * log(random());
+    return -mu * log(my_random());
 }
 
 void simulation1() {
@@ -33,7 +36,7 @@ void simulation2() {
 }
 
 
-double random() {
+double my_random() {
   // Warning:  this uses drand48, which is a crummy random number generator.
   return drand48();
 }
