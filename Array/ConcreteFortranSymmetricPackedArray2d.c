@@ -11,14 +11,14 @@ See README file for further details.
 template<class T>
 ConcreteFortranSymmetricPackedArray2d<T>::
 ConcreteFortranSymmetricPackedArray2d(Subscript s0, Subscript s1) :
-   ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(s0, s1), 0) {
+   ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(s0, s1), 0) {
    setSizeOnHeap((s0 * (s0 + 1)) / 2);
 }
 
 template<class T>
 ConcreteFortranSymmetricPackedArray2d<T>::
 ConcreteFortranSymmetricPackedArray2d(const ConcreteFortranSymmetricPackedArray2d<T>& a) :
-  ConcreteArray2d<SubscriptorT, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
+  ConcreteArray2d<SubscriptorType, T>(SubscriptArray<2>(a.shape(0), a.shape(1)), 0) {
   Subscript n = a.shape(0);
   setSizeOnHeap((n * (n + 1)) / 2);
   while (n-- > 0) datap[n] = a.datap[n];
