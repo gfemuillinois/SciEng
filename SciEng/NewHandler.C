@@ -11,8 +11,11 @@ See README file for further details.
 #include "SciEng/NewHandler.h"
 #include "SciEng/SciEngEnvironment.h"
 
+//namespace SciEngLib{
 
+template<>
 void NewHandler::defaultHandler() {
     throw OutOfMemoryErr();
 }
 
+//}
