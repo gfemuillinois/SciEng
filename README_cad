@@ -53,6 +53,6 @@ ci changes, add files, etc.
 
 (5) tagged this porting
 
-cvs tag -c RH7.2_port
+cvs tag -c RH7_2_port
 
 
