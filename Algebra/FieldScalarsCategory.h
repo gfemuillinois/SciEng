@@ -21,6 +21,12 @@ class FieldScalarsCategory :
 public:
     // User Must Define: V& operator/=(const S& s)
     friend V operator/(const V& v, const S& s) { V temp(v); return temp /= s; }
+
+  // CAD
+  // User Must Define: V& operator-=(const S& s)
+  // user cand also do  v + (-s) 
+  friend V operator-(const V& v, const S& s) { V temp(v); return temp -= s; }
+
 };
 
 
