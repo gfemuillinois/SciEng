@@ -36,7 +36,21 @@ offset(const SubscriptArray<1>& s) const {
     }
 }
 
-
+// CAD
+Subscript 
+FortranSymmetricPackedSubscriptor::ProjectionT::
+offset(const Subscript s) const {
+    if (d == 1) {  
+        // Offset within column; columns stored contiguously
+        Subscript i = s;
+        return (i <= proj_sub) ? i : ( i*(i+1) - proj_sub*(proj_sub-1) ) / 2;
+    }
+    else {
+        // Offset within row
+        Subscript j = s;
+        return (proj_sub <= j) ? ( j*(j+1) - proj_sub*(proj_sub-1) )/2 : j;
+    }
+}
 
 FortranSymmetricPackedSubscriptor::ProjectionT::
 
