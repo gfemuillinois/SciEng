@@ -32,7 +32,7 @@ RM = /bin/rm
 	$(RM) $*.o
 	ranlib $@
 
-all:	SciEng.a  SciEngMatx.a
+all:	SciEng.a  SciEngMatx.a templ_instatiation_g++
 	cd examples/ch2; $(MAKE)
 	cd examples/ch3; $(MAKE)
 	cd examples/ch4; $(MAKE)
@@ -53,6 +53,9 @@ all:	SciEng.a  SciEngMatx.a
 	cd Vector;        $(MAKE)
 #	cd examples/ch17; $(MAKE)
 #	cd examples/ch19; $(MAKE)
+
+templ_instatiation_g++:
+	ln -s examples/ch4/templ_instatiation_g++ .
 
 SciEngMatx.a:	\
 	SciEngMatx.a(SciEng/ArrayErr.o) \
