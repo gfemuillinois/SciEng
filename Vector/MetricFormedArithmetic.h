@@ -17,6 +17,11 @@ See README file for further details.
 #include "Vector/DistributingMetricSpace.h"
 #include "Array/FormedArray.h"
 
+// CAD 
+// Similar to FormedArithmetic1d from file FormedArithmetic.h
+//
+
+
 template<class T,class M>
 class MetricFormedArithmetic1d :            
     public DivisionAlgebraCategory< MetricFormedArithmetic1d<T, M>, T >,
@@ -25,17 +30,18 @@ class MetricFormedArithmetic1d :
     public DistributingMetricSpace<MetricFormedArithmetic1d<T, M>, M>,
     public ConcreteFormedArray1d<T>                                     {
 public:
-    MetricFormedArithmetic1d(Subscript n) : ConcreteFormedArray1d<T>(n) {}
-    MetricFormedArithmetic1d(const MetricFormedArithmetic1d<T, M>& a) : ConcreteFormedArray1d<T>(a) {}
+    explicit MetricFormedArithmetic1d(Subscript n) : ConcreteFormedArray1d<T>(n) {}
+    MetricFormedArithmetic1d(const MetricFormedArithmetic1d<T, M>& a) : 
+      ConcreteFormedArray1d<T>(a) {}
 
     const MetricFormedArithmetic1d<T, M>& operator=(const Array1d<T>& rhs);
     const MetricFormedArithmetic1d<T, M>& operator=(const MetricFormedArithmetic1d<T, M>& rhs) {
-                                                                      ConcreteFormedArray1d<T>::operator=(rhs);
-                                                                      return *this;
+      ConcreteFormedArray1d<T>::operator=(rhs);
+      return *this;
     }
     const MetricFormedArithmetic1d<T, M>& operator=(const T& rhs) {
-                                                                      ConcreteFormedArray1d<T>::operator=(rhs);
-                                                                      return *this;
+      ConcreteFormedArray1d<T>::operator=(rhs);
+      return *this;
     }
 };
 

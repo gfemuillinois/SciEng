@@ -17,6 +17,10 @@ See README file for further details.
 #include "Vector/DistributingMetricSpace.h"
 #include "Array/RigidArray.h"
 
+// CAD
+// This is an interfaced class. 
+// RigidArithmetic1d (file RigidArithmetic.h) is similar to this and is concrete
+
 
 template<class T, Subscript n0>
 class MetricRigidArithmetic1d :            
