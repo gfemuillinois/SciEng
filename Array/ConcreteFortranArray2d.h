@@ -36,6 +36,8 @@ public:
     ConcreteFortranArray2d<T>& operator=(const T& rhs);
 
     void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
+
+    void clear() { reshape( SubscriptArray<2>(0, 0) ); }
 };
 
 
