@@ -8,13 +8,15 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include <complex.h>
-typedef complex Complex;
+#include <complex>
+typedef complex<double> Complex;
 
 
 
 extern int a;            // Declaration, external linkage
-extern int b = 3;        // Definition,  external linkage, initialized to 3   
+//extern int b = 3;     // Definition,  external linkage, initialized to 3   
+int b = 3;           // Definition,  external linkage, initialized to 3  
+
 static int c(1);         // Definition,  internal linkage, initialized to 1   
 int d;                   // Definition,  external linkage, initialized to 0   
 extern Complex c1;       // Declaration, external linkage                      
