@@ -13,10 +13,12 @@ See README file for further details.
 
 #include "SciEng/Boolean.h"
 
+//namespace SciEngLib{
 
 template<class DerivedType>
 class EquivalentCategory {
     // This class needed for type restriction
+  // User Must Define: Boolean equivalentTo(const AnArray& rhs);
     friend Boolean operator==(const DerivedType& lhs, const DerivedType& rhs) {
         return lhs.equivalentTo(rhs);
     }
@@ -25,5 +27,6 @@ class EquivalentCategory {
     }
 };
 
+//}
 
 #endif
