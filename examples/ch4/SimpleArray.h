@@ -9,6 +9,9 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
+#ifndef SIMPLEARRAYHPP
+#define SIMPLEARRAYHPP
+
 template<class T> class SimpleArray;
 
 
@@ -37,3 +40,5 @@ private:
 #ifdef XLC_QNOTEMPINC
 #include "examples/ch4/SimpleArray.c"
 #endif
+
+#endif  /* SIMPLEARRAYHPP */
