@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-void main() {
+int main() {
 
 
 extern int f(int&); // Non-const call by reference
