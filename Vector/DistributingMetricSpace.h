@@ -11,6 +11,9 @@ See README file for further details.
 #ifndef DistributingMetricSpaceH
 #define DistributingMetricSpaceH
                                     
+#include "SciEng/ArrayErr.h"
+#include "Array/ConcreteArrayShape.h"
+
 template<class Array, class M>
 class DistributingMetricSpace {
 public:
