@@ -8,6 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
+
 #include "SciEng/Boolean.h"
 
 //namespace SciEngLib {
@@ -17,18 +18,6 @@ ConcreteArrayShape<ndim>::ConcreteArrayShape(const SubscriptArray<ndim>& sa) :
     the_shape(sa) {
 }
 
-
-template<Dimension ndim>
-ConcreteColumnMajorSubscriptor<ndim>::ConcreteColumnMajorSubscriptor(const SubscriptArray<ndim>& sa) :
-    ConcreteArrayShape<ndim>(sa) {
-}
-
-template<Dimension ndim>
-ConcreteRowMajorSubscriptor<ndim>::ConcreteRowMajorSubscriptor(const SubscriptArray<ndim>& sa) :
-    ConcreteArrayShape<ndim>(sa) {
-}
-                                   
-                                   
 template<Dimension ndim>
 void ConcreteArrayShape<ndim>::setShape(const SubscriptArray<ndim>& a) { 
     the_shape = a;
@@ -41,6 +30,29 @@ Subscript ConcreteArrayShape<ndim>::numElts() const {
     return n;
 }
 
+
+ConcreteArrayShape<1>::ConcreteArrayShape(const SubscriptArray<1>& sa) :
+    the_shape( sa(0) ) {
+}
+ConcreteArrayShape<1>::ConcreteArrayShape(const Subscript s) :
+    the_shape( s ) {
+}
+
+
+template<Dimension ndim>
+ConcreteColumnMajorSubscriptor<ndim>::
+ConcreteColumnMajorSubscriptor(const SubscriptArray<ndim>& sa) : 
+  ConcreteArrayShape<ndim>(sa) {
+}
+
+template<Dimension ndim>
+ConcreteRowMajorSubscriptor<ndim>::
+ConcreteRowMajorSubscriptor(const SubscriptArray<ndim>& sa) :
+    ConcreteArrayShape<ndim>(sa) {
+}
+                                   
+                                   
+
 template<Dimension ndim>
 Subscript ConcreteStrides<ndim>::stride(Dimension d) const {
   return the_strides(d);
@@ -49,78 +61,107 @@ Subscript ConcreteStrides<ndim>::stride(Dimension d) const {
 
 template<Dimension ndim>
 ConcreteColumnMajorProjectionSubscriptor<ndim-1>
-ConcreteColumnMajorSubscriptor<ndim>::projectionSubscriptor(Dimension proj_dim, Subscript) const { 
+ConcreteColumnMajorSubscriptor<ndim>::
+projectionSubscriptor(Dimension proj_dim, Subscript) const { 
 
-    SubscriptArray<ndim-1> proj_shape;     // Shape of projection
-    SubscriptArray<ndim-1> proj_strides;   // Strides of projection
-    SubscriptArray<ndim>   step;           // Holds subscripts into array
+  SubscriptArray<ndim-1> proj_shape;     // Shape of projection
+  SubscriptArray<ndim-1> proj_strides;   // Strides of projection
+  SubscriptArray<ndim>   step;           // Holds subscripts into array
 
+  Dimension j = 0;    // Dimension in projection
+  Dimension k = 0;    // Corresponding dimension in array
+  step = 0;           // Will be set to take one "step" in dimension k
 
+  while (j < ndim-1) {
 
-    Dimension j = 0;    // Dimension in projection
-    Dimension k = 0;    // Corresponding dimension in array
-    step = 0;           // Will be set to take one "step" in dimension k
+    if (j == proj_dim) ++k;     // Skip over projected dimension
+    proj_shape(j) = shape(k);   /* Proj shape is array shape without
+				 *  dimension proj_dim */
 
-    while (j < ndim-1) {
-
-        if (j == proj_dim) ++k;           // Skip over projected dimension
-        proj_shape(j) = shape(k);         // Proj shape is array shape without dimension proj_dim
-
-                                          // Compute offset by taking a step in dimension k
-        step(k) = 1;
-        proj_strides(j) = offset(step);
-        step(k) = 0;
-
-        j++; 
-        k++;
-
+    // CAD
+    // Compute offset by taking a step in dimension k
+    // But if shape(k) = 1, we can not call offset with step(k) > 0
+    if ( shape(k) > 1 ) {
+      step(k) = 1;
+      proj_strides(j) = offset(step);
     }
+    else
+      proj_strides(j) = 1;
 
-    return ConcreteColumnMajorProjectionSubscriptor<ndim-1>(proj_shape, proj_strides);
+    step(k) = 0;
+
+    j++; 
+    k++;
+
+  }
+  return ConcreteColumnMajorProjectionSubscriptor<ndim-1>(proj_shape, 
+							  proj_strides);
 }
 
+// CAD:
 ConcreteColumnMajorProjectionSubscriptor<1>
-ConcreteColumnMajorSubscriptor<2>::projectionSubscriptor(Dimension proj_dim, Subscript) const { 
+ConcreteColumnMajorSubscriptor<2>::
+projectionSubscriptor(Dimension proj_dim, Subscript) const { 
 
-    SubscriptArray<1> proj_shape;     // Shape of projection
-    SubscriptArray<1> proj_strides;   // Strides of projection
-    SubscriptArray<2> step;           // Holds subscripts into array
+  SubscriptArray<1> proj_shape;     // Shape of projection
+  SubscriptArray<1> proj_strides;   // Strides of projection
+  SubscriptArray<2> step;           // Holds subscripts into array
 
-    Dimension j = 0;    // Dimension in projection
-    Dimension k = 0;    // Corresponding dimension in array
-    step = 0;           // Will be set to take one "step" in dimension k
+  Dimension j = 0;    // Dimension in projection
+  Dimension k = 0;    // Corresponding dimension in array
+  step = 0;           // Will be set to take one "step" in dimension k
 
-    if (j == proj_dim) ++k;           // Skip over projected dimension
-    proj_shape(j) = shape(k);         // Proj shape is array shape without dimension proj_dim
+  if (j == proj_dim) ++k;    // Skip over projected dimension
+  proj_shape(j) = shape(k);  /* Proj shape is array shape without 
+			      * dimension proj_dim */
 
-                                          // Compute offset by taking a step in dimension k
+  // Compute offset by taking a step in dimension k
+  // But if shape(k) = 1, we can not call offset with step(k) > 0
+  if ( shape(k) > 1 ) {
     step(k) = 1;
     proj_strides(j) = offset(step);
+  }
+  else
+    proj_strides(j) = 1;
 
-    return ConcreteColumnMajorProjectionSubscriptor<1>(proj_shape, proj_strides);
+  return ConcreteColumnMajorProjectionSubscriptor<1>(proj_shape, proj_strides);
 }
 
 template<Dimension ndim>
 ConcreteRowMajorProjectionSubscriptor<ndim-1>
-ConcreteRowMajorSubscriptor<ndim>::projectionSubscriptor(Dimension proj_dim, Subscript) const {
+ConcreteRowMajorSubscriptor<ndim>::
+projectionSubscriptor(Dimension proj_dim, Subscript) const {
 
   // Looks the same as ColumnMajor, but call to offset() calls different code.
   SubscriptArray<ndim> one_step;
   SubscriptArray<ndim-1> proj_shape;
   SubscriptArray<ndim-1> proj_strides;
+
   one_step = 0;
   for (Dimension j = 0; j < ndim-1; j++){
     Dimension old_j = j + (j >= proj_dim);  // logical part skips over projected dimension.
     proj_shape(j) = shape(old_j);
-    one_step(old_j) = 1;
-    proj_strides(j) = offset(one_step);
+
+    // CAD:
+    // Compute offset by taking a step in dimension old_j
+    // But if shape(old_j) = 1, we can not call offset with one_step(old_j) > 0
+    if ( shape(old_j) > 1 ) { 
+      one_step(old_j) = 1;
+      proj_strides(j) = offset(one_step);
+    }
+    else
+      proj_strides(j) = 1;
+
     one_step(old_j) = 0;
   }
-   return ConcreteRowMajorProjectionSubscriptor<ndim-1>(proj_shape, proj_strides);
+   return ConcreteRowMajorProjectionSubscriptor<ndim-1>(proj_shape, 
+							proj_strides);
 }
 
+// CAD:
 ConcreteRowMajorProjectionSubscriptor<1>
-ConcreteRowMajorSubscriptor<2>::projectionSubscriptor(Dimension proj_dim, Subscript) const {
+ConcreteRowMajorSubscriptor<2>::
+projectionSubscriptor(Dimension proj_dim, Subscript) const {
 
   // Looks the same as ColumnMajor, but call to offset() calls different code.
 
@@ -133,8 +174,15 @@ ConcreteRowMajorSubscriptor<2>::projectionSubscriptor(Dimension proj_dim, Subscr
 
   Dimension old_j = j + (j >= proj_dim);  // logical part skips over projected dimension.
   proj_shape(j) = shape(old_j);
-  one_step(old_j) = 1;
-  proj_strides(j) = offset(one_step);
+
+  // Compute offset by taking a step in dimension old_j
+  // But if shape(old_j) = 1, we can not call offset with one_step(old_j) > 0
+  if ( shape(old_j) > 1 ) {
+    one_step(old_j) = 1;
+    proj_strides(j) = offset(one_step);
+  }
+  else
+    proj_strides(j) = 1;    
 
   return ConcreteRowMajorProjectionSubscriptor<1>(proj_shape, proj_strides);
 }
@@ -142,7 +190,8 @@ ConcreteRowMajorSubscriptor<2>::projectionSubscriptor(Dimension proj_dim, Subscr
 
 template<Dimension ndim>
 ConcreteColumnMajorProjectionSubscriptor<ndim-1>
-ConcreteColumnMajorProjectionSubscriptor<ndim>::projectionSubscriptor(Dimension proj_dim, Subscript) const {
+ConcreteColumnMajorProjectionSubscriptor<ndim>::
+projectionSubscriptor(Dimension proj_dim, Subscript) const {
   SubscriptArray<ndim-1> proj_shape;
   SubscriptArray<ndim-1> proj_strides;
   SubscriptArray<ndim> first;   // Offset of first may be non-zero for a projection.
@@ -152,8 +201,17 @@ ConcreteColumnMajorProjectionSubscriptor<ndim>::projectionSubscriptor(Dimension 
   for (Dimension j = 0; j < ndim-1; j++){
     Dimension old_j = j + (j >= proj_dim);  // logical part skips over projected dimension.
     proj_shape(j) = shape(old_j);
-    second(old_j) = 1;
-    proj_strides(j) = offset(second) - offset(first);
+
+    // CAD:
+    // Compute offset by taking a step in dimension old_j
+    // But if shape(old_j) = 1, we can not call offset with second(old_j) > 0
+    if ( shape(old_j) > 1) {
+      second(old_j) = 1;
+      proj_strides(j) = offset(second) - offset(first);
+    }
+    else
+      proj_strides(j) = 1;
+
     second(old_j) = 0;
   }
   return ConcreteColumnMajorProjectionSubscriptor<ndim-1>(proj_shape, proj_strides);
@@ -171,8 +229,17 @@ ConcreteRowMajorProjectionSubscriptor<ndim>::projectionSubscriptor(Dimension pro
   for (Dimension j = 0; j < ndim-1; j++){
     Dimension old_j = j + (j >= proj_dim);  // logical part skips over projected dimension.
     proj_shape(j) = shape(old_j);
-    second(old_j) = 1;
-    proj_strides(j) = offset(second) - offset(first);
+
+    // CAD:
+    // Compute offset by taking a step in dimension old_j
+    // But if shape(old_j) = 1, we can not call offset with second(old_j) > 0
+    if ( shape(old_j) > 1) {
+      second(old_j) = 1;
+      proj_strides(j) = offset(second) - offset(first);
+    }
+    else
+      proj_strides(j) = 1;
+
     second(old_j) = 0;
   }
   return ConcreteRowMajorProjectionSubscriptor<ndim-1>(proj_shape, proj_strides);
