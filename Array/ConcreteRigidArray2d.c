@@ -48,7 +48,7 @@ ConcreteRigidArray2d<T, n0, n1>::operator=(const ConcreteRigidArray2d<T, n0, n1>
   T* p = firstDatum();
   T* const endp = p + numElts();
   const T* p_rhs = rhs.firstDatum();
-  const T* const endp_rhs = p_rhs + rhs.numElts();
+  //  const T* const endp_rhs = p_rhs + rhs.numElts();
 
   while (p < endp) *p++ = *p_rhs++;
   return *this;
