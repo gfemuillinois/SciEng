@@ -31,17 +31,14 @@ class ConcreteRigidArray1d {
   explicit ConcreteRigidArray1d(Subscript s0) { 
     if (n0 != s0) throw ArrayErr::CreationSize(); }
 
-private:
   // copy constructor provides deep copy
  ConcreteRigidArray1d(const ConcreteRigidArray1d<T, n0>& rhs);
-public:
-  
 
 #ifdef SCIENG_CHECK_SUBSCRIPTS
   void check_subscripts(const Subscript s) const {
     if ( s<0 || s >= shape(0) ) {
-      cerr << "ConcreteRigidArray1d<T,n0>::check_subscripts: Invalid arg: " 
-	   << s << "\nshape(0) = " << shape(0) << endl;
+      std::cerr << "ConcreteRigidArray1d<T,n0>::check_subscripts: Invalid arg:"
+	   << s << "\nshape(0) = " << shape(0) << std::endl;
       assert(0);
     }
   }
