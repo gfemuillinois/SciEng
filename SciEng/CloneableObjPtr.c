@@ -9,6 +9,8 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
+//namespace SciEngLib{
+
 template<class T>
 CloneableObjPtr<T>::CloneableObjPtr(const CloneableObjPtr<T>& aCP) : 
     the_p(aCP.isNull() ?  0 : aCP.the_p->clone()) {
@@ -45,3 +47,4 @@ T* CloneableObjPtr<T>::releaseControl() {
     return save_p;
 }
 
+//}

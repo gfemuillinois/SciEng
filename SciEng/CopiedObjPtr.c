@@ -9,6 +9,8 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
+//namespace SciEngLib{
+
 template<class T>
 CopiedBuiltInPtr<T>::CopiedBuiltInPtr(const CopiedBuiltInPtr<T>& aCP) : 
     the_p(aCP.isNull() ?  0 : new T(*aCP.the_p)) {
@@ -45,3 +47,4 @@ T* CopiedBuiltInPtr<T>::releaseControl() {
     return save_p;
 }
 
+//}

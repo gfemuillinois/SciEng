@@ -13,6 +13,7 @@ See README file for further details.
 
 #include "SciEng/Boolean.h"
 
+//namespace SciEngLib{
 
 template<class T>
 class CloneableObjPtr {
@@ -40,6 +41,7 @@ protected:
     T* the_p;
 };
 
+//}
 
 #ifdef XLC_QNOTEMPINC
 #include "SciEng/CloneableObjPtr.c"

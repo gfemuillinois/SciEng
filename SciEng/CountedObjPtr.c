@@ -9,6 +9,8 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 
+//namespace SciEngLib{
+
 template<class T>
 CountedBuiltInPtr<T>& CountedBuiltInPtr<T>::operator=(const CountedBuiltInPtr<T>& rhs) {
     if (the_p != rhs.the_p) {
@@ -37,3 +39,5 @@ template<class T>
 Boolean CountedBuiltInPtr<T>::unique() const { 
     return refCount.unique();
 }
+
+//}

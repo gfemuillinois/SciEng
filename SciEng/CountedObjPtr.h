@@ -14,6 +14,7 @@ See README file for further details.
 #include "SciEng/Boolean.h"
 #include "SciEng/ReferenceCount.h"
 
+//namespace SciEngLib{
 
 template<class T>
 class CountedBuiltInPtr {
@@ -61,6 +62,7 @@ public:
     T* operator->() const { return the_p; }
 };
 
+//}
 
 #ifdef XLC_QNOTEMPINC
 #include "SciEng/CountedObjPtr.c"
