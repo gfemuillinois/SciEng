@@ -23,12 +23,12 @@ template<class Rep> class LapackFactored; // Declare corresponding factored cate
 
 template<class Rep>
 class LapackUnfactored :
-    public virtual Array2d<Rep::Unfactored::EltT>        {
+    public virtual Array2d<typename Rep::Unfactored::EltT>        {
 public:
 
     typedef Rep Representation;            // Factoring representation
-    typedef Rep::Unfactored Unfactored;    // Factoring representation's unfactored form
-    typedef Rep::Unfactored::EltT EltT;    // Element type
+    typedef typename Rep::Unfactored Unfactored;    // Factoring representation's unfactored form
+    typedef typename Rep::Unfactored::EltT EltT;    // Element type
 
 
     LapackUnfactored(Subscript nrows, Subscript ncols);
@@ -43,20 +43,20 @@ public:
     virtual Subscript shape(Dimension d) const;
     virtual const EltT& operator()(Subscript, Subscript) const;
     virtual       EltT& operator()(Subscript, Subscript);
-    virtual ConstProjectionT project(Subscript, Dimension) const;
-    virtual      ProjectionT project(Subscript, Dimension);
+    virtual typename Array2d<EltT>::ConstProjectionT project(Subscript, Dimension) const;
+    virtual      typename Array2d<EltT>::ProjectionT project(Subscript, Dimension);
     virtual Array2d<EltT>& operator=(const LapackUnfactored<Rep>& rhs);
     virtual Array2d<EltT>& operator=(const ConstArray2d<EltT>& rhs);
     virtual Array2d<EltT>& operator=(const ConcreteFortranArray2d<EltT>& rhs);
     virtual Array2d<EltT>& operator=(const EltT& rhs);
-    virtual Rep::Unfactored&       rep()       { checkValidity(); return *ap; } // checked accessor 
-    virtual const Rep::Unfactored& rep() const { checkValidity(); return *ap; } // checked accessor 
+    virtual typename Rep::Unfactored&       rep()       { checkValidity(); return *ap; } // checked accessor 
+    virtual const typename Rep::Unfactored& rep() const { checkValidity(); return *ap; } // checked accessor 
 protected:
-    Rep::Unfactored* releaseControl(); 
+    typename Rep::Unfactored* releaseControl(); 
     void checkValidity() const; // Throw exception if not valid
 private:
 
-    CopiedObjPtr<Rep::Unfactored> ap;
+    CopiedObjPtr<typename Rep::Unfactored> ap;
     Boolean                       valid;
 
 
@@ -69,28 +69,28 @@ template<class Rep>
 class LapackFactored {
 public:
 
-    typedef Rep::Unfactored::EltT EltT; // Element type
+    typedef typename Rep::Unfactored::EltT EltT; // Element type
 
-    typedef Rep::Unknowns1d Unknowns1d; // Single right-hand-side
-    typedef Rep::Knowns1d Knowns1d;
+    typedef typename Rep::Unknowns1d Unknowns1d; // Single right-hand-side
+    typedef typename Rep::Knowns1d Knowns1d;
 
-    typedef Rep::Unknowns2d Unknowns2d; // Multiple right-hand-sides
-    typedef Rep::Knowns2d Knowns2d;
+    typedef typename Rep::Unknowns2d Unknowns2d; // Multiple right-hand-sides
+    typedef typename Rep::Knowns2d Knowns2d;
 
 
-    Rep::Unknowns1d& solve(Rep::Unknowns1d& b);  // Overwrites b with x.
-    Rep::Unknowns1d& solve(Rep::Unknowns1d& x, const Rep::Knowns1d& b);
+    typename Rep::Unknowns1d& solve(typename Rep::Unknowns1d& b);  // Overwrites b with x.
+    typename Rep::Unknowns1d& solve(typename Rep::Unknowns1d& x, const typename Rep::Knowns1d& b);
 
-    Rep::Unknowns2d& solve(Rep::Unknowns2d& b);  // Overwrites b with x.
-    Rep::Unknowns2d& solve(Rep::Unknowns2d& x, const Rep::Knowns2d& b);
+    typename Rep::Unknowns2d& solve(typename Rep::Unknowns2d& b);  // Overwrites b with x.
+    typename Rep::Unknowns2d& solve(typename Rep::Unknowns2d& x, const typename Rep::Knowns2d& b);
 
-    Rep::Factored& rep()       { return *ap; }
-    const Rep::Factored& rep() const { return *ap; }
+    typename Rep::Factored& rep()       { return *ap; }
+    const typename Rep::Factored& rep() const { return *ap; }
 protected:
     friend LapackFactored<Rep> LapackUnfactored<Rep>::factor();
-    LapackFactored(Rep::Factored* p) : ap(p) {}
+    LapackFactored(typename Rep::Factored* p) : ap(p) {}
 private:
-    CopiedObjPtr<Rep::Factored> ap;
+    CopiedObjPtr<typename Rep::Factored> ap;
 };
 
 
