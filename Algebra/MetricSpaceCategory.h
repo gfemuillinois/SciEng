@@ -18,7 +18,9 @@ public:
     M norm() const;
     M cosAngle(const V& e) const;
     M angle(const V& e) const;
-    friend M dot(const V& lhs, const V& rhs) { return lhs.dot(rhs); }
+    friend M dot(const V& lhs, const V& rhs) { 
+      //  cout << "MetricSpaceCategory::dot [friend]" << endl;
+      return lhs.dot(rhs); }
 
 };
 
@@ -35,7 +37,11 @@ template<class V, class M>
 inline
 M MetricSpaceCategory<V,M>::cosAngle(const V& e) const{
   const V& vr = (const V&)(*this); 
-  return vr.dot( e / (norm() * e.norm()) );
+
+  // CAD
+  return vr.dot(e) / ( norm() * e.norm() );
+
+  //  return vr.dot( e / (norm() * e.norm()) );
 }
   
   
