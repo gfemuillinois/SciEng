@@ -39,8 +39,8 @@ protected:
 template<>
 class ConcreteArrayShape<1> {
 public:
-  explicit  ConcreteArrayShape(const SubscriptArray<1>&);
-  explicit  ConcreteArrayShape(const Subscript);
+  inline explicit  ConcreteArrayShape(const SubscriptArray<1>&);
+  inline explicit  ConcreteArrayShape(const Subscript);
   ConcreteArrayShape() {} // Create uninitialized; call setShape to set.
 
   Dimension            dim()              const { return 1;         }
@@ -103,7 +103,7 @@ public:
   ConcreteColumnMajorSubscriptor() {}
 
   typedef ConcreteColumnMajorProjectionSubscriptor<1> ProjectionT;
-  ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+  inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
   Subscript offset(const SubscriptArray<2>& s) const { // TBremoved
 #ifdef SCIENG_CHECK_SUBSCRIPTS
@@ -140,7 +140,7 @@ public:
   ConcreteColumnMajorSubscriptor() {}
 
   typedef ConcreteColumnMajorProjectionSubscriptor<2> ProjectionT;
-  ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+  inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
   Subscript offset(const SubscriptArray<3>& s) const { // TBremoved
 #ifdef SCIENG_CHECK_SUBSCRIPTS
@@ -221,7 +221,7 @@ public:
   ConcreteRowMajorSubscriptor() {}
 
   typedef ConcreteRowMajorProjectionSubscriptor<1> ProjectionT;
-  ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+  inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
   Subscript offset(const SubscriptArray<2>& s) const { // TBremoved
 #ifdef SCIENG_CHECK_SUBSCRIPTS
@@ -256,7 +256,7 @@ public:
   ConcreteRowMajorSubscriptor() {}
 
   typedef ConcreteRowMajorProjectionSubscriptor<2> ProjectionT;
-  ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+  inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
   Subscript offset(const SubscriptArray<3>& s) const { // TBremoved
 #ifdef SCIENG_CHECK_SUBSCRIPTS
@@ -416,7 +416,7 @@ public:
     ConcreteArrayShape<2>::setShape;
     ConcreteStrides<2>::offset;
 
-    ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+    inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 };
 // ***************************************************
 
@@ -479,7 +479,7 @@ public:
   ConcreteArrayShape<2>::setShape;
   ConcreteStrides<2>::offset;
 
-  ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+  inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 };
 
 // ***************************************************
