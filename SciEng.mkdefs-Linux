@@ -88,7 +88,7 @@ ALLLIBS =  $(SCIENGLIB) $(LIBSYS)
 #
 # This is how we handle template instatiation in g++
 
-USE_IMPLICITY_TEMPL = NO
+USE_IMPLICITY_TEMPL = YES
 
 ifeq ($(USE_IMPLICITY_TEMPL),NO) 
 # This option requires the explicity creation of template 
