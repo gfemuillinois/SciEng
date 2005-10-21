@@ -38,7 +38,7 @@ extern "C" {          // Raw BLAS prototypes.
 		       const float* yp, const int& incy);
   void   FTNAME(daxpy)(const int& n, const double& alpha, const double* xp, const int& incx,
 		       const double* yp, const int& incy);
-};
+}
 
 
 class Blas1Subroutines {
