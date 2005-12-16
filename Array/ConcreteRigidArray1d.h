@@ -18,9 +18,10 @@ See README file for further details.
 #include <iosfwd>
 #endif
 
+#include "SciEng/Subscript.h"
 #include "SciEng/ArrayErr.h"
-#include "Array/ConcreteArray1d.h"
-#include "Array/ConcreteArrayShape.h"
+//#include "Array/ConcreteArray1d.h"
+//#include "Array/ConcreteArrayShape.h"
 #include "Array/ConcreteArrayIterator.h"
 
 
