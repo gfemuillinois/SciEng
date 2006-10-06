@@ -16,7 +16,8 @@ See README file for further details.
 //namespace SciEngLib{
 
 typedef unsigned short int Dimension;
-typedef ptrdiff_t          Subscript;  // Signed, machine-dependent int; from <stddef.h>
+typedef ptrdiff_t          Subscript64;  // Signed, machine-dependent int; from <stddef.h>
+typedef int                Subscript;    // Signed int
 
 //}
 
