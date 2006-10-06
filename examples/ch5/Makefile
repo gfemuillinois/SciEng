@@ -1,5 +1,5 @@
 #
-HOSTTYPE = $(shell uname)
+HOSTTYPE = $(shell uname)-$(shell uname -m)
 include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all clean real_clean run_all check

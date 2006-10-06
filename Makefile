@@ -15,7 +15,9 @@
 # ====
 #
 
-HOSTTYPE = $(shell uname)
+HOSTTYPE = $(shell uname)-$(shell uname -m)
+# To check value assigned to HOSTYPE run: make check 
+
 include  SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all tests clean real_clean run_all run_tests check clean_SciEng

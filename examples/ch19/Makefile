@@ -1,4 +1,5 @@
-include ../../SciEng.mkdefs-$(HOSTTYPE)
+
+include ../../SciEng.mkdefs-$(HOSTTYPE)-$(shell uname -m)
 
 FILES_WITH_MAIN	= tDampedSVD.C tNewtonRaphson.C tRall.C
 

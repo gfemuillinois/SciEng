@@ -1,6 +1,6 @@
 #
 #
-HOSTTYPE = $(shell uname)
+HOSTTYPE = $(shell uname)-$(shell uname -m)
 include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all clean real_clean run_all check
@@ -48,7 +48,7 @@ tXERBLA:	tXERBLA.o
 
 tXERBLA_FT:     tXERBLA_FT.o tXERBLA_FT.f
 		@echo Linking $@
-		g77 -o tXERBLA_FT  tXERBLA_FT.o -lblas
+		$(FC) -o tXERBLA_FT  tXERBLA_FT.o $(LIBSYS)
 
 clean:
 	rm -f $(OBJ_FILES) rand.o tXERBLA_FT.o nrfunction.o
