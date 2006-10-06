@@ -12,5 +12,5 @@
 
       write(*,*) ' norm = ', norm
 
-      return
+c      return
       end
