@@ -10,6 +10,7 @@ See README file for further details.
 */
 #include "LapackWrap/BlasSubroutines.h"
 #include "SciEng/String.h"
+#include "clarch.h"
 
 char Blas2Subroutines::trans_char[] = {'N','T'};
 char Blas3Subroutines::trans_char[] = {'N','T','C'};
