@@ -15,11 +15,16 @@
 #endif
 
 #define FTNAME(x) name2(x,_)   
-                               // SGIs using gcc, g++ and f77
-                               // Linux using gcc, g++ and g77
+
+ // SGIs using gcc, g++ and f77
+ // Linux using gcc, g++ and g77
+ // SGI Altix using Intel compilers. Intel compilers also define __GNUC__
+
 #else
 
-#define FTNAME(x) x          // ibm r6k using  xlC and xcf compilers
+ // ibm r6k using  xlC and xcf compilers
+
+#define FTNAME(x) x
 
 #endif
 
