@@ -43,6 +43,9 @@ public:
   RigidArithmetic1d(const RigidArithmetic1d<T, n0>& a) : 
     ConcreteRigidArray1d<T, n0>(a) {}
 
+  explicit RigidArithmetic1d(const ConcreteRigidArray1d<T, n0>& a) : 
+    ConcreteRigidArray1d<T, n0>(a) {}
+
   const RigidArithmetic1d<T, n0>& 
   operator=(const RigidArithmetic1d<T, n0>& rhs) {
     ConcreteRigidArray1d<T, n0>::operator=(rhs);
