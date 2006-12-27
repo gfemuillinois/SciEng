@@ -13,7 +13,7 @@ See README file for further details.
 
 #include "Array/ConcreteFortranArray1d.h"
 #include "Array/ConcreteFortranArray2d.h"
-
+#include "CopiedObjPtr.h"
 
 template<class T>
 class RectLURep {
@@ -26,14 +26,14 @@ public:
 
     class Factored {
     public:
-        Factored(RectLURep<T>::Unfactored* mp);
+        Factored( Unfactored *mp);
         void solve(ConcreteFortranArray2d<T>&);
         void solve(ConcreteFortranArray2d<T>& x, const ConcreteFortranArray2d<T>& b);
         void solve(ConcreteFortranArray1d<T>&);
         void solve(ConcreteFortranArray1d<T>& x, const ConcreteFortranArray1d<T>& b);
     private:
 
-        CopiedObjPtr< RectLURep<T>::Unfactored > facmat_p;      // Factored matrix pointer
+        CopiedObjPtr< Unfactored > facmat_p;      // Factored matrix pointer
         ConcreteFortranArray1d<int>              pivots;        // Pivots
 
     };

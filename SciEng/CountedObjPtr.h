@@ -60,6 +60,9 @@ public:
         return *this; 
     }
     T* operator->() const { return the_p; }
+
+protected:
+  CountedBuiltInPtr<T>::the_p;
 };
 
 //}

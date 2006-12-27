@@ -22,6 +22,8 @@ public:
     CheckedSimpleArray(int n);                    // Create array of n elements
     CheckedSimpleArray();                         // Create array of 0 elements
 
+  SimpleArray<T>::numElts;
+
     T& operator[](int i);                         // Checked subscripting
 
     CheckedSimpleArray<T>& operator=(const T&);   // Scalar assignment

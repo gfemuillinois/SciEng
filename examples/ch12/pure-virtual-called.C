@@ -12,6 +12,9 @@ See README file for further details.
 class A {
 public:
     A() { init(); }
+
+  virtual ~A() {}
+
     virtual void f() = 0;
     void init() { f(); }
 };
@@ -20,6 +23,9 @@ class B :
     public A {
 public:
     B() : A() {}
+
+  virtual ~B() {}
+
     virtual void f() { }
 };
 

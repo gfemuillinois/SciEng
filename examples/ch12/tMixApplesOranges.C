@@ -14,6 +14,9 @@ class Apple :
     public EquivalentCategory<Apple> {
 public:
     Apple(int n) : a(n) {}
+
+  virtual ~Apple() {}
+
     virtual Boolean equivalentTo(const Apple& an_apple) const { return a == an_apple.a; }
 private:
     int a; 
@@ -23,6 +26,9 @@ class Orange :
     public EquivalentCategory<Orange> {
 public:
     Orange(int n) : o(n) {}
+
+  virtual ~Orange() {}
+
     virtual Boolean equivalentTo(const Orange& an_orange) const { return o == an_orange.o; }
 private:
     int o; 

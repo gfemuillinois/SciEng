@@ -31,13 +31,14 @@ public:
 
     class Factored {
     public:
-        Factored(SymPosDefPackedLURep<T>::Unfactored* mp);
+      //        Factored(SymPosDefPackedLURep<T>::Unfactored* mp);
+        Factored( Unfactored* mp);
         void solve(ConcreteFortranArray1d<T>&);
         void solve(ConcreteFortranArray1d<T>& x, const ConcreteFortranArray1d<T>& b);
         void solve(ConcreteFortranArray2d<T>&);
         void solve(ConcreteFortranArray2d<T>& x, const ConcreteFortranArray2d<T>& b);
     private:
-        CopiedObjPtr< SymPosDefPackedLURep<T>::Unfactored > facmat_p; // Factored matrix pointer
+        CopiedObjPtr< Unfactored > facmat_p; // Factored matrix pointer
     };
 };
 

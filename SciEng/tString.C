@@ -12,6 +12,6 @@ int main() {
   String st1('T');
   String st2("String2");
 
-  cout << st1 << "\n" << st2 << endl;
+  std::cout << st1 << "\n" << st2 << std::endl;
 
 }

@@ -13,6 +13,8 @@ class ConstArray2d {
   // Dummy interface base
 public:
   virtual void foo() = 0;
+
+  virtual ~ConstArray2d();
 };
 
 

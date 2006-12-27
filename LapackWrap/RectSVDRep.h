@@ -28,7 +28,7 @@ public:
 
     class Factored {
     public:
-        Factored(RectSVDRep<T>::Unfactored* mp);
+        Factored(Unfactored* mp);
 	virtual ~Factored() {}
 
         void solve(Knowns1d& b); // Overwrites b with x
@@ -51,7 +51,7 @@ public:
 
 
 
-        CopiedObjPtr<RectSVDRep<T>::Unfactored> facmat_p;  // Factored matrix pointer
+        CopiedObjPtr<Unfactored> facmat_p;  // Factored matrix pointer
         Subscript                               m;         // Number of rows in A
         Subscript                               n;         // Number of columns in A
         Subscript                               k;         // min(m,n), size of matrices.

@@ -36,7 +36,7 @@ ConcreteBlas1d<T>
 operator/(const ConstConcreteBlasProjection1d<T>& lhs, const T& rhs);
 
 #undef  PROTECT_COPY_CONSTRUCTOR
-#define PROTECT_COPY_CONSTRUCTOR 1
+#define PROTECT_COPY_CONSTRUCTOR 0
 #if PROTECT_COPY_CONSTRUCTOR
 template<class T> class ConcreteBlas2d;
 template<class Rep> class LapackUnfactored;
@@ -46,6 +46,11 @@ template<class T>
 class ConstConcreteBlasProjection1d :  
     public ConcreteFortranArray2d<T>::ConstProjectionT {
 public:
+  ConcreteFortranArray2d<T>::ConstProjectionT::shape; 
+  ConcreteFortranArray2d<T>::ConstProjectionT::firstDatum; 
+  ConcreteFortranArray2d<T>::ConstProjectionT::offset; 
+
+
   ConstConcreteBlasProjection1d(const typename 
 				ConcreteFortranArray2d<T>::ConstProjectionT&
 				underlying_proj) :
@@ -100,6 +105,11 @@ class ConcreteBlasProjection1d :
     public ConcreteFortranArray2d<T>::ProjectionT {
 public:
   typedef typename ConcreteFortranArray2d<T>::ProjectionT BaseType;
+
+  ConcreteFortranArray2d<T>::ProjectionT::shape;
+  ConcreteFortranArray2d<T>::ProjectionT::firstDatum;
+  ConcreteFortranArray2d<T>::ProjectionT::offset;
+
 
   ConcreteBlasProjection1d(const typename 
 			   ConcreteFortranArray2d<T>::ProjectionT& underlying_proj) :
@@ -156,7 +166,7 @@ ConcreteBlasProjection1d<T>& ConcreteBlasProjection1d<T>::
 operator=(const ConcreteArray1dConstRef< 
 	  typename ConcreteFortranArray2d<T>::ProjectionT::ProjectionSubscriptor, T> rhs) 
 {     
-  (typename ConcreteFortranArray2d<T>::ProjectionT)::operator=(rhs);
+  ConcreteFortranArray2d<T>::ProjectionT::operator=(rhs);
   return *this;
 }
 
@@ -165,7 +175,7 @@ inline
 ConcreteBlasProjection1d<T>& ConcreteBlasProjection1d<T>::
 operator=(const typename ConcreteFortranArray2d<T>::ConstProjectionT& rhs) 
 { 
-  (typename ConcreteFortranArray2d<T>::ProjectionT)::operator=(rhs);
+  ConcreteFortranArray2d<T>::ProjectionT::operator=(rhs);
   return *this;
 }
 
@@ -220,6 +230,11 @@ public:
 
   typedef ConstConcreteBlasProjection1d<T> ConstProjectionT;
   typedef      ConcreteBlasProjection1d<T>      ProjectionT;
+
+  ConcreteFortranArray2d<T>::shape;
+  ConcreteFortranArray2d<T>::numElts;
+  ConcreteFortranArray2d<T>::firstDatum;
+  ConcreteFortranArray2d<T>::reshape;
 
   // CAD
   // AlgebraWithUnitCategory ops not implemented by DistributingLinearSpace.

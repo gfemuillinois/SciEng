@@ -13,6 +13,6 @@ int main() {
 
   b1 = Boolean::IsTrue;
 
-  cout << "b1 = " << b1 << "\t b2 = " << b2 << "\t b3 = " << b3 << endl;
+  std::cout << "b1 = " << b1 << "\t b2 = " << b2 << "\t b3 = " << b3 << std::endl;
 
 }
