@@ -22,5 +22,5 @@ int main() {
     IntMod5 b = 4;
     cout << a * b << " " << a.pow(4) << " " << a << " " << pow(b, 3) << endl;
     return 0;
-};
+}
 

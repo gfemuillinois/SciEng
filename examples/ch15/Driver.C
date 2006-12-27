@@ -61,6 +61,8 @@ main() {
   cfm2d_a[1] = 1.0;
   cout << "cfm2d_a: " << cfm2d_a << endl;
 
+  /* CAD: Could not compile this with gcc 4.1.2
+
   ConcreteFormedArray3d<double> cfm3d(2, 1, 1);
   cfm3d = 10.0;
   cout << "\ncfm3d: " << cfm3d << endl;
@@ -76,7 +78,7 @@ main() {
   cf3d[1] = 1.0;
   cout << "cf3d: " << cf3d << endl;
 
-
+  */
   // Tests for Lapack stuff
 
   LapackUnfactored< RectLURep<double> > a1(2, 2);
