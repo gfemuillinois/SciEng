@@ -28,6 +28,8 @@ public:
   Subscriptor::numElts;
   Subscriptor::offset;
 
+  Subscriptor::projectionSubscriptor;
+
   typedef T           EltT;
   typedef Subscriptor SubscriptorT;
   typedef ConstConcreteArrayProjection2d<Subscriptor, T> ConstProjectionT;
@@ -64,6 +66,8 @@ public:
   Subscriptor::shape;
   Subscriptor::numElts;
   Subscriptor::offset;
+
+  Subscriptor::projectionSubscriptor;
 
   typedef T           EltT;
   typedef Subscriptor SubscriptorT;
@@ -107,6 +111,7 @@ public:
   Subscriptor::shape;
   Subscriptor::numElts;
   Subscriptor::offset;
+  Subscriptor::setShape;
 
   typedef T                                                   EltT;
   typedef Subscriptor                                         SubscriptorT;

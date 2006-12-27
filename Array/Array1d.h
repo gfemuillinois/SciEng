@@ -23,6 +23,7 @@ public:
     typedef T EltT;
     typedef ArrayBrowser1d<ConstArray1d<T> > BrowserType;
 
+    ArrayShape::shape;
 
     virtual const T&          operator()(Subscript i)  const = 0;
     virtual const T&          operator[](Subscript i)  const { return operator()(i); }
@@ -42,6 +43,7 @@ class Array1d :
 public:
     typedef ArrayIterator1d<Array1d<T> > IteratorType;
 
+    ConstArray1d<T>::shape;
 
     virtual const T& operator()(Subscript i) const = 0;
     virtual       T& operator()(Subscript i)       = 0;

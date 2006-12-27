@@ -29,6 +29,7 @@ public:
     Subscriptor::numElts;
     Subscriptor::offset;
 
+    Subscriptor::projectionSubscriptor;
 
     typedef T                                                          EltT;
     typedef Subscriptor                                                SubscriptorT;
@@ -72,6 +73,7 @@ public:
     Subscriptor::numElts;
     Subscriptor::offset;
 
+    Subscriptor::projectionSubscriptor;
 
     typedef T           EltT;
     typedef Subscriptor SubscriptorT;
@@ -183,6 +185,9 @@ protected:
     ConcreteArray2d(const Subscriptor& s, T* p) : Subscriptor(s), datap(p) {}
     void reshapeOnHeap(const SubscriptArray<2>& s);
     void setSizeOnHeap(Subscript n);
+
+  Subscriptor::the_shape;
+
 protected:
     T* datap;
 private:

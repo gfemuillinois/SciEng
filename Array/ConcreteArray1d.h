@@ -108,6 +108,8 @@ public:
     Subscriptor::numElts;
     Subscriptor::offset;
 
+    Subscriptor::setShape;
+
     typedef T           EltT;
     typedef Subscriptor SubscriptorT;
 
