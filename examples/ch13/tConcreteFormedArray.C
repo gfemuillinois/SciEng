@@ -77,6 +77,8 @@ int main() {
 
   cout << " fa2d_1: " << fa2d_1 << endl;
 
+  /* CAD: could not compile this with gcc 4.1.2
+
   //  ConcreteFortranArray3d<float> fa3d(3,4,2), fa3d_1(3,4,2);
   ConcreteFortranArray3d<float> fa3d(3,1,1), fa3d_1(3,1,1);
 
@@ -104,7 +106,7 @@ int main() {
 
   cout << " fma3d_1: " << fma3d_1 << endl;
 
-
+  */
   // --------------------------------------------------------
 
   ConcreteFormedArray1d<double> fa10(10), fa20(20);
@@ -117,6 +119,7 @@ int main() {
   fa10.swap( fa20 );
 
   cout << "\nfa10: " << fa10 << "\nfa20: " << fa20 << endl;
+
 
   // --------------------------------------------------------
 
