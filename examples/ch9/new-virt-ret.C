@@ -15,11 +15,15 @@ class C2 : public C1 {};
 class B {
 public:
     virtual C1& f();
+
+  virtual ~B() {}
 };
 
 class D :
     public B {
 public:
     virtual C2& f();// Formerly illegal
+
+  virtual ~D() {}
 };
 

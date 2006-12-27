@@ -29,5 +29,5 @@ int main() {
     TraceLifetime a4("a4");
     cout << "-- main ends --" << endl;
     return 0;
-};
+}
 

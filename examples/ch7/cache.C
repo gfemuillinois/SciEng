@@ -33,7 +33,7 @@ float remembers(float x) {
         previous_result = f(x);
     }
     return previous_result;
-};
+}
 
 
 int main() {

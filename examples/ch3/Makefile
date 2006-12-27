@@ -5,10 +5,12 @@ include ../../SciEng.mkdefs-$(HOSTTYPE)
 
 .PHONY: all clean real_clean run_all check
 
-FILES_WITH_MAIN	= char-out.C const.C enum.C fortran-compatible-io.C \
-	funcarg.C io.C iodemo.C new.C refs.C regurgitate.C sqrtTable.C
+#FILES_WITH_MAIN= char-out.C const.C enum.C fortran-compatible-io.C 
+FILES_WITH_MAIN	=            const.C enum.C fortran-compatible-io.C \
+       funcarg.C io.C iodemo.C new.C refs.C regurgitate.C sqrtTable.C
 
-ALL_FILES = char-out.C const.C doubleSqr.C enum.C ex-refs.C \
+#ALL_FILES = char-out.C const.C doubleSqr.C enum.C ex-refs.C \
+ALL_FILES =             const.C doubleSqr.C enum.C ex-refs.C \
 	fortran-compatible-io.C funcarg.C io.C iodemo.C new.C \
 	ptrdclstyles.C refs.C regurgitate.C simplecpp.C sqrtTable.C \
 	vertstyle.C void.C
