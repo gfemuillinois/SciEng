@@ -46,9 +46,15 @@ template<class T>
 class ConstConcreteBlasProjection1d :  
     public ConcreteFortranArray2d<T>::ConstProjectionT {
 public:
+#ifdef __GNUC__
+#if (__GNUC__ == 3)
+  // compiler crashes if declarations below are given...
+#else
   ConcreteFortranArray2d<T>::ConstProjectionT::shape; 
   ConcreteFortranArray2d<T>::ConstProjectionT::firstDatum; 
   ConcreteFortranArray2d<T>::ConstProjectionT::offset; 
+#endif
+#endif
 
 
   ConstConcreteBlasProjection1d(const typename 
@@ -106,10 +112,15 @@ class ConcreteBlasProjection1d :
 public:
   typedef typename ConcreteFortranArray2d<T>::ProjectionT BaseType;
 
+#ifdef __GNUC__
+#if (__GNUC__ == 3)
+  // compiler crashes if declarations below are given...
+#else
   ConcreteFortranArray2d<T>::ProjectionT::shape;
   ConcreteFortranArray2d<T>::ProjectionT::firstDatum;
   ConcreteFortranArray2d<T>::ProjectionT::offset;
-
+#endif
+#endif
 
   ConcreteBlasProjection1d(const typename 
 			   ConcreteFortranArray2d<T>::ProjectionT& underlying_proj) :
