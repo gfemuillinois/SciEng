@@ -80,6 +80,8 @@ int main() {
   }
   {
 
+    /* CAD: Could not compile this with gcc 4.1.2
+
     ConcreteFormedArray3d<int> fa(2, 3, 4);
     // ... set fa ...
     fa = 0;
@@ -94,7 +96,7 @@ int main() {
     fa[ plane_with_max ] = -1;
 
     cout << "fa = " << fa << endl;
-
+    */
   }
   return 0;
 }

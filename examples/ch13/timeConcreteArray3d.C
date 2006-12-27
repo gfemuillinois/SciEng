@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 #include "timer.h"
 #include "Array/ConcreteRigidArray3d.h"
