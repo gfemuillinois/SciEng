@@ -7,7 +7,7 @@
 ## C++ compiler
 CXX	 = g++
 CC       = gcc
-FC 	 = g77
+FC 	 = gfortran
 LD       = g++
 
 Debug = 
@@ -72,7 +72,8 @@ LDFLAGS = $(OPTM) $(PROF)
 
 # this one is for tsunami (red hat 6.0 and egcs-2.91.66)
 
-LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
+#LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
+LIBSYS = -llapack -lblas                -lstdc++ -lm  -lgfortran
 
 #PWD := $(shell pwd)
 
