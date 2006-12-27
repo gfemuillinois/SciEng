@@ -121,7 +121,7 @@ ConcreteRigidArray1d<T,n0>::operator=(const ConcreteRigidArray1d<T, n0>& rhs) {
 
 template<class T, Subscript n0>
 inline
-ConcreteRigidArray1d<T,n0>::ConcreteRigidArray1d<T,n0>
+ConcreteRigidArray1d<T,n0>::ConcreteRigidArray1d
 (const ConcreteRigidArray1d<T, n0>& rhs) {
 
   // copy constructor provides deep copy

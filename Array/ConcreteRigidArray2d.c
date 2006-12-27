@@ -55,7 +55,7 @@ ConcreteRigidArray2d<T, n0, n1>::operator=(const ConcreteRigidArray2d<T, n0, n1>
 }
 
 template<class T, Subscript n0, Subscript n1>
-ConcreteRigidArray2d<T, n0, n1>::ConcreteRigidArray2d<T, n0, n1>
+ConcreteRigidArray2d<T, n0, n1>::ConcreteRigidArray2d
 (const ConcreteRigidArray2d<T, n0, n1>& rhs) {
 
   T* p = firstDatum();

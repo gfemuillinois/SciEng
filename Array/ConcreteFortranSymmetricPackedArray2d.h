@@ -48,6 +48,8 @@ public:
     ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 protected:
     Subscript n;
+
+  Subscript the_shape; // CAD: Not used here but all Subscriptors must have this member
 };
 
 
@@ -84,6 +86,8 @@ class ConcreteFortranSymmetricPackedArray2d :
 public:
   typedef FortranSymmetricPackedSubscriptor SubscriptorType;
 
+  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::shape;
+
     ConcreteFortranSymmetricPackedArray2d(Subscript s0, Subscript s1);
     ConcreteFortranSymmetricPackedArray2d(const ConcreteFortranSymmetricPackedArray2d<T>&);
 
@@ -93,6 +97,12 @@ public:
     ConcreteFortranSymmetricPackedArray2d<T>& operator=(const T& rhs);
 
     void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
+
+protected:
+  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::reshapeOnHeap;
+  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::setSizeOnHeap;
+  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::datap;
+
 };
 
 

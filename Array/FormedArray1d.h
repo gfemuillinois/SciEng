@@ -33,6 +33,9 @@ public:
   
   virtual const T* firstDatum() const { return the_concrete.firstDatum(); }
   virtual       T* firstDatum()       { return the_concrete.firstDatum(); }
+
+protected:
+  InterfacedArray1d< ConcreteFormedArray1d<T> >::the_concrete;
 };
 
 #endif

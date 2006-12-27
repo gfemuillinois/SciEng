@@ -60,6 +60,9 @@ public:
    ConcreteArray2dRef< typename Subscriptor::ProjectionT, T>(s, t) {
   }
 
+  ConcreteArray2dRef< typename Subscriptor::ProjectionT, T>::subscriptor;
+  ConcreteArray2dRef< typename Subscriptor::ProjectionT, T>::firstDatum;
+
   operator ConstConcreteArrayProjection2d<Subscriptor, T>() const {
     return ConstConcreteArrayProjection2d<Subscriptor, T>(subscriptor(), firstDatum());
   }

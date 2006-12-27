@@ -38,6 +38,12 @@ public:
     void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
 
     void clear() { reshape( SubscriptArray<2>(0, 0) ); }
+
+protected:
+  ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::reshapeOnHeap;
+  ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::setSizeOnHeap;
+  ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::datap;
+
 };
 
 

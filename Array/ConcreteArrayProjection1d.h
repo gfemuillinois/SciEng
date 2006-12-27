@@ -61,6 +61,9 @@ public:
     typedef typename Subscriptor::ProjectionT ProjectionSubscriptor;
     ConcreteArrayProjection1d(const ProjectionSubscriptor& s, T* t);
 
+    ConcreteArray1dRef< typename Subscriptor::ProjectionT, T>::subscriptor;
+    ConcreteArray1dRef< typename Subscriptor::ProjectionT, T>::firstDatum;
+
     operator ConstConcreteArrayProjection1d<Subscriptor, T>() const;
 
     ConcreteArrayProjection1d<Subscriptor, T>& 

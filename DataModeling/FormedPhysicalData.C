@@ -28,7 +28,7 @@ FormedPhysicalData(std::istream& ns, unsigned int num_data_pts) :
 
 
 FormedPhysicalData::TooLittleDataInput::
-TooLittleDataInput() { };
+TooLittleDataInput() { }
 
 String
 FormedPhysicalData::TooLittleDataInput::

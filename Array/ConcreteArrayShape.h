@@ -66,6 +66,8 @@ public:
     typedef ConcreteColumnMajorProjectionSubscriptor<ndim-1> ProjectionT;
     ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
+    ConcreteArrayShape<ndim>::shape;
+
     Subscript   offset(const SubscriptArray<ndim>& s) const;
 };
 // ***************************************************
@@ -184,6 +186,8 @@ public:
 
   typedef ConcreteRowMajorProjectionSubscriptor<ndim-1> ProjectionT;
   ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
+
+  ConcreteArrayShape<ndim>::shape;
 
   Subscript offset(const SubscriptArray<ndim>& s) const;
 };

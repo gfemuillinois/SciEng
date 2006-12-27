@@ -41,6 +41,12 @@ public:
     reshapeOnHeap( s ); }
 
   void clear() { reshape(0); }
+
+protected:
+  ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::reshapeOnHeap;
+  ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::setSizeOnHeap;
+
+  ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::datap;
 };
 
 //}

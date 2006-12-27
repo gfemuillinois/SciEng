@@ -33,6 +33,12 @@ public:
   ConcreteFortranArray1d<T>& operator=(const T& rhs);
   
   void reshape(const Subscript s) { reshapeOnHeap(s); }
+
+protected:
+  ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::reshapeOnHeap;
+  ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::setSizeOnHeap;
+  ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::datap;
+
 };
 
 #ifdef XLC_QNOTEMPINC
