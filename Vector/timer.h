@@ -93,7 +93,7 @@ class Timer
     //   return s/((double) CLOCKS_PER_SEC);
     // } 
     
-    static const double diff(const seconds s1, const seconds s2) 
+    static double diff(const seconds s1, const seconds s2) 
     {
       return Seconds(s1-s2);
     } 
