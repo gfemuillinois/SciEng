@@ -38,7 +38,7 @@ RM = /bin/rm
 all:	SciEng.a  SciEngMatx.a templ_instatiation_g++ \
 	examples/SciEng.a examples/SciEngMatx.a
 	cd examples/ch2; $(MAKE)
-	cd examples/ch3; $(MAKE)
+#	cd examples/ch3; $(MAKE)
 	cd examples/ch4; $(MAKE)
 	cd examples/ch5; $(MAKE)
 	cd examples/ch6; $(MAKE)
@@ -141,7 +141,7 @@ clean:
 	rm -f SciEng.a 
 	rm -f SciEngMatx.a
 	cd examples/ch2; $(MAKE) clean
-	cd examples/ch3; $(MAKE) clean
+#	cd examples/ch3; $(MAKE) clean
 	cd examples/ch4; $(MAKE) clean
 	cd examples/ch5; $(MAKE) clean
 	cd examples/ch6; $(MAKE) clean
@@ -244,7 +244,7 @@ check:
 # returns non-zero value.
 run_all:
 	@echo Running examples/ch2;  cd examples/ch2;  $(MAKE) run_all
-	@echo Running examples/ch3;  cd examples/ch3;  $(MAKE) run_all
+#	@echo Running examples/ch3;  cd examples/ch3;  $(MAKE) run_all
 	@echo Running examples/ch4;  cd examples/ch4;  $(MAKE) run_all
 	@echo Running examples/ch5;  cd examples/ch5;  $(MAKE) run_all
 	@echo Running examples/ch6;  cd examples/ch6;  $(MAKE) run_all
