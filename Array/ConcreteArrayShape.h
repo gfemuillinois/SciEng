@@ -44,7 +44,7 @@ public:
   ConcreteArrayShape() {} // Create uninitialized; call setShape to set.
 
   Dimension            dim()              const { return 1;         }
-  Subscript            shape(Dimension d) const { return the_shape; }
+  Subscript            shape(Dimension /*d*/) const { return the_shape; }
   Subscript            numElts()          const { return the_shape; }
   void                 setShape(const Subscript a) { the_shape = a; }
 
