@@ -39,6 +39,16 @@ extern "C" {
     void FTNAME(dpptrs)(const char UPLO[], const int& N, const int& NRHS, const double AP[],
     	           double B[], const int& LDB, int& INFO);
 
+
+  // Eigenvalue and eigenvector calculation for symmetric matrices
+  
+  void FTNAME(ssyev)(const char JOBZ[], const char UPLO[], const int& N, float A[], const int& LDA, 
+		     float EIGEN[], float WORK[], const int& LWORK, const int& INFO);
+  void FTNAME(dsyev)(const char JOBZ[], const char UPLO[], const int& N, double A[], const int& LDA, 
+		     double EIGEN[], double WORK[], const int& LWORK, const int& INFO);
+
+
+  // SVD
     void FTNAME(dgesvd)(const char JOBU[], const char JOBVT[], const int& M, const int& N, const double AP[],   
     const int& LDA, double SP[], double UP[], const int& LDU, double VTP[], const int& LDVT, 
     double WORK[], const int& LWORK, int& INFO);                                             
@@ -113,6 +123,15 @@ public:
         	  int& INFO
     );  	  
 
+
+  // Eigenvalue and eigenvector calculation for symmetric matrices
+  static void xsyev(const char JOBZ[], const char UPLO[], const int& N, float A[], const int& LDA, 
+		    float EIGEN[], float WORK[], const int& LWORK, const int& INFO);
+  static void xsyev(const char JOBZ[], const char UPLO[], const int& N, double A[], const int& LDA, 
+		    double EIGEN[], double WORK[], const int& LWORK, const int& INFO);
+
+
+  // SVD
     static void xgesvd(Job u_storage, Job vt_storage, const int& M, const int& N, const double AP[],   
         const int& LDA, double SP[], double UP[], const int& LDU, double VTP[], const int& LDVT, 
         double WORK[], const int& LWORK, int& INFO);                                             
@@ -185,7 +204,23 @@ inline void LapackSubroutines::xpptrs(const char* UPLO, const int& N, const int&
 
     FTNAME(dpptrs)(UPLO, N, NRHS, AP, B, LDB, INFO);
 }
-  
+
+  // Eigenvalue and eigenvector calculation for symmetric matrices
+inline void LapackSubroutines::
+xsyev(const char JOBZ[], const char UPLO[], const int& N, float A[], const int& LDA, 
+      float EIGEN[], float WORK[], const int& LWORK, const int& INFO) {
+
+  FTNAME(ssyev)(JOBZ, UPLO, N, A, LDA, EIGEN, WORK, LWORK, INFO);
+}
+
+inline void LapackSubroutines::
+xsyev(const char JOBZ[], const char UPLO[], const int& N, double A[], const int& LDA, 
+      double EIGEN[], double WORK[], const int& LWORK, const int& INFO) {
+
+  FTNAME(dsyev)(JOBZ, UPLO, N, A, LDA, EIGEN, WORK, LWORK, INFO);
+}
+
+// SVD  
 inline void LapackSubroutines::xgesvd(                                                                 
               Job u_storage, Job vt_storage,                                                           
               const int& M, const int& N, const double AP[], const int& LDA,                           

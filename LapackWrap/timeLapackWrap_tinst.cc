@@ -21,6 +21,10 @@ namespace LapackWrap {
 template bool factAndSolve<double, MAT_DIM>
 (ConcreteRigidArray2d<double, MAT_DIM, MAT_DIM> &, int, ConcreteRigidArray1d<double, MAT_DIM> &);
 
+template bool eigens<double, MAT_DIM>
+(ConcreteRigidArray2d<double, MAT_DIM, MAT_DIM>&, int, bool, 
+ ConcreteRigidArray1d<double, MAT_DIM>&);
+
 }
 
 

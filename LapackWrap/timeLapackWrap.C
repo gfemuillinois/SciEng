@@ -78,6 +78,54 @@ int main() {
   }
 #endif
 
+#if TEST2 || TEST_ALL
+  cout << "\nTest/timing eigens " << endl;
+
+  {
+    const int mat_dim = 10;
+    const int prob_dim = 8;
+
+    cout << "\nmat_dim = " << mat_dim << " prob_dim = " << prob_dim << endl;
+
+    // Using diagonal matrix for A.
+    // TBD: Find other, more interesting.
+    // We can use a symmetric random matrix and then check if the
+    // computed eigens are indeed eigens of A. If they are then
+    //
+    // A * eigenvector = eigenvalue * eigenvector
+    //
+    ConcreteRigidArray2d< double, mat_dim,mat_dim>  A;
+
+    A = 0.;
+    for(Subscript i=0; i<prob_dim; ++i){
+      A(i,i) = i;
+    }
+    
+    bool eigenVectors = true;
+    ConcreteRigidArray1d< double, mat_dim> eigenValues;
+
+    the_timer.set(0);
+    the_timer.start(0);
+    if ( LapackWrap::eigens(A, prob_dim, eigenVectors,
+			    eigenValues) ) {
+
+      cout << "\nEigenvalues: " << eigenValues << endl;
+      if (eigenVectors) {
+	cout << "\nEigenvectors: " << A << endl;
+      }
+
+    }
+    else {
+      cout << "\nLapackWrap::eigens Failed!!" << endl;
+      the_timer.stop(0);
+      return EXIT_FAILURE;
+    }
+
+    the_timer.stop(0);
+    cout << "\n Time spent  (s) = " << the_timer.read(0) << endl;
+  }
+#endif
+
   return EXIT_SUCCESS;
 }
 // ***************************************************

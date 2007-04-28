@@ -58,7 +58,59 @@ bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A,
 
   return true;
 }
+// **************************************************************
+// **************************************************************
+
+template<class T, Subscript n0>
+bool eigens(ConcreteRigidArray2d< T, n0,n0>&  A, const int prob_dim,
+	    const bool eigenVectors,
+	    ConcreteRigidArray1d< T, n0>& eigenValues) {
+
+  // Eigenvalues and eigenvectors (if eigenVectors = true) of a symmetric matrix
+
+  // On input, we use only the LOWER triangle part of A.
+  //
+  // The function value is true if successful and false otherwise
+  //
+  // Computes all the eigenvalues and, optionally, eigenvectors.
+  // If eigenVectors = true, A will contain, on exit, the orthonormal eigenvectors
+  // of A.
+  // 
+  // If eigenVectors != true, the data of A is destroyed on exit.
+  // See Lapack manual pg. 211 for more details.
+
+  if ( prob_dim > n0 ) {
+    std::cerr << "\nLapackWrap::eigens: Invalid prob_dim = " << prob_dim
+	      << " n0 = " << n0 << std::endl;
+    return false;
+  }
+
+  char* job = "No Evectors";
+  if (eigenVectors) job = "Vectors";
+
+  ConcreteRigidArray1d< T, 3*n0> work;
+  int info = 0;
+  // call Lapack FORTRAN subroutine.
+  //
+  // Telling Lapack to use upper triangle part of A. Since A is row-major,
+  // it will actually use the LOWER triangle part of A.
+  LapackSubroutines::xsyev(job, "Upper", prob_dim /*N*/, A.firstDatum(), n0 /*LDA*/,
+			   eigenValues.firstDatum(), work.firstDatum(), 3*n0, info);  
+
+  if(info > 0) {
+    std::cerr << "\nLapackWrap::eigens: The algorithm failed to converge \n"
+	      << "after finding only " << info-1 << " eigenvalues " << std::endl;
+    return false;
+  }
+  if (info < 0) {
+    std::cerr << "\nLapackWrap::eigens: xsyev called with invalid argument "
+	      << -info << std::endl;
+    return false;
+  }
+  return true;
 
 }
 // **************************************************************
 // **************************************************************
+
+} // end of namespace LapackWrap

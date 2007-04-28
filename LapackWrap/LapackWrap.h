@@ -10,11 +10,18 @@ template<class T, Subscript n0> class ConcreteRigidArray1d;
 
 namespace LapackWrap {
 
-// Factoring and solve general matrices
-template <class T, Subscript n0>
-bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A, 
-		  const int prob_dim,
-		  ConcreteRigidArray1d< T, n0>& rhs);
+  // Factoring and solve general matrices
+  template <class T, Subscript n0>
+  bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A, 
+		    const int prob_dim,
+		    ConcreteRigidArray1d< T, n0>& rhs);
+
+  // Eigenvalues and eigenvectors (if eigenVectors = true) of a symmetric matrix
+  template <class T, Subscript n0>
+  bool eigens(ConcreteRigidArray2d< T, n0,n0>&  A, const int prob_dim,
+	      const bool eigenVectors,
+	      ConcreteRigidArray1d< T, n0>& eigenValues);
+
 
 }
 
