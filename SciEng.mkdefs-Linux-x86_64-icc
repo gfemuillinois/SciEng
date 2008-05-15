@@ -77,16 +77,12 @@ LDFLAGS = $(OPTM) $(PROF)
 
 #
 MKL_LIB   = /opt/intel/mkl/8.1/lib/em64t
-IFORT_LIB = /opt/intel/fc/9.1.036/lib
-ICC_LIB   = /opt/intel/cc/9.1.047/lib
+IFORT_LIB = /opt/intel/fce/9.1.036/lib
+ICC_LIB   = /opt/intel/cce/9.1.047/lib
 
 LIBSYS = -L$(MKL_LIB) -L$(IFORT_LIB) -L$(ICC_LIB)   \
-         /opt/intel/mkl/8.1/lib/em64t/libmkl_lapack.a \
-	 -lmkl	 \
-         -lguide   -lstdc++  \
+         -lmkl_lapack -lmkl_em64t  -lguide  -lpthread -lstdc++  \
          -lm  -lifcore -lirc -limf
-
-#         -lmkl_lapack   -lmkl -lguide  -lstdc++  \
 
 #PWD := $(shell pwd)
 
