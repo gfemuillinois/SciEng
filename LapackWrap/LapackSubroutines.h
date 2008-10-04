@@ -40,6 +40,24 @@ extern "C" {
     	           double B[], const int& LDB, int& INFO);
 
 
+  // Factoring and solving symmetric systems of equations. Dense storage matrices.
+
+  // expert driver to solve a symmeric system of equations, possible not positive definite.
+  void FTNAME(dsysvx)(const char fact[], const char uplo[], const int& n, const int& nhrs, 
+		      const double* a, const int& lda, double* af, const int& ldaf,
+		      int* ipiv,  
+		      const double* b, const int& ldab, double* x, const int& ldx, 
+		      double& rcond, double* ferr, double* berr, 
+		      double* work, const int& lwork, int* iwork, int& info);
+
+  void FTNAME(ssysvx)(const char fact[], const char uplo[], const int& n, const int& nhrs, 
+		      const float* a, const int& lda, float* af, const int& ldaf,
+		      int* ipiv,  
+		      const float* b, const int& ldab, float* x, const int& ldx, 
+		      float& rcond, float* ferr, float* berr, 
+		      float* work, const int& lwork, int* iwork, int& info);
+   
+
   // Eigenvalue and eigenvector calculation for symmetric matrices
   
   void FTNAME(ssyev)(const char JOBZ[], const char UPLO[], const int& N, float A[], const int& LDA, 
@@ -61,11 +79,14 @@ extern "C" {
 
 class LapackSubroutines { 
 public:
-    enum Job { all, separate, overwrite, none };                                                      
+    enum Job { all, separate, overwrite, none_job };                                                      
     static char job_symbol[4];                                                                         
 
     enum Trans {no_trans, trans, conj};
     static char trans_char[3];
+
+  enum UpLo { upper, lower };
+  static char up_lo[2]; 
 
     // Factoring general matrices
     static void xgetrf(
@@ -122,6 +143,24 @@ public:
         	  double B[], const int& LDB, 
         	  int& INFO
     );  	  
+
+
+  // Factoring and solving symmetric systems of equations. Dense storage matrices.
+
+  // expert driver to solve a symmeric system of equations, possible not positive definite.
+  static void xsysvx(const char fact, const LapackSubroutines::UpLo uplo, const int& n, const int& nhrs, 
+		     const double* a, const int& lda, double* af, const int& ldaf,
+		     int* ipiv,  
+		     const double* b, const int& ldab, double* x, const int& ldx, 
+		     double& rcond, double* ferr, double* berr, 
+		     double* work, const int& lwork, int* iwork, int& info);
+
+  static void xsysvx(const char fact, const LapackSubroutines::UpLo uplo, const int& n, const int& nhrs, 
+		     const float* a, const int& lda, float* af, const int& ldaf,
+		     int* ipiv,  
+		     const float* b, const int& ldab, float* x, const int& ldx, 
+		     float& rcond, float* ferr, float* berr, 
+		     float* work, const int& lwork, int* iwork, int& info);
 
 
   // Eigenvalue and eigenvector calculation for symmetric matrices
@@ -205,7 +244,34 @@ inline void LapackSubroutines::xpptrs(const char* UPLO, const int& N, const int&
     FTNAME(dpptrs)(UPLO, N, NRHS, AP, B, LDB, INFO);
 }
 
-  // Eigenvalue and eigenvector calculation for symmetric matrices
+
+// expert driver to solve a symmeric system of equations, possible not positive definite.
+inline void LapackSubroutines::xsysvx(const char fact, const LapackSubroutines::UpLo uplo, 
+				      const int& n, const int& nhrs, 
+				      const double* a, const int& lda, double* af, const int& ldaf,
+				      int* ipiv,  
+				      const double* b, const int& ldab, double* x, const int& ldx, 
+				      double& rcond, double* ferr, double* berr, 
+				      double* work, const int& lwork, int* iwork, int& info) {
+
+  FTNAME(dsysvx)(&fact, &up_lo[uplo], n, nhrs, a, lda, af, ldaf, ipiv, b, ldab, x, ldx, 
+		 rcond, ferr, berr, work, lwork, iwork, info);
+}
+
+inline void LapackSubroutines::xsysvx(const char fact, const LapackSubroutines::UpLo uplo, 
+				      const int& n, const int& nhrs, 
+				      const float* a, const int& lda, float* af, const int& ldaf,
+				      int* ipiv,  
+				      const float* b, const int& ldab, float* x, const int& ldx, 
+				      float& rcond, float* ferr, float* berr, 
+				      float* work, const int& lwork, int* iwork, int& info){
+
+  FTNAME(ssysvx)(&fact, &up_lo[uplo], n, nhrs, a, lda, af, ldaf, ipiv, b, ldab, x, ldx, 
+		 rcond, ferr, berr, work, lwork, iwork, info);
+}
+
+
+// Eigenvalue and eigenvector calculation for symmetric matrices
 inline void LapackSubroutines::
 xsyev(const char JOBZ[], const char UPLO[], const int& N, float A[], const int& LDA, 
       float EIGEN[], float WORK[], const int& LWORK, const int& INFO) {
