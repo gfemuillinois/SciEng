@@ -2,6 +2,7 @@
 #include "Array/ConcreteRigidArray1d.h"
 #include "Array/ConcreteRigidArray2d.h"
 #include "Array/ConcreteFortranArray2d.h"
+#include "Array/ConcreteFortranArray1d.h"
 
 namespace LapackWrap {
 
