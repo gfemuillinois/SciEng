@@ -6,7 +6,7 @@ include ../SciEng.mkdefs-$(HOSTTYPE)
 .PHONY: all clean real_clean run_all check
 
 
-FILES_WITH_MAIN	= timeConcreteBlas1d.C timeConcreteBlas2d.C timeLapackWrap.C
+FILES_WITH_MAIN	= timeConcreteBlas1d.C timeConcreteBlas2d.C timeLapackWrap.C staticCondensation.C
 
 TEMPLATE_INSTANCES = timeConcreteBlas1d_tinst.cc timeConcreteBlas2d_tinst.cc \
                      timeLapackWrap_tinst.cc
@@ -39,6 +39,9 @@ timeLapackWrap :  timeLapackWrap.o timer.o timeLapackWrap_tinst.o $(SCIENGMATXLI
 	@echo Linking $@
 	$(LINK)	 timeLapackWrap.o timer.o timeLapackWrap_tinst.o  $(SCIENGMATXLIB) $(LIBSYS)
 
+staticCondensation: staticCondensation.o $(SCIENGMATXLIB)
+	@echo Linking $@
+	$(LINK)	 staticCondensation.o $(SCIENGMATXLIB) $(LIBSYS)
 
 #clarch.h:
 #	ln -s ../../util++_ut/util/clarch.h .
