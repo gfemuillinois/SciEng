@@ -64,3 +64,29 @@ void addSubVector(ConcreteFortranArray2d<T>& vect,
 }
 // *************************************************************
 // *************************************************************
+
+// added by DJK
+
+template<class T>
+void addVector(ConcreteFortranArray2d<T>& vect1, 
+	       const ConcreteFortranArray2d<T>& vect2) {
+
+  // Add a vector to another vector. These two vectors have exactly
+  // the same dimension. (vect1 = vect1 + vect2)
+
+  ERRCHK( vect1.shape(0) != vect2.shape(0), 
+	  "template<class T> addSubVector: Invalid Arguments");
+  ERRCHK( vect1.shape(1) != vect2.shape(1), 
+	  "template<class T> addSubVector: Invalid Arguments");
+
+  const Subscript row_size = vect1.shape(0);
+  const Subscript col_size = vect1.shape(1);
+
+  for(Subscript icol=0; icol < col_size; ++icol) {
+    for(Subscript irow=0; irow < row_size; ++irow)
+      vect1( irow, icol ) += vect2( irow, icol );
+  }
+
+}
+// *************************************************************
+// *************************************************************

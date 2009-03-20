@@ -39,6 +39,16 @@ void addSubVector(ConcreteFortranArray2d<T>& vect,
 		  const ConcreteFortranArray2d<T>& subv,
 		  const int dim, const ConcreteFormedArray1d<int>& destIndex);
 
+// -----------------------------------------------------------------
+// added by DJK
+//
+// Add a vector to another vector. These two vectors have exactly
+// the same dimension. (vect1 = vect1 + vect2)
+
+template<class T>
+void addVector(ConcreteFortranArray2d<T>& vect1, 
+	       const ConcreteFortranArray2d<T>& vect2);
+
 
 #ifdef XLC_QNOTEMPINC
 #include "Array/ConcreteArray2dUtil.c"
