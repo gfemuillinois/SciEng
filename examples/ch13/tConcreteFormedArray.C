@@ -12,6 +12,7 @@
 #include "Array/ConcreteArrayShape.h"
 
 #include "Array/ConcreteFormedArray1d.h"
+#include "Array/ConcreteFormedArray2d.h"
 #include "Array/ConcreteFormedArray3d.h"
 
 #include "Array/ConcreteArray2dUtil.h"
@@ -171,6 +172,26 @@ int main() {
   //  ConcreteFormedArray1d<int> empty;
 
   //  cout << empty;
+
+
+  // Testing allocation on the heap:
+
+  ConcreteFormedArray1d<double> * p_cfarray1D = new ConcreteFormedArray1d<double>(1);
+
+  delete p_cfarray1D;
+
+  ConcreteFormedArray2d<double>* p_cfarray2D;
+
+  int n_rows = 10;
+
+  p_cfarray2D = new ConcreteFormedArray2d<double>(n_rows,6);
+
+  (*p_cfarray2D) = 10.0;
+  (*p_cfarray2D)(0,0) = 111.0;
+
+  cout << "\np_cfarray2D: " << (*p_cfarray2D) << endl;
+
+  delete p_cfarray2D;
 
   return EXIT_SUCCESS;
 
