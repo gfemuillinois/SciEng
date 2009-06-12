@@ -25,8 +25,8 @@ int main() {
   cout << "\nTest/timing factAndSolve " << endl;
 
   {
-    const int mat_dim = 10;
-    const int prob_dim = 8;
+    const int mat_dim = 1000;
+    const int prob_dim = 1000;
 
     cout << "\nmat_dim = " << mat_dim << " prob_dim = " << prob_dim << endl;
 
