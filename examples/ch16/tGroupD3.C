@@ -30,7 +30,7 @@ GroupD3::sym_op GroupD3::mult_tab[6][6] = {
 
 GroupD3::sym_op GroupD3::inv_tab[6] = { R0, R240, R120, M1, M2, M3 };
 
-char* GroupD3::name_tab[6] = { "R0", "R240", "R120", "M1", "M2", "M3" };
+const char* GroupD3::name_tab[6] = { "R0", "R240", "R120", "M1", "M2", "M3" };
 
 int main() {
 

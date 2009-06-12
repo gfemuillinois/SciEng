@@ -1,5 +1,6 @@
 
 #include <cstdio>
+#include <cstdlib>
 #include "error.h"
 
 using std::endl;

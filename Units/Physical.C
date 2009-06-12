@@ -11,7 +11,7 @@ See README file for further details.
 #include "Units/Physical.h"
 
 std::ostream& powerPrinter(std::ostream& os, int units[7]) {
-   static char* letters = "MLTQKIA";
+   static const char* letters = "MLTQKIA";
    Boolean saw_positive = Boolean::IsFalse;
    Boolean saw_negative = Boolean::IsFalse;
    for (int i = 0; i < 7; i++) {

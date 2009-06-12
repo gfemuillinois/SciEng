@@ -22,7 +22,7 @@ public:
 private:
   static sym_op mult_tab[6][6];
   static sym_op inv_tab[6];
-  static char*  name_tab[6];
+  static const char*  name_tab[6];
   sym_op val;
 };
 

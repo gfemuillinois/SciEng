@@ -87,7 +87,7 @@ bool eigens(ConcreteRigidArray2d< T, n0,n0>&  A, const int prob_dim,
     return false;
   }
 
-  char* job = "No Evectors";
+  const char* job = "No Evectors";
   if (eigenVectors) job = "Vectors";
 
   ConcreteRigidArray1d< T, 3*n0> work;
