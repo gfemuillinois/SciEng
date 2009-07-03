@@ -77,3 +77,16 @@ cvs tag -c Move2ArmandoOffice SciEng
 later we can do:
 cvs co -r  Move2ArmandoOffice SciEng
 -----------------------------------------------------------
+
+==============================================================
+==============================================================
+
+Jun. 12, 2009:
+
+Tagged SciEng:
+ After porting to Ubuntun, Summer 2009
+
+ SEE SetSolver/README for details
+
+-----------------------------------------------------------
+
