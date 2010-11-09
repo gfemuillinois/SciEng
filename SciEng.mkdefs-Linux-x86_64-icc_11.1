@@ -70,14 +70,12 @@ LDFLAGS = $(OPTM) $(PROF)
 #########general libraries
 
 
-#LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
-#LIBSYS = -llapack -lblas                -lstdc++ -lm  -lgfortran
-
-#
 # environment variable MKLROOT is set after sourcing .login
 
 MKLPATH    = $(MKLROOT)/lib/em64t
 MKLINCLUDE = $(MKLROOT)/include
+
+# Using static linking
 
 LIBSYS = -L$(MKLPATH) -I$(MKLINCLUDE)	\
        -Wl,--start-group $(MKLPATH)/libmkl_intel_lp64.a \
