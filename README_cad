@@ -90,3 +90,28 @@ Tagged SciEng:
 
 -----------------------------------------------------------
 
+November 23 2010
+
+MOVED cvsroot from cee-zzgv (== caduarte-office) to cee-zzfy (==
+caduarte-desktop)
+ 
+
+Tagged:
+
+cd SciEng/
+
+make real_clean
+
+cvs -n up
+
+checked in some files
+
+cd ..
+
+cvs -n tag -c Move2caduartedesktop SciEng
+cvs    tag -c Move2caduartedesktop SciEng
+
+later we can do:
+cvs co -r  Move2caduartedesktop SciEng
+
+------------------------------------------------
