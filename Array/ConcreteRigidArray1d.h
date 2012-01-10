@@ -67,7 +67,11 @@ class ConcreteRigidArray1d {
 #endif
     return data[s]; }
 
-  ConstProjectionT operator[](Subscript s) const { return data[s]; }
+  ConstProjectionT operator[](Subscript s) const { 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    check_subscripts(s);
+#endif
+    return data[s]; }
 
   EltT&       operator()(Subscript s) { 
 #ifdef SCIENG_CHECK_SUBSCRIPTS
@@ -75,7 +79,11 @@ class ConcreteRigidArray1d {
 #endif
     return data[s]; }
 
-  ProjectionT operator[](Subscript s) { return data[s]; }
+  ProjectionT operator[](Subscript s) { 
+#ifdef SCIENG_CHECK_SUBSCRIPTS
+    check_subscripts(s);
+#endif
+    return data[s]; }
 
   T const * firstDatum() const { return data; }
   T*        firstDatum()       { return data; }
