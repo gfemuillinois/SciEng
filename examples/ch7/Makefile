@@ -12,7 +12,7 @@ FILES_WITH_MAIN	= cache.C mixedNesting.C newDemo.C  \
 TEMPLATE_INSTANCES = 
 
 SOURCE_FILES = Dangle.C Rational.C Rational1.C RationalComplex.C \
-	TraceLifetime.C  class-scope.C dangle.C mixedNesting.C \
+	TraceLifetime.C  class-scope.C dangle0.C mixedNesting.C \
 	 resource-acq.C static-linkage.C 
 
 #Automatically generated dependencies for .C and .cc files
