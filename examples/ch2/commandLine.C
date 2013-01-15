@@ -12,6 +12,7 @@ See README file for further details.
 #include <iostream>
 #include <stdlib.h>
 #include <getopt.h>
+#include <cstdio>
  
 int main(int argc, char* argv[]) {
     std::cout << "Flags found: ";

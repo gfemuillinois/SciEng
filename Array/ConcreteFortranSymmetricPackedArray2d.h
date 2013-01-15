@@ -107,7 +107,7 @@ protected:
 
 
 #ifdef XLC_QNOTEMPINC
-#include "Array/ConcreteFortranSymmetricPackedArray2d.c"
+#include "Array/ConcreteFortranSymmetricPackedArray2d.cxx"
 #endif
 
 #endif

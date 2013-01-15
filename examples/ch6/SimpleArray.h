@@ -38,7 +38,7 @@ private:
 };
 
 #ifdef XLC_QNOTEMPINC
-#include "examples/ch6/SimpleArray.c"
+#include "examples/ch6/SimpleArray.cxx"
 #endif
 
 #endif

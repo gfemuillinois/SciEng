@@ -74,7 +74,7 @@ std::ostream& operator<<(std::ostream& os, const Physical<T, m, l, t, q, k, i, a
 extern std::ostream& powerPrinter(std::ostream&, int[7]);  
 
 #ifdef XLC_QNOTEMPINC
-#include "Units/Physical.c"
+#include "Units/Physical.cxx"
 #endif
 
 #endif

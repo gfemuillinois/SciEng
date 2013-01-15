@@ -194,7 +194,7 @@ String& operator<<(String&, const double&);
 //}
 
 #ifdef XLC_QNOTEMPINC
-#include "SciEng/String.c"
+#include "SciEng/String.cxx"
 #endif
 
 #endif
