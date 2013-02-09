@@ -46,9 +46,9 @@ public:
     Fallible(const T& t) : FallibleBase(Boolean::IsTrue), instance(t) {}   // Valid.
     Fallible()           : FallibleBase(Boolean::IsFalse)             {}   // Invalid.
 
-    FallibleBase::failed;
-    FallibleBase::valid;
-    FallibleBase::invalidate;
+    using FallibleBase::failed;
+    using FallibleBase::valid;
+    using FallibleBase::invalidate;
 
     operator T() const;
 

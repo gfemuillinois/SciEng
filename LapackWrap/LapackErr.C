@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 #include "LapackWrap/LapackErr.h"
 
 String LapackErr::InvalidFactoredMatrixUse::message() const {

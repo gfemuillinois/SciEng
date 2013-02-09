@@ -86,7 +86,7 @@ class ConcreteFortranSymmetricPackedArray2d :
 public:
   typedef FortranSymmetricPackedSubscriptor SubscriptorType;
 
-  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::shape;
+  using ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::shape;
 
     ConcreteFortranSymmetricPackedArray2d(Subscript s0, Subscript s1);
     ConcreteFortranSymmetricPackedArray2d(const ConcreteFortranSymmetricPackedArray2d<T>&);
@@ -99,9 +99,9 @@ public:
     void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
 
 protected:
-  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::reshapeOnHeap;
-  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::setSizeOnHeap;
-  ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::datap;
+  using ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::reshapeOnHeap;
+  using ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::setSizeOnHeap;
+  using ConcreteArray2d<FortranSymmetricPackedSubscriptor, T>::datap;
 
 };
 

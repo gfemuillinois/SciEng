@@ -59,7 +59,7 @@ public:
     T* operator->() const { return the_p; }
 
 protected:
-  CopiedBuiltInPtr<T>::the_p;
+  using CopiedBuiltInPtr<T>::the_p;
 };
 
 //}

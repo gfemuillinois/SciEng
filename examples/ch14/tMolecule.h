@@ -2,7 +2,7 @@
 #ifndef TMOLECULEH
 #define TMOLECULEH
 
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 class Atom { 
 public:

@@ -24,12 +24,12 @@ template<class Subscriptor, class T>
 class ConcreteArray2dConstRef :
     private Subscriptor {
 public:
-    Subscriptor::dim;
-    Subscriptor::shape;
-    Subscriptor::numElts;
-    Subscriptor::offset;
+    using Subscriptor::dim;
+    using Subscriptor::shape;
+    using Subscriptor::numElts;
+    using Subscriptor::offset;
 
-    Subscriptor::projectionSubscriptor;
+    using Subscriptor::projectionSubscriptor;
 
     typedef T                                                          EltT;
     typedef Subscriptor                                                SubscriptorT;
@@ -68,12 +68,12 @@ template<class Subscriptor, class T>
 class ConcreteArray2dRef :      
     private Subscriptor {
 public:
-    Subscriptor::dim;
-    Subscriptor::shape;
-    Subscriptor::numElts;
-    Subscriptor::offset;
+    using Subscriptor::dim;
+    using Subscriptor::shape;
+    using Subscriptor::numElts;
+    using Subscriptor::offset;
 
-    Subscriptor::projectionSubscriptor;
+    using Subscriptor::projectionSubscriptor;
 
     typedef T           EltT;
     typedef Subscriptor SubscriptorT;
@@ -136,11 +136,11 @@ template<class Subscriptor, class T>
 class ConcreteArray2d :      
     private Subscriptor {
 public:
-    Subscriptor::dim;
-    Subscriptor::shape;
-    Subscriptor::numElts;
-    Subscriptor::offset;
-    Subscriptor::setShape;
+    using Subscriptor::dim;
+    using Subscriptor::shape;
+    using Subscriptor::numElts;
+    using Subscriptor::offset;
+    using Subscriptor::setShape;
 
     typedef T                                                         EltT;
     typedef Subscriptor                                               SubscriptorT;
@@ -186,7 +186,7 @@ protected:
     void reshapeOnHeap(const SubscriptArray<2>& s);
     void setSizeOnHeap(Subscript n);
 
-  Subscriptor::the_shape;
+  using Subscriptor::the_shape;
 
 protected:
     T* datap;

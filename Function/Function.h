@@ -52,7 +52,7 @@ class IsoFunction :
     private Function<Domain, Domain> {
 public:
     IsoFunction( Domain(*f)(Domain) ): Function<Domain,Domain>(f) {}
-    Function<Domain, Domain>::operator();
+    using Function<Domain, Domain>::operator();
     virtual IsoFunction<Domain>* clone() const { return new IsoFunction<Domain>(*this); }
 };
 

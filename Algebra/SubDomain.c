@@ -8,7 +8,7 @@ Addison-Wesley, 1994.
 
 See README file for further details.
 */
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 template<class T>
 String SubDomainErr<T>::message() const {

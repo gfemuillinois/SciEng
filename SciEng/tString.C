@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 int main() {
 

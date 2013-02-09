@@ -7,9 +7,9 @@ include ../SciEng.mkdefs-$(HOSTTYPE)
 
 FILES_WITH_MAIN	= tString.C tBool.C
 
-TEMPLATE_INSTANCES = String_tinst.cc
+TEMPLATE_INSTANCES = SciEngString_tinst.cc
 
-SOURCE_FILES = String.C
+SOURCE_FILES = SciEngString.C
 
 #Automatically generated dependencies for .C and .cc files
 DEPENDLIST = $(SOURCE_FILES:%.C=Deps/%.d) \
@@ -25,8 +25,8 @@ OBJ_FILES = $(FILES_WITH_MAIN:.C=.o) $(SOURCE_FILES:.C=.o) $(TEMPLATE_INSTANCES:
 all:	$(ALL_FILES:.C=.o) $(FILES_WITH_MAIN:.C=)
 
 # Executables built from more than one object go here:
-tString: tString.o String.o String_tinst.o
-	$(LINK) tString.o String.o String_tinst.o
+tString: tString.o SciEngString.o SciEngString_tinst.o
+	$(LINK) tString.o SciEngString.o SciEngString_tinst.o
 
 tBool: tBool.o Boolean.o
 	$(LINK) tBool.o Boolean.o

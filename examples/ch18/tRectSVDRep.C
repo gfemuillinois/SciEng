@@ -13,7 +13,7 @@ See README file for further details.
 #include "LapackWrap/Lapack.h"
 #include "LapackWrap/RectSVDRep.h"
 #include "SciEng/SciEngErr.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 using std::cout;
 using std::cin;

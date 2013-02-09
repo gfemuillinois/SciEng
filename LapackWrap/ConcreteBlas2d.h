@@ -50,9 +50,9 @@ public:
 #if (__GNUC__ == 3)
   // compiler crashes if declarations below are given...
 #else
-  ConcreteFortranArray2d<T>::ConstProjectionT::shape; 
-  ConcreteFortranArray2d<T>::ConstProjectionT::firstDatum; 
-  ConcreteFortranArray2d<T>::ConstProjectionT::offset; 
+  using ConcreteFortranArray2d<T>::ConstProjectionT::shape; 
+  using ConcreteFortranArray2d<T>::ConstProjectionT::firstDatum; 
+  using ConcreteFortranArray2d<T>::ConstProjectionT::offset; 
 #endif
 #endif
 
@@ -116,9 +116,9 @@ public:
 #if (__GNUC__ == 3)
   // compiler crashes if declarations below are given...
 #else
-  ConcreteFortranArray2d<T>::ProjectionT::shape;
-  ConcreteFortranArray2d<T>::ProjectionT::firstDatum;
-  ConcreteFortranArray2d<T>::ProjectionT::offset;
+  using ConcreteFortranArray2d<T>::ProjectionT::shape;
+  using ConcreteFortranArray2d<T>::ProjectionT::firstDatum;
+  using ConcreteFortranArray2d<T>::ProjectionT::offset;
 #endif
 #endif
 
@@ -242,10 +242,10 @@ public:
   typedef ConstConcreteBlasProjection1d<T> ConstProjectionT;
   typedef      ConcreteBlasProjection1d<T>      ProjectionT;
 
-  ConcreteFortranArray2d<T>::shape;
-  ConcreteFortranArray2d<T>::numElts;
-  ConcreteFortranArray2d<T>::firstDatum;
-  ConcreteFortranArray2d<T>::reshape;
+  using ConcreteFortranArray2d<T>::shape;
+  using ConcreteFortranArray2d<T>::numElts;
+  using ConcreteFortranArray2d<T>::firstDatum;
+  using ConcreteFortranArray2d<T>::reshape;
 
   // CAD
   // AlgebraWithUnitCategory ops not implemented by DistributingLinearSpace.

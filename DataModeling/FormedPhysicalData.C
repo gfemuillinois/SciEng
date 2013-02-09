@@ -10,7 +10,6 @@ See README file for further details.
 */
 #include <fstream>
 #include "DataModeling/FormedPhysicalData.h"
-#include "SciEng/String.h"
 
 
 FormedPhysicalData::

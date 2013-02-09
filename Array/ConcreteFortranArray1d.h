@@ -35,9 +35,9 @@ public:
   void reshape(const Subscript s) { reshapeOnHeap(s); }
 
 protected:
-  ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::reshapeOnHeap;
-  ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::setSizeOnHeap;
-  ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::datap;
+  using ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::reshapeOnHeap;
+  using ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::setSizeOnHeap;
+  using ConcreteArray1d<ConcreteColumnMajorSubscriptor<1>, T>::datap;
 
 };
 

@@ -36,10 +36,10 @@ public:
   void reshape(const SubscriptArray<2>& s) { reshapeOnHeap(s); }
 
 protected:
-  ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::reshapeOnHeap;
-  ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::setSizeOnHeap;
+  using ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::reshapeOnHeap;
+  using ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::setSizeOnHeap;
 
-  ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::datap;
+  using ConcreteArray2d<ConcreteRowMajorSubscriptor<2>, T >::datap;
 };
 
 #ifdef XLC_QNOTEMPINC

@@ -1,16 +1,25 @@
 ################### SYSTEM DEPENDENT DEFINITIONS ######################
-### NOTE: This file is originally set-up for a Linux system. Change these
+### NOTE: This file is set-up for a Darwin + OS X (Mac) system. Change these
 ###       system dependent definitions for other machines.
+
+
+# Ported packages are needed for compiling on a Mac. Here, MacPorts is
+# used. Other options are Fink or HomeBrew
+USE_MACPORTS = YES
+
+# If we are using the MacPorts version of gcc. This can be set using 'sudo
+# port select gcc'
+USE_MACPORTS_GCC = YES
+
 
 #########compiler definitions
 
 ## C++ compiler
-CXX	 = icpc
-CC       = icc
-#FC 	 = ifort
+CXX	 = g++
+CC       = gcc
 FC 	 = gfortran
-LD       = icpc
-LDF 	 = gfortran
+LD       = g++
+LDF      = gfortran
 
 Debug = 
 PROF =
@@ -52,14 +61,14 @@ endif
 
 # we can overwrite this on the command line
 WERROR = -Werror
-CXXFLAGS =  $(OPTM) $(PROF) 
-#           -Wall -Wno-unused        -pedantic $(WERROR)
+CXXFLAGS =  $(OPTM) $(PROF)  \
+            -Wall -Wno-unused        -pedantic $(WERROR)
 
 #           -Wall -Wno-unused        -pedantic $(WERROR) -Wno-deprecated
 #           -Wall -Wno-unused  -ansi -pedantic -Werror 
 #           -Wall -Wno-unused        -pedantic -Werror -D__USE_GNU 
 
-#CXXFLAGS += -finline-functions -Wno-inline 
+CXXFLAGS += -finline-functions -Wno-inline 
 
 CXXFLAGS_DEPENDLIST = $(CXXFLAGS) -MM
 
@@ -68,29 +77,35 @@ FFLAGS =  $(OPTM)  $(PROF)
 
 LDFLAGS = $(OPTM) $(PROF)
 
-#########general libraries
+# specify libraries when using native Mac compilers (from Xcode/binary
+# install) and gcc from MacPorts
 
+# for MacPorts compiler
+ifeq ($(USE_MACPORTS_GCC),YES)
+CFLAGS += -m64
+FFLAGS += -m64
+CXXFLAGS += -m64
+LDFLAGS += -m64
 
-# environment variable MKLROOT is set after sourcing .cshrc
-
-MKLPATH    = $(MKLROOT)/lib/em64t
-MKLINCLUDE = $(MKLROOT)/include
-
-# Using static linking
-
-LIBSYS = -L$(MKLPATH) -I$(MKLINCLUDE)	\
-       -Wl,--start-group $(MKLPATH)/libmkl_intel_lp64.a \
-       $(MKLPATH)/libmkl_intel_thread.a $(MKLPATH)/libmkl_core.a -Wl,--end-group \
-       -liomp5 -lpthread \
-       -lstdc++ -ltcl -lm 
-
-ifeq ($(FC),gfortran)
-LIBSYS += -lgfortran
 else
-# NOT tested. Got this from older file (for MKL 8.1)
-LIBSYS += -lifcore -lirc -limf
+# for Apple compiler
+CFLAGS += -arch x86_64
+FFLAGS += -arch x86_64
+CXXFLAGS += -arch x86_64
+LDFLAGS += -arch x86_64
 endif
 
+
+#########general libraries
+
+# this one is for tsunami (red hat 6.0 and egcs-2.91.66)
+
+#LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
+
+#LIBSYS = -llapack -lblas                -lstdc++ -lm  -lgfortran
+
+# NOTE: Using ATLAS library (provides blas and some lapack routines)
+LIBSYS = -latlas -lsatlas -ltatlas -lstdc++ -lm -lgfortran
 
 #PWD := $(shell pwd)
 
@@ -100,6 +115,15 @@ SCIENGMATXLIB = ../SciEngMatx.a
 
 # location of libg2c.a  =  Fortran run-time library
 #LIBSYSPATH = -L/usr/lib/gcc-lib/i386-redhat-linux/egcs-2.91.66 
+
+
+# MacPorts libs must be explicitly linked because of their
+# unconventional path
+MACLIBS = 
+
+ifeq ($(USE_MACPORTS),YES)
+LIBSYSPATH += -L/opt/local/lib
+endif
 
 ALLLIBS =  $(SCIENGLIB) $(LIBSYS)   
 
@@ -138,13 +162,15 @@ endif
 # No implicity suffix rules. Use the partern rules below instead.
 .SUFFIXES:
 
+LINK = $(LD)  $(LIBSYSPATH) $(MACLIBS) -I../.. $(CXXFLAGS)  -o $@  
 
-#LINK = $(LD) $(CXXTEMPLATELINK) -I../.. $(CXXFLAGS)  -o $@   $(SCIENGLIB)
-LINK = $(LD)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@  
-
-LINKF = $(LDF)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@
+LINKF = $(LDF)  $(LIBSYSPATH) $(MACLIBS) -I../.. $(CXXFLAGS)  -o $@
 
 INC = -I../.. -I.. -I. -I../SciEng -I../../SciEng -ISciEng
+
+ifeq ($(USE_MACPORTS),YES)
+INC += -I/opt/local/include
+endif
 
 %.o : %.C
 	@echo Compiling $<
@@ -157,6 +183,8 @@ INC = -I../.. -I.. -I. -I../SciEng -I../../SciEng -ISciEng
 (%.o) : %.C
 	@echo Compiling $<
 	$(CXX) -DXLC_QNOTEMPINC       $(INC) $(CXXFLAGS) -c $< -o $*.o
+#	libtool -o $@ $*.o 
+#	$(RM) $*.o
 	$(AR) rv $@ $*.o 
 	$(RM) $*.o
 	ranlib $@

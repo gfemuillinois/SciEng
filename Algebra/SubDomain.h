@@ -12,7 +12,7 @@ See README file for further details.
 #define SubDomainH
 
 #include "SciEng/SciEngErr.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 
 template<class Domain>

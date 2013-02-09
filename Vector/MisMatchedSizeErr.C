@@ -9,7 +9,7 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include "Vector/MisMatchedSizeErr.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 String MisMatchedSizeErr::message() const {
   String s;

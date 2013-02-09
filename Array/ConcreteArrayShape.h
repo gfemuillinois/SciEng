@@ -66,7 +66,7 @@ public:
     typedef ConcreteColumnMajorProjectionSubscriptor<ndim-1> ProjectionT;
     ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
-    ConcreteArrayShape<ndim>::shape;
+    using ConcreteArrayShape<ndim>::shape;
 
     Subscript   offset(const SubscriptArray<ndim>& s) const;
 };
@@ -187,7 +187,7 @@ public:
   typedef ConcreteRowMajorProjectionSubscriptor<ndim-1> ProjectionT;
   ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 
-  ConcreteArrayShape<ndim>::shape;
+  using ConcreteArrayShape<ndim>::shape;
 
   Subscript offset(const SubscriptArray<ndim>& s) const;
 };
@@ -370,11 +370,11 @@ public:
 
     typedef ConcreteColumnMajorProjectionSubscriptor<ndim-1> ProjectionT;
 
-    ConcreteArrayShape<ndim>::dim;
-    ConcreteArrayShape<ndim>::shape;
-    ConcreteArrayShape<ndim>::numElts;
-    ConcreteArrayShape<ndim>::setShape;
-    ConcreteStrides<ndim>::offset;
+    using ConcreteArrayShape<ndim>::dim;
+    using ConcreteArrayShape<ndim>::shape;
+    using ConcreteArrayShape<ndim>::numElts;
+    using ConcreteArrayShape<ndim>::setShape;
+    using ConcreteStrides<ndim>::offset;
 
     ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 };
@@ -392,12 +392,12 @@ public:
 
     ConcreteColumnMajorProjectionSubscriptor() {}
 
-    ConcreteArrayShape<1>::dim;
-    ConcreteArrayShape<1>::shape;
-    ConcreteArrayShape<1>::numElts;
-    ConcreteArrayShape<1>::setShape;
+    using ConcreteArrayShape<1>::dim;
+    using ConcreteArrayShape<1>::shape;
+    using ConcreteArrayShape<1>::numElts;
+    using ConcreteArrayShape<1>::setShape;
 
-    ConcreteStrides<1>::offset;
+    using ConcreteStrides<1>::offset;
 };
 // ***************************************************
 
@@ -414,11 +414,11 @@ public:
 
     typedef ConcreteColumnMajorProjectionSubscriptor<1> ProjectionT;
 
-    ConcreteArrayShape<2>::dim;
-    ConcreteArrayShape<2>::shape;
-    ConcreteArrayShape<2>::numElts;
-    ConcreteArrayShape<2>::setShape;
-    ConcreteStrides<2>::offset;
+    using ConcreteArrayShape<2>::dim;
+    using ConcreteArrayShape<2>::shape;
+    using ConcreteArrayShape<2>::numElts;
+    using ConcreteArrayShape<2>::setShape;
+    using ConcreteStrides<2>::offset;
 
     inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 };
@@ -435,11 +435,11 @@ public:
   
   typedef ConcreteRowMajorProjectionSubscriptor<ndim-1> ProjectionT;
 
-  ConcreteArrayShape<ndim>::dim;
-  ConcreteArrayShape<ndim>::shape;
-  ConcreteArrayShape<ndim>::numElts;
-  ConcreteArrayShape<ndim>::setShape;
-  ConcreteStrides<ndim>::offset;
+  using ConcreteArrayShape<ndim>::dim;
+  using ConcreteArrayShape<ndim>::shape;
+  using ConcreteArrayShape<ndim>::numElts;
+  using ConcreteArrayShape<ndim>::setShape;
+  using ConcreteStrides<ndim>::offset;
   
   ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 };
@@ -456,12 +456,12 @@ public:
 
   ConcreteRowMajorProjectionSubscriptor() {}
   
-  ConcreteArrayShape<1>::dim;
-  ConcreteArrayShape<1>::shape;
-  ConcreteArrayShape<1>::numElts;
-  ConcreteArrayShape<1>::setShape;
+  using ConcreteArrayShape<1>::dim;
+  using ConcreteArrayShape<1>::shape;
+  using ConcreteArrayShape<1>::numElts;
+  using ConcreteArrayShape<1>::setShape;
 
-  ConcreteStrides<1>::offset;
+  using ConcreteStrides<1>::offset;
 };
 // ***************************************************
 
@@ -477,11 +477,11 @@ public:
   
   typedef ConcreteRowMajorProjectionSubscriptor<1> ProjectionT;
 
-  ConcreteArrayShape<2>::dim;
-  ConcreteArrayShape<2>::shape;
-  ConcreteArrayShape<2>::numElts;
-  ConcreteArrayShape<2>::setShape;
-  ConcreteStrides<2>::offset;
+  using ConcreteArrayShape<2>::dim;
+  using ConcreteArrayShape<2>::shape;
+  using ConcreteArrayShape<2>::numElts;
+  using ConcreteArrayShape<2>::setShape;
+  using ConcreteStrides<2>::offset;
 
   inline ProjectionT projectionSubscriptor(Dimension d, Subscript s) const;
 };

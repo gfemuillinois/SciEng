@@ -48,7 +48,7 @@ tXERBLA:	tXERBLA.o
 
 tXERBLA_FT:     tXERBLA_FT.o tXERBLA_FT.f
 		@echo Linking $@
-		$(FC) -o tXERBLA_FT  tXERBLA_FT.o $(LIBSYS)
+		$(LINKF) -o tXERBLA_FT  tXERBLA_FT.o $(LIBSYS)
 
 clean:
 	rm -f $(OBJ_FILES) rand.o tXERBLA_FT.o nrfunction.o

@@ -10,7 +10,7 @@ FILES_WITH_MAIN	= sizet.C tTuplize.C tArrayErr.C
 
 
 SOURCE_FILES = Array2d-with-dim.C ArrayErr.C ArraynT.C ArrayxD.C rigid.C \
-               SciEngErr.C String.C
+               SciEngErr.C SciEngString.C
 
 TEMPLATE_INSTANCES = tTuplize_tinst.cc
 #                    average_tinst.cc
@@ -41,10 +41,10 @@ tArrayErr: tArrayErr.o  $(SCIENGLIB)
 	@echo Linking $@
 	$(LINK) tArrayErr.o $(SCIENGLIB)
 
-#	$(LINK) tArrayErr.o ArrayErr.o ../../SciEng/SciEngErr.o ../../SciEng/String.o
+#	$(LINK) tArrayErr.o ArrayErr.o ../../SciEng/SciEngErr.o ../../SciEng/SciEngString.o
 
-String.C:
-	ln -s ../../SciEng/String.C .
+SciEngString.C:
+	ln -s ../../SciEng/SciEngString.C .
 
 SciEngErr.C:
 	ln -s ../../SciEng/SciEngErr.C .
@@ -55,7 +55,7 @@ clean:
 real_clean: clean
 	rm -f $(FILES_WITH_MAIN:.C=)
 	rm -rf Deps
-	rm -f String.C SciEngErr.C
+	rm -f SciEngString.C SciEngErr.C
 
 #-include Deps/empty.d
 Deps/empty.d:

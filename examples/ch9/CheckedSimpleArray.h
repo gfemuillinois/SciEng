@@ -16,7 +16,7 @@ See README file for further details.
 #define CHECKEDSIMPLEARRAYH
 
 #include "SciEng/SciEngErr.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 
 class SubscriptRangeError :

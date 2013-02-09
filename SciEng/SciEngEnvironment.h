@@ -12,7 +12,7 @@ See README file for further details.
 #define SciEngEnvironmentH
 
 #include "SciEng/SciEngErr.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 #include "SciEng/Terminate.h"
 #include "SciEng/NewHandler.h"
 

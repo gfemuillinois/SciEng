@@ -42,8 +42,8 @@ public:
   ConcreteBlas1d(const typename ConcreteFortranArray2d<T>::ProjectionT& a) :
     ConcreteFortranArray1d<T>(a) {}
 
-  ConcreteFortranArray1d<T>::numElts;
-  ConcreteFortranArray1d<T>::firstDatum;
+  using ConcreteFortranArray1d<T>::numElts;
+  using ConcreteFortranArray1d<T>::firstDatum;
 
   // User must define function for MetricSpaceCategory
   T dot(const ConcreteBlas1d<T>& rhs) const {

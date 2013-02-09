@@ -23,12 +23,12 @@ template<class Subscriptor, class T>
 class ConcreteArray3dConstRef :
   private Subscriptor {
 public:
-  Subscriptor::dim;
-  Subscriptor::shape;
-  Subscriptor::numElts;
-  Subscriptor::offset;
+  using Subscriptor::dim;
+  using Subscriptor::shape;
+  using Subscriptor::numElts;
+  using Subscriptor::offset;
 
-  Subscriptor::projectionSubscriptor;
+  using Subscriptor::projectionSubscriptor;
 
   typedef T           EltT;
   typedef Subscriptor SubscriptorT;
@@ -62,12 +62,12 @@ template<class Subscriptor, class T>
 class ConcreteArray3dRef :
   private Subscriptor {
 public:
-  Subscriptor::dim;
-  Subscriptor::shape;
-  Subscriptor::numElts;
-  Subscriptor::offset;
+  using Subscriptor::dim;
+  using Subscriptor::shape;
+  using Subscriptor::numElts;
+  using Subscriptor::offset;
 
-  Subscriptor::projectionSubscriptor;
+  using Subscriptor::projectionSubscriptor;
 
   typedef T           EltT;
   typedef Subscriptor SubscriptorT;
@@ -107,11 +107,11 @@ template<class Subscriptor, class T>
 class ConcreteArray3d :
   private Subscriptor {
 public:
-  Subscriptor::dim;
-  Subscriptor::shape;
-  Subscriptor::numElts;
-  Subscriptor::offset;
-  Subscriptor::setShape;
+  using Subscriptor::dim;
+  using Subscriptor::shape;
+  using Subscriptor::numElts;
+  using Subscriptor::offset;
+  using Subscriptor::setShape;
 
   typedef T                                                   EltT;
   typedef Subscriptor                                         SubscriptorT;

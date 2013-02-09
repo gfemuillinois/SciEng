@@ -9,7 +9,7 @@ Addison-Wesley, 1994.
 See README file for further details.
 */
 #include "Function/Function.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 String UnsetPtrErr::message() const {
   return "Attempt to call a Function whose pointer was not set";

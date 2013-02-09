@@ -10,6 +10,7 @@ CC       = icc
 #FC 	 = ifort
 FC 	 = gfortran
 LD       = icpc
+LDF 	 = gfortran
 
 Debug = 
 PROF =
@@ -140,6 +141,8 @@ endif
 
 #LINK = $(LD) $(CXXTEMPLATELINK) -I../.. $(CXXFLAGS)  -o $@   $(SCIENGLIB)
 LINK = $(LD)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@  
+
+LINKF = $(LDF)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@
 
 INC = -I../.. -I.. -I. -I../SciEng -I../../SciEng -ISciEng
 

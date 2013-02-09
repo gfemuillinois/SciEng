@@ -25,7 +25,7 @@ public:
     typedef ArrayBrowser2d< ConstArray2d<T> > BrowserType;
     typedef AccessedConstArray1d<T>           ConstProjectionT;
 
-    ArrayShape::shape;
+    using ArrayShape::shape;
 
     virtual const T&         operator()(Subscript i, Subscript j)  const = 0;
     virtual ConstProjectionT project(Subscript i, Dimension d = 0) const = 0;
@@ -54,7 +54,7 @@ public:
     typedef AccessedArray1d<T>            ProjectionT;
     typedef typename ConstArray2d<T>::ConstProjectionT ConstProjectionT;
 
-    ConstArray2d<T>::shape;
+    using ConstArray2d<T>::shape;
 
     virtual const T&         operator()(Subscript i, Subscript j)  const = 0;
     virtual T&               operator()(Subscript i, Subscript j)        = 0;

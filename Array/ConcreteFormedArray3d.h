@@ -37,9 +37,9 @@ public:
 
 protected:
 
-  ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T >::reshapeOnHeap;
-  ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T >::setSizeOnHeap;
-  ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T >::datap;
+  using ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T >::reshapeOnHeap;
+  using ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T >::setSizeOnHeap;
+  using ConcreteArray3d<ConcreteRowMajorSubscriptor<3>, T >::datap;
 
 };
 

@@ -35,7 +35,7 @@ public:
   virtual       T* firstDatum()       { return the_concrete.firstDatum(); }
 
 protected:
-  InterfacedArray1d< ConcreteFortranArray1d<T> >::the_concrete;
+  using InterfacedArray1d< ConcreteFortranArray1d<T> >::the_concrete;
 };
 
 #endif

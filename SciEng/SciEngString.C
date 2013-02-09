@@ -17,7 +17,7 @@ See README file for further details.
 #include <stdlib.h>
 #include <errno.h>
 
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 //namespace SciEngLib{
 

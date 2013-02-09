@@ -13,7 +13,7 @@ public:
     ComparableFormedArray1d(Subscript n);
     ComparableFormedArray1d(const FormedArray1d<T>& f);
 
-  FormedArray1d<T>::shape;
+  using FormedArray1d<T>::shape;
 
     // ...
     virtual Array1d<T>& operator=(const ConstArray1d<T>&);

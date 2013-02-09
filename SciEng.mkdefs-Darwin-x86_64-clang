@@ -5,12 +5,11 @@
 #########compiler definitions
 
 ## C++ compiler
-CXX	 = icpc
-CC       = icc
-#FC 	 = ifort
+CXX	 = clang++
+CC       = clang
 FC 	 = gfortran
-LD       = icpc
-LDF 	 = gfortran
+LD       = clang++
+LDF      = gfortran
 
 Debug = 
 PROF =
@@ -50,16 +49,18 @@ endif
 endif
 
 
+
+
 # we can overwrite this on the command line
-WERROR = -Werror
-CXXFLAGS =  $(OPTM) $(PROF) 
-#           -Wall -Wno-unused        -pedantic $(WERROR)
+WERROR = 
+CXXFLAGS =  $(OPTM) $(PROF)  \
+            -Wall -Wno-unused        -pedantic $(WERROR)
 
 #           -Wall -Wno-unused        -pedantic $(WERROR) -Wno-deprecated
 #           -Wall -Wno-unused  -ansi -pedantic -Werror 
 #           -Wall -Wno-unused        -pedantic -Werror -D__USE_GNU 
 
-#CXXFLAGS += -finline-functions -Wno-inline 
+CXXFLAGS += -finline-functions -Wno-inline 
 
 CXXFLAGS_DEPENDLIST = $(CXXFLAGS) -MM
 
@@ -68,29 +69,27 @@ FFLAGS =  $(OPTM)  $(PROF)
 
 LDFLAGS = $(OPTM) $(PROF)
 
-#########general libraries
+ifeq ($(USE_MACPORTS_SETUP),YES)
 
-
-# environment variable MKLROOT is set after sourcing .cshrc
-
-MKLPATH    = $(MKLROOT)/lib/em64t
-MKLINCLUDE = $(MKLROOT)/include
-
-# Using static linking
-
-LIBSYS = -L$(MKLPATH) -I$(MKLINCLUDE)	\
-       -Wl,--start-group $(MKLPATH)/libmkl_intel_lp64.a \
-       $(MKLPATH)/libmkl_intel_thread.a $(MKLPATH)/libmkl_core.a -Wl,--end-group \
-       -liomp5 -lpthread \
-       -lstdc++ -ltcl -lm 
-
-ifeq ($(FC),gfortran)
-LIBSYS += -lgfortran
+ifeq ($(USE_MACPORTS_GCC),YES)
+CXXFLAGS += 
+CFLAGS += 
+FFLAGS += 
 else
-# NOT tested. Got this from older file (for MKL 8.1)
-LIBSYS += -lifcore -lirc -limf
+CXXFLAGS += 
+CFLAGS += 
+FFLAGS += 
 endif
 
+endif
+
+
+#########general libraries
+
+# this one is for tsunami (red hat 6.0 and egcs-2.91.66)
+
+#LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
+LIBSYS = -llapack -lblas                -lstdc++ -lm  -lgfortran
 
 #PWD := $(shell pwd)
 
@@ -138,13 +137,25 @@ endif
 # No implicity suffix rules. Use the partern rules below instead.
 .SUFFIXES:
 
+MACLIBS = 
 
-#LINK = $(LD) $(CXXTEMPLATELINK) -I../.. $(CXXFLAGS)  -o $@   $(SCIENGLIB)
-LINK = $(LD)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@  
+ifeq ($(USE_MACPORTS_SETUP),YES)
+MACLIBS += -L/usr/lib -L/opt/local/lib 
+endif
 
-LINKF = $(LDF)  $(LIBSYSPATH) -I../.. $(CXXFLAGS)  -o $@
+LINK = $(LD)  $(LIBSYSPATH) $(MACLIBS) -I../.. $(CXXFLAGS)  -o $@  
+
+LINKF = $(LDF)  $(LIBSYSPATH) $(MACLIBS) -I../.. $(CXXFLAGS)  -o $@
 
 INC = -I../.. -I.. -I. -I../SciEng -I../../SciEng -ISciEng
+
+ifeq ($(USE_MACPORTS_SETUP),YES)
+ifeq ($(USE_MACPORTS_GCC),NO)
+INC += -idirafter/opt/local/include
+else
+INC += -I/opt/local/include
+endif
+endif
 
 %.o : %.C
 	@echo Compiling $<
@@ -157,6 +168,7 @@ INC = -I../.. -I.. -I. -I../SciEng -I../../SciEng -ISciEng
 (%.o) : %.C
 	@echo Compiling $<
 	$(CXX) -DXLC_QNOTEMPINC       $(INC) $(CXXFLAGS) -c $< -o $*.o
+#	libtool -o $@ $*.o
 	$(AR) rv $@ $*.o 
 	$(RM) $*.o
 	ranlib $@

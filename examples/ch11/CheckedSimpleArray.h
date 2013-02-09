@@ -22,7 +22,7 @@ public:
     CheckedSimpleArray(int n);                    // Create array of n elements
     CheckedSimpleArray();                         // Create array of 0 elements
 
-  SimpleArray<T>::numElts;
+  using SimpleArray<T>::numElts;
 
     T& operator[](int i);                         // Checked subscripting
 

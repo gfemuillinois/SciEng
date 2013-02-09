@@ -62,7 +62,7 @@ public:
     T* operator->() const { return the_p; }
 
 protected:
-  CountedBuiltInPtr<T>::the_p;
+  using CountedBuiltInPtr<T>::the_p;
 };
 
 //}

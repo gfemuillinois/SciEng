@@ -13,7 +13,7 @@ See README file for further details.
 
 #include "DataModeling/PhysicalData.h"
 #include "Array/ConcreteFormedArray1d.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 #include "Array/Array1d.h"
 
 

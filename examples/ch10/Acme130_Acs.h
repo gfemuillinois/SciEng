@@ -27,8 +27,8 @@ public:
     virtual float maximum() const;
 
 // GPIBInstrument interface
-    GPIBInstrumentData_GI::send;
-    GPIBInstrumentData_GI::receive;
+    using GPIBInstrumentData_GI::send;
+    using GPIBInstrumentData_GI::receive;
 };
 
 

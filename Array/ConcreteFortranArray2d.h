@@ -40,9 +40,9 @@ public:
     void clear() { reshape( SubscriptArray<2>(0, 0) ); }
 
 protected:
-  ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::reshapeOnHeap;
-  ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::setSizeOnHeap;
-  ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::datap;
+  using ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::reshapeOnHeap;
+  using ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::setSizeOnHeap;
+  using ConcreteArray2d<ConcreteColumnMajorSubscriptor<2>, T >::datap;
 
 };
 

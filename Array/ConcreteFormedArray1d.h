@@ -43,10 +43,10 @@ public:
   void clear() { reshape(0); }
 
 protected:
-  ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::reshapeOnHeap;
-  ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::setSizeOnHeap;
+  using ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::reshapeOnHeap;
+  using ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::setSizeOnHeap;
 
-  ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::datap;
+  using ConcreteArray1d<ConcreteRowMajorSubscriptor<1>, T>::datap;
 };
 
 //}

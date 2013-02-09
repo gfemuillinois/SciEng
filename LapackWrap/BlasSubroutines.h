@@ -11,7 +11,8 @@ See README file for further details.
 #ifndef BlasSubroutinesH
 #define BlasSubroutinesH
 
-#include "clarch.h"
+#include "SciEng/clarch.h"
+#include "SciEng/SciEngString.h"
 
 extern "C" {          // Raw BLAS prototypes.
   void FTNAME(dgemv)(const char TRANS[], const int& M, const int& N, const double& ALPHA,
@@ -160,8 +161,6 @@ inline void Blas3Subroutines::xgemm(Blas3Subroutines::Trans ta, Blas3Subroutines
      float* c_p, int ldc){
   FTNAME(sgemm)(&trans_char[ta], &trans_char[tb], m, n, k, alpha, a_p, lda, b_p, ldb, beta, c_p, ldc);
 }
-
-#include "SciEng/String.h"
 
 
 class BlasErr : 

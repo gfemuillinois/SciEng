@@ -11,7 +11,7 @@ See README file for further details.
 #include <iostream>
 #include "SciEng/ArrayErr.h"
 #include "SciEng/Boolean.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 
 String ArrayErr::Shape::message() const {

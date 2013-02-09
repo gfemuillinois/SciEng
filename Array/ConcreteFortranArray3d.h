@@ -35,9 +35,9 @@ public:
   void reshape(const SubscriptArray<3>& s) { reshapeOnHeap(s); }
 
 protected:
-  ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T >::reshapeOnHeap;
-  ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T >::setSizeOnHeap;
-  ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T >::datap;
+  using ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T >::reshapeOnHeap;
+  using ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T >::setSizeOnHeap;
+  using ConcreteArray3d<ConcreteColumnMajorSubscriptor<3>, T >::datap;
 };
 
 #ifdef XLC_QNOTEMPINC

@@ -11,7 +11,7 @@ See README file for further details.
 #ifndef LAPACK_subroutinesH
 #define LAPACK_subroutinesH
 
-#include "clarch.h"
+#include "SciEng/clarch.h"
 
 // Declarations for LAPACK Fortran routines that we use.
 

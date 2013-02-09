@@ -10,7 +10,7 @@ See README file for further details.
 */
 #include <iostream>
 #include "SciEng/SciEngErr.h"
-#include "SciEng/String.h"
+#include "SciEng/SciEngString.h"
 
 using std::cout;
 using std::cin;

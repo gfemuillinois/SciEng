@@ -79,7 +79,7 @@ SciEngMatx.a:	\
 	SciEngMatx.a(LapackWrap/BlasSubroutines.o) \
 	SciEngMatx.a(LapackWrap/LapackSubroutines.o) \
 	SciEngMatx.a(SciEng/ArrayErr.o) \
-	SciEngMatx.a(SciEng/String.o) \
+	SciEngMatx.a(SciEng/SciEngString.o) \
 	SciEngMatx.a(SciEng/SciEngErr.o) \
 	SciEngMatx.a(Vector/MisMatchedSizeErr.o)
 
@@ -102,7 +102,7 @@ SciEng.a:	\
 	SciEng.a(SciEng/NewHandler.o) \
 	SciEng.a(SciEng/SciEngEnvironment.o) \
 	SciEng.a(SciEng/SciEngErr.o) \
-	SciEng.a(SciEng/String.o) \
+	SciEng.a(SciEng/SciEngString.o) \
 	SciEng.a(SciEng/Terminate.o) \
 	SciEng.a(Array/ArrayShape.o) \
 	SciEng.a(Array/ConcreteFortranSymmetricPackedArray2d.o) \
@@ -124,7 +124,7 @@ clean:
 	SciEng/NewHandler.o \
 	SciEng/SciEngEnvironment.o \
 	SciEng/SciEngErr.o \
-	SciEng/String.o \
+	SciEng/SciEngString.o \
 	SciEng/Terminate.o \
 	Array/ArrayShape.o \
 	Array/ConcreteFortranSymmetricPackedArray2d.o \
@@ -171,7 +171,7 @@ real_clean:
 	SciEng/NewHandler.o \
 	SciEng/SciEngEnvironment.o \
 	SciEng/SciEngErr.o \
-	SciEng/String.o \
+	SciEng/SciEngString.o \
 	SciEng/Terminate.o \
 	Array/ArrayShape.o \
 	Array/ConcreteFortranSymmetricPackedArray2d.o \
@@ -217,7 +217,7 @@ clean_SciEng:
 	SciEng/NewHandler.o \
 	SciEng/SciEngEnvironment.o \
 	SciEng/SciEngErr.o \
-	SciEng/String.o \
+	SciEng/SciEngString.o \
 	SciEng/Terminate.o \
 	Array/ArrayShape.o \
 	Array/ConcreteFortranSymmetricPackedArray2d.o \

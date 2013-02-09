@@ -51,7 +51,7 @@ public:
   typedef          AccessedArray2d<T>                ProjectionT;
   typedef          ArrayIterator3d<Array3d<T> >      IteratorType;
 
-  ConstArray3d<T>::shape;
+  using ConstArray3d<T>::shape;
  
   virtual       T& operator()(Subscript i, Subscript j, Subscript k)       = 0;
   virtual const T& operator()(Subscript i, Subscript j, Subscript k) const = 0;
