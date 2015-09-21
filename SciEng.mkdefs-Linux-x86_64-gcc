@@ -11,6 +11,9 @@ FC 	 = gfortran
 LD       = g++
 LDF 	 = gfortran
 
+USE_ATLAS_BLAS = NO
+USE_MKL_BLAS = YES
+
 Debug = 
 PROF =
 OPTM =
@@ -74,7 +77,14 @@ LDFLAGS = $(OPTM) $(PROF)
 # this one is for tsunami (red hat 6.0 and egcs-2.91.66)
 
 #LIBSYS = -llapack -lblas                -lstdc++ -lm -lg2c
-LIBSYS = -llapack -lblas                -lstdc++ -lm  -lgfortran
+
+ifeq ($(USE_ATLAS_BLAS),YES)
+LIBSYS = -llapack -lblas -lstdc++ -lm  -lgfortran
+else
+LIBSYS = -L$(MKLROOT)/lib/intel64 -lmkl_intel_lp64 -lmkl_gnu_thread \
+	-lmkl_core -ldl -lpthread \
+	-lstdc++ -lm -lgfortran
+endif
 
 #PWD := $(shell pwd)
 

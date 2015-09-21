@@ -32,6 +32,7 @@ void addSubVector(ConcreteFortranArray2d<T>& vect,
       irow_vec = firstEq(ibl);
       ibl_size = blockSize(ibl);
       for(Subscript isub=0; isub<ibl_size; ++isub)
+#pragma omp atomic update
 	vect(irow_vec++,kol) += subv(irow_sv++,kol);
     }
   }
@@ -58,6 +59,7 @@ void addSubVector(ConcreteFortranArray2d<T>& vect,
   const Subscript jbl_size = vect.shape(1);
   for(Subscript kol=0; kol<jbl_size; ++kol) {
     for(Subscript irow=0; irow<dim; ++irow)
+#pragma omp atomic update
       vect( destIndex(irow), kol ) += subv(irow, kol);
   }
 
@@ -84,6 +86,7 @@ void addVector(ConcreteFortranArray2d<T>& vect1,
 
   for(Subscript icol=0; icol < col_size; ++icol) {
     for(Subscript irow=0; irow < row_size; ++irow)
+#pragma omp atomic update
       vect1( irow, icol ) += vect2( irow, icol );
   }
 
