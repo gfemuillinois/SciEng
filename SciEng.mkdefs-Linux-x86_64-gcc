@@ -43,7 +43,7 @@ OPTM = -O -DSCIENG_CHECK_SUBSCRIPTS
 CXX_OPTM_FLAG = CXX_OPTM_FLAG-O 
 
 ifeq ($(OPT),FULL)
-OPTM = -O3
+OPTM = -O3 -funroll-loops -march=native
 CXX_OPTM_FLAG = CXX_OPTM_FLAG$(OPTM)
 endif
 
