@@ -29,6 +29,11 @@ namespace LapackWrap {
   bool eigens(ConcreteRigidArray2d< T, n0,n0>&  A, const int prob_dim,
 	      const bool eigenVectors,
 	      ConcreteRigidArray1d< T, n0>& eigenValues);
+  
+  // Eigenvalues and Eigenvectors (Left if eigenVectLeft is true, Right if eigenVectRight is true, none if both false)
+  // of a general complex square matrix
+  template <class T, Subscript n0>
+  bool eigens(ConcreteRigidArray2d< T, n0, n0> A, const int prob_dim, const bool wantEigenVectLeft, const bool wantEigenVectRight, ConcreteRigidArray1d< T, n0> eigenValues);
 
 
 }

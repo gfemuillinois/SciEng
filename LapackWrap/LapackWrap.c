@@ -7,8 +7,7 @@
 namespace LapackWrap {
 
 template<class T, Subscript n0>
-bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A, 
-		  const int prob_dim,
+bool factAndSolve(ConcreteRigidArray2d< T, n0, n0>&  A, const int prob_dim,
 		  ConcreteRigidArray1d< T, n0>& rhs) {
 
   /* Solving a system of equations (prob_dim x prob_dim) using Lapack.
@@ -114,6 +113,76 @@ bool eigens(ConcreteRigidArray2d< T, n0,n0>&  A, const int prob_dim,
 }
 // **************************************************************
 // **************************************************************
+  
+template <class T, Subscript n0>
+bool eigens(ConcreteRigidArray2d< T, n0, n0>& A, const int prob_dim, const bool wantEigenVectLeft,
+            const bool wantEigenVectRight, ConcreteRigidArray1d< T, n0>& realEigen,
+            ConcreteRigidArray1d<T, n0>& imagEigen) {
+    
+    // Eigenvalues and Eigenvectors
+    // (Left if eigenVectLeft is true, Right if eigenVectRight is true, none if both false)
+    // of a general square matrix
+    //
+    // VL & VR are not referenced if Eigenvectors are not wanted
+    // In this case I do not want to calculate the eigenVectors, so I will write this function to default not calculate these
+    // This will avoid the need to create 2 ConcreteRigidArray2d < T, n0, n0> that may be unused
+    // If eigenVectors are wanted, they could be added
+    //
+    // Refer to Lapack reference for function sgeev
+  
+    // Since C++ is row Major and Fortran is column major, I must pass A^T
+    ConcreteRigidArray2d< T, n0, n0> A_Trans;
+    A_Trans = 0.0;
+    for (Subscript i = 0; i < n0; ++i ) {
+      for (Subscript j = 0; j < n0; ++j ) {
+        A_Trans(i,j) = A(j,i);
+      }
+    }
+    // A is overwritten on exit, but Lapack does not specify with what info
+    
+    if ( prob_dim > n0 ) {
+      std::cerr << "\nLapackWrap::eigens: Invalid prob_dim = " << prob_dim
+      << " n0 = " << n0 << std::endl;
+      return false;
+    }
+    
+    const char* jobVL = "No Left Evect";
+    if (wantEigenVectLeft) {
+      jobVL = "Vectors Left";
+      std::cerr << "\nLapackWrap::eigens: Function must be modified to calculate EigenVectors!!!\n" << std::endl;
+    }
+    
+    const char* jobVR = "No Right Evect";
+    if (wantEigenVectRight) {
+      jobVR = "Vectors Right";
+      std::cerr << "\nLapackWrap::eigens: Function must be modified to calculate EigenVectors!!!\n" << std::endl;
+    }
+    
+    ConcreteRigidArray1d< T, 3*n0> work;
+    int info = 0;
+    // Evects
+    ConcreteRigidArray1d< T, n0> eigenVectLeft, eigenVectRight;
+    eigenVectLeft = 0.0; eigenVectRight = 0.0;//THIS is not a good way to do it
+  
+    // Call Lapack Subroutine to calculate eigenvalues
+    LapackSubroutines::dgeev(jobVL, jobVR, prob_dim /*N*/, A_Trans.firstDatum(), n0 /*LDA*/,
+                             realEigen.firstDatum(), imagEigen.firstDatum(),eigenVectLeft.firstDatum(),
+                             n0 /*LDVL*/, eigenVectRight.firstDatum(), n0 /*LDVR*/, work.firstDatum(), 3*n0, info);
+  
+    if(info > 0) {
+      std::cerr << "\nLapackWrap::eigens: The algorithm failed to converge \n"
+      << "after finding only " << (n0 - info) << " eigenvalues " << std::endl;
+      return false;
+    }
+    if (info < 0) {
+      std::cerr << "\nLapackWrap::eigens: sgeev called with invalid argument "
+      << -info << std::endl;
+      return false;
+    }
+  return true;
+  }
+  // **************************************************************
+  // **************************************************************
 
 template<class T>
 bool factAndSolveSymExpert(const ConcreteFortranArray2d<T>& A,

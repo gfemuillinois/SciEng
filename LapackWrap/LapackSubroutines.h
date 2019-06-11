@@ -64,7 +64,12 @@ extern "C" {
 		     float EIGEN[], float WORK[], const int& LWORK, const int& INFO);
   void FTNAME(dsyev)(const char JOBZ[], const char UPLO[], const int& N, double A[], const int& LDA, 
 		     double EIGEN[], double WORK[], const int& LWORK, const int& INFO);
-
+  
+  // Eigenvalue and eigenvector calculation for nonsymmetric square matrices
+  
+  void FTNAME(dgeev)(const char JOBVL[], const char JOBVR[], const int& N, double A[], const int& LDA,
+                     double WR[], double WI[], double VL[], const int& LDVL, double VR[],
+                     const int& LDVR, double WORK[], const int& LWORK, const int& INFO);
 
   // SVD
     void FTNAME(dgesvd)(const char JOBU[], const char JOBVT[], const int& M, const int& N, const double AP[],   
@@ -168,7 +173,12 @@ public:
 		    float EIGEN[], float WORK[], const int& LWORK, const int& INFO);
   static void xsyev(const char JOBZ[], const char UPLO[], const int& N, double A[], const int& LDA, 
 		    double EIGEN[], double WORK[], const int& LWORK, const int& INFO);
-
+  
+  // Eigenvalue and eigenvector calculation for nonsymmetric square matrices
+  
+  static void dgeev(const char JOBVL[], const char JOBVR[], const int& N, double A[], const int& LDA,
+                     double WR[], double WI[], double VL[], const int& LDVL, double VR[],
+                     const int& LDVR, double WORK[], const int& LWORK, const int& INFO);
 
   // SVD
     static void xgesvd(Job u_storage, Job vt_storage, const int& M, const int& N, const double AP[],   
@@ -285,6 +295,17 @@ xsyev(const char JOBZ[], const char UPLO[], const int& N, double A[], const int&
 
   FTNAME(dsyev)(JOBZ, UPLO, N, A, LDA, EIGEN, WORK, LWORK, INFO);
 }
+
+// Eigenvalue and eigenvector calculation for nonsymmetric square matrices
+
+inline void LapackSubroutines::
+dgeev(const char JOBVL[], const char JOBVR[], const int& N, double A[], const int& LDA,
+      double WR[], double WI[], double VL[], const int& LDVL, double VR[], const int& LDVR,
+      double WORK[], const int& LWORK, const int& INFO) {
+  
+  FTNAME(dgeev)(JOBVL, JOBVR, N, A, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO);
+}
+
 
 // SVD  
 inline void LapackSubroutines::xgesvd(                                                                 
