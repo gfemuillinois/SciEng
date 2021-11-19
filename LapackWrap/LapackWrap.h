@@ -14,7 +14,8 @@ namespace LapackWrap {
   template <class T, Subscript n0>
   bool factAndSolve(ConcreteRigidArray2d< T, n0,n0>&  A, 
 		    const int prob_dim,
-		    ConcreteRigidArray1d< T, n0>& rhs);
+		    ConcreteRigidArray1d< T, n0>& rhs,
+        const bool verbose = true);
 
   // Factoring and solving symmetric system of equations using expert driver
   template <class T>

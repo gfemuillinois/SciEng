@@ -19,7 +19,7 @@ template class ConcreteRigidArray2d< double, MAT_DIM,MAT_DIM>;
 namespace LapackWrap {
 
 template bool factAndSolve<double, MAT_DIM>
-(ConcreteRigidArray2d<double, MAT_DIM, MAT_DIM> &, int, ConcreteRigidArray1d<double, MAT_DIM> &);
+(ConcreteRigidArray2d<double, MAT_DIM, MAT_DIM> &, int, ConcreteRigidArray1d<double, MAT_DIM> &, const bool verbose);
 
 template bool eigens<double, MAT_DIM>
 (ConcreteRigidArray2d<double, MAT_DIM, MAT_DIM>&, int, bool, 

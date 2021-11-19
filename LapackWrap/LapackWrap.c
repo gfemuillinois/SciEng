@@ -8,7 +8,7 @@ namespace LapackWrap {
 
 template<class T, Subscript n0>
 bool factAndSolve(ConcreteRigidArray2d< T, n0, n0>&  A, const int prob_dim,
-		  ConcreteRigidArray1d< T, n0>& rhs) {
+		  ConcreteRigidArray1d< T, n0>& rhs, const bool verbose) {
 
   /* Solving a system of equations (prob_dim x prob_dim) using Lapack.
    *
@@ -35,8 +35,10 @@ bool factAndSolve(ConcreteRigidArray2d< T, n0, n0>&  A, const int prob_dim,
      * has been completed, but the factor U is exactly singular, and
      * division by zero will occur if it is used to solve a system
      * of equations. */
-    std::cerr << "\nLapackWrap::factAndSolve: Matrix is singular " 
-	      << std::endl;
+    if (verbose) {
+      std::cerr << "\nLapackWrap::factAndSolve: Matrix is singular "
+          << std::endl;
+    }
     return false;
   }
 
