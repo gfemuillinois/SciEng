@@ -157,7 +157,7 @@ public:
     virtual CheckedFunction<D, R>* clone() const { return new CheckedFunction<D, R>(*this); }
       
       Boolean equivalentTo(const CheckedFunction<D,R>& rhs) const {
-        return pf.failed() && rhs.pf.failed() || FunctionType(pf) == FunctionType(rhs.pf);
+        return (pf.failed() && rhs.pf.failed()) || (FunctionType(pf) == FunctionType(rhs.pf));
       }
     protected:
       Fallible< FunctionType > pf;
@@ -190,7 +190,7 @@ public:
      virtual CheckedBuiltInFunction<D, R>* clone() const { return new CheckedBuiltInFunction<D, R>(*this); }
       
       Boolean equivalentTo(const CheckedBuiltInFunction<R,D>& rhs) const {
-        return pf.failed() && rhs.pf.failed() || FunctionType(pf) == FunctionType(rhs.pf);
+        return (pf.failed() && rhs.pf.failed()) || (FunctionType(pf) == FunctionType(rhs.pf));
       }
     protected:
       Fallible< FunctionType > pf;

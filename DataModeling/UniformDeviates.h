@@ -18,7 +18,7 @@ public:
    UniformDeviates(int seed) { srand48(seed); }
    double operator()() const { return drand48(); }
 private:
-   int seed;
+  //   int seed;
 };
       
 #endif
