@@ -236,7 +236,7 @@ bool factAndSolveSymExpert(const ConcreteFortranArray2d<T>& A,
    *       ~/home_alberta_part2/Galileu_arm/util++_ut/util
   */
 
-    std::cout << "\n+++ LapackWrap::factAndSolveSymExpert +++\n\n"; 
+  //std::cout << "\n+++ LapackWrap::factAndSolveSymExpert +++\n\n"; 
 
     int nrhs = B.shape(1);
 
@@ -266,8 +266,7 @@ bool factAndSolveSymExpert(const ConcreteFortranArray2d<T>& A,
       return false;
     }
 
-    std::cout << "LapackWrap::factAndSolveSymExpert: Number of Equations = " 
-	      << A.shape(0) << std::endl;
+  //std::cout << "LapackWrap::factAndSolveSymExpert: Number of Equations = " << A.shape(0) << std::endl;
 
     // Note that ipiv is NOT exactly like the one returned by DGESVX. See
     // Lapack manual (pg. 217) for details. !!!!!
@@ -327,7 +326,7 @@ bool factAndSolveSymExpert(const ConcreteFortranArray2d<T>& A,
 	std::cerr << "\nLapackWrap::factAndSolveSymExpert: xsysvx called with invalid "
 		  << " argumnt: \n" << " info = " << info << std::endl;
     }
-
+    /*
     std::cout << "\nLapackWrap::factAndSolveSymExpert: The estimate of the reciprocal"
       << " condition number:\nRCOND = " << rcond << "\nCOND = " << 1.0/rcond  << std::endl;
 
@@ -344,6 +343,7 @@ bool factAndSolveSymExpert(const ConcreteFortranArray2d<T>& A,
 		  << " berr(" << i << ")= " << berr(i) << std::endl;
       }
     }
+    */
     if (info) {
       return false;
     } 
