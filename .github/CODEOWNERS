@@ -1,0 +1,5 @@
+# This file defines code owners for the repo
+# Setting CAD as code owner to all files to add further protection
+# for master branch of public repo
+# Now we can require that CAD approves all PR's before they can be merged
+* @caduarte2
